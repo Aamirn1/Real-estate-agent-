@@ -561,41 +561,41 @@ const TESTIMONIALS: Testimonial[] = [
   {
     quote:
       "Opus Solutions transformed my pipeline in 60 days. The smart assistant pre-qualifies every lead before I even pick up the phone — I closed 14 deals last quarter without cold-calling once.",
-    name: "Jennifer Hayes",
-    role: "Top Producer, Compass",
-    initials: "JH",
+    name: "Charisse Mathews",
+    role: "Realtor, FL",
+    initials: "CM",
     avatar: "from-electric to-violet",
   },
   {
     quote:
       "We cut our cost-per-lead by 47% in the first month. The predictive scoring is scary accurate — leads rated 90+ close at 4x the rate of our old system. My agents actually fight over the hot ones now.",
-    name: "Marcus Chen",
-    role: "Team Lead, eXp Realty",
-    initials: "MC",
+    name: "Thuan Nguyen",
+    role: "Realtor, TX",
+    initials: "TN",
     avatar: "from-cyan to-electric",
   },
   {
     quote:
       "The kanban pipeline alone saved my team 12 hours a week. Drag, drop, done. Add the smart follow-up sequences and we went from 2% to 6.8% conversion in a single quarter.",
-    name: "Priya Patel",
-    role: "Broker, Keller Williams",
-    initials: "PP",
+    name: "Jennifer Bianchi",
+    role: "Realtor, TX",
+    initials: "JB",
     avatar: "from-violet to-fuchsia-500",
   },
   {
     quote:
       "I acquire 30+ properties a year. Opus surfaces off-market opportunities before they hit the MLS. I've closed three deals this month that nobody else even knew existed.",
-    name: "David Okonkwo",
-    role: "Investor",
-    initials: "DO",
+    name: "Kira Asinas",
+    role: "Investor, AL/GA/FL",
+    initials: "KA",
     avatar: "from-gold to-amber-500",
   },
   {
     quote:
       "Luxury clients expect instant, intelligent response. Opus's smart concierge handles inquiries 24/7 and books showings while I sleep. My listing-to-close time dropped from 90 to 41 days.",
-    name: "Sofia Ramirez",
-    role: "Agent, Sotheby's",
-    initials: "SR",
+    name: "Victoria Hyatt",
+    role: "Realtor, CA",
+    initials: "VH",
     avatar: "from-emerald-400 to-cyan",
   },
 ];

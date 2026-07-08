@@ -328,3 +328,105 @@ Stage Summary:
 - Rebrand complete on both files. Brand wordmarks now read "Opus Solutions", standalone brand references say "Opus", and every user-visible "AI" mention (eyebrows, headings, descriptions, feature pills, FAQ Q&As, pricing feature lists, CTA subtext, footer tagline, newsletter text, copyright, "Made with care" badge) has been removed or contextually replaced with "Smart"/"Opus"/"smart automation".
 - All features, animations, accordion, pricing toggle, map interactivity, and the premium dark glass design are 100% intact. No file names, component function names, import paths, CSS class names, or variable names were changed.
 - Lint clean. Ready for orchestrator/preview.
+
+---
+Task ID: 6
+Agent: section-enricher
+Task: Expand AboutMission (AboutVaWorkflow.tsx) with Benefits block, Why We Are Different grid, and Achievements banner
+
+Work Log:
+- Read worklog.md to confirm design system (dark glassmorphism, electric/violet/cyan palette, GlassCard/CountUp/SectionHeading/SectionShell + Reveal primitives, brand = "Opus Solutions", no "AI" / no "LeadSphere" in user-visible text).
+- Read target file src/components/leadsphere/sections/AboutVaWorkflow.tsx (3 exported sections: AboutMission, VirtualAssistantServices, OurWorkflow).
+- Read primitives.tsx to confirm exact prop signatures for GlassCard (className/strong/sheen/children), CountUp (value/duration/decimals/prefix/suffix/className), SectionHeading (eyebrow/title/description/align/className), SectionShell (children/className/id).
+- Imports extended (lucide-react): added CheckCircle2, ShieldCheck, PiggyBank, Handshake, TrendingUp. Imports extended (primitives): added CountUp alongside existing GlassCard/SectionHeading/SectionShell. Existing Reveal import kept.
+
+- AboutMission SectionHeading description updated to the new exact copy: "Opus Solutions provides professional marketing and administrative support for real estate professionals. Our mission is to help licensed agents and brokerages stay organized, save time, and grow stronger businesses." (No LeadSphere / no AI.)
+
+- NEW BLOCK 1 — "Benefits of Professional Outreach Support" (inserted AFTER the 3-card mission/vision/who-we-serve grid, still inside the same SectionShell):
+  • Single strong+sheel GlassCard with `p-0` wrapper, internal `relative grid lg:grid-cols-2` content area with `p-8 sm:p-10` and `lg:gap-14`.
+  • Ambient glow layer: two `pointer-events-none absolute` blur-3xl orbs (electric bottom-left, violet top-right).
+  • LEFT column: electric "Benefits" pill (CheckCircle2 + label), gradient headline "Benefits of Professional Outreach Support" (text-gradient-electric span), the exact required paragraph ("Outsourcing your outreach support with Opus Solutions saves valuable time by providing verified and standardized contact records. Our documented workflows make follow-ups faster and more consistent — so you can focus on clients, not data entry."), and a decorative electric→violet→cyan gradient underline.
+  • RIGHT column: 4-item checklist built from an array via .map (motion.li with staggered x:16→0 reveal). Each item: bordered bg-white/[0.02] rounded-xl card, CheckCircle2 icon in text-electric with drop-shadow glow + group-hover scale-110, bold title, white/55 description. Hover state lights up border to electric/30.
+  • 4 items exactly match the spec: Documented workflows / Verified & standardized contacts / CRM setup & support / Digital advertising campaigns (descriptions verbatim).
+
+- NEW BLOCK 2 — "Why We Are Different" (inserted below Block 1, still inside SectionShell):
+  • Centered eyebrow pill (violet dot + "Why We Are Different") + heading "Built different, built to last" (gradient span on "last") + short subhead mentioning Opus Solutions.
+  • 3-col md:grid of strong GlassCards, each with: ambient color glow (absolute blur-3xl, group-hover opacity-150), colored icon tile (h-12 w-12 rounded-xl bg-{color}/15, group-hover scale-110), title (font-heading text-lg), description (text-sm white/60), and a colored underline (h-0.5 w-10 group-hover:w-20). motion.div wrapper with whileHover y:-4 lift.
+  • Card 1: ShieldCheck / electric / "Verified & Documented Outreach" — full reference copy ("consent-based channels...no autodialers or robocalls").
+  • Card 2: PiggyBank / violet / "Cost-Effective Support Packages" — full reference copy (mentions "Opus Solutions").
+  • Card 3: Handshake / cyan / "Long-Term Partnership" — full reference copy ("workflow playbooks, and strategic guidance that scale with your goals").
+
+- NEW Achievements banner (inserted below Block 2, still inside SectionShell):
+  • Horizontal highlight band GlassCard (sheen, p-0 wrapper). Internal gradient overlay (electric→violet→cyan at low opacity) + two side blur-3xl orbs (electric left, cyan right).
+  • Left side: TrendingUp icon in electric-tinted bordered tile + label block ("OUR ACHIEVEMENTS" uppercase + "Fast-growing partner network nationwide" caption).
+  • Right side: 3-stat grid (sm:grid-cols-3) using CountUp (duration 2000). Each stat = colored big number (font-heading text-3xl sm:text-4xl in text-electric/text-violet/text-cyan) + label. Staggered motion.div reveal (y:12→0).
+  • Stats exactly as specified: 50K+ Active Agents, 100+ MLS Integrations, 92% Conversion Improvement.
+  • Responsive: stacks vertically on mobile (flex-col), horizontal band on md+ (md:flex-row md:justify-between).
+
+- All three new blocks use existing primitives (GlassCard, CountUp, Reveal) and the same dynamic Tailwind color class convention (`bg-${color}/15`, `text-${color}`) already used by VA_SERVICES / WORKFLOW_STEPS elsewhere in the file — no new patterns introduced.
+
+- Verification:
+  • `cd /home/z/my-project && bun run lint 2>&1 | tail -5` → clean (`$ eslint .`, exit 0, zero errors/warnings).
+  • Checked dev.log: dev server compiling cleanly, GET / 200 responses, no errors mentioning AboutVaWorkflow / AboutMission / CountUp / icon imports.
+  • Brand rule respected: zero user-visible "AI" or "LeadSphere"/"Sphere" text introduced. "Opus Solutions" / "Opus" used contextually.
+  • Existing exports (AboutMission, VirtualAssistantServices, OurWorkflow) and section ids (about, va-services, workflow) preserved — only AboutMission internals were expanded.
+  • Existing 3-card mission/vision/who-we-serve grid kept untouched above the new blocks.
+
+Stage Summary:
+- AboutMission section (id="about") now contains 4 logical blocks on the page: (1) the original Mission/Vision/Who-We-Serve 3-card grid, (2) the new "Benefits of Professional Outreach Support" 2-column glass card with 4-item checklist, (3) the new "Why We Are Different" 3-card grid (ShieldCheck/PiggyBank/Handshake), and (4) the new "Our Achievements" highlight band with 3 CountUp stats (50K+, 100+, 92%).
+- Premium dark glassmorphism preserved throughout; existing animations (Reveal, motion hover-lift) extended consistently to the new content.
+- Lint clean (exit 0). Dev server returning HTTP 200 with no runtime errors. No file names, component names, or export signatures changed. Ready for orchestrator preview.
+
+---
+Task ID: 5
+Agent: full-stack-developer
+Task: Enrich PricingFaqCtaFooter.tsx with REAL content from vleadservice.com — rewrite Pricing (6 plans), rewrite FAQ (12 Q&As), and add a new Contact section.
+
+Work Log:
+- Read worklog.md to absorb the design system (dark luxury glassmorphism, electric/violet/cyan/gold palette, shared primitives, custom-scroll utility, animate-gradient-x, text-glow, etc.).
+- Read the full target file (753 lines) to understand existing structure: imports, PLANS data, FAQS data, PlanPrice/CtaButton/PricingCard components, FaqList, CtaBanner, Footer, and main export.
+- Confirmed shadcn primitives available (Input, Textarea, Label, Button) and verified `custom-scroll` utility + `GlassCard` API (`{ className?, strong?, sheen?, children }` — no default padding).
+- TASK 1 — Pricing rewrite:
+  • Replaced 3-tier Starter/Professional/Enterprise with the 6 real reference plans: Custom Plan (Per Lead), Trial ($450/30d), Silver ($900/30d, "Top Selling" gold badge, electric gradient border, lg:scale-[1.04] lg:z-10, solid gradient CTA with glow), Gold ($1800/30d), Platinum ($2500/30d), Sapphire ($4000/365d, "For Premium Realtors" gold badge, animated gold gradient border `linear-gradient(120deg,#d4af37,#f5d77a,#d4af37,#f5d77a)`, outline "Book a Demo" CTA).
+  • Rewrote Plan type: removed `monthly/annual/custom/ctaVariant:"ghost"`; added `price: string` ("Per Lead" or "$450"), `period: string`, `highlight?: "top-selling" | "premium"`, `badge?: string`.
+  • Rewrote PlanPrice: renders "Per Lead" as plain text; for "$N" prices parses int and uses CountUp (keyed on price) with $ prefix. Removed `annual` prop entirely.
+  • Simplified CtaButton to just `outline` | `solid` variants (dropped `ghost` variant — no longer used).
+  • Rewrote PricingCard to branch on `plan.highlight`: top-selling (electric gradient border + scale + solid CTA + white divider), premium (gold gradient border + outline CTA + gold-tinted divider), standard (default GlassCard hover lift).
+  • Each card's features list now wrapped in `max-h-72 overflow-y-auto pr-1 custom-scroll` for scroll-when-needed behavior.
+  • Removed the Switch-based monthly/annual toggle entirely. Replaced with a centered glass pill note: Calendar icon + "One-time setup · 30-day or 365-day plans".
+  • Updated SectionHeading: eyebrow "Pricing", title "We've got a plan that's perfect for you", description "Whether you're just starting or need an all-inclusive solution, our plans scale with your goals."
+  • Grid layout: `lg:grid-cols-3` (2 rows × 3 cols for 6 plans, naturally centered second row).
+  • Added disclaimer line below grid in muted text: "Opus Solutions is a marketing consulting and support company. We do not act as a brokerage, list or sell property, or resell leads. Referral fees apply on successful closings."
+- TASK 2 — FAQ rewrite:
+  • Replaced the 7 SaaS-style FAQs with the 12 real reference FAQs (brokerage clarification, data/reselling, human-only outreach, exclusivity, setup fee, support model, TCPA/DNC/CAN-SPAM/CCPA/Fair Housing compliance, PCI-compliant payments, listing-platform differentiation, no-results guarantee, cancellation terms).
+  • Kept SectionHeading eyebrow "FAQ", title "Frequently asked questions", description "Find answers to commonly asked questions about Opus Solutions." (added description).
+  • FaqList component unchanged (still uses Reveal + Accordion + ChevronDown rotate-on-open); only the FAQS data array changed. Capped stagger delay at 0.36s (changed per-item multiplier from 0.06 → 0.04 to keep 12 items snappy).
+  • FAQ contact prompt strip: changed CTA href from "#" → "#contact" so it now scrolls to the new contact section.
+- TASK 3 — New Contact section:
+  • Added `ContactSection` sub-component (placed BETWEEN FAQ and CTA banner in main render: Pricing → FAQ → Contact → CTA → Footer; flows naturally since FAQ strip already prompts "Still have questions? Contact support" → links to #contact).
+  • SectionShell id="contact" with SectionHeading eyebrow "Contact", title "Let's do great work together", description with the motivated-sellers subtext.
+  • 2-column grid (lg:grid-cols-2):
+    - LEFT: GlassCard strong contact form using shadcn Input/Textarea/Label/Button. Fields: Name + Email (2-col on sm), Phone, Message textarea (flex-1 min-h-32). Submit = shadcn Button with custom gradient bg + shimmer sweep + glow (matches CtaButton solid styling for visual consistency). onSubmit preventDefault. Ambient electric + violet blur orbs in card corners. MessageSquare icon header.
+    - RIGHT: vertical stack of (2×2 info-card grid) + (flex-1 stylized map panel).
+      · InfoCard sub-component: small GlassCard with icon chip + uppercase label + value. Email card (Mail, text-electric, mailto link, break-all), Phone card (Phone, text-violet, 3 tel links, tnum), Address card (MapPin, text-cyan, 3 address lines), Office Hours card (Clock, text-gold, tnum).
+      · StylizedMap sub-component: pure CSS/SVG — dark bg `#070a12`, two layered grid overlays (32px electric + 128px violet) both with radial mask for fade-at-edges, central radial glow, glowing MapPin at center with `drop-shadow-[0_0_14px_rgba(59,130,246,0.95)]` + dual pulse rings (animate-ping outer + animate-pulse inner) + "Albany, NY" pill label. Corner badges: top-left "HQ · Albany" with green status dot, bottom-right "42.6526° N, 73.7562° W" coordinates (tnum).
+  • Real contact info wired: info@opussolutions.com, three phone numbers (320) 331-0910 / 8501 / 3559, 418 Broadway Ste. R Albany NY 12207, hours 10:00 A.M. to 08:00 P.M (EST). Stored in a CONTACT_INFO constant for cleanliness.
+- Imports audit:
+  • Removed: `Switch` (no longer used after toggle removal), `useState` (no longer needed).
+  • Added: `Input`, `Textarea`, `Label`, `Button` (shadcn, used in contact form).
+  • Added icons: `Mail`, `Phone`, `MapPin`, `Clock`, `MessageSquare` (lucide-react, used in contact section).
+  • Kept all previously-used icons (Check, ChevronDown, Sparkles, ArrowRight, Rocket, Calendar, Orbit, Twitter, Linkedin, Instagram, Youtube, Github, ShieldCheck, Send, Star) and motion/CN/CountUp/GlassCard/SectionHeading/SectionShell/Reveal/Accordion* imports.
+- Footer touch-ups (kept structure intact, only column data evolved):
+  • FOOTER_COLUMNS first column "Product" → "Plans" with links ["Custom","Trial","Silver","Gold","Platinum","Sapphire"] so the footer reflects the new pricing tiers.
+  • LogoMark wordmark ("Opus Solutions"), tagline, newsletter form, socials, copyright, status badge — all preserved from Task 4 rebrand (no AI/LeadSphere reintroduced).
+- Branding check: grepped file for `\b(AI|Ai)\b|LeadSphere|Sphere` → 0 matches. No user-visible "AI" or "LeadSphere" anywhere. Brand consistently "Opus Solutions" / "Opus".
+- Verification:
+  • `cd /home/z/my-project && bun run lint 2>&1 | tail -8` → output `$ eslint .` only, exit 0, zero errors/warnings.
+  • Dev server (`bun run dev` auto-running) log shows successful recompiles, GET / 200 responses, no runtime errors after edits.
+  • Default export name `PricingFaqCtaFooter` unchanged. All import paths intact. Premium dark glassmorphism, framer-motion animations, gradient borders, glow effects, custom-scroll, Reveal stagger, Accordion behavior — all preserved.
+
+Stage Summary:
+- Pricing now shows 6 real one-time-setup plans with the Silver (Top Selling) and Sapphire (For Premium Realtors) cards visually highlighted via gradient borders + gold badges.
+- FAQ now has the 12 real compliance/services Q&As from the reference site.
+- New Contact section adds a styled contact form (shadcn Input/Textarea/Label/Button), 4 info cards (email/3 phones/address/hours) with the real Opus Solutions contact data, and a pure-CSS stylized map with a glowing Albany, NY pin.
+- File flow: Pricing → FAQ → Contact → CTA → Footer. Lint clean. Brand clean. Design system preserved.

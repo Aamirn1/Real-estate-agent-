@@ -15,9 +15,15 @@ import {
   Target,
   Eye,
   Users,
+  CheckCircle2,
+  ShieldCheck,
+  PiggyBank,
+  Handshake,
+  TrendingUp,
 } from "lucide-react";
 import {
   GlassCard,
+  CountUp,
   SectionHeading,
   SectionShell,
 } from "@/components/leadsphere/primitives";
@@ -37,7 +43,7 @@ export function AboutMission() {
             Workflow automation <span className="text-gradient-electric">for realtors</span>
           </>
         }
-        description="Opus Solutions helps real estate professionals streamline outreach, save time, and grow stronger businesses with verified leads and dedicated support."
+        description="Opus Solutions provides professional marketing and administrative support for real estate professionals. Our mission is to help licensed agents and brokerages stay organized, save time, and grow stronger businesses."
       />
 
       <div className="mt-12 grid gap-5 md:grid-cols-3">
@@ -86,6 +92,223 @@ export function AboutMission() {
           </GlassCard>
         </Reveal>
       </div>
+
+      {/* ============ NEW BLOCK 1: Benefits of Professional Outreach Support ============ */}
+      <Reveal delay={0.1}>
+        <GlassCard strong sheen className="relative mt-8 overflow-hidden p-0">
+          {/* ambient glows */}
+          <div className="pointer-events-none absolute -left-16 top-1/2 h-64 w-64 -translate-y-1/2 rounded-full bg-electric/10 blur-3xl" />
+          <div className="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full bg-violet/10 blur-3xl" />
+
+          <div className="relative grid gap-10 p-8 sm:p-10 lg:grid-cols-2 lg:gap-14">
+            {/* LEFT column — heading + paragraph */}
+            <div className="flex flex-col justify-center">
+              <span className="inline-flex w-fit items-center gap-2 rounded-full border border-electric/30 bg-electric/10 px-3 py-1 text-xs font-medium tracking-wide text-electric">
+                <CheckCircle2 className="h-3.5 w-3.5" />
+                Benefits
+              </span>
+              <h3 className="mt-5 font-heading text-2xl font-semibold leading-tight text-white sm:text-3xl">
+                Benefits of{" "}
+                <span className="text-gradient-electric">Professional Outreach Support</span>
+              </h3>
+              <p className="mt-4 max-w-lg text-sm leading-relaxed text-white/60 sm:text-base">
+                Outsourcing your outreach support with Opus Solutions saves
+                valuable time by providing verified and standardized contact
+                records. Our documented workflows make follow-ups faster and
+                more consistent — so you can focus on clients, not data entry.
+              </p>
+              <div className="mt-6 h-0.5 w-24 rounded-full bg-gradient-to-r from-electric via-violet to-cyan" />
+            </div>
+
+            {/* RIGHT column — checklist of 4 benefits */}
+            <ul className="flex flex-col gap-4">
+              {[
+                {
+                  title: "Documented workflows",
+                  desc: "Repeatable, transparent processes for every campaign.",
+                },
+                {
+                  title: "Verified & standardized contacts",
+                  desc: "Clean, deliverable records synced to your CRM.",
+                },
+                {
+                  title: "CRM setup & support",
+                  desc: "From onboarding to pipeline hygiene, handled end-to-end.",
+                },
+                {
+                  title: "Digital advertising campaigns",
+                  desc: "Consent-based campaigns across Google and social.",
+                },
+              ].map((item, i) => (
+                <motion.li
+                  key={item.title}
+                  initial={{ opacity: 0, x: 16 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: "-10% 0px" }}
+                  transition={{ duration: 0.45, delay: 0.05 * i, ease: [0.22, 1, 0.36, 1] }}
+                  className="group flex items-start gap-3 rounded-xl border border-white/8 bg-white/[0.02] p-4 transition-all duration-300 hover:border-electric/30 hover:bg-electric/[0.04]"
+                >
+                  <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-electric drop-shadow-[0_0_8px_rgba(59,130,246,0.5)] transition-transform duration-300 group-hover:scale-110" />
+                  <div>
+                    <p className="font-heading text-sm font-semibold text-white">
+                      {item.title}
+                    </p>
+                    <p className="mt-1 text-xs leading-relaxed text-white/55">
+                      {item.desc}
+                    </p>
+                  </div>
+                </motion.li>
+              ))}
+            </ul>
+          </div>
+        </GlassCard>
+      </Reveal>
+
+      {/* ============ NEW BLOCK 2: Why We Are Different ============ */}
+      <div className="mt-8">
+        <Reveal>
+          <div className="mx-auto mb-10 flex max-w-2xl flex-col items-center text-center">
+            <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium tracking-wide text-white/70 backdrop-blur">
+              <span className="h-1.5 w-1.5 rounded-full bg-violet shadow-[0_0_8px_#8b5cf6]" />
+              Why We Are Different
+            </span>
+            <h3 className="mt-4 font-heading text-2xl font-semibold leading-tight text-white sm:text-3xl md:text-4xl">
+              Built different, built to{" "}
+              <span className="text-gradient-electric">last</span>
+            </h3>
+            <p className="mt-3 max-w-xl text-sm leading-relaxed text-white/55 sm:text-base">
+              Three reasons teams choose Opus Solutions as their long-term
+              outreach partner.
+            </p>
+          </div>
+        </Reveal>
+
+        <div className="grid gap-5 md:grid-cols-3">
+          {[
+            {
+              icon: ShieldCheck,
+              title: "Verified & Documented Outreach",
+              desc: "We engage only through consent-based channels and provide standardized, verified contact records matched to your target areas. Humans conduct all outreach — no autodialers or robocalls.",
+              color: "electric",
+            },
+            {
+              icon: PiggyBank,
+              title: "Cost-Effective Support Packages",
+              desc: "Opus Solutions offers affordable outreach and marketing support packages that reduce administrative overhead and free up your team's time to focus on client relationships.",
+              color: "violet",
+            },
+            {
+              icon: Handshake,
+              title: "Long-Term Partnership",
+              desc: "We're more than a service provider — we're a long-term ally. Expect ongoing reporting, workflow playbooks, and strategic guidance that scale with your goals.",
+              color: "cyan",
+            },
+          ].map((card, i) => (
+            <Reveal key={card.title} delay={i * 0.1}>
+              <motion.div
+                whileHover={{ y: -4 }}
+                transition={{ duration: 0.25 }}
+                className="group h-full"
+              >
+                <GlassCard strong className="relative h-full overflow-hidden p-7">
+                  <div
+                    className={`pointer-events-none absolute -right-12 -top-12 h-32 w-32 rounded-full bg-${card.color}/15 blur-3xl transition-opacity duration-300 group-hover:opacity-150`}
+                  />
+                  <span
+                    className={`relative flex h-12 w-12 items-center justify-center rounded-xl bg-${card.color}/15 transition-transform duration-300 group-hover:scale-110`}
+                  >
+                    <card.icon className={`h-6 w-6 text-${card.color}`} />
+                  </span>
+                  <h4 className="relative mt-5 font-heading text-lg font-semibold text-white">
+                    {card.title}
+                  </h4>
+                  <p className="relative mt-3 text-sm leading-relaxed text-white/60">
+                    {card.desc}
+                  </p>
+                  <div
+                    className={`mt-5 h-0.5 w-10 rounded-full bg-${card.color}/50 transition-all duration-300 group-hover:w-20`}
+                  />
+                </GlassCard>
+              </motion.div>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+
+      {/* ============ Our Achievements banner ============ */}
+      <Reveal delay={0.1}>
+        <div className="relative mt-8">
+          {/* highlight band */}
+          <GlassCard sheen className="relative overflow-hidden p-0">
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-electric/[0.07] via-violet/[0.05] to-cyan/[0.07]" />
+            <div className="pointer-events-none absolute -left-20 top-1/2 h-40 w-40 -translate-y-1/2 rounded-full bg-electric/20 blur-3xl" />
+            <div className="pointer-events-none absolute -right-20 top-1/2 h-40 w-40 -translate-y-1/2 rounded-full bg-cyan/20 blur-3xl" />
+
+            <div className="relative flex flex-col items-center gap-6 p-6 sm:p-7 md:flex-row md:justify-between md:gap-8">
+              {/* caption */}
+              <div className="flex items-center gap-3 text-center md:text-left">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-electric/30 bg-electric/10">
+                  <TrendingUp className="h-5 w-5 text-electric" />
+                </span>
+                <div>
+                  <p className="font-heading text-sm font-semibold uppercase tracking-wider text-white">
+                    Our Achievements
+                  </p>
+                  <p className="mt-0.5 text-xs text-white/55">
+                    Fast-growing partner network nationwide
+                  </p>
+                </div>
+              </div>
+
+              {/* stats */}
+              <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-3 md:w-auto md:gap-8">
+                {[
+                  {
+                    value: 50,
+                    suffix: "K+",
+                    label: "Active Agents",
+                    color: "text-electric",
+                  },
+                  {
+                    value: 100,
+                    suffix: "+",
+                    label: "MLS Integrations",
+                    color: "text-violet",
+                  },
+                  {
+                    value: 92,
+                    suffix: "%",
+                    label: "Conversion Improvement",
+                    color: "text-cyan",
+                  },
+                ].map((stat, i) => (
+                  <motion.div
+                    key={stat.label}
+                    initial={{ opacity: 0, y: 12 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-10% 0px" }}
+                    transition={{ duration: 0.5, delay: 0.1 + i * 0.1, ease: [0.22, 1, 0.36, 1] }}
+                    className="flex flex-col items-center text-center md:px-6"
+                  >
+                    <span
+                      className={`font-heading text-3xl font-bold leading-none sm:text-4xl ${stat.color}`}
+                    >
+                      <CountUp
+                        value={stat.value}
+                        suffix={stat.suffix}
+                        duration={2000}
+                      />
+                    </span>
+                    <span className="mt-2 text-xs font-medium tracking-wide text-white/60">
+                      {stat.label}
+                    </span>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </GlassCard>
+        </div>
+      </Reveal>
     </SectionShell>
   );
 }

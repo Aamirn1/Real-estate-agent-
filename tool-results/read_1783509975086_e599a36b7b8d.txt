@@ -1,0 +1,753 @@
+     1→"use client";
+     2→
+     3→import {
+     4→  GlassCard,
+     5→  SectionHeading,
+     6→  SectionShell,
+     7→  CountUp,
+     8→} from "@/components/leadsphere/primitives";
+     9→import { Reveal } from "@/components/leadsphere/Reveal";
+    10→import {
+    11→  Accordion,
+    12→  AccordionItem,
+    13→  AccordionTrigger,
+    14→  AccordionContent,
+    15→} from "@/components/ui/accordion";
+    16→import { Switch } from "@/components/ui/switch";
+    17→import { motion } from "framer-motion";
+    18→import { useState } from "react";
+    19→import { cn } from "@/lib/utils";
+    20→import {
+    21→  Check,
+    22→  ChevronDown,
+    23→  Sparkles,
+    24→  ArrowRight,
+    25→  Rocket,
+    26→  Calendar,
+    27→  Orbit,
+    28→  Twitter,
+    29→  Linkedin,
+    30→  Instagram,
+    31→  Youtube,
+    32→  Github,
+    33→  ShieldCheck,
+    34→  Send,
+    35→  Star,
+    36→} from "lucide-react";
+    37→
+    38→/* ============================================================
+    39→   DATA
+    40→============================================================ */
+    41→
+    42→type Plan = {
+    43→  name: string;
+    44→  tagline: string;
+    45→  monthly: number | null;
+    46→  annual: number | null;
+    47→  custom?: boolean;
+    48→  features: string[];
+    49→  cta: string;
+    50→  ctaVariant: "outline" | "solid" | "ghost";
+    51→};
+    52→
+    53→const PLANS: Plan[] = [
+    54→  {
+    55→    name: "Starter",
+    56→    tagline: "For solo agents getting started.",
+    57→    monthly: 49,
+    58→    annual: 39,
+    59→    ctaVariant: "outline",
+    60→    cta: "Start free trial",
+    61→    features: [
+    62→      "1,000 leads / month",
+    63→      "Basic CRM",
+    64→      "5 MLS areas",
+    65→      "Email support",
+    66→      "Mobile app",
+    67→    ],
+    68→  },
+    69→  {
+    70→    name: "Professional",
+    71→    tagline: "For growing agents closing more deals.",
+    72→    monthly: 149,
+    73→    annual: 119,
+    74→    ctaVariant: "solid",
+    75→    cta: "Start free trial",
+    76→    features: [
+    77→      "10,000 leads / month",
+    78→      "Full CRM + Pipeline",
+    79→      "Unlimited MLS areas",
+    80→      "Smart Assistant",
+    81→      "Power Dialer",
+    82→      "SMS + Email automation",
+    83→      "Advanced analytics",
+    84→      "Priority support",
+    85→    ],
+    86→  },
+    87→  {
+    88→    name: "Enterprise",
+    89→    tagline: "For teams and brokerages.",
+    90→    monthly: null,
+    91→    annual: null,
+    92→    custom: true,
+    93→    ctaVariant: "ghost",
+    94→    cta: "Book a demo",
+    95→    features: [
+    96→      "Unlimited leads",
+    97→      "Team collaboration",
+    98→      "Custom integrations",
+    99→      "Dedicated CSM",
+   100→      "API access",
+   101→      "SSO & SCIM",
+   102→      "White-glove onboarding",
+   103→      "99.9% uptime SLA",
+   104→    ],
+   105→  },
+   106→];
+   107→
+   108→const FAQS: { q: string; a: string }[] = [
+   109→  {
+   110→    q: "How long is the free trial?",
+   111→    a: "Every plan starts with a 14-day free trial — no credit card required. You'll get full access to your chosen tier so you can import leads, test the Smart Assistant, and dial prospects before you ever pay. Cancel anytime during the trial and you won't be charged a cent.",
+   112→  },
+   113→  {
+   114→    q: "Which MLS markets do you cover?",
+   115→    a: "Opus connects to over 850 MLS markets across North America, covering 98% of active residential listings. Professional and Enterprise plans unlock unlimited MLS areas, and our team adds new markets every month. Don't see yours? Reach out and we'll prioritize it.",
+   116→  },
+   117→  {
+   118→    q: "How accurate is the lead data?",
+   119→    a: "Our platform cross-references 30+ data sources — property records, behavioral signals, life-event triggers, and consented contact data — to score and verify each lead. We refresh contact info nightly and flag unreachable numbers, so you're always dialing high-intent, verified prospects with an average 94% deliverability rate.",
+   120→  },
+   121→  {
+   122→    q: "Can I cancel my subscription anytime?",
+   123→    a: "Absolutely. There are no long-term contracts on monthly plans — cancel from your dashboard with one click and you won't be billed again. Annual subscribers can cancel anytime and keep access through the end of their billing period. We'll even export your CRM data for free.",
+   124→  },
+   125→  {
+   126→    q: "How do team seats work for brokerages?",
+   127→    a: "Enterprise plans include unlimited team seats, role-based permissions, shared pipelines, and broker-level reporting. Assign agents to territories, route leads automatically, and track performance across your entire office. SSO and SCIM provisioning make onboarding new agents take minutes, not days.",
+   128→  },
+   129→  {
+   130→    q: "What can the Smart Assistant actually do?",
+   131→    a: "The Smart Assistant drafts personalized outreach across email, SMS, and call scripts, prioritizes your hottest leads, transcribes and summarizes calls, suggests next-best actions, and even books appointments directly to your calendar. It's trained on millions of real estate conversations and learns from every interaction on your account.",
+   132→  },
+   133→  {
+   134→    q: "Which tools does Opus integrate with?",
+   135→    a: "We integrate natively with follow-up bosses, kvCORE, Salesforce, HubSpot, Google Workspace, Microsoft 365, Twilio, Zapier, and 200+ other tools. Enterprise customers get a REST API and custom integration support. If you're on a niche platform, ask us — we ship new connectors every month.",
+   136→  },
+   137→];
+   138→
+   139→const FOOTER_COLUMNS: { title: string; links: string[] }[] = [
+   140→  {
+   141→    title: "Product",
+   142→    links: ["Features", "Pricing", "Integrations", "Demo", "Changelog"],
+   143→  },
+   144→  {
+   145→    title: "Solutions",
+   146→    links: ["Agents", "Teams", "Brokerages", "Investors"],
+   147→  },
+   148→  {
+   149→    title: "Resources",
+   150→    links: ["Blog", "Guides", "Case Studies", "Videos", "Help Center"],
+   151→  },
+   152→  {
+   153→    title: "Company",
+   154→    links: ["About", "Careers", "Contact", "Partners"],
+   155→  },
+   156→  {
+   157→    title: "Legal",
+   158→    links: ["Privacy", "Terms", "Security", "DPA"],
+   159→  },
+   160→];
+   161→
+   162→const SOCIALS = [
+   163→  { Icon: Twitter, label: "Twitter / X", href: "#" },
+   164→  { Icon: Linkedin, label: "LinkedIn", href: "#" },
+   165→  { Icon: Instagram, label: "Instagram", href: "#" },
+   166→  { Icon: Youtube, label: "YouTube", href: "#" },
+   167→  { Icon: Github, label: "GitHub", href: "#" },
+   168→];
+   169→
+   170→/* ============================================================
+   171→   PRICING CARD
+   172→============================================================ */
+   173→
+   174→function PlanPrice({
+   175→  plan,
+   176→  annual,
+   177→}: {
+   178→  plan: Plan;
+   179→  annual: boolean;
+   180→}) {
+   181→  if (plan.custom) {
+   182→    return (
+   183→      <div className="flex items-baseline gap-1">
+   184→        <span className="font-heading text-4xl font-semibold text-white sm:text-5xl">
+   185→          Custom
+   186→        </span>
+   187→      </div>
+   188→    );
+   189→  }
+   190→  const value = annual ? plan.annual! : plan.monthly!;
+   191→  return (
+   192→    <div className="flex items-baseline gap-1">
+   193→      <span className="font-heading text-2xl font-semibold text-white/70">
+   194→        $
+   195→      </span>
+   196→      <CountUp
+   197→        key={`${plan.name}-${annual ? "annual" : "monthly"}`}
+   198→        value={value}
+   199→        duration={1400}
+   200→        className="font-heading text-5xl font-semibold tracking-tight text-white"
+   201→      />
+   202→      <span className="text-sm font-medium text-white/45">/mo</span>
+   203→    </div>
+   204→  );
+   205→}
+   206→
+   207→function CtaButton({
+   208→  variant,
+   209→  children,
+   210→}: {
+   211→  variant: "outline" | "solid" | "ghost";
+   212→  children: React.ReactNode;
+   213→}) {
+   214→  if (variant === "solid") {
+   215→    return (
+   216→      <motion.button
+   217→        whileHover={{ scale: 1.02 }}
+   218→        whileTap={{ scale: 0.98 }}
+   219→        className="group relative inline-flex w-full items-center justify-center gap-2 overflow-hidden rounded-full bg-[linear-gradient(120deg,#3b82f6,#8b5cf6,#06b6d4)] px-6 py-3 text-sm font-semibold text-white shadow-[0_0_30px_-6px_rgba(59,130,246,0.7)] transition-shadow hover:shadow-[0_0_45px_-4px_rgba(139,92,246,0.85)]"
+   220→      >
+   221→        <span className="absolute inset-0 -translate-x-full bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.25),transparent)] transition-transform duration-700 group-hover:translate-x-full" />
+   222→        <Rocket className="h-4 w-4" />
+   223→        <span className="relative">{children}</span>
+   224→      </motion.button>
+   225→    );
+   226→  }
+   227→  if (variant === "outline") {
+   228→    return (
+   229→      <motion.button
+   230→        whileHover={{ scale: 1.02 }}
+   231→        whileTap={{ scale: 0.98 }}
+   232→        className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-white backdrop-blur transition-colors hover:border-white/30 hover:bg-white/10"
+   233→      >
+   234→        <span>{children}</span>
+   235→        <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+   236→      </motion.button>
+   237→    );
+   238→  }
+   239→  return (
+   240→    <motion.button
+   241→      whileHover={{ scale: 1.02 }}
+   242→      whileTap={{ scale: 0.98 }}
+   243→      className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/10 px-6 py-3 text-sm font-semibold text-white/80 transition-colors hover:border-white/25 hover:text-white"
+   244→    >
+   245→      <Calendar className="h-4 w-4" />
+   246→      <span>{children}</span>
+   247→    </motion.button>
+   248→  );
+   249→}
+   250→
+   251→function PricingCard({
+   252→  plan,
+   253→  annual,
+   254→  highlighted,
+   255→  delay,
+   256→}: {
+   257→  plan: Plan;
+   258→  annual: boolean;
+   259→  highlighted: boolean;
+   260→  delay: number;
+   261→}) {
+   262→  const features = (
+   263→    <ul className="flex flex-col gap-3.5">
+   264→      {plan.features.map((f) => (
+   265→        <li key={f} className="flex items-start gap-3 text-sm text-white/70">
+   266→          <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-electric/15 ring-1 ring-electric/30">
+   267→            <Check className="h-3 w-3 text-electric" />
+   268→          </span>
+   269→          <span className="leading-relaxed">{f}</span>
+   270→        </li>
+   271→      ))}
+   272→    </ul>
+   273→  );
+   274→
+   275→  const header = (
+   276→    <div className="flex flex-col gap-2">
+   277→      <h3 className="font-heading text-xl font-semibold text-white">
+   278→        {plan.name}
+   279→      </h3>
+   280→      <p className="text-sm leading-relaxed text-white/50">{plan.tagline}</p>
+   281→    </div>
+   282→  );
+   283→
+   284→  const priceBlock = (
+   285→    <div className="flex flex-col gap-1">
+   286→      <PlanPrice plan={plan} annual={annual} />
+   287→      {!plan.custom && annual && (
+   288→        <span className="text-xs font-medium text-electric/80">
+   289→          Billed annually — save 20%
+   290→        </span>
+   291→      )}
+   292→      {!plan.custom && !annual && (
+   293→        <span className="text-xs font-medium text-white/40">
+   294→          Billed monthly
+   295→        </span>
+   296→      )}
+   297→      {plan.custom && (
+   298→        <span className="text-xs font-medium text-white/40">
+   299→          Volume pricing tailored to your team
+   300→        </span>
+   301→      )}
+   302→    </div>
+   303→  );
+   304→
+   305→  if (highlighted) {
+   306→    return (
+   307→      <Reveal delay={delay} className="h-full">
+   308→        <div className="group relative h-full lg:scale-[1.04] lg:z-10 transition-transform duration-300">
+   309→          {/* ambient glow */}
+   310→          <div className="absolute -inset-3 rounded-[1.75rem] bg-electric/20 blur-2xl opacity-70" />
+   311→          {/* animated gradient border */}
+   312→          <div className="absolute -inset-px rounded-2xl bg-[linear-gradient(120deg,#3b82f6,#8b5cf6,#06b6d4,#3b82f6)] animate-gradient-x opacity-95" />
+   313→          {/* card body */}
+   314→          <GlassCard
+   315→            strong
+   316→            className="relative flex h-full flex-col rounded-2xl p-6 md:p-8"
+   317→          >
+   318→            {/* Most Popular badge */}
+   319→            <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
+   320→              <div className="flex items-center gap-1.5 rounded-full border border-gold/40 bg-[#1a1605] px-3.5 py-1.5 shadow-[0_0_20px_-4px_rgba(212,175,55,0.6)]">
+   321→                <Star className="h-3.5 w-3.5 fill-gold text-gold" />
+   322→                <span className="text-xs font-semibold tracking-wide text-gold">
+   323→                  Most Popular
+   324→                </span>
+   325→              </div>
+   326→            </div>
+   327→
+   328→            <div className="flex flex-1 flex-col gap-6 pt-2">
+   329→              {header}
+   330→              {priceBlock}
+   331→              <CtaButton variant="solid">{plan.cta}</CtaButton>
+   332→              <div className="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+   333→              {features}
+   334→            </div>
+   335→          </GlassCard>
+   336→        </div>
+   337→      </Reveal>
+   338→    );
+   339→  }
+   340→
+   341→  return (
+   342→    <Reveal delay={delay} className="h-full">
+   343→      <GlassCard
+   344→        strong
+   345→        className="group relative flex h-full flex-col rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 hover:border-white/20 hover:shadow-[0_20px_60px_-20px_rgba(59,130,246,0.35)] md:p-8"
+   346→      >
+   347→        <div className="flex flex-1 flex-col gap-6">
+   348→          {header}
+   349→          {priceBlock}
+   350→          <CtaButton variant={plan.ctaVariant}>{plan.cta}</CtaButton>
+   351→          <div className="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+   352→          {features}
+   353→        </div>
+   354→      </GlassCard>
+   355→    </Reveal>
+   356→  );
+   357→}
+   358→
+   359→/* ============================================================
+   360→   FAQ ITEM
+   361→============================================================ */
+   362→
+   363→function FaqList() {
+   364→  return (
+   365→    <Accordion
+   366→      type="single"
+   367→      collapsible
+   368→      defaultValue="faq-0"
+   369→      className="flex w-full flex-col gap-3"
+   370→    >
+   371→      {FAQS.map((faq, i) => (
+   372→        <Reveal key={faq.q} delay={Math.min(i * 0.06, 0.36)} className="block">
+   373→          <AccordionItem
+   374→            value={`faq-${i}`}
+   375→            className="glass-strong group rounded-2xl border border-white/10 px-5 transition-colors duration-300 data-[state=open]:border-electric/30 sm:px-6"
+   376→          >
+   377→            <AccordionTrigger
+   378→              className="group/trigger hover:no-underline py-5 text-left text-base font-medium text-white/90 [&>svg:last-child]:hidden"
+   379→            >
+   380→              <span className="flex-1 pr-4 font-heading text-[15px] font-semibold leading-snug text-white sm:text-base">
+   381→                {faq.q}
+   382→              </span>
+   383→              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/5 transition-all duration-300 group-data-[state=open]:border-electric/40 group-data-[state=open]:bg-electric/10">
+   384→                <ChevronDown className="h-4 w-4 text-white/60 transition-all duration-300 group-data-[state=open]:rotate-180 group-data-[state=open]:text-electric" />
+   385→              </span>
+   386→            </AccordionTrigger>
+   387→            <AccordionContent className="text-sm leading-relaxed text-white/55 sm:text-[15px]">
+   388→              <span className="block pr-12 pb-5">{faq.a}</span>
+   389→            </AccordionContent>
+   390→          </AccordionItem>
+   391→        </Reveal>
+   392→      ))}
+   393→    </Accordion>
+   394→  );
+   395→}
+   396→
+   397→/* ============================================================
+   398→   CTA BANNER
+   399→============================================================ */
+   400→
+   401→function CtaBanner() {
+   402→  return (
+   403→    <section className="relative w-full px-5 py-12 sm:px-8 md:py-16">
+   404→      <div className="relative mx-auto w-full max-w-7xl overflow-hidden rounded-3xl border border-white/10">
+   405→        {/* animated gradient background */}
+   406→        <div className="absolute inset-0 bg-[linear-gradient(120deg,#3b82f6_0%,#8b5cf6_45%,#06b6d4_100%,#3b82f6_150%)] animate-gradient-x" />
+   407→        {/* moving grid overlay */}
+   408→        <div
+   409→          className="absolute inset-0 opacity-20"
+   410→          style={{
+   411→            backgroundImage:
+   412→              "linear-gradient(rgba(255,255,255,0.18) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.18) 1px, transparent 1px)",
+   413→            backgroundSize: "44px 44px",
+   414→            maskImage:
+   415→              "radial-gradient(ellipse 80% 70% at 50% 50%, #000 30%, transparent 80%)",
+   416→            WebkitMaskImage:
+   417→              "radial-gradient(ellipse 80% 70% at 50% 50%, #000 30%, transparent 80%)",
+   418→          }}
+   419→        />
+   420→        {/* dark scrim for contrast */}
+   421→        <div className="absolute inset-0 bg-black/30" />
+   422→        {/* top glow */}
+   423→        <div className="pointer-events-none absolute -top-28 left-1/2 h-64 w-[75%] -translate-x-1/2 rounded-full bg-white/25 blur-3xl" />
+   424→        {/* floating orbs */}
+   425→        <div className="pointer-events-none absolute -left-10 top-1/2 h-40 w-40 -translate-y-1/2 rounded-full bg-cyan/30 blur-3xl" />
+   426→        <div className="pointer-events-none absolute -right-10 top-1/2 h-40 w-40 -translate-y-1/2 rounded-full bg-violet/30 blur-3xl" />
+   427→
+   428→        {/* content */}
+   429→        <div className="relative z-10 flex flex-col items-center gap-6 px-6 py-16 text-center md:py-24">
+   430→          <motion.span
+   431→            initial={{ opacity: 0, y: 10 }}
+   432→            whileInView={{ opacity: 1, y: 0 }}
+   433→            viewport={{ once: true }}
+   434→            transition={{ duration: 0.5 }}
+   435→            className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-1.5 text-xs font-medium tracking-wide text-white backdrop-blur"
+   436→          >
+   437→            <Sparkles className="h-3.5 w-3.5" />
+   438→            Ready to scale?
+   439→          </motion.span>
+   440→
+   441→          <motion.h2
+   442→            initial={{ opacity: 0, y: 16, filter: "blur(8px)" }}
+   443→            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+   444→            viewport={{ once: true, margin: "-10% 0px" }}
+   445→            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+   446→            className="font-heading text-4xl font-semibold leading-[1.05] tracking-tight text-white text-glow sm:text-5xl md:text-6xl"
+   447→          >
+   448→            Ready to close more listings?
+   449→          </motion.h2>
+   450→
+   451→          <motion.p
+   452→            initial={{ opacity: 0, y: 12 }}
+   453→            whileInView={{ opacity: 1, y: 0 }}
+   454→            viewport={{ once: true }}
+   455→            transition={{ duration: 0.6, delay: 0.1 }}
+   456→            className="max-w-xl text-base leading-relaxed text-white/85 sm:text-lg"
+   457→          >
+   458→            Join 50,000+ agents generating more listings with smart automation.
+   459→          </motion.p>
+   460→
+   461→          <motion.div
+   462→            initial={{ opacity: 0, y: 12 }}
+   463→            whileInView={{ opacity: 1, y: 0 }}
+   464→            viewport={{ once: true }}
+   465→            transition={{ duration: 0.6, delay: 0.2 }}
+   466→            className="mt-2 flex flex-col items-center gap-3 sm:flex-row"
+   467→          >
+   468→            {/* Book Demo — white / outline */}
+   469→            <motion.button
+   470→              whileHover={{ scale: 1.04 }}
+   471→              whileTap={{ scale: 0.97 }}
+   472→              className="inline-flex items-center justify-center gap-2 rounded-full border border-white/50 bg-white/10 px-7 py-3.5 text-sm font-semibold text-white backdrop-blur transition-all hover:bg-white/20 hover:shadow-[0_0_35px_-6px_rgba(255,255,255,0.6)]"
+   473→            >
+   474→              <Calendar className="h-4 w-4" />
+   475→              Book Demo
+   476→            </motion.button>
+   477→            {/* Start Free Trial — dark solid with glow */}
+   478→            <motion.button
+   479→              whileHover={{ scale: 1.04 }}
+   480→              whileTap={{ scale: 0.97 }}
+   481→              className="group inline-flex items-center justify-center gap-2 rounded-full bg-[#050505] px-7 py-3.5 text-sm font-semibold text-white shadow-[0_0_35px_-6px_rgba(0,0,0,0.8)] ring-1 ring-white/10 transition-all hover:shadow-[0_0_50px_-4px_rgba(255,255,255,0.5)]"
+   482→            >
+   483→              <Rocket className="h-4 w-4 text-electric" />
+   484→              Start Free Trial
+   485→              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+   486→            </motion.button>
+   487→          </motion.div>
+   488→
+   489→          <p className="text-xs text-white/60">
+   490→            14-day free trial · No credit card required · Cancel anytime
+   491→          </p>
+   492→        </div>
+   493→      </div>
+   494→    </section>
+   495→  );
+   496→}
+   497→
+   498→/* ============================================================
+   499→   FOOTER
+   500→============================================================ */
+   501→
+   502→function LogoMark() {
+   503→  return (
+   504→    <div className="flex items-center gap-3">
+   505→      <div className="relative flex h-10 w-10 items-center justify-center rounded-xl bg-[linear-gradient(135deg,#3b82f6,#8b5cf6,#06b6d4)] shadow-[0_0_25px_-6px_rgba(59,130,246,0.7)]">
+   506→        <Orbit className="h-5 w-5 text-white" />
+   507→        <div className="absolute inset-0 rounded-xl ring-1 ring-inset ring-white/20" />
+   508→      </div>
+   509→      <span className="font-heading text-lg font-semibold tracking-tight text-white">
+   510→        Opus <span className="text-white/50">Solutions</span>
+   511→      </span>
+   512→    </div>
+   513→  );
+   514→}
+   515→
+   516→function Footer() {
+   517→  return (
+   518→    <footer className="relative w-full bg-[#070709]">
+   519→      {/* gradient divider at top */}
+   520→      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-electric via-violet to-cyan" />
+   521→      {/* faint top glow */}
+   522→      <div className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-electric/5 to-transparent" />
+   523→
+   524→      <div className="relative mx-auto w-full max-w-7xl px-5 py-16 sm:px-8 md:py-20">
+   525→        {/* ---------- top row ---------- */}
+   526→        <div className="grid gap-10 lg:grid-cols-2 lg:gap-16">
+   527→          {/* left: logo + tagline + socials */}
+   528→          <div className="flex flex-col gap-6">
+   529→            <LogoMark />
+   530→            <p className="max-w-sm text-sm leading-relaxed text-white/55">
+   531→              More listings. Powered by Opus. The all-in-one platform that finds,
+   532→              scores, and converts real estate leads — automatically.
+   533→            </p>
+   534→            <div className="flex items-center gap-3">
+   535→              {SOCIALS.map(({ Icon, label, href }) => (
+   536→                <a
+   537→                  key={label}
+   538→                  href={href}
+   539→                  aria-label={label}
+   540→                  className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/60 transition-all hover:-translate-y-0.5 hover:border-electric/40 hover:bg-electric/10 hover:text-white"
+   541→                >
+   542→                  <Icon className="h-4 w-4" />
+   543→                </a>
+   544→              ))}
+   545→            </div>
+   546→          </div>
+   547→
+   548→          {/* right: newsletter */}
+   549→          <div className="flex flex-col gap-4 lg:items-end lg:text-right">
+   550→            <div className="lg:max-w-sm">
+   551→              <h3 className="font-heading text-lg font-semibold text-white">
+   552→                Stay ahead of the market
+   553→              </h3>
+   554→              <p className="mt-1.5 text-sm text-white/50">
+   555→                Weekly insights on smart prospecting.
+   556→              </p>
+   557→            </div>
+   558→            <form
+   559→              onSubmit={(e) => e.preventDefault()}
+   560→              className="flex w-full max-w-md flex-col gap-2.5 sm:flex-row lg:self-end"
+   561→            >
+   562→              <input
+   563→                type="email"
+   564→                placeholder="you@brokerage.com"
+   565→                aria-label="Email address"
+   566→                className="w-full flex-1 rounded-full border border-white/10 bg-white/5 px-5 py-3 text-sm text-white placeholder:text-white/40 outline-none transition-colors focus:border-electric/50 focus:bg-white/10"
+   567→              />
+   568→              <motion.button
+   569→                whileHover={{ scale: 1.03 }}
+   570→                whileTap={{ scale: 0.97 }}
+   571→                type="submit"
+   572→                className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-[linear-gradient(120deg,#3b82f6,#8b5cf6)] px-5 py-3 text-sm font-semibold text-white shadow-[0_0_25px_-8px_rgba(59,130,246,0.8)] transition-shadow hover:shadow-[0_0_35px_-6px_rgba(139,92,246,0.85)]"
+   573→              >
+   574→                <Send className="h-4 w-4" />
+   575→                Subscribe
+   576→              </motion.button>
+   577→            </form>
+   578→            <p className="text-xs text-white/35 lg:max-w-sm lg:text-right">
+   579→              We respect your inbox. Unsubscribe with one click.
+   580→            </p>
+   581→          </div>
+   582→        </div>
+   583→
+   584→        {/* ---------- divider ---------- */}
+   585→        <div className="my-12 h-px w-full bg-white/8 md:my-14" />
+   586→
+   587→        {/* ---------- link columns ---------- */}
+   588→        <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 md:grid-cols-5">
+   589→          {FOOTER_COLUMNS.map((col) => (
+   590→            <div key={col.title} className="flex flex-col gap-3.5">
+   591→              <h4 className="font-heading text-sm font-semibold tracking-wide text-white">
+   592→                {col.title}
+   593→              </h4>
+   594→              <ul className="flex flex-col gap-2.5">
+   595→                {col.links.map((link) => (
+   596→                  <li key={link}>
+   597→                    <a
+   598→                      href="#"
+   599→                      className="text-sm text-white/55 transition-colors hover:text-white"
+   600→                    >
+   601→                      {link}
+   602→                    </a>
+   603→                  </li>
+   604→                ))}
+   605→              </ul>
+   606→            </div>
+   607→          ))}
+   608→        </div>
+   609→
+   610→        {/* ---------- bottom bar ---------- */}
+   611→        <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-white/8 pt-8 md:flex-row">
+   612→          <p className="text-xs text-white/45">
+   613→            © 2025 Opus Solutions. All rights reserved.
+   614→          </p>
+   615→          <div className="flex flex-col items-center gap-4 sm:flex-row sm:gap-6">
+   616→            <span className="inline-flex items-center gap-1.5 text-xs text-white/45">
+   617→              <ShieldCheck className="h-3.5 w-3.5 text-electric/70" />
+   618→              Made with care
+   619→            </span>
+   620→            <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/60">
+   621→              <span className="relative flex h-2 w-2">
+   622→                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-60" />
+   623→                <span className="relative inline-flex h-2 w-2 rounded-full bg-green-400" />
+   624→              </span>
+   625→              System status: Operational
+   626→            </span>
+   627→          </div>
+   628→        </div>
+   629→      </div>
+   630→    </footer>
+   631→  );
+   632→}
+   633→
+   634→/* ============================================================
+   635→   MAIN
+   636→============================================================ */
+   637→
+   638→export default function PricingFaqCtaFooter() {
+   639→  const [annual, setAnnual] = useState(true);
+   640→
+   641→  return (
+   642→    <>
+   643→      {/* ============ PRICING ============ */}
+   644→      <SectionShell id="pricing" className="md:py-24">
+   645→        <SectionHeading
+   646→          eyebrow="Pricing"
+   647→          title="Simple, transparent pricing"
+   648→          description="Start free. Scale as you grow. Cancel anytime."
+   649→        />
+   650→
+   651→        {/* billing toggle */}
+   652→        <Reveal delay={0.1}>
+   653→          <div className="mt-10 flex justify-center">
+   654→            <div className="inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/5 px-4 py-2 backdrop-blur">
+   655→              <span
+   656→                className={cn(
+   657→                  "text-sm font-medium transition-colors",
+   658→                  !annual ? "text-white" : "text-white/50"
+   659→                )}
+   660→              >
+   661→                Monthly
+   662→              </span>
+   663→              <Switch
+   664→                checked={annual}
+   665→                onCheckedChange={setAnnual}
+   666→                className="data-[state=checked]:bg-[linear-gradient(120deg,#3b82f6,#8b5cf6)] data-[state=checked]:border-transparent"
+   667→              />
+   668→              <span
+   669→                className={cn(
+   670→                  "text-sm font-medium transition-colors",
+   671→                  annual ? "text-white" : "text-white/50"
+   672→                )}
+   673→              >
+   674→                Annual
+   675→              </span>
+   676→              <span className="ml-1 rounded-full border border-electric/30 bg-electric/10 px-2 py-0.5 text-[11px] font-semibold text-electric">
+   677→                Save 20%
+   678→              </span>
+   679→            </div>
+   680→          </div>
+   681→        </Reveal>
+   682→
+   683→        {/* pricing cards */}
+   684→        <div className="mt-12 grid items-stretch gap-6 lg:mt-14 lg:grid-cols-3 lg:gap-6 lg:pt-6">
+   685→          {PLANS.map((plan, i) => (
+   686→            <PricingCard
+   687→              key={plan.name}
+   688→              plan={plan}
+   689→              annual={annual}
+   690→              highlighted={plan.name === "Professional"}
+   691→              delay={0.15 + i * 0.1}
+   692→            />
+   693→          ))}
+   694→        </div>
+   695→
+   696→        {/* footnote */}
+   697→        <Reveal delay={0.5}>
+   698→          <p className="mt-10 text-center text-sm text-white/40">
+   699→            All plans include a 14-day free trial. No credit card required.{" "}
+   700→            <span className="text-white/60">
+   701→              Need something custom?
+   702→            </span>{" "}
+   703→            <a href="#" className="text-electric hover:text-electric/80 underline-offset-4 hover:underline">
+   704→              Talk to sales →
+   705→            </a>
+   706→          </p>
+   707→        </Reveal>
+   708→      </SectionShell>
+   709→
+   710→      {/* ============ FAQ ============ */}
+   711→      <SectionShell id="faq" className="md:py-24">
+   712→        <SectionHeading
+   713→          eyebrow="FAQ"
+   714→          title="Frequently asked questions"
+   715→          align="center"
+   716→        />
+   717→        <Reveal delay={0.1}>
+   718→          <div className="mx-auto mt-12 max-w-3xl">
+   719→            <FaqList />
+   720→          </div>
+   721→        </Reveal>
+   722→
+   723→        {/* contact prompt */}
+   724→        <Reveal delay={0.2}>
+   725→          <div className="mx-auto mt-10 flex max-w-3xl flex-col items-center gap-3 rounded-2xl border border-white/8 bg-white/[0.02] px-6 py-6 text-center sm:flex-row sm:justify-between sm:text-left">
+   726→            <div>
+   727→              <p className="font-heading text-base font-semibold text-white">
+   728→                Still have questions?
+   729→              </p>
+   730→              <p className="text-sm text-white/50">
+   731→                Our team replies within a few hours, 7 days a week.
+   732→              </p>
+   733→            </div>
+   734→            <a
+   735→              href="#"
+   736→              className="inline-flex shrink-0 items-center gap-2 rounded-full border border-white/15 bg-white/5 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:border-white/30 hover:bg-white/10"
+   737→            >
+   738→              Contact support
+   739→              <ArrowRight className="h-4 w-4" />
+   740→            </a>
+   741→          </div>
+   742→        </Reveal>
+   743→      </SectionShell>
+   744→
+   745→      {/* ============ CTA BANNER ============ */}
+   746→      <CtaBanner />
+   747→
+   748→      {/* ============ FOOTER ============ */}
+   749→      <Footer />
+   750→    </>
+   751→  );
+   752→}
+   753→

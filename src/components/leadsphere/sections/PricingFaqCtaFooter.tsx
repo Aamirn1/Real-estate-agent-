@@ -13,9 +13,11 @@ import {
   AccordionTrigger,
   AccordionContent,
 } from "@/components/ui/accordion";
-import { Switch } from "@/components/ui/switch";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { useState } from "react";
 import { cn } from "@/lib/utils";
 import {
   Check,
@@ -33,6 +35,11 @@ import {
   ShieldCheck,
   Send,
   Star,
+  Mail,
+  Phone,
+  MapPin,
+  Clock,
+  MessageSquare,
 } from "lucide-react";
 
 /* ============================================================
@@ -41,105 +48,187 @@ import {
 
 type Plan = {
   name: string;
+  price: string; // "Per Lead" or "$450"
+  period: string; // "Flexible" or "One-Time · 30 Days"
   tagline: string;
-  monthly: number | null;
-  annual: number | null;
-  custom?: boolean;
   features: string[];
   cta: string;
-  ctaVariant: "outline" | "solid" | "ghost";
+  ctaVariant: "outline" | "solid";
+  highlight?: "top-selling" | "premium";
+  badge?: string;
 };
 
 const PLANS: Plan[] = [
   {
-    name: "Starter",
-    tagline: "For solo agents getting started.",
-    monthly: 49,
-    annual: 39,
+    name: "Custom Plan",
+    price: "Per Lead",
+    period: "Flexible",
+    tagline: "Start pay-as-you-go",
+    cta: "Get Started",
     ctaVariant: "outline",
-    cta: "Start free trial",
     features: [
-      "1,000 leads / month",
-      "Basic CRM",
-      "5 MLS areas",
-      "Email support",
-      "Mobile app",
+      "One County",
+      "10 hr/day Support",
+      "No Hidden Charges",
+      "Appointment Scheduling",
+      "Call/lead recording (where permitted)",
+      "Dedicated Account Manager",
+      "Warm live transfer",
+      "Digital advertising",
     ],
   },
   {
-    name: "Professional",
-    tagline: "For growing agents closing more deals.",
-    monthly: 149,
-    annual: 119,
+    name: "Trial Plan",
+    price: "$450",
+    period: "One-Time · 30 Days",
+    tagline: "Test the waters",
+    cta: "Get Started",
+    ctaVariant: "outline",
+    features: [
+      "20% Referral Fee",
+      "9 Pre-screened introductions",
+      "Up to 3 Counties",
+      "10 hr/day Support",
+      "No Hidden Charges",
+      "Pipeline Tracking",
+      "Appointment Scheduling",
+      "Call/lead recording (where permitted)",
+      "Dedicated Account Manager",
+      "Real-time Live Transfer",
+    ],
+  },
+  {
+    name: "Silver Plan",
+    price: "$900",
+    period: "One-Time · 30 Days",
+    tagline: "Most popular choice",
+    cta: "Get Started",
     ctaVariant: "solid",
-    cta: "Start free trial",
+    highlight: "top-selling",
+    badge: "Top Selling",
     features: [
-      "10,000 leads / month",
-      "Full CRM + Pipeline",
-      "Unlimited MLS areas",
-      "Smart Assistant",
-      "Power Dialer",
-      "SMS + Email automation",
-      "Advanced analytics",
-      "Priority support",
+      "15% referral fee (on successful closings)",
+      "18 qualified pre-screened introductions",
+      "Up to 5 Counties",
+      "10 hr/day Support",
+      "Appointment Scheduling",
+      "Call/lead recording (where permitted)",
+      "No Hidden Charges",
     ],
   },
   {
-    name: "Enterprise",
-    tagline: "For teams and brokerages.",
-    monthly: null,
-    annual: null,
-    custom: true,
-    ctaVariant: "ghost",
-    cta: "Book a demo",
+    name: "Gold Plan",
+    price: "$1800",
+    period: "One-Time · 30 Days",
+    tagline: "For growing teams",
+    cta: "Get Started",
+    ctaVariant: "outline",
     features: [
-      "Unlimited leads",
-      "Team collaboration",
-      "Custom integrations",
-      "Dedicated CSM",
-      "API access",
-      "SSO & SCIM",
-      "White-glove onboarding",
-      "99.9% uptime SLA",
+      "10% referral fee (on successful closings)",
+      "27 qualified pre-screened introductions",
+      "Up to 10 Counties",
+      "10 hr/day Support",
+      "Appointment Scheduling",
+      "Dedicated Account Manager",
+      "Warm live transfer",
+      "Pipeline tracking",
+    ],
+  },
+  {
+    name: "Platinum Plan",
+    price: "$2500",
+    period: "One-Time · 30 Days",
+    tagline: "High-volume prospecting",
+    cta: "Get Started",
+    ctaVariant: "outline",
+    features: [
+      "8% referral fee (on successful closings)",
+      "54 qualified pre-screened introductions",
+      "Up to 10 Counties",
+      "10 hr/day Support",
+      "Priority Appointment Scheduling",
+      "Senior Dedicated Account Manager",
+      "Exclusive warm live transfer",
+    ],
+  },
+  {
+    name: "Sapphire Plan",
+    price: "$4000",
+    period: "One-Time · 365 Days",
+    tagline: "Maximum volume & priority",
+    cta: "Book a Demo",
+    ctaVariant: "outline",
+    highlight: "premium",
+    badge: "For Premium Realtors",
+    features: [
+      "5% Referral Fee",
+      "Unlimited qualified pre-screened introductions (subject to geography capacity)",
+      "Unlimited counties (subject to availability)",
+      "Up to 3 listing & closing support slots",
+      "10 hr/day Support",
+      "Priority Appointment Scheduling",
+      "Senior Dedicated Account Manager",
+      "Real-time Live Transfer",
+      "SMS/WhatsApp Support",
     ],
   },
 ];
 
 const FAQS: { q: string; a: string }[] = [
   {
-    q: "How long is the free trial?",
-    a: "Every plan starts with a 14-day free trial — no credit card required. You'll get full access to your chosen tier so you can import leads, test the Smart Assistant, and dial prospects before you ever pay. Cancel anytime during the trial and you won't be charged a cent.",
+    q: "What does Opus Solutions do?",
+    a: "We provide marketing consulting, CRM support, account management, and virtual assistance for licensed real estate professionals. Our services reduce administrative workload by managing outreach, reporting, scheduling, and digital marketing, allowing professionals to focus on building client relationships and closing deals.",
   },
   {
-    q: "Which MLS markets do you cover?",
-    a: "Opus connects to over 850 MLS markets across North America, covering 98% of active residential listings. Professional and Enterprise plans unlock unlimited MLS areas, and our team adds new markets every month. Don't see yours? Reach out and we'll prioritize it.",
+    q: "Are we a real estate brokerage?",
+    a: "No. We are not a brokerage, and we do not list or sell property. We are a support partner that offers administrative, outreach, and marketing solutions designed for real estate professionals.",
   },
   {
-    q: "How accurate is the lead data?",
-    a: "Our platform cross-references 30+ data sources — property records, behavioral signals, life-event triggers, and consented contact data — to score and verify each lead. We refresh contact info nightly and flag unreachable numbers, so you're always dialing high-intent, verified prospects with an average 94% deliverability rate.",
+    q: "Do we sell data or contacts?",
+    a: "No. We do not sell or resell data or contacts. We provide consent-based outreach support, documented records, CRM management, and workflow reporting to help professionals manage their own outreach efficiently.",
   },
   {
-    q: "Can I cancel my subscription anytime?",
-    a: "Absolutely. There are no long-term contracts on monthly plans — cancel from your dashboard with one click and you won't be billed again. Annual subscribers can cancel anytime and keep access through the end of their billing period. We'll even export your CRM data for free.",
+    q: "How does our outreach work?",
+    a: "We use human-only outreach methods — never autodialers or robocalls. All engagement is consent-based, documented, and reported, giving full transparency into our work and ensuring compliance with applicable regulations.",
   },
   {
-    q: "How do team seats work for brokerages?",
-    a: "Enterprise plans include unlimited team seats, role-based permissions, shared pipelines, and broker-level reporting. Assign agents to territories, route leads automatically, and track performance across your entire office. SSO and SCIM provisioning make onboarding new agents take minutes, not days.",
+    q: "How many professionals do we work with in the same area?",
+    a: "We dedicate our resources, account managers, and virtual assistants on an exclusive basis during each active campaign. This ensures our efforts are fully aligned with your goals and territory.",
   },
   {
-    q: "What can the Smart Assistant actually do?",
-    a: "The Smart Assistant drafts personalized outreach across email, SMS, and call scripts, prioritizes your hottest leads, transcribes and summarizes calls, suggests next-best actions, and even books appointments directly to your calendar. It's trained on millions of real estate conversations and learns from every interaction on your account.",
+    q: "Is there a setup fee?",
+    a: "Yes. We charge a one-time onboarding fee that covers setup, documentation, and account preparation. This ensures your CRM, reporting, and workflows are properly established before outreach begins.",
   },
   {
-    q: "Which tools does Opus integrate with?",
-    a: "We integrate natively with follow-up bosses, kvCORE, Salesforce, HubSpot, Google Workspace, Microsoft 365, Twilio, Zapier, and 200+ other tools. Enterprise customers get a REST API and custom integration support. If you're on a niche platform, ask us — we ship new connectors every month.",
+    q: "Do we provide support?",
+    a: "Yes. Every client is assigned a dedicated account manager and virtual assistant for ongoing communication, reporting, and campaign support. We also provide regular updates and documented reporting throughout the engagement.",
+  },
+  {
+    q: "What compliance standards do we follow?",
+    a: "We comply with all applicable regulations, including TCPA, DNC, CAN-SPAM, CCPA/CPRA, and the Fair Housing Act. Clients remain responsible for their own regulatory licensing and compliance obligations.",
+  },
+  {
+    q: "How do we ensure data security?",
+    a: "All payments are processed securely through our PCI-compliant processor's hosted checkout. We never store or directly handle cardholder data, and all authorized payments are made only through official invoice links.",
+  },
+  {
+    q: "What makes us different from listing platforms?",
+    a: "We are not a marketplace, and we do not distribute inquiries broadly. We provide customized support packages that focus on administrative efficiency, CRM management, and documented outreach tailored to each client.",
+  },
+  {
+    q: "Do we guarantee business results?",
+    a: "No. We do not guarantee specific outcomes. Our role is to improve efficiency through marketing support, documentation, and workflow management, enabling professionals to focus on activities that drive results.",
+  },
+  {
+    q: "Can services be cancelled?",
+    a: "Yes. Services can be cancelled in accordance with the terms of our Service Agreement. Written notice is required, and billing stops at the end of the active billing cycle.",
   },
 ];
 
 const FOOTER_COLUMNS: { title: string; links: string[] }[] = [
   {
-    title: "Product",
-    links: ["Features", "Pricing", "Integrations", "Demo", "Changelog"],
+    title: "Plans",
+    links: ["Custom", "Trial", "Silver", "Gold", "Platinum", "Sapphire"],
   },
   {
     title: "Solutions",
@@ -167,39 +256,39 @@ const SOCIALS = [
   { Icon: Github, label: "GitHub", href: "#" },
 ];
 
+const CONTACT_INFO = {
+  email: "info@opussolutions.com",
+  phones: ["(320) 331-0910", "(320) 331-8501", "(320) 331-3559"],
+  addressLines: ["418 Broadway, Ste. R", "Albany, NY 12207", "United States"],
+  hours: "10:00 A.M. to 08:00 P.M (EST)",
+};
+
 /* ============================================================
    PRICING CARD
 ============================================================ */
 
-function PlanPrice({
-  plan,
-  annual,
-}: {
-  plan: Plan;
-  annual: boolean;
-}) {
-  if (plan.custom) {
+function PlanPrice({ plan }: { plan: Plan }) {
+  if (plan.price === "Per Lead") {
     return (
       <div className="flex items-baseline gap-1">
-        <span className="font-heading text-4xl font-semibold text-white sm:text-5xl">
-          Custom
+        <span className="font-heading text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+          Per Lead
         </span>
       </div>
     );
   }
-  const value = annual ? plan.annual! : plan.monthly!;
+  const num = parseInt(plan.price.replace(/[^0-9]/g, ""), 10);
   return (
     <div className="flex items-baseline gap-1">
       <span className="font-heading text-2xl font-semibold text-white/70">
         $
       </span>
       <CountUp
-        key={`${plan.name}-${annual ? "annual" : "monthly"}`}
-        value={value}
+        key={plan.price}
+        value={num}
         duration={1400}
         className="font-heading text-5xl font-semibold tracking-tight text-white"
       />
-      <span className="text-sm font-medium text-white/45">/mo</span>
     </div>
   );
 }
@@ -208,7 +297,7 @@ function CtaButton({
   variant,
   children,
 }: {
-  variant: "outline" | "solid" | "ghost";
+  variant: "outline" | "solid";
   children: React.ReactNode;
 }) {
   if (variant === "solid") {
@@ -224,43 +313,21 @@ function CtaButton({
       </motion.button>
     );
   }
-  if (variant === "outline") {
-    return (
-      <motion.button
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.98 }}
-        className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-white backdrop-blur transition-colors hover:border-white/30 hover:bg-white/10"
-      >
-        <span>{children}</span>
-        <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-      </motion.button>
-    );
-  }
   return (
     <motion.button
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
-      className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/10 px-6 py-3 text-sm font-semibold text-white/80 transition-colors hover:border-white/25 hover:text-white"
+      className="group inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-white backdrop-blur transition-colors hover:border-white/30 hover:bg-white/10"
     >
-      <Calendar className="h-4 w-4" />
       <span>{children}</span>
+      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
     </motion.button>
   );
 }
 
-function PricingCard({
-  plan,
-  annual,
-  highlighted,
-  delay,
-}: {
-  plan: Plan;
-  annual: boolean;
-  highlighted: boolean;
-  delay: number;
-}) {
+function PricingCard({ plan, delay }: { plan: Plan; delay: number }) {
   const features = (
-    <ul className="flex flex-col gap-3.5">
+    <ul className="custom-scroll flex flex-col gap-3.5 overflow-y-auto pr-1 max-h-72">
       {plan.features.map((f) => (
         <li key={f} className="flex items-start gap-3 text-sm text-white/70">
           <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-electric/15 ring-1 ring-electric/30">
@@ -283,26 +350,24 @@ function PricingCard({
 
   const priceBlock = (
     <div className="flex flex-col gap-1">
-      <PlanPrice plan={plan} annual={annual} />
-      {!plan.custom && annual && (
-        <span className="text-xs font-medium text-electric/80">
-          Billed annually — save 20%
-        </span>
-      )}
-      {!plan.custom && !annual && (
-        <span className="text-xs font-medium text-white/40">
-          Billed monthly
-        </span>
-      )}
-      {plan.custom && (
-        <span className="text-xs font-medium text-white/40">
-          Volume pricing tailored to your team
-        </span>
-      )}
+      <PlanPrice plan={plan} />
+      <span className="text-xs font-medium text-white/40">{plan.period}</span>
     </div>
   );
 
-  if (highlighted) {
+  const badge = plan.badge ? (
+    <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
+      <div className="flex items-center gap-1.5 rounded-full border border-gold/40 bg-[#1a1605] px-3.5 py-1.5 shadow-[0_0_20px_-4px_rgba(212,175,55,0.6)]">
+        <Star className="h-3.5 w-3.5 fill-gold text-gold" />
+        <span className="text-xs font-semibold tracking-wide text-gold">
+          {plan.badge}
+        </span>
+      </div>
+    </div>
+  ) : null;
+
+  /* Silver Plan — Top Selling (electric gradient border + scale + solid CTA) */
+  if (plan.highlight === "top-selling") {
     return (
       <Reveal delay={delay} className="h-full">
         <div className="group relative h-full lg:scale-[1.04] lg:z-10 transition-transform duration-300">
@@ -315,16 +380,7 @@ function PricingCard({
             strong
             className="relative flex h-full flex-col rounded-2xl p-6 md:p-8"
           >
-            {/* Most Popular badge */}
-            <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
-              <div className="flex items-center gap-1.5 rounded-full border border-gold/40 bg-[#1a1605] px-3.5 py-1.5 shadow-[0_0_20px_-4px_rgba(212,175,55,0.6)]">
-                <Star className="h-3.5 w-3.5 fill-gold text-gold" />
-                <span className="text-xs font-semibold tracking-wide text-gold">
-                  Most Popular
-                </span>
-              </div>
-            </div>
-
+            {badge}
             <div className="flex flex-1 flex-col gap-6 pt-2">
               {header}
               {priceBlock}
@@ -338,6 +394,35 @@ function PricingCard({
     );
   }
 
+  /* Sapphire Plan — Premium (gold gradient border + outline CTA) */
+  if (plan.highlight === "premium") {
+    return (
+      <Reveal delay={delay} className="h-full">
+        <div className="group relative h-full transition-transform duration-300">
+          {/* ambient glow */}
+          <div className="absolute -inset-3 rounded-[1.75rem] bg-gold/15 blur-2xl opacity-70" />
+          {/* animated gold gradient border */}
+          <div className="absolute -inset-px rounded-2xl bg-[linear-gradient(120deg,#d4af37,#f5d77a,#d4af37,#f5d77a)] animate-gradient-x opacity-95" />
+          {/* card body */}
+          <GlassCard
+            strong
+            className="relative flex h-full flex-col rounded-2xl p-6 md:p-8"
+          >
+            {badge}
+            <div className="flex flex-1 flex-col gap-6 pt-2">
+              {header}
+              {priceBlock}
+              <CtaButton variant="outline">{plan.cta}</CtaButton>
+              <div className="h-px w-full bg-gradient-to-r from-transparent via-gold/25 to-transparent" />
+              {features}
+            </div>
+          </GlassCard>
+        </div>
+      </Reveal>
+    );
+  }
+
+  /* Standard card */
   return (
     <Reveal delay={delay} className="h-full">
       <GlassCard
@@ -369,7 +454,7 @@ function FaqList() {
       className="flex w-full flex-col gap-3"
     >
       {FAQS.map((faq, i) => (
-        <Reveal key={faq.q} delay={Math.min(i * 0.06, 0.36)} className="block">
+        <Reveal key={faq.q} delay={Math.min(i * 0.04, 0.36)} className="block">
           <AccordionItem
             value={`faq-${i}`}
             className="glass-strong group rounded-2xl border border-white/10 px-5 transition-colors duration-300 data-[state=open]:border-electric/30 sm:px-6"
@@ -391,6 +476,275 @@ function FaqList() {
         </Reveal>
       ))}
     </Accordion>
+  );
+}
+
+/* ============================================================
+   CONTACT SECTION
+============================================================ */
+
+function InfoCard({
+  icon: Icon,
+  iconTint,
+  label,
+  children,
+}: {
+  icon: React.ComponentType<{ className?: string }>;
+  iconTint: string; // e.g. "text-electric"
+  label: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <GlassCard
+      strong
+      className="group rounded-2xl p-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-white/20"
+    >
+      <div className="flex flex-col gap-3">
+        <div
+          className={cn(
+            "flex h-9 w-9 items-center justify-center rounded-lg bg-white/5 ring-1 ring-white/10 transition-colors",
+            iconTint
+          )}
+        >
+          <Icon className="h-4 w-4" />
+        </div>
+        <div>
+          <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-white/40">
+            {label}
+          </p>
+          <div className="mt-1 text-sm font-medium text-white leading-relaxed">
+            {children}
+          </div>
+        </div>
+      </div>
+    </GlassCard>
+  );
+}
+
+function StylizedMap() {
+  return (
+    <GlassCard
+      strong
+      className="relative h-full min-h-64 overflow-hidden rounded-2xl p-0"
+    >
+      {/* dark base */}
+      <div className="absolute inset-0 bg-[#070a12]" />
+      {/* grid overlay (faded at edges) */}
+      <div
+        className="absolute inset-0 opacity-50"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(59,130,246,0.22) 1px, transparent 1px), linear-gradient(90deg, rgba(59,130,246,0.22) 1px, transparent 1px)",
+          backgroundSize: "32px 32px",
+          maskImage:
+            "radial-gradient(ellipse 80% 70% at 50% 50%, #000 30%, transparent 85%)",
+          WebkitMaskImage:
+            "radial-gradient(ellipse 80% 70% at 50% 50%, #000 30%, transparent 85%)",
+        }}
+      />
+      {/* secondary finer grid */}
+      <div
+        className="absolute inset-0 opacity-25"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(139,92,246,0.18) 1px, transparent 1px), linear-gradient(90deg, rgba(139,92,246,0.18) 1px, transparent 1px)",
+          backgroundSize: "128px 128px",
+          maskImage:
+            "radial-gradient(ellipse 80% 70% at 50% 50%, #000 30%, transparent 85%)",
+          WebkitMaskImage:
+            "radial-gradient(ellipse 80% 70% at 50% 50%, #000 30%, transparent 85%)",
+        }}
+      />
+      {/* central radial glow */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.25),transparent_60%)]" />
+
+      {/* glowing pin at center */}
+      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+        <div className="relative flex flex-col items-center">
+          {/* pulse rings */}
+          <span className="absolute -top-3 left-1/2 -translate-x-1/2 h-14 w-14 rounded-full bg-electric/25 animate-ping" />
+          <span className="absolute -top-1 left-1/2 -translate-x-1/2 h-9 w-9 rounded-full bg-electric/40 animate-pulse" />
+          {/* pin */}
+          <div className="relative flex h-9 w-9 items-center justify-center">
+            <MapPin
+              className="h-9 w-9 text-electric drop-shadow-[0_0_14px_rgba(59,130,246,0.95)]"
+              fill="rgba(59,130,246,0.45)"
+            />
+          </div>
+          {/* label */}
+          <div className="mt-2 rounded-full border border-electric/40 bg-black/70 px-3 py-1 backdrop-blur">
+            <span className="text-xs font-semibold tracking-wide text-white">
+              Albany, NY
+            </span>
+          </div>
+        </div>
+      </div>
+
+      {/* corner badges */}
+      <div className="absolute left-4 top-4 flex items-center gap-1.5 rounded-full border border-white/10 bg-black/60 px-3 py-1 backdrop-blur">
+        <span className="relative flex h-2 w-2">
+          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-60" />
+          <span className="relative inline-flex h-2 w-2 rounded-full bg-green-400" />
+        </span>
+        <span className="text-[11px] font-medium text-white/80">HQ · Albany</span>
+      </div>
+      <div className="absolute bottom-4 right-4 rounded-full border border-white/10 bg-black/60 px-3 py-1 backdrop-blur">
+        <span className="text-[11px] font-medium text-white/60 tnum">
+          42.6526° N, 73.7562° W
+        </span>
+      </div>
+    </GlassCard>
+  );
+}
+
+function ContactSection() {
+  return (
+    <SectionShell id="contact" className="md:py-24">
+      <SectionHeading
+        eyebrow="Contact"
+        title="Let's do great work together"
+        description="Stop wasting time on unqualified leads. We connect you with motivated home sellers in your area who are serious about selling."
+      />
+
+      <div className="mt-12 grid gap-6 lg:grid-cols-2 lg:gap-8">
+        {/* ---------- LEFT: contact form ---------- */}
+        <Reveal delay={0.1} className="h-full">
+          <GlassCard
+            strong
+            className="relative h-full overflow-hidden rounded-2xl p-6 md:p-8"
+          >
+            {/* ambient glow */}
+            <div className="pointer-events-none absolute -top-24 -right-24 h-64 w-64 rounded-full bg-electric/15 blur-3xl" />
+            <div className="pointer-events-none absolute -bottom-24 -left-24 h-64 w-64 rounded-full bg-violet/15 blur-3xl" />
+
+            <div className="relative flex h-full flex-col gap-6">
+              <div className="flex items-start gap-3">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-electric/15 ring-1 ring-electric/30">
+                  <MessageSquare className="h-5 w-5 text-electric" />
+                </div>
+                <div>
+                  <h3 className="font-heading text-lg font-semibold text-white">
+                    Send us a message
+                  </h3>
+                  <p className="text-sm text-white/50">
+                    We&apos;ll get back to you within 24 hours.
+                  </p>
+                </div>
+              </div>
+
+              <form
+                onSubmit={(e) => e.preventDefault()}
+                className="flex flex-1 flex-col gap-4"
+              >
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <div className="flex flex-col gap-1.5">
+                    <Label htmlFor="name" className="text-white/70">
+                      Name
+                    </Label>
+                    <Input
+                      id="name"
+                      placeholder="Jane Cooper"
+                      className="h-11 rounded-lg border-white/10 bg-white/5 text-white placeholder:text-white/40 focus-visible:border-electric/50 focus-visible:ring-electric/20"
+                    />
+                  </div>
+                  <div className="flex flex-col gap-1.5">
+                    <Label htmlFor="email" className="text-white/70">
+                      Email
+                    </Label>
+                    <Input
+                      id="email"
+                      type="email"
+                      placeholder="jane@brokerage.com"
+                      className="h-11 rounded-lg border-white/10 bg-white/5 text-white placeholder:text-white/40 focus-visible:border-electric/50 focus-visible:ring-electric/20"
+                    />
+                  </div>
+                </div>
+                <div className="flex flex-col gap-1.5">
+                  <Label htmlFor="phone" className="text-white/70">
+                    Phone
+                  </Label>
+                  <Input
+                    id="phone"
+                    type="tel"
+                    placeholder="(320) 331-0910"
+                    className="h-11 rounded-lg border-white/10 bg-white/5 text-white placeholder:text-white/40 focus-visible:border-electric/50 focus-visible:ring-electric/20"
+                  />
+                </div>
+                <div className="flex flex-1 flex-col gap-1.5">
+                  <Label htmlFor="message" className="text-white/70">
+                    Message
+                  </Label>
+                  <Textarea
+                    id="message"
+                    placeholder="Tell us about your goals and the counties you cover..."
+                    className="min-h-32 flex-1 resize-none rounded-lg border-white/10 bg-white/5 text-white placeholder:text-white/40 focus-visible:border-electric/50 focus-visible:ring-electric/20"
+                  />
+                </div>
+                <Button
+                  type="submit"
+                  className="group relative h-11 w-full items-center justify-center gap-2 overflow-hidden rounded-full bg-[linear-gradient(120deg,#3b82f6,#8b5cf6,#06b6d4)] px-6 text-sm font-semibold text-white shadow-[0_0_30px_-6px_rgba(59,130,246,0.7)] transition-shadow hover:shadow-[0_0_45px_-4px_rgba(139,92,246,0.85)]"
+                >
+                  <span className="absolute inset-0 -translate-x-full bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.25),transparent)] transition-transform duration-700 group-hover:translate-x-full" />
+                  <Send className="relative h-4 w-4" />
+                  <span className="relative">Send Message</span>
+                </Button>
+              </form>
+            </div>
+          </GlassCard>
+        </Reveal>
+
+        {/* ---------- RIGHT: info cards + map ---------- */}
+        <Reveal delay={0.2} className="h-full">
+          <div className="flex h-full flex-col gap-4">
+            {/* 2x2 info cards */}
+            <div className="grid gap-4 sm:grid-cols-2">
+              <InfoCard icon={Mail} iconTint="text-electric" label="Email">
+                <a
+                  href={`mailto:${CONTACT_INFO.email}`}
+                  className="break-all transition-colors hover:text-electric"
+                >
+                  {CONTACT_INFO.email}
+                </a>
+              </InfoCard>
+
+              <InfoCard icon={Phone} iconTint="text-violet" label="Phones">
+                <ul className="flex flex-col gap-0.5">
+                  {CONTACT_INFO.phones.map((p) => (
+                    <li key={p}>
+                      <a
+                        href={`tel:${p.replace(/[^0-9+]/g, "")}`}
+                        className="tnum transition-colors hover:text-violet"
+                      >
+                        {p}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </InfoCard>
+
+              <InfoCard icon={MapPin} iconTint="text-cyan" label="Address">
+                <span className="block leading-relaxed">
+                  {CONTACT_INFO.addressLines.map((line) => (
+                    <span key={line} className="block">
+                      {line}
+                    </span>
+                  ))}
+                </span>
+              </InfoCard>
+
+              <InfoCard icon={Clock} iconTint="text-gold" label="Office Hours">
+                <span className="tnum">{CONTACT_INFO.hours}</span>
+              </InfoCard>
+            </div>
+
+            {/* stylized map */}
+            <div className="flex-1">
+              <StylizedMap />
+            </div>
+          </div>
+        </Reveal>
+      </div>
+    </SectionShell>
   );
 }
 
@@ -636,73 +990,49 @@ function Footer() {
 ============================================================ */
 
 export default function PricingFaqCtaFooter() {
-  const [annual, setAnnual] = useState(true);
-
   return (
     <>
       {/* ============ PRICING ============ */}
       <SectionShell id="pricing" className="md:py-24">
         <SectionHeading
           eyebrow="Pricing"
-          title="Simple, transparent pricing"
-          description="Start free. Scale as you grow. Cancel anytime."
+          title="We've got a plan that's perfect for you"
+          description="Whether you're just starting or need an all-inclusive solution, our plans scale with your goals."
         />
 
-        {/* billing toggle */}
+        {/* plan-cadence note (replaces monthly/annual toggle) */}
         <Reveal delay={0.1}>
           <div className="mt-10 flex justify-center">
-            <div className="inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/5 px-4 py-2 backdrop-blur">
-              <span
-                className={cn(
-                  "text-sm font-medium transition-colors",
-                  !annual ? "text-white" : "text-white/50"
-                )}
-              >
-                Monthly
+            <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 backdrop-blur">
+              <Calendar className="h-3.5 w-3.5 text-electric" />
+              <span className="text-sm font-medium text-white/70">
+                One-time setup
               </span>
-              <Switch
-                checked={annual}
-                onCheckedChange={setAnnual}
-                className="data-[state=checked]:bg-[linear-gradient(120deg,#3b82f6,#8b5cf6)] data-[state=checked]:border-transparent"
-              />
-              <span
-                className={cn(
-                  "text-sm font-medium transition-colors",
-                  annual ? "text-white" : "text-white/50"
-                )}
-              >
-                Annual
-              </span>
-              <span className="ml-1 rounded-full border border-electric/30 bg-electric/10 px-2 py-0.5 text-[11px] font-semibold text-electric">
-                Save 20%
+              <span className="text-white/20">·</span>
+              <span className="text-sm font-medium text-white">
+                30-day or 365-day plans
               </span>
             </div>
           </div>
         </Reveal>
 
-        {/* pricing cards */}
+        {/* pricing cards — 6 plans, 3-col grid (2 rows of 3) */}
         <div className="mt-12 grid items-stretch gap-6 lg:mt-14 lg:grid-cols-3 lg:gap-6 lg:pt-6">
           {PLANS.map((plan, i) => (
             <PricingCard
               key={plan.name}
               plan={plan}
-              annual={annual}
-              highlighted={plan.name === "Professional"}
-              delay={0.15 + i * 0.1}
+              delay={0.15 + i * 0.08}
             />
           ))}
         </div>
 
-        {/* footnote */}
-        <Reveal delay={0.5}>
-          <p className="mt-10 text-center text-sm text-white/40">
-            All plans include a 14-day free trial. No credit card required.{" "}
-            <span className="text-white/60">
-              Need something custom?
-            </span>{" "}
-            <a href="#" className="text-electric hover:text-electric/80 underline-offset-4 hover:underline">
-              Talk to sales →
-            </a>
+        {/* disclaimer */}
+        <Reveal delay={0.3}>
+          <p className="mx-auto mt-10 max-w-3xl text-center text-xs leading-relaxed text-white/40">
+            Opus Solutions is a marketing consulting and support company. We do
+            not act as a brokerage, list or sell property, or resell leads.
+            Referral fees apply on successful closings.
           </p>
         </Reveal>
       </SectionShell>
@@ -712,6 +1042,7 @@ export default function PricingFaqCtaFooter() {
         <SectionHeading
           eyebrow="FAQ"
           title="Frequently asked questions"
+          description="Find answers to commonly asked questions about Opus Solutions."
           align="center"
         />
         <Reveal delay={0.1}>
@@ -732,7 +1063,7 @@ export default function PricingFaqCtaFooter() {
               </p>
             </div>
             <a
-              href="#"
+              href="#contact"
               className="inline-flex shrink-0 items-center gap-2 rounded-full border border-white/15 bg-white/5 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:border-white/30 hover:bg-white/10"
             >
               Contact support
@@ -741,6 +1072,9 @@ export default function PricingFaqCtaFooter() {
           </div>
         </Reveal>
       </SectionShell>
+
+      {/* ============ CONTACT ============ */}
+      <ContactSection />
 
       {/* ============ CTA BANNER ============ */}
       <CtaBanner />
