@@ -28,21 +28,39 @@ export const metadata: Metadata = {
     "seller leads",
   ],
   authors: [{ name: "LeadSphere AI" }],
+  metadataBase: new URL("https://leadsphere.ai"),
   icons: {
-    icon: "/logo.svg",
+    icon: [
+      { url: "/favicon-32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon-512.png", sizes: "512x512", type: "image/png" },
+      { url: "/logo.svg", type: "image/svg+xml" },
+    ],
+    shortcut: "/favicon-32.png",
+    apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
+    other: [{ url: "/favicon-512.png", sizes: "512x512", type: "image/png" }],
   },
   openGraph: {
     title: "LeadSphere AI — More Listings. Powered by AI.",
     description:
-      "The AI-powered real estate lead generation platform for modern agents and teams.",
+      "The AI-powered real estate lead generation platform for modern agents and teams. Generate high-quality seller leads, automate prospecting, and close more deals.",
     siteName: "LeadSphere AI",
     type: "website",
+    locale: "en_US",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1344,
+        height: 768,
+        alt: "LeadSphere AI — More Listings. Powered by AI.",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "LeadSphere AI — More Listings. Powered by AI.",
     description:
       "The AI-powered real estate lead generation platform for modern agents and teams.",
+    images: ["/og-image.png"],
   },
 };
 
