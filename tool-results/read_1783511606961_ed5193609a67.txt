@@ -1,0 +1,234 @@
+   200→Task: Build Navbar, Hero, portfolio features (AI Assistant, ROI calculator, before/after, loading screen), assemble page.tsx, verify with Agent Browser
+   201→
+   202→Work Log:
+   203→- Built Navbar.tsx: scroll-aware glass styling, desktop nav links, mobile menu with AnimatePresence, gradient logo mark, CTA buttons with shimmer sweep
+   204→- Built Hero.tsx: split layout, "More Listings. Powered by AI." heading with gradient + glow, dual CTAs (magnetic), floating 3D dashboard with 6 glass cards (main panel with KPIs+chart+pipeline, lead notification, mini analytics donut, AI assistant bubble, activity timeline, property pin) all with mouse-parallax depth layers and float animations, AnimatedBackground hero variant (aurora blobs, grid, particles, light rays, noise)
+   205→- Built LoadingScreen.tsx: branded 3D animation with orbiting rings, breathing orb, gradient progress bar, wordmark
+   206→- Built AI Assistant: /api/ai-assistant/route.ts (z-ai-web-dev-sdk LLM with system prompt for lead qualification, in-memory session store, suggestion generator) + AiAssistantWidget.tsx (floating launcher with pulse, chat panel with message bubbles, typing indicator, quick-prompt suggestions, error handling)
+   207→- Built RoiCalculator.tsx: 3 interactive sliders (leads, commission, close rate) with custom gradient thumbs, live computed results (listings, revenue, cost, profit, ROI multiple) with CountUp animation, electric/violet/cyan theming
+   208→- Built BeforeAfter.tsx: traditional vs AI-powered comparison with staggered reveal, center gradient arrow, result cards (2 vs 8 listings/mo, +300%)
+   209→- Assembled page.tsx: LoadingScreen, CursorGlow, Navbar, Hero, TrustStatsFeatures, InteractiveDemo, BeforeAfter, AiProcessMap, CrmIntegrationsTestimonials, RoiCalculator, PricingFaqCtaFooter, AiAssistantWidget
+   210→- Fixed CursorGlow lint error (setState-in-effect) by gating render on pos state
+   211→- Verified with Agent Browser: HTTP 200, all sections render, demo tabs work (CRM + Analytics), AI Assistant sends message and receives LLM response (recommended Professional plan for 5-agent team), FAQ accordion opens, pricing toggle clickable, mobile responsive (390px) with working mobile menu, footer at bottom, no runtime errors, lint clean
+   212→
+   213→Stage Summary:
+   214→- Site fully functional and verified end-to-end via Agent Browser
+   215→- LLM-backed AI Assistant confirmed working (POST /api/ai-assistant 200, relevant responses)
+   216→- All 16+ sections rendering: Hero, Trust, Stats, Features, Interactive Demo (6 tabs), Before/After, AI Assistant section, Process timeline, Interactive Map, CRM Kanban (drag-drop), Integrations, Testimonials (carousel), ROI Calculator, Pricing (3 tiers + toggle), FAQ, CTA banner, Footer
+   217→- Portfolio enhancements delivered: AI conversational assistant, ROI calculator, before/after comparison, branded loading screen, live KPI dashboard, 3D-ish interactive map
+   218→- Lint: 0 errors. Dev server: clean, no runtime errors.
+   219→
+   220→---
+   221→Task ID: 2
+   222→Agent: rebrand-editor
+   223→Task: Rebrand "LeadSphere AI" → "Opus Solutions" and remove all user-visible "AI" mentions from 3 section files
+   224→
+   225→Work Log:
+   226→- Read worklog.md to align with the design system and prior agent work.
+   227→- Read all 3 target files: TrustStatsFeatures.tsx, BeforeAfter.tsx, RoiCalculator.tsx.
+   228→
+   229→- File 1 — TrustStatsFeatures.tsx:
+   230→  - Renamed feature "AI Lead Discovery" → "Lead Discovery" (icon/color unchanged).
+   231→  - Renamed feature "AI Follow-up" → "Smart Follow-up" (icon/color unchanged).
+   232→  - Audited all 12 feature descriptions, stats labels, and trust copy — no other AI/LeadSphere mentions found.
+   233→  - File had no "LeadSphere" mentions to begin with (branding lives in Navbar/Hero/Footer, not this file).
+   234→
+   235→- File 2 — BeforeAfter.tsx:
+   236→  - Title: "Traditional prospecting vs. AI-powered" → "Traditional prospecting vs. Opus-powered".
+   237→  - Description: "Let AI do the heavy lifting" → "Let Opus do the heavy lifting".
+   238→  - AI_POWERED array item 1: "AI finds motivated sellers automatically" → "Opus finds motivated sellers automatically".
+   239→  - AI_POWERED array item 3: "AI-triggered follow-ups at the perfect moment" → "Smart-triggered follow-ups at the perfect moment".
+   240→  - After-card heading: "The LeadSphere way" → "The Opus way".
+   241→  - After-card badge: "AI-Powered" → "Opus-Powered".
+   242→  - NOTE: Variable/array name `AI_POWERED` was intentionally NOT changed (internal identifier, not user-visible), per rule #3.
+   243→
+   244→- File 3 — RoiCalculator.tsx:
+   245→  - Section description: "with LeadSphere AI" → "with Opus Solutions".
+   246→  - Helper text: "LeadSphere agents average" → "Opus agents average"; "thanks to AI lead scoring" → "thanks to smart lead scoring".
+   247→  - ROI multiple helper: "For every $1 spent on LeadSphere" → "For every $1 spent on Opus".
+   248→  - CTA "Start your free trial" left untouched as instructed.
+   249→  - No wordmark `<span class="text-electric"> AI</span>` pattern existed in this file; brand name already inline in prose.
+   250→
+   251→- Verification:
+   252→  - Ripgrep for `\b(AI|Ai)\b` in all 3 files: 0 matches.
+   253→  - Ripgrep for `LeadSphere` in all 3 files: 0 matches.
+   254→  - Ripgrep for `Sphere` in all 3 files: 0 matches (no standalone "LeadSphere" lingering).
+   255→  - `bun run lint` → exit 0, zero errors/warnings introduced.
+   256→  - No file names, component function names, import paths, CSS class names, or variable names (including `AI_POWERED`) were changed. Icons, colors, glassmorphism styling, framer-motion animations, CountUp, Reveal, and all feature functionality remain intact.
+   257→
+   258→Stage Summary:
+   259→- All 3 files rebranded to "Opus Solutions" with zero user-visible "AI" text remaining.
+   260→- Brand voice preserved contextually ("Opus-powered", "Smart Follow-up", "smart lead scoring", "The Opus way", "Opus finds motivated sellers", "Opus agents average").
+   261→- Lint clean (exit 0). Premium dark design system untouched. Ready for orchestrator review.
+   262→
+   263→---
+   264→Task ID: 3
+   265→Agent: full-stack-developer
+   266→Task: Rebrand "LeadSphere AI" → "Opus Solutions" and strip all user-visible "AI" text from InteractiveDemo.tsx and CrmIntegrationsTestimonials.tsx
+   267→
+   268→Work Log:
+   269→- Read worklog.md to absorb the design system + history (kept dark luxury glass aesthetic, electric/violet/cyan/gold palette, all features intact).
+   270→- Read both target files in full (~1058 lines InteractiveDemo.tsx, ~797 lines CrmIntegrationsTestimonials.tsx).
+   271→- Grepped both files for AI|LeadSphere|Sphere and for word-boundary \bAI\b|\bai\b|\bAi\b to enumerate every user-visible brand/AI mention (excluding names like "Aisha", "Bailey", "Nair" and channel words like "Mail"/"Email" which are letters-within-words, not the AI acronym).
+   272→- InteractiveDemo.tsx edits (6 targeted text changes, NO code identifier / class / import / filename / function-name changes):
+   273→  • Marketing tab → Email Preview sender avatar initials "LS" → "OS" (matches new brand "Opus Solutions")
+   274→  • Email Preview sender name "LeadSphere AI" → "Opus Solutions"
+   275→  • Email Preview sender email "noreply@leadsphere.ai" → "noreply@opussolutions.com"
+   276→  • Email body sign-off "— The LeadSphere Team" → "— The Opus Team"
+   277→  • SectionHeading description "A real, interactive preview of the LeadSphere dashboard." → "A real, interactive preview of the Opus dashboard."
+   278→  • Browser top-bar URL pill "app.leadsphere.ai/dashboard" → "app.opussolutions.com/dashboard"
+   279→- CrmIntegrationsTestimonials.tsx edits (4 testimonial quote text changes; CRM Kanban lead cards/tags, Integrations grid, and section headings already had zero AI/LeadSphere mentions):
+   280→  • Testimonial 1 (Jennifer Hayes): "LeadSphere AI transformed my pipeline..." → "Opus Solutions transformed my pipeline..."; "The AI assistant pre-qualifies..." → "The smart assistant pre-qualifies..."
+   281→  • Testimonial 3 (Priya Patel): "Add the AI follow-up sequences..." → "Add the smart follow-up sequences..."
+   282→  • Testimonial 4 (David Okonkwo): "LeadSphere surfaces off-market opportunities..." → "Opus surfaces off-market opportunities..."
+   283→  • Testimonial 5 (Sofia Ramirez): "LeadSphere's AI concierge handles inquiries 24/7..." → "Opus's smart concierge handles inquiries 24/7..."
+   284→- Verified: post-edit grep for AI|LeadSphere|Sphere and \bAI\b|\bai\b|\bAi\b in BOTH files returns zero matches.
+   285→- Ran `bun run lint 2>&1 | tail -5` → output was just "$ eslint ." with NO errors/warnings. Clean.
+   286→- Did NOT change: file names, component function names (InteractiveDemo, CrmIntegrationsTestimonials, SortableLeadCard, etc.), import paths, CSS class names, variable names, theme tokens, chart data, drag-and-drop logic, carousel autoplay, or any feature/animation. Only user-visible text was edited.
+   287→
+   288→Stage Summary:
+   289→- Rebrand complete on both files. Every user-visible "LeadSphere AI" / "LeadSphere" / standalone "AI" mention has been replaced contextually (Opus Solutions, Opus, smart assistant, smart follow-up, smart concierge) per the global rules. No "AI" remains in any heading, label, description, button text, alt text, tooltip, table cell, campaign name, tab label, testimonial quote, sender name, or URL pill in either file.
+   290→- All features intact: 6-tab interactive dashboard, CRM table search, Pipeline Kanban, Lead Map with heatmap toggle, Analytics charts (recharts), Marketing email preview, Dialer with pulse rings, @dnd-kit drag-and-drop CRM Kanban, Integrations grid, autoplay testimonials carousel.
+   291→- Lint: 0 errors. No type errors introduced (text-only edits). Dev server unaffected.
+   292→
+   293→---
+   294→Task ID: 4
+   295→Agent: full-stack-developer
+   296→Task: Rebrand LeadSphere AI → Opus Solutions, remove all user-visible "AI" mentions (AiProcessMap.tsx + PricingFaqCtaFooter.tsx)
+   297→
+   298→Work Log:
+   299→- Read worklog.md to learn the design system + brand context, then read both target section files in full (AiProcessMap.tsx ~852 lines, PricingFaqCtaFooter.tsx ~753 lines).
+   300→- Grepped both files for `AI|Ai`, `LeadSphere|Sphere` (case-insensitive, word-boundary) to enumerate every occurrence; classified each as user-visible text vs. internal (comments, variable names, component function names, import paths, prop variant values, section anchor ids) — only user-visible text was changed per the rules.
+   301→- AiProcessMap.tsx edits (3 user-visible changes; feature pills, map chips, pin tooltips, legend, status bar all already AI-free):
+   302→  - Section 1 eyebrow: "AI Assistant" → "Smart Assistant"
+   303→  - Section 1 title span: "AI sales assistant" → "smart sales assistant" (full title now reads "Meet your smart sales assistant")
+   304→  - Process timeline step 4 description: "AI schedules meetings straight into your calendar." → "Smart scheduling books meetings straight into your calendar."
+   305→  - Verified all 8 feature pills (Predict hot leads, Summarize conversations, Generate scripts, Follow-up reminders, Best call time, Email drafting, Lead scoring, Smart recommendations) — no AI text, untouched.
+   306→  - Verified Interactive Map filter chips (All Leads/Motivated/Expired/FSBO/High Value), pin tooltips, legend ("Pin legend"), bottom status ("{n} of {n} pins shown") — no AI text, untouched.
+   307→  - Left untouched (per rules): comment "SECTION 1 — AI Sales Assistant", `AI_FEATURES` const, `AiOrb`, `AiAssistantSection`, `AiProcessMap` function names, `<SectionShell id="ai">`, `<AnimatedBackground variant="ai" />`. No "LeadSphere"/"Sphere" existed in user-visible text in this file.
+   308→- PricingFaqCtaFooter.tsx edits (12 user-visible changes; pricing eyebrow/title/description, plan taglines, CTAs, billing toggle, FAQ contact strip, CTA banner eyebrow/headline/buttons all already AI-free):
+   309→  - Professional plan feature: "AI Assistant" → "Smart Assistant"
+   310→  - FAQ #1 answer: "test the AI Assistant" → "test the Smart Assistant"
+   311→  - FAQ #2 answer: "LeadSphere connects to over 850 MLS markets" → "Opus connects to over 850 MLS markets"
+   312→  - FAQ #3 question: "How accurate is the AI lead data?" → "How accurate is the lead data?"
+   313→  - FAQ #3 answer: "Our AI cross-references 30+ data sources" → "Our platform cross-references 30+ data sources"
+   314→  - FAQ #6 question: "What can the AI Assistant actually do?" → "What can the Smart Assistant actually do?"
+   315→  - FAQ #6 answer: "The AI Assistant drafts personalized outreach…" → "The Smart Assistant drafts personalized outreach…"
+   316→  - FAQ #7 question: "Which tools does LeadSphere integrate with?" → "Which tools does Opus integrate with?"
+   317→  - CTA banner subtext: "Join 50,000+ agents generating more listings with AI." → "Join 50,000+ agents generating more listings with smart automation."
+   318→  - Footer LogoMark wordmark: `LeadSphere <span>AI</span>` → `Opus <span>Solutions</span>`
+   319→  - Footer tagline: "More listings. Powered by AI." → "More listings. Powered by Opus."
+   320→  - Newsletter helper text: "Weekly insights on AI-powered prospecting." → "Weekly insights on smart prospecting."
+   321→  - Bottom-bar copyright: "© 2025 LeadSphere AI. All rights reserved." → "© 2025 Opus Solutions. All rights reserved."
+   322→  - Bottom-bar badge: "Made with AI" → "Made with care"
+   323→  - Left untouched: code comment "MAIN" (line 635, not user-visible), all variable names, function names, CSS classes, import paths. All 7 FAQ answers remain realistic & helpful; pricing feature lists, accordion behavior, monthly/annual toggle, magnetic buttons, animated gradient borders, and dark luxury design all preserved.
+   324→- Verification: re-grepped both files — remaining `AI|Ai` matches are ONLY internal identifiers (AI_FEATURES, AiOrb, AiAssistantSection, AiProcessMap, comment "SECTION 1 — AI Sales Assistant", comment "MAIN"). No `LeadSphere` or `Sphere` remains in either file. No user-visible "AI"/"ai"/"Ai" text remains.
+   325→- Ran `cd /home/z/my-project && bun run lint 2>&1 | tail -5` → clean, 0 errors.
+   326→
+   327→Stage Summary:
+   328→- Rebrand complete on both files. Brand wordmarks now read "Opus Solutions", standalone brand references say "Opus", and every user-visible "AI" mention (eyebrows, headings, descriptions, feature pills, FAQ Q&As, pricing feature lists, CTA subtext, footer tagline, newsletter text, copyright, "Made with care" badge) has been removed or contextually replaced with "Smart"/"Opus"/"smart automation".
+   329→- All features, animations, accordion, pricing toggle, map interactivity, and the premium dark glass design are 100% intact. No file names, component function names, import paths, CSS class names, or variable names were changed.
+   330→- Lint clean. Ready for orchestrator/preview.
+   331→
+   332→---
+   333→Task ID: 6
+   334→Agent: section-enricher
+   335→Task: Expand AboutMission (AboutVaWorkflow.tsx) with Benefits block, Why We Are Different grid, and Achievements banner
+   336→
+   337→Work Log:
+   338→- Read worklog.md to confirm design system (dark glassmorphism, electric/violet/cyan palette, GlassCard/CountUp/SectionHeading/SectionShell + Reveal primitives, brand = "Opus Solutions", no "AI" / no "LeadSphere" in user-visible text).
+   339→- Read target file src/components/leadsphere/sections/AboutVaWorkflow.tsx (3 exported sections: AboutMission, VirtualAssistantServices, OurWorkflow).
+   340→- Read primitives.tsx to confirm exact prop signatures for GlassCard (className/strong/sheen/children), CountUp (value/duration/decimals/prefix/suffix/className), SectionHeading (eyebrow/title/description/align/className), SectionShell (children/className/id).
+   341→- Imports extended (lucide-react): added CheckCircle2, ShieldCheck, PiggyBank, Handshake, TrendingUp. Imports extended (primitives): added CountUp alongside existing GlassCard/SectionHeading/SectionShell. Existing Reveal import kept.
+   342→
+   343→- AboutMission SectionHeading description updated to the new exact copy: "Opus Solutions provides professional marketing and administrative support for real estate professionals. Our mission is to help licensed agents and brokerages stay organized, save time, and grow stronger businesses." (No LeadSphere / no AI.)
+   344→
+   345→- NEW BLOCK 1 — "Benefits of Professional Outreach Support" (inserted AFTER the 3-card mission/vision/who-we-serve grid, still inside the same SectionShell):
+   346→  • Single strong+sheel GlassCard with `p-0` wrapper, internal `relative grid lg:grid-cols-2` content area with `p-8 sm:p-10` and `lg:gap-14`.
+   347→  • Ambient glow layer: two `pointer-events-none absolute` blur-3xl orbs (electric bottom-left, violet top-right).
+   348→  • LEFT column: electric "Benefits" pill (CheckCircle2 + label), gradient headline "Benefits of Professional Outreach Support" (text-gradient-electric span), the exact required paragraph ("Outsourcing your outreach support with Opus Solutions saves valuable time by providing verified and standardized contact records. Our documented workflows make follow-ups faster and more consistent — so you can focus on clients, not data entry."), and a decorative electric→violet→cyan gradient underline.
+   349→  • RIGHT column: 4-item checklist built from an array via .map (motion.li with staggered x:16→0 reveal). Each item: bordered bg-white/[0.02] rounded-xl card, CheckCircle2 icon in text-electric with drop-shadow glow + group-hover scale-110, bold title, white/55 description. Hover state lights up border to electric/30.
+   350→  • 4 items exactly match the spec: Documented workflows / Verified & standardized contacts / CRM setup & support / Digital advertising campaigns (descriptions verbatim).
+   351→
+   352→- NEW BLOCK 2 — "Why We Are Different" (inserted below Block 1, still inside SectionShell):
+   353→  • Centered eyebrow pill (violet dot + "Why We Are Different") + heading "Built different, built to last" (gradient span on "last") + short subhead mentioning Opus Solutions.
+   354→  • 3-col md:grid of strong GlassCards, each with: ambient color glow (absolute blur-3xl, group-hover opacity-150), colored icon tile (h-12 w-12 rounded-xl bg-{color}/15, group-hover scale-110), title (font-heading text-lg), description (text-sm white/60), and a colored underline (h-0.5 w-10 group-hover:w-20). motion.div wrapper with whileHover y:-4 lift.
+   355→  • Card 1: ShieldCheck / electric / "Verified & Documented Outreach" — full reference copy ("consent-based channels...no autodialers or robocalls").
+   356→  • Card 2: PiggyBank / violet / "Cost-Effective Support Packages" — full reference copy (mentions "Opus Solutions").
+   357→  • Card 3: Handshake / cyan / "Long-Term Partnership" — full reference copy ("workflow playbooks, and strategic guidance that scale with your goals").
+   358→
+   359→- NEW Achievements banner (inserted below Block 2, still inside SectionShell):
+   360→  • Horizontal highlight band GlassCard (sheen, p-0 wrapper). Internal gradient overlay (electric→violet→cyan at low opacity) + two side blur-3xl orbs (electric left, cyan right).
+   361→  • Left side: TrendingUp icon in electric-tinted bordered tile + label block ("OUR ACHIEVEMENTS" uppercase + "Fast-growing partner network nationwide" caption).
+   362→  • Right side: 3-stat grid (sm:grid-cols-3) using CountUp (duration 2000). Each stat = colored big number (font-heading text-3xl sm:text-4xl in text-electric/text-violet/text-cyan) + label. Staggered motion.div reveal (y:12→0).
+   363→  • Stats exactly as specified: 50K+ Active Agents, 100+ MLS Integrations, 92% Conversion Improvement.
+   364→  • Responsive: stacks vertically on mobile (flex-col), horizontal band on md+ (md:flex-row md:justify-between).
+   365→
+   366→- All three new blocks use existing primitives (GlassCard, CountUp, Reveal) and the same dynamic Tailwind color class convention (`bg-${color}/15`, `text-${color}`) already used by VA_SERVICES / WORKFLOW_STEPS elsewhere in the file — no new patterns introduced.
+   367→
+   368→- Verification:
+   369→  • `cd /home/z/my-project && bun run lint 2>&1 | tail -5` → clean (`$ eslint .`, exit 0, zero errors/warnings).
+   370→  • Checked dev.log: dev server compiling cleanly, GET / 200 responses, no errors mentioning AboutVaWorkflow / AboutMission / CountUp / icon imports.
+   371→  • Brand rule respected: zero user-visible "AI" or "LeadSphere"/"Sphere" text introduced. "Opus Solutions" / "Opus" used contextually.
+   372→  • Existing exports (AboutMission, VirtualAssistantServices, OurWorkflow) and section ids (about, va-services, workflow) preserved — only AboutMission internals were expanded.
+   373→  • Existing 3-card mission/vision/who-we-serve grid kept untouched above the new blocks.
+   374→
+   375→Stage Summary:
+   376→- AboutMission section (id="about") now contains 4 logical blocks on the page: (1) the original Mission/Vision/Who-We-Serve 3-card grid, (2) the new "Benefits of Professional Outreach Support" 2-column glass card with 4-item checklist, (3) the new "Why We Are Different" 3-card grid (ShieldCheck/PiggyBank/Handshake), and (4) the new "Our Achievements" highlight band with 3 CountUp stats (50K+, 100+, 92%).
+   377→- Premium dark glassmorphism preserved throughout; existing animations (Reveal, motion hover-lift) extended consistently to the new content.
+   378→- Lint clean (exit 0). Dev server returning HTTP 200 with no runtime errors. No file names, component names, or export signatures changed. Ready for orchestrator preview.
+   379→
+   380→---
+   381→Task ID: 5
+   382→Agent: full-stack-developer
+   383→Task: Enrich PricingFaqCtaFooter.tsx with REAL content from vleadservice.com — rewrite Pricing (6 plans), rewrite FAQ (12 Q&As), and add a new Contact section.
+   384→
+   385→Work Log:
+   386→- Read worklog.md to absorb the design system (dark luxury glassmorphism, electric/violet/cyan/gold palette, shared primitives, custom-scroll utility, animate-gradient-x, text-glow, etc.).
+   387→- Read the full target file (753 lines) to understand existing structure: imports, PLANS data, FAQS data, PlanPrice/CtaButton/PricingCard components, FaqList, CtaBanner, Footer, and main export.
+   388→- Confirmed shadcn primitives available (Input, Textarea, Label, Button) and verified `custom-scroll` utility + `GlassCard` API (`{ className?, strong?, sheen?, children }` — no default padding).
+   389→- TASK 1 — Pricing rewrite:
+   390→  • Replaced 3-tier Starter/Professional/Enterprise with the 6 real reference plans: Custom Plan (Per Lead), Trial ($450/30d), Silver ($900/30d, "Top Selling" gold badge, electric gradient border, lg:scale-[1.04] lg:z-10, solid gradient CTA with glow), Gold ($1800/30d), Platinum ($2500/30d), Sapphire ($4000/365d, "For Premium Realtors" gold badge, animated gold gradient border `linear-gradient(120deg,#d4af37,#f5d77a,#d4af37,#f5d77a)`, outline "Book a Demo" CTA).
+   391→  • Rewrote Plan type: removed `monthly/annual/custom/ctaVariant:"ghost"`; added `price: string` ("Per Lead" or "$450"), `period: string`, `highlight?: "top-selling" | "premium"`, `badge?: string`.
+   392→  • Rewrote PlanPrice: renders "Per Lead" as plain text; for "$N" prices parses int and uses CountUp (keyed on price) with $ prefix. Removed `annual` prop entirely.
+   393→  • Simplified CtaButton to just `outline` | `solid` variants (dropped `ghost` variant — no longer used).
+   394→  • Rewrote PricingCard to branch on `plan.highlight`: top-selling (electric gradient border + scale + solid CTA + white divider), premium (gold gradient border + outline CTA + gold-tinted divider), standard (default GlassCard hover lift).
+   395→  • Each card's features list now wrapped in `max-h-72 overflow-y-auto pr-1 custom-scroll` for scroll-when-needed behavior.
+   396→  • Removed the Switch-based monthly/annual toggle entirely. Replaced with a centered glass pill note: Calendar icon + "One-time setup · 30-day or 365-day plans".
+   397→  • Updated SectionHeading: eyebrow "Pricing", title "We've got a plan that's perfect for you", description "Whether you're just starting or need an all-inclusive solution, our plans scale with your goals."
+   398→  • Grid layout: `lg:grid-cols-3` (2 rows × 3 cols for 6 plans, naturally centered second row).
+   399→  • Added disclaimer line below grid in muted text: "Opus Solutions is a marketing consulting and support company. We do not act as a brokerage, list or sell property, or resell leads. Referral fees apply on successful closings."
+   400→- TASK 2 — FAQ rewrite:
+   401→  • Replaced the 7 SaaS-style FAQs with the 12 real reference FAQs (brokerage clarification, data/reselling, human-only outreach, exclusivity, setup fee, support model, TCPA/DNC/CAN-SPAM/CCPA/Fair Housing compliance, PCI-compliant payments, listing-platform differentiation, no-results guarantee, cancellation terms).
+   402→  • Kept SectionHeading eyebrow "FAQ", title "Frequently asked questions", description "Find answers to commonly asked questions about Opus Solutions." (added description).
+   403→  • FaqList component unchanged (still uses Reveal + Accordion + ChevronDown rotate-on-open); only the FAQS data array changed. Capped stagger delay at 0.36s (changed per-item multiplier from 0.06 → 0.04 to keep 12 items snappy).
+   404→  • FAQ contact prompt strip: changed CTA href from "#" → "#contact" so it now scrolls to the new contact section.
+   405→- TASK 3 — New Contact section:
+   406→  • Added `ContactSection` sub-component (placed BETWEEN FAQ and CTA banner in main render: Pricing → FAQ → Contact → CTA → Footer; flows naturally since FAQ strip already prompts "Still have questions? Contact support" → links to #contact).
+   407→  • SectionShell id="contact" with SectionHeading eyebrow "Contact", title "Let's do great work together", description with the motivated-sellers subtext.
+   408→  • 2-column grid (lg:grid-cols-2):
+   409→    - LEFT: GlassCard strong contact form using shadcn Input/Textarea/Label/Button. Fields: Name + Email (2-col on sm), Phone, Message textarea (flex-1 min-h-32). Submit = shadcn Button with custom gradient bg + shimmer sweep + glow (matches CtaButton solid styling for visual consistency). onSubmit preventDefault. Ambient electric + violet blur orbs in card corners. MessageSquare icon header.
+   410→    - RIGHT: vertical stack of (2×2 info-card grid) + (flex-1 stylized map panel).
+   411→      · InfoCard sub-component: small GlassCard with icon chip + uppercase label + value. Email card (Mail, text-electric, mailto link, break-all), Phone card (Phone, text-violet, 3 tel links, tnum), Address card (MapPin, text-cyan, 3 address lines), Office Hours card (Clock, text-gold, tnum).
+   412→      · StylizedMap sub-component: pure CSS/SVG — dark bg `#070a12`, two layered grid overlays (32px electric + 128px violet) both with radial mask for fade-at-edges, central radial glow, glowing MapPin at center with `drop-shadow-[0_0_14px_rgba(59,130,246,0.95)]` + dual pulse rings (animate-ping outer + animate-pulse inner) + "Albany, NY" pill label. Corner badges: top-left "HQ · Albany" with green status dot, bottom-right "42.6526° N, 73.7562° W" coordinates (tnum).
+   413→  • Real contact info wired: info@opussolutions.com, three phone numbers (320) 331-0910 / 8501 / 3559, 418 Broadway Ste. R Albany NY 12207, hours 10:00 A.M. to 08:00 P.M (EST). Stored in a CONTACT_INFO constant for cleanliness.
+   414→- Imports audit:
+   415→  • Removed: `Switch` (no longer used after toggle removal), `useState` (no longer needed).
+   416→  • Added: `Input`, `Textarea`, `Label`, `Button` (shadcn, used in contact form).
+   417→  • Added icons: `Mail`, `Phone`, `MapPin`, `Clock`, `MessageSquare` (lucide-react, used in contact section).
+   418→  • Kept all previously-used icons (Check, ChevronDown, Sparkles, ArrowRight, Rocket, Calendar, Orbit, Twitter, Linkedin, Instagram, Youtube, Github, ShieldCheck, Send, Star) and motion/CN/CountUp/GlassCard/SectionHeading/SectionShell/Reveal/Accordion* imports.
+   419→- Footer touch-ups (kept structure intact, only column data evolved):
+   420→  • FOOTER_COLUMNS first column "Product" → "Plans" with links ["Custom","Trial","Silver","Gold","Platinum","Sapphire"] so the footer reflects the new pricing tiers.
+   421→  • LogoMark wordmark ("Opus Solutions"), tagline, newsletter form, socials, copyright, status badge — all preserved from Task 4 rebrand (no AI/LeadSphere reintroduced).
+   422→- Branding check: grepped file for `\b(AI|Ai)\b|LeadSphere|Sphere` → 0 matches. No user-visible "AI" or "LeadSphere" anywhere. Brand consistently "Opus Solutions" / "Opus".
+   423→- Verification:
+   424→  • `cd /home/z/my-project && bun run lint 2>&1 | tail -8` → output `$ eslint .` only, exit 0, zero errors/warnings.
+   425→  • Dev server (`bun run dev` auto-running) log shows successful recompiles, GET / 200 responses, no runtime errors after edits.
+   426→  • Default export name `PricingFaqCtaFooter` unchanged. All import paths intact. Premium dark glassmorphism, framer-motion animations, gradient borders, glow effects, custom-scroll, Reveal stagger, Accordion behavior — all preserved.
+   427→
+   428→Stage Summary:
+   429→- Pricing now shows 6 real one-time-setup plans with the Silver (Top Selling) and Sapphire (For Premium Realtors) cards visually highlighted via gradient borders + gold badges.
+   430→- FAQ now has the 12 real compliance/services Q&As from the reference site.
+   431→- New Contact section adds a styled contact form (shadcn Input/Textarea/Label/Button), 4 info cards (email/3 phones/address/hours) with the real Opus Solutions contact data, and a pure-CSS stylized map with a glowing Albany, NY pin.
+   432→- File flow: Pricing → FAQ → Contact → CTA → Footer. Lint clean. Brand clean. Design system preserved.
+   433→

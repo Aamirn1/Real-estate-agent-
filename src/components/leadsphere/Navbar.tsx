@@ -6,12 +6,12 @@ import { Menu, X, Sparkles, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const NAV_LINKS = [
-  { label: "Services", href: "#services" },
-  { label: "About", href: "#about" },
-  { label: "Demo", href: "#demo" },
-  { label: "Pricing", href: "#pricing" },
-  { label: "Testimonials", href: "#testimonials" },
-  { label: "FAQ", href: "#faq" },
+  { label: "Home", href: "/" },
+  { label: "Services", href: "/services" },
+  { label: "Testimonials", href: "/testimonials" },
+  { label: "Pricing", href: "/pricing" },
+  { label: "Blog", href: "/blog" },
+  { label: "About Us", href: "/about" },
 ];
 
 export function Navbar() {
@@ -91,59 +91,46 @@ export function Navbar() {
         </button>
       </nav>
 
-      {/* Mobile menu — solid backdrop + panel, only when open */}
+      {/* Mobile menu — solid panel beneath the options only (navbar stays visible) */}
       <AnimatePresence>
         {open && (
-          <>
-            {/* Solid backdrop beneath the burger options */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              onClick={() => setOpen(false)}
-              className="fixed inset-0 top-0 z-40 bg-[#050505]/85 backdrop-blur-sm md:hidden"
-              aria-hidden
-            />
-            {/* Menu panel */}
-            <motion.div
-              initial={{ opacity: 0, y: -8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
-              transition={{ duration: 0.2 }}
-              className="absolute inset-x-4 top-[68px] z-50 md:hidden"
-            >
-              <div className="rounded-2xl border border-white/10 bg-[#0a0a0d] p-3 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.8)]">
-                {NAV_LINKS.map((link) => (
-                  <a
-                    key={link.href}
-                    href={link.href}
-                    onClick={() => setOpen(false)}
-                    className="flex items-center justify-between rounded-xl px-4 py-3 text-sm font-medium text-white/75 transition-colors hover:bg-white/5 hover:text-white"
-                  >
-                    {link.label}
-                    <ChevronDown className="h-4 w-4 -rotate-90 text-white/30" />
-                  </a>
-                ))}
-                <div className="mt-2 grid grid-cols-2 gap-2 border-t border-white/10 pt-3">
-                  <a
-                    href="#demo"
-                    onClick={() => setOpen(false)}
-                    className="rounded-xl border border-white/10 px-4 py-2.5 text-center text-sm font-medium text-white/80"
-                  >
-                    Sign in
-                  </a>
-                  <a
-                    href="#pricing"
-                    onClick={() => setOpen(false)}
-                    className="rounded-xl bg-gradient-to-r from-electric to-violet px-4 py-2.5 text-center text-sm font-semibold text-white"
-                  >
-                    Free Trial
-                  </a>
-                </div>
+          <motion.div
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.2 }}
+            className="absolute inset-x-4 top-[68px] z-50 md:hidden"
+          >
+            <div className="rounded-2xl border border-white/10 bg-[#0a0a0d] p-3 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.8)]">
+              {NAV_LINKS.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setOpen(false)}
+                  className="flex items-center justify-between rounded-xl px-4 py-3 text-sm font-medium text-white/75 transition-colors hover:bg-white/5 hover:text-white"
+                >
+                  {link.label}
+                  <ChevronDown className="h-4 w-4 -rotate-90 text-white/30" />
+                </a>
+              ))}
+              <div className="mt-2 grid grid-cols-2 gap-2 border-t border-white/10 pt-3">
+                <a
+                  href="/pricing"
+                  onClick={() => setOpen(false)}
+                  className="rounded-xl border border-white/10 px-4 py-2.5 text-center text-sm font-medium text-white/80"
+                >
+                  Sign in
+                </a>
+                <a
+                  href="/pricing"
+                  onClick={() => setOpen(false)}
+                  className="rounded-xl bg-gradient-to-r from-electric to-violet px-4 py-2.5 text-center text-sm font-semibold text-white"
+                >
+                  Free Trial
+                </a>
               </div>
-            </motion.div>
-          </>
+            </div>
+          </motion.div>
         )}
       </AnimatePresence>
     </motion.header>

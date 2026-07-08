@@ -430,3 +430,150 @@ Stage Summary:
 - FAQ now has the 12 real compliance/services Q&As from the reference site.
 - New Contact section adds a styled contact form (shadcn Input/Textarea/Label/Button), 4 info cards (email/3 phones/address/hours) with the real Opus Solutions contact data, and a pure-CSS stylized map with a glowing Albany, NY pin.
 - File flow: Pricing → FAQ → Contact → CTA → Footer. Lint clean. Brand clean. Design system preserved.
+
+---
+
+## Task 7 — Sub-pages: `/services` and `/about` (Opus Solutions)
+
+**Agent:** page-route builder | **Files created:**
+- `src/app/services/page.tsx` (Server Component, exports `metadata`)
+- `src/app/about/page.tsx` (Server Component, exports `metadata`)
+- `src/app/about/ContactForm.tsx` (`"use client"` — extracted for form interactivity)
+
+### Design-system adherence
+- Both pages wrapped in `<SiteChrome>` (navbar + cursor glow + animated bg + footer + scroll-to-top + assistant widget) and lead with `<PageHero>`, close with `<CTABanner />`.
+- Reused all shared section components per the brief — no duplication of existing sections.
+- Premium dark glassmorphism preserved: `GlassCard strong`, `text-gradient-electric` hero spans, `Reveal` stagger, `CountUp` tnum figures, electric/violet/cyan/gold accent tokens via Tailwind theme colors (`bg-electric/15`, `text-violet`, etc.).
+- No "LeadSphere", no user-visible "AI" — brand consistently "Opus Solutions" / "Opus".
+
+### Architecture decision (metadata vs "use client")
+- The brief suggested adding `"use client"` to the whole about page, but Next.js 16 forbids exporting `metadata` from a Client Component. To satisfy BOTH requirements (SEO `metadata` export + an interactive contact form), I kept `about/page.tsx` as a **Server Component** and extracted only the interactive form into `ContactForm.tsx` (`"use client"`).
+- The inline Achievements section and the Contact info card render client primitives (`CountUp`, `GlassCard`, `Reveal`) directly from the server component — this is allowed and needs no `"use client"` since they manage their own client state internally. Only the form (needs `onSubmit` + `useState`) required extraction.
+
+### PAGE 1 — `/services`
+- **metadata:** title "Services — Opus Solutions", description per brief.
+- **PageHero:** eyebrow "Services", title "Get Started With Online **Lead Generation** Services" (`text-gradient-electric` span on "Lead Generation"), description per brief.
+- **Body order:**
+  1. `<TrustStatsFeatures />` (default import) — Trust + Stats + Services grid (`id="services"`).
+  2. `<AiProcessMap />` (default import) — Smart Assistant + Real Estate Process timeline + Interactive Map.
+  3. `<VirtualAssistantServices />` (named import from `AboutVaWorkflow`) — 6 VA service cards.
+  4. `<InteractiveDemo />` (default import) — tabbed dashboard preview.
+  5. `<RoiCalculator />` (named import) — projected listings & revenue.
+  6. `<CTABanner title="Ready to fill your pipeline?" subtitle="From lead discovery to closing — Opus Solutions handles the heavy lifting so you can focus on clients." />`
+
+### PAGE 2 — `/about`
+- **metadata:** title "About Us — Opus Solutions", description per brief.
+- **PageHero:** eyebrow "About Us", title "A group of experts helping you **own your local market**" (`text-gradient-electric` span on "own your local market"), description per brief.
+- **Body order:**
+  1. `<AboutMission />` (named import) — Who We Are + Benefits + Why Different + Achievements banner.
+  2. `<OurWorkflow />` (named import) — 4-step onboarding (Intro Call → Meet VA → Discuss Tasks → Work Started).
+  3. `<BeforeAfter />` (named import) — Traditional vs Opus-powered comparison.
+  4. **NEW inline Achievements section** — `<SectionShell id="achievements">` + `<SectionHeading eyebrow="Our Achievements" title="Fast-growing partner network nationwide">`. 4-stat responsive grid (`sm:grid-cols-2 lg:grid-cols-4`) of `GlassCard strong` cards, each with a color-themed icon chip + corner glow + `CountUp` figure:
+     - 50K+ Active Agents (Users, electric)
+     - 100+ MLS Integrations (Network, violet)
+     - 92% Conversion Improvement (TrendingUp, cyan)
+     - 250M+ Lead Records (Database, gold)
+     A `STAT_THEME` record maps each color → static class strings (iconWrap/icon/glow) so Tailwind JIT picks them up. Closes with the brief's paragraph: "As a fast-growing partner network, our goal is to introduce agents to practical tools, workflows, and technology that improve response times and win rates."
+  5. **NEW inline Contact section** — `<SectionShell id="contact">` + `<SectionHeading eyebrow="Contact" title="Let's do great work together">`. 2-col `lg:grid-cols-2`:
+     - LEFT `GlassCard strong`: 4 contact info rows (Mail → info@opussolutions.com; Phone → (320) 331-0910 · 8501 · 3559; MapPin → 418 Broadway, Ste. R, Albany, NY 12207; Clock → 10:00 A.M. to 08:00 P.M (EST)), each with an electric icon chip + uppercase label + value. Footer disclaimer block: "Opus Solutions is a marketing consulting and support company. We do not act as a brokerage, list or sell property, or resell leads."
+     - RIGHT `GlassCard strong` wrapping `<ContactForm />` (client component). Form fields: Name + Email (2-col on sm), Phone, Message textarea, gradient "Send Message" button (electric→violet, glow shadow, Send icon). `onSubmit` preventDefault → swaps to a success state (CheckCircle2 + "Message received" + "Send another message" reset button) via `useState`.
+  6. `<CTABanner title="Partner with Opus Solutions" subtitle="Long-term support, documented workflows, and a team that scales with your goals." />`
+
+### Imports
+- Shared chrome: `SiteChrome`, `PageHero` from `@/components/leadsphere/SiteChrome`; `CTABanner` from `@/components/leadsphere/CTABanner`.
+- Section default exports: `TrustStatsFeatures`, `AiProcessMap`, `InteractiveDemo`.
+- Section named exports: `AboutMission`, `VirtualAssistantServices`, `OurWorkflow` (from `AboutVaWorkflow`); `BeforeAfter`; `RoiCalculator`.
+- Primitives: `GlassCard`, `CountUp`, `SectionHeading`, `SectionShell` from `@/components/leadsphere/primitives`; `Reveal` from `@/components/leadsphere/Reveal`.
+- shadcn ui (in ContactForm only): `Input`, `Textarea`, `Label`, `Button`.
+- lucide-react: `Mail`, `Phone`, `MapPin`, `Clock`, `Users`, `Network`, `TrendingUp`, `Database`, `Send`, `CheckCircle2`.
+- framer-motion: `motion` (used in ContactForm success state).
+
+### Verification
+- `cd /home/z/my-project && bun run lint 2>&1 | tail -8` → `$ eslint .` only, exit 0, zero errors/warnings.
+- Dev server (auto-running) compiled both new routes cleanly: `GET /services 200` (compile 2.8s) and `GET /about 200` (compile 1.1s), no runtime errors in `dev.log`.
+- Both pages are Server Components exporting typed `Metadata`; the only client island is `ContactForm`. Premium dark glassmorphism, gradient hero spans, CountUp stats, Reveal stagger, glow effects, responsive grids (mobile-first `sm:`/`lg:`) all intact.
+
+---
+Task ID: 9
+Agent: full-stack-developer
+Task: Build the /blog page (Opus Solutions blog index) — premium dark glassmorphism
+
+Work Log:
+- Read worklog.md to absorb the design system (deep black #050505 base, electric/violet/cyan/gold palette, glass-strong/glass-card/glass-sheen utilities, font-heading/tnum helpers, text-gradient-electric, glow helpers) and confirmed exact prop signatures for shared primitives by reading SiteChrome.tsx (SiteChrome + PageHero), CTABanner.tsx, primitives.tsx (GlassCard/SectionHeading/SectionShell), and Reveal.tsx.
+- Verified all required lucide-react icons exist via node check on the installed lucide-react@0.525: Moon, Target, Handshake, Cake, Megaphone, Search, TrendingUp, Sparkles, ArrowRight, Clock, Calendar — all present (also confirmed `LucideIcon` type is exported).
+- Created /src/app/blog/ directory.
+
+- Created /src/app/blog/layout.tsx (server component, NO "use client"):
+  • Exports `metadata` with `title: "Blog — Opus Solutions"` and the required description.
+  • Pass-through layout that just returns `children`. This is the cleanest way to satisfy BOTH the "metadata export" requirement AND the "use client at the top of blog/page.tsx" requirement, since Next.js forbids exporting `metadata` from a `"use client"` file.
+
+- Created /src/app/blog/page.tsx ("use client"):
+  • Imports: motion from framer-motion; 11 lucide-react icons + `type LucideIcon`; SiteChrome + PageHero from "@/components/leadsphere/SiteChrome"; CTABanner from "@/components/leadsphere/CTABanner"; GlassCard + SectionHeading + SectionShell from "@/components/leadsphere/primitives"; Reveal from "@/components/leadsphere/Reveal".
+  • Wraps everything in <SiteChrome> (navbar + cursor glow + ambient section background + footer + scroll-to-top + assistant widget).
+  • <PageHero eyebrow="Blog" title={<>Our <span className="text-gradient-electric">Latest News</span></>} description="Stay updated with the latest trends, tips, and insights in real estate lead generation. At Opus Solutions, we share strategies that help agents and brokerages grow stronger businesses." />
+  • <SectionShell id="blog" className="pt-10 md:pt-12">:
+    - <SectionHeading eyebrow="Blog" title="Insights for real estate professionals" description="Strategies, tips, and stories from the front lines of real estate lead generation." />
+    - Responsive grid: `grid-cols-1 sm:grid-cols-2 lg:grid-cols-3` with `gap-6 sm:gap-7`. mt-14 from heading.
+    - 8 posts rendered from a `POSTS: BlogPost[]` array. Each post has the exact title/excerpt/category/readTime/date/icon/color specified in the brief (titles are the REAL vleadservice.com blog post titles, excerpts are realistic 1-2 sentence summaries about VA teams, prospecting, warm introductions, the 5-year anniversary, paid ads, off-market deals, conversion, and customer experience).
+    - Each card wrapped in <Reveal delay={i * 0.06} className="h-full"> for staggered scroll-in.
+    - Inside: <motion.article whileHover={{ y: -8 }} transition={{ type: "spring", stiffness: 280, damping: 22 }} className="group h-full"> — lifts 8px (≈ -translate-y-2) on hover with a smooth spring.
+    - Card = <GlassCard sheen className="flex h-full flex-col overflow-hidden border border-white/8 transition-colors duration-300 ${c.hoverBorder}"> — strong glass, sheen reflection, full-height flex column, hover border-color + drop-shadow glow in the post's brand color (electric/violet/cyan/gold), achieved via a static COLOR_STYLES record so Tailwind v4's scanner reliably picks up every brand class.
+    - THUMBNAIL (h-40): `bg-gradient-to-br ${c.gradient}` (electric→#1e3a8a / violet→#4c1d95 / cyan→#0e7490 / gold→#7a5a16), plus (a) a masked 32px white grid overlay at 25% opacity for depth, (b) two ambient blur-2xl orbs in the post color (top-right + bottom-left, the second at 60% opacity), (c) a centered 16×16 rounded-2xl icon tile (bg-white/10 backdrop-blur + 1px white/25 border + 1px brand-colored ring) holding the post's lucide icon at 8×8 in white with a drop-shadow glow; the icon tile scales to 1.08 on hover via a nested motion.div, (d) a category pill in the top-left corner with a 1.5px brand-colored dot + label, styled as `bg-{color}/15 text-{color} border-{color}/30` rounded-full backdrop-blur.
+    - BODY (p-5 sm:p-6, flex-1 flex-col): title (font-heading text-lg font-semibold leading-snug text-white, transitions to the post's brand color on group-hover), excerpt (text-sm leading-relaxed text-white/55, line-clamp-3), then a footer row with top border-white/8 and pt-4: left = Calendar icon + date (tnum) + "·" separator + Clock icon + readTime; right = "Read more" + ArrowRight that translates x:0.5 on group-hover and turns brand-colored.
+    - COLOR_STYLES record (keyed by ColorKey "electric"|"violet"|"cyan"|"gold") contains fully-static class strings for: gradient, pill, iconTile, ring, orb, hoverBorder (border + shadow glow), hoverTitle, hoverArrow, accentDot. No template-literal color interpolation — every brand class is a literal string so Tailwind v4 detects it.
+    - LOAD MORE block (mt-14, flex-col items-center gap-6): a non-functional styled outline button (border-white/15 bg-white/5 backdrop-blur, hover:border-electric/40 + electric glow shadow, motion whileHover y:-2 + whileTap scale 0.98 spring) with "Load More Articles" + ArrowRight. Below: a max-w-2xl text-center text-xs text-white/35 disclaimer: "Opus Solutions is a marketing consulting and support company. We do not act as a brokerage, list or sell property, or resell leads."
+  • <CTABanner title="Ready to put these insights to work?" subtitle="Join thousands of agents who trust Opus Solutions to fill their pipeline." /> at the bottom (reusable gradient CTA banner with animated gradient bg, grid overlay, dual magnetic buttons).
+
+- Brand/voice check: zero user-visible "AI" or "LeadSphere"/"Sphere" anywhere. Only "Opus Solutions" / "Opus" used. Verified by reading the file in full before linting.
+- File names, component function names, import paths, CSS class names, and shared-component APIs all preserved/unchanged.
+
+- Verification:
+  • `cd /home/z/my-project && bun run lint 2>&1 | tail -8` → output was just `$ eslint .` (exit 0, zero errors/warnings). Clean.
+  • `curl -s -o /dev/null -w "HTTP %{http_code}\n" http://localhost:3000/blog` → `HTTP 200` (initial compile ~1174ms, render ~538ms).
+  • `curl -s http://localhost:3000/blog | grep -oE "<title>[^<]+</title>"` → `<title>Blog — Opus Solutions</title>` ✓ (metadata correctly inherited from blog/layout.tsx).
+  • SSR HTML contains every required string: "Latest News" (hero gradient span), "Blog" eyebrow, "Insights for real estate professionals", all 8 post titles (e.g. "How a Dedicated VA Team", "5 Anniversary Celebration of Opus Solutions", "Enhancing Customer Experience"), "Load More Articles", the brokerage disclaimer, and the CTA banner headline "Ready to put these insights to work?".
+  • Dev log shows `GET /blog 200 in 1712ms (compile: 1174ms, render: 538ms)` with no runtime errors.
+
+Stage Summary:
+- Delivered two files: /src/app/blog/layout.tsx (server, exports metadata) and /src/app/blog/page.tsx ("use client", full blog index).
+- Premium dark glassmorphism blog index with 8 real vleadservice.com blog posts in a 1/2/3-col responsive grid, staggered Reveal scroll-ins, per-post gradient thumbnails with brand-colored glows + ambient orbs + masked grid overlay, hover lift (y:-8 spring), hover border-color shift + drop-shadow glow in the post's brand color, hover title color shift, "Read more →" with sliding arrow, styled non-functional Load More button, the brokerage disclaimer, and the reusable gradient CTABanner at the bottom.
+- All shared infrastructure reused (SiteChrome, PageHero, CTABanner, GlassCard, SectionHeading, SectionShell, Reveal) — no recreation. Lint clean, HTTP 200, metadata title correct, all required copy present in SSR HTML. Ready for preview.
+
+---
+Task ID: 8
+Agent: full-stack-developer
+Task: Build two new Next.js page routes for Opus Solutions — `/testimonials` and `/pricing` (premium dark glassmorphism, compose shared infra)
+
+Work Log:
+- Read worklog.md (Tasks 0–7) to absorb the design system (deep black #050505 base, electric/violet/cyan/gold palette, glass-strong/glass-card utilities, text-gradient-electric, animate-gradient-x, custom-scroll) and the shared infrastructure contracts (SiteChrome, PageHero, CTABanner, TrustStatsFeatures, CrmIntegrationsTestimonials, RoiCalculator, GlassCard/CountUp/SectionHeading/SectionShell, Reveal, shadcn Accordion).
+- Verified existing multi-page pattern by reading src/app/about/page.tsx and src/app/services/page.tsx — both are SERVER components (no "use client") that export `metadata` and compose client components (SiteChrome, PageHero, GlassCard, CountUp, Reveal) inline. Followed this exact pattern so `metadata` export works (impossible to combine with a top-of-file "use client" in Next.js App Router). Client interactivity is handled by the composed client components (CountUp hooks, Accordion state, Reveal motion) — no hooks/motion used directly in either page.tsx.
+- Inspected PricingFaqCtaFooter.tsx (PricingCard / PlanPrice / CtaButton / FaqList sub-components) and CrmIntegrationsTestimonials.tsx (TESTIMONIALS data with avatar gradient strings) to match existing pricing-card styling (electric gradient border + scale for top-selling, gold gradient border for premium, gold Star badge, Check-in-electric-ring feature lists, custom-scroll max-h-72) and avatar gradient conventions (from-electric to-violet, from-cyan to-electric, from-violet to-fuchsia-500, from-gold to-amber-500, from-emerald-400 to-cyan).
+- Created `src/app/testimonials/page.tsx` (server component, exports metadata title "Testimonials — Opus Solutions"):
+  • PageHero: eyebrow "Testimonials", title "Clients tell the story" (gradient span on "the story"), description verbatim from spec.
+  • Body order: TrustStatsFeatures → CrmIntegrationsTestimonials → NEW "More Client Stories" inline section → CTABanner.
+  • NEW inline section: SectionShell id="more-stories" + SectionHeading (eyebrow "Client Stories", title "Real results from real estate professionals"). Responsive 1/2/3-col grid of 6 GlassCard (strong+sheel) cards. Each card: 5 gold filled Star icons (with gold drop-shadow glow), quote (curly quotes), gradient divider, then avatar circle (gradient bg with initials, per-spec gradient per person) + name + electric BadgeCheck verified icon + location. Cards wrapped in Reveal (staggered delay = i*0.06), hover lift + violet shadow, soft accent glow that brightens on hover.
+  • 6 real client stories with realistic varied quotes (lead quality / time saved / conversion / outreach support / ROI / dedicated VA), exact names + locations + initials + avatar gradients from spec: Kira Asinas (AL/GA/FL, KA, electric→violet), John Donahue (PA, JD, cyan→electric), Jennifer Bianchi (TX, JB, violet→fuchsia-500), JC Johnson (NV, JJ, gold→amber-500), Carlos Banuelos (CA, CB, emerald-400→cyan), Silvana Piadade (TN, SP, electric→cyan).
+  • CTABanner with title "Join 50,000+ agents growing with Opus" + subtitle "See why top-producing realtors trust Opus Solutions to fill their pipeline."
+- Created `src/app/pricing/page.tsx` (server component, exports metadata title "Pricing — Opus Solutions"):
+  • PageHero: eyebrow "Pricing", title "We've got a plan that's perfect for you" (gradient span on "perfect for you", apostrophes escaped as &apos;), description verbatim from spec.
+  • Body order: NEW inline Pricing section (id="pricing") → RoiCalculator → NEW inline FAQ section (id="faq") → CTABanner.
+  • NEW Pricing section (Option A — built inline, did NOT import PricingFaqCtaFooter to avoid its bundled footer): SectionShell id="pricing" + SectionHeading (eyebrow "Pricing", title with gradient span) + centered glass pill note (Calendar icon + "One-time setup · 30-day or 365-day plans") + responsive 3-col grid (md:2 / lg:3, items-stretch) of 6 PricingCards + centered muted disclaimer.
+  • 6 exact plans from spec: Custom Plan (Per Lead, outline), Trial Plan ($450, outline), Silver Plan ($900, HIGHLIGHTED top-selling — electric animated gradient border + lg:scale-105 + lg:z-10 + ambient electric glow + gold "Top Selling" Star badge + solid electric-gradient CTA with shimmer sweep + white divider), Gold Plan ($1800, outline), Platinum Plan ($2500, outline), Sapphire Plan ($4000, PREMIUM — gold animated gradient border + gold ambient glow + gold "For Premium Realtors" Star badge + outline "Book a Demo" CTA + gold-tinted divider). Prices animated with CountUp (keyed on price string); "Per Lead" rendered as plain text. Feature lists use Check icon in electric pill ring, wrapped in custom-scroll max-h-72 overflow. CTA buttons are plain `<button type="button">` with CSS transitions (no motion in server component) — solid variant has shimmer sweep pseudo-element, outline variant has ArrowRight that nudges on hover.
+  • Disclaimer verbatim: "Opus Solutions is a marketing consulting and support company. We do not act as a brokerage, list or sell property, or resell leads. Referral fees apply on successful closings."
+  • RoiCalculator reused as-is (interactive sliders + CountUp results).
+  • NEW FAQ section: SectionShell id="faq" + SectionHeading (eyebrow "FAQ", title "Frequently asked questions", description) + max-w-3xl Accordion (type="single" collapsible, defaultValue="faq-0") with 12 exact Q&As from spec. Each AccordionItem styled as glass-strong card (matches PricingFaqCtaFooter FaqList): default chevron hidden via [&>svg:last-child]:hidden, custom ChevronDown in a circle that rotates 180deg + turns electric on group-data-[state=open]. Wrapped each item in Reveal (staggered delay capped at 0.36s).
+  • CTABanner with title "Ready to close more listings?" + subtitle "Choose your plan and start generating qualified leads today."
+- Branding check: ripgrepped both new files for `LeadSphere|\bSphere\b` and `\bAI\b|\bAi\b` → 0 matches. All user-visible text uses "Opus Solutions" / "Opus". No "LeadSphere" or standalone "AI" anywhere.
+- Verification:
+  • `cd /home/z/my-project && bun run lint 2>&1 | tail -8` → output `$ eslint .` only, exit 0, zero errors/warnings.
+  • `curl -s -o /dev/null -w "%{http_code}" http://localhost:3000/testimonials` → 200 (compile 993ms, render 673ms).
+  • `curl -s -o /dev/null -w "%{http_code}" http://localhost:3000/pricing` → 200 (compile 900ms, render 574ms).
+  • curl-grep of testimonials HTML confirmed all 6 client names + "Clients tell" + "the story" + "Real results from real estate professionals" + "Join 50,000+ agents growing with Opus" render server-side.
+  • curl-grep of pricing HTML confirmed all 6 plan names + "Top Selling" + "For Premium Realtors" + "Per Lead" + "perfect for you" + "Frequently asked questions" + "How do we get started" + "Ready to close more listings" + "marketing consulting and support company" render server-side.
+  • dev.log shows clean compiles, GET /testimonials 200, GET /pricing 200, no runtime errors.
+
+Stage Summary:
+- Two new page routes delivered: `/testimonials` (src/app/testimonials/page.tsx) and `/pricing` (src/app/pricing/page.tsx). Both are server components that export `metadata` and compose shared client infrastructure (SiteChrome, PageHero, CTABanner) + existing section components (TrustStatsFeatures, CrmIntegrationsTestimonials, RoiCalculator) + new inline sections built from shared primitives (GlassCard, CountUp, SectionHeading, SectionShell, Reveal) and shadcn Accordion.
+- Testimonials page composes Trust + Stats + Features, the CRM/Integrations/Testimonials-carousel section, a NEW 6-card "More Client Stories" grid (real names, gold stars, verified badges, gradient avatars), and the CTA banner.
+- Pricing page builds a NEW 6-plan pricing grid inline (Custom/Trial/Silver[highlighted]/Gold/Platinum/Sapphire[premium]) with CountUp-animated prices, animated gradient borders on highlighted plans, the interactive RoiCalculator, a NEW 12-Q&A FAQ accordion, and the CTA banner.
+- Premium dark glassmorphism preserved throughout (electric/violet/cyan/gold palette, glass-strong cards, animate-gradient-x borders, custom-scroll feature lists, Reveal scroll-ins, framer-motion via client components). Fully responsive (1/2/3-col grids, mobile-first). Lint clean (exit 0). Both routes return HTTP 200 with all specified content rendering server-side. No "LeadSphere" or user-visible "AI" text. No file names, component names, or existing import paths changed.
