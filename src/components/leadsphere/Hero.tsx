@@ -40,7 +40,7 @@ export function Hero() {
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-electric opacity-70" />
               <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-electric" />
             </span>
-            Now with Smart Lead Discovery 2.0
+            Human-verified outreach · No autodialers
             <Sparkles className="h-3 w-3 text-violet" />
           </motion.div>
 
@@ -50,9 +50,9 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
             className="mt-6 font-heading text-[2.75rem] font-semibold leading-[1.02] tracking-tight text-white sm:text-6xl lg:text-[4.25rem]"
           >
-            More Listings.
+            Workflow Automation
             <br />
-            <span className="text-gradient-electric text-glow">Powered by Opus.</span>
+            <span className="text-gradient-electric text-glow">For Realtors.</span>
           </motion.h1>
 
           <motion.p
@@ -61,9 +61,9 @@ export function Hero() {
             transition={{ duration: 0.7, delay: 0.3 }}
             className="mt-6 max-w-xl text-base leading-relaxed text-white/60 sm:text-lg"
           >
-            Generate high-quality seller leads, automate prospecting, and close
-            more deals with one smart platform built for modern real
-            estate teams.
+            Your trusted partner for marketing consulting, outreach support,
+            and CRM solutions designed for licensed real estate professionals.
+            We help you expand your reach through verified, human-only outreach.
           </motion.p>
 
           <motion.div
@@ -74,21 +74,21 @@ export function Hero() {
           >
             <MagneticButton>
               <a
-                href="#pricing"
+                href="/pricing"
                 className="group relative inline-flex items-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-electric to-violet px-6 py-3.5 text-sm font-semibold text-white shadow-[0_0_30px_-6px_rgba(59,130,246,0.7)] transition-all hover:shadow-[0_0_40px_-4px_rgba(139,92,246,0.85)]"
               >
-                <span className="relative z-10">Start Free Trial</span>
+                <span className="relative z-10">Get Started Now</span>
                 <ArrowRight className="relative z-10 h-4 w-4 transition-transform group-hover:translate-x-0.5" />
                 <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/30 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
               </a>
             </MagneticButton>
             <MagneticButton strength={0.3}>
               <a
-                href="#demo"
+                href="/about"
                 className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-6 py-3.5 text-sm font-semibold text-white backdrop-blur transition-all hover:border-white/25 hover:bg-white/10"
               >
                 <PlayCircle className="h-4.5 w-4.5 text-cyan" />
-                Book Demo
+                Request a Quote
               </a>
             </MagneticButton>
           </motion.div>
@@ -100,13 +100,16 @@ export function Hero() {
             className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 text-xs text-white/45"
           >
             <span className="inline-flex items-center gap-1.5">
-              <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400" /> No credit card
+              <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400" /> Not a brokerage
             </span>
             <span className="inline-flex items-center gap-1.5">
-              <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400" /> 14-day trial
+              <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400" /> Human-only outreach
             </span>
             <span className="inline-flex items-center gap-1.5">
-              <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400" /> Cancel anytime
+              <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400" /> Verified contacts
+            </span>
+            <span className="inline-flex items-center gap-1.5">
+              <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400" /> Compliance-first
             </span>
           </motion.div>
         </div>
@@ -226,9 +229,9 @@ function MainPanel() {
       {/* KPI row */}
       <div className="mb-3 grid grid-cols-3 gap-2">
         {[
-          { label: "Leads", val: "12,840", icon: Users, c: "text-electric" },
-          { label: "Conv.", val: "92%", icon: TrendingUp, c: "text-emerald-400" },
-          { label: "Revenue", val: "$4.2M", icon: DollarSign, c: "text-gold" },
+          { label: "Intros", val: "12,840", icon: Users, c: "text-electric" },
+          { label: "Satisfaction", val: "98%", icon: TrendingUp, c: "text-emerald-400" },
+          { label: "Teams", val: "4+", icon: DollarSign, c: "text-gold" },
         ].map((k) => (
           <div key={k.label} className="rounded-xl border border-white/8 bg-white/[0.03] p-2.5">
             <div className="flex items-center gap-1.5">
@@ -243,7 +246,7 @@ function MainPanel() {
       {/* Chart */}
       <div className="rounded-xl border border-white/8 bg-white/[0.02] p-3">
         <div className="mb-2 flex items-center justify-between">
-          <span className="text-[10px] font-medium text-white/50">Lead Flow · 7d</span>
+          <span className="text-[10px] font-medium text-white/50">Introductions · 7d</span>
           <span className="rounded-full bg-emerald-400/10 px-1.5 py-0.5 text-[9px] font-semibold text-emerald-400">+24%</span>
         </div>
         <div className="flex h-16 items-end gap-1.5">
@@ -286,12 +289,12 @@ function LeadNotification() {
           <span className="absolute -right-0.5 -top-0.5 h-2.5 w-2.5 rounded-full bg-emerald-400 ring-2 ring-[#0d0d10]" />
         </span>
         <div className="min-w-0">
-          <div className="text-[10px] font-semibold text-white">New motivated seller</div>
+          <div className="text-[10px] font-semibold text-white">New verified introduction</div>
           <div className="truncate text-[9px] text-white/50">142 Maple Ave · 2m ago</div>
         </div>
       </div>
       <div className="mt-2.5 flex items-center justify-between">
-        <span className="rounded-full bg-emerald-400/15 px-2 py-0.5 text-[9px] font-semibold text-emerald-400">Score 94 · Hot</span>
+        <span className="rounded-full bg-emerald-400/15 px-2 py-0.5 text-[9px] font-semibold text-emerald-400">Verified · Ready</span>
         <span className="font-heading text-sm font-semibold text-white tnum">$890K</span>
       </div>
     </div>
@@ -343,7 +346,7 @@ function AiAssistant() {
           <span className="absolute inset-0 animate-pulse-ring rounded-full bg-violet/40" />
         </span>
         <div>
-          <div className="text-[10px] font-semibold text-white">Smart Assistant</div>
+          <div className="text-[10px] font-semibold text-white">Your Virtual Assistant</div>
           <div className="flex items-center gap-1 text-[8px] text-emerald-400">
             <span className="h-1 w-1 rounded-full bg-emerald-400" /> Online
           </div>
@@ -351,7 +354,7 @@ function AiAssistant() {
       </div>
       <div className="mt-2.5 rounded-xl rounded-tl-sm bg-white/[0.05] p-2.5">
         <p className="text-[9.5px] leading-relaxed text-white/75">
-          Sarah from Maple Ave is <span className="text-electric font-medium">94% likely to list</span>. Best call time: today 4–6pm.
+          Sarah from Maple Ave is <span className="text-electric font-medium">verified and ready to talk</span>. Best time to call: today 4–6pm.
         </p>
       </div>
       <div className="mt-2 flex gap-1.5">

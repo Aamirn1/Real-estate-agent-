@@ -799,7 +799,7 @@ function CtaBanner() {
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             className="font-heading text-4xl font-semibold leading-[1.05] tracking-tight text-white text-glow sm:text-5xl md:text-6xl"
           >
-            Ready to close more listings?
+            Ready to grow your business?
           </motion.h2>
 
           <motion.p
@@ -809,7 +809,7 @@ function CtaBanner() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="max-w-xl text-base leading-relaxed text-white/85 sm:text-lg"
           >
-            Join 50,000+ agents generating more listings with smart automation.
+            Join thousands of real estate professionals who trust Opus Solutions for verified outreach, dedicated VAs, and documented workflows.
           </motion.p>
 
           <motion.div
@@ -882,8 +882,10 @@ function Footer() {
           <div className="flex flex-col gap-6">
             <LogoMark />
             <p className="max-w-sm text-sm leading-relaxed text-white/55">
-              More listings. Powered by Opus. The all-in-one platform that finds,
-              scores, and converts real estate leads — automatically.
+              Your trusted partner for marketing consulting, outreach
+              support, and CRM solutions. Human-verified outreach, dedicated
+              virtual assistants, and documented workflows for licensed real
+              estate professionals.
             </p>
             <div className="flex items-center gap-3">
               {SOCIALS.map(({ Icon, label, href }) => (
@@ -906,7 +908,7 @@ function Footer() {
                 Stay ahead of the market
               </h3>
               <p className="mt-1.5 text-sm text-white/50">
-                Weekly insights on smart prospecting.
+                Weekly insights on outreach and prospecting.
               </p>
             </div>
             <form

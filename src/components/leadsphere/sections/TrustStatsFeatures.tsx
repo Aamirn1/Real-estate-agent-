@@ -442,7 +442,7 @@ function FeaturesSection() {
       <SectionHeading
         eyebrow="Services"
         title="How we drive growth for real estate professionals"
-        description="Lead discovery, outreach, campaigns, and CRM — twelve powerful tools working together as one smart platform."
+        description="Outreach support, digital advertising, CRM management, and virtual assistants — twelve services working together to fill your pipeline."
       />
 
       <div className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">

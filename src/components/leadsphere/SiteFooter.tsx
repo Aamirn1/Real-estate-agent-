@@ -99,9 +99,10 @@ export function SiteFooter() {
           <div className="flex flex-col gap-6">
             <LogoMark />
             <p className="max-w-sm text-sm leading-relaxed text-white/55">
-              More listings. Powered by Opus. The all-in-one platform that finds,
-              scores, and converts real estate leads — with human-verified outreach
-              and dedicated virtual assistants.
+              Your trusted partner for marketing consulting, outreach
+              support, and CRM solutions. Human-verified outreach, dedicated
+              virtual assistants, and documented workflows for licensed real
+              estate professionals.
             </p>
             <div className="flex items-center gap-3">
               {SOCIALS.map(({ Icon, label, href }) => (
@@ -123,7 +124,7 @@ export function SiteFooter() {
                 Stay ahead of the market
               </h3>
               <p className="mt-1.5 text-sm text-white/50">
-                Weekly insights on smart prospecting.
+                Weekly insights on outreach and prospecting.
               </p>
             </div>
             <form

@@ -560,7 +560,7 @@ type Testimonial = {
 const TESTIMONIALS: Testimonial[] = [
   {
     quote:
-      "Opus Solutions transformed my pipeline in 60 days. The smart assistant pre-qualifies every lead before I even pick up the phone — I closed 14 deals last quarter without cold-calling once.",
+      "Opus Solutions transformed my pipeline in 60 days. Their team pre-qualifies every introduction before I even pick up the phone — I closed 14 deals last quarter without cold-calling once.",
     name: "Charisse Mathews",
     role: "Realtor, FL",
     initials: "CM",
@@ -568,7 +568,7 @@ const TESTIMONIALS: Testimonial[] = [
   },
   {
     quote:
-      "We cut our cost-per-lead by 47% in the first month. The predictive scoring is scary accurate — leads rated 90+ close at 4x the rate of our old system. My agents actually fight over the hot ones now.",
+      "We cut our cost-per-introduction by 47% in the first month. The verified contacts are incredibly accurate — the ones marked hot close at 4x the rate of our old system. My agents actually fight over the warm ones now.",
     name: "Thuan Nguyen",
     role: "Realtor, TX",
     initials: "TN",

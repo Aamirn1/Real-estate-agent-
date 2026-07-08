@@ -7,8 +7,8 @@ import { Reveal } from "@/components/leadsphere/Reveal";
 
 /** Reusable gradient CTA banner for sub-pages. */
 export function CTABanner({
-  title = "Ready to close more listings?",
-  subtitle = "Join 50,000+ agents generating more listings with smart automation.",
+  title = "Ready to grow your business?",
+  subtitle = "Join thousands of real estate professionals who trust Opus Solutions for verified outreach, dedicated VAs, and documented workflows.",
 }: {
   title?: string;
   subtitle?: string;

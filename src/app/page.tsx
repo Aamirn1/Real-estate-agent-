@@ -1,7 +1,5 @@
 "use client";
 
-import { LoadingScreen } from "@/components/leadsphere/LoadingScreen";
-import { CursorGlow } from "@/components/leadsphere/CursorGlow";
 import { Navbar } from "@/components/leadsphere/Navbar";
 import { Hero } from "@/components/leadsphere/Hero";
 import TrustStatsFeatures from "@/components/leadsphere/sections/TrustStatsFeatures";
@@ -18,8 +16,6 @@ import { ScrollToTop } from "@/components/leadsphere/ScrollToTop";
 export default function Home() {
   return (
     <main className="relative min-h-screen overflow-hidden bg-ink">
-      <LoadingScreen />
-      <CursorGlow />
       <Navbar />
 
       {/* 1. Hero — "Workflow Automation For Realtors" */}

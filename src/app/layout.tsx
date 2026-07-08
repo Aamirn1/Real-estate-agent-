@@ -16,9 +16,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Opus Solutions — More Listings. Powered by Opus.",
+  title: "Opus Solutions — Workflow Automation for Realtors",
   description:
-    "Generate high-quality seller leads, automate prospecting, and close more deals with Opus Solutions — the real estate lead generation and workflow automation platform.",
+    "Your trusted partner for marketing consulting, outreach support, and CRM solutions designed for licensed real estate professionals. Human-verified outreach, virtual assistants, and documented workflows.",
   keywords: [
     "real estate leads",
     "lead generation",
@@ -44,9 +44,9 @@ export const metadata: Metadata = {
     other: [{ url: "/favicon-512.png", sizes: "512x512", type: "image/png" }],
   },
   openGraph: {
-    title: "Opus Solutions — More Listings. Powered by Opus.",
+    title: "Opus Solutions — Workflow Automation for Realtors",
     description:
-      "The real estate lead generation and workflow automation platform for modern agents and teams. Generate high-quality seller leads, automate prospecting, and close more deals.",
+      "Your trusted partner for marketing consulting, outreach support, and CRM solutions designed for licensed real estate professionals. Human-verified outreach, virtual assistants, and documented workflows.",
     siteName: "Opus Solutions",
     type: "website",
     locale: "en_US",
@@ -55,15 +55,15 @@ export const metadata: Metadata = {
         url: "https://raw.githubusercontent.com/Aamirn1/Real-estate-agent-/main/public/og-image.png",
         width: 1344,
         height: 768,
-        alt: "Opus Solutions — More Listings. Powered by Opus.",
+        alt: "Opus Solutions — Workflow Automation for Realtors",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Opus Solutions — More Listings. Powered by Opus.",
+    title: "Opus Solutions — Workflow Automation for Realtors",
     description:
-      "The real estate lead generation and workflow automation platform for modern agents and teams.",
+      "Your trusted partner for marketing consulting, outreach support, and CRM solutions for licensed real estate professionals.",
     images: ["https://raw.githubusercontent.com/Aamirn1/Real-estate-agent-/main/public/og-image.png"],
   },
 };
