@@ -41,7 +41,7 @@ export function RoiCalculator() {
             See your <span className="text-gradient-electric">estimated return</span>
           </>
         }
-        description="Adjust the sliders to project your listings and revenue with LeadSphere AI."
+        description="Adjust the sliders to project your listings and revenue with Opus Solutions."
       />
 
       <div className="mt-12 grid gap-6 lg:grid-cols-2">
@@ -94,9 +94,9 @@ export function RoiCalculator() {
             <div className="mt-6 flex items-center gap-2 rounded-xl border border-electric/20 bg-electric/5 p-3.5">
               <Zap className="h-4 w-4 shrink-0 text-electric" />
               <p className="text-xs leading-relaxed text-white/65">
-                Industry average close rate is 1–3%. LeadSphere agents average{" "}
+                Industry average close rate is 1–3%. Opus agents average{" "}
                 <span className="font-semibold text-electric">8–12%</span> thanks
-                to AI lead scoring.
+                to smart lead scoring.
               </p>
             </div>
           </GlassCard>
@@ -160,7 +160,7 @@ export function RoiCalculator() {
                   <CountUp value={roiMultiple} prefix="" suffix="x" duration={900} />
                 </div>
                 <p className="mt-2 text-xs text-white/50">
-                  For every $1 spent on LeadSphere, you could generate{" "}
+                  For every $1 spent on Opus, you could generate{" "}
                   <span className="font-semibold text-emerald-400">
                     ${roiMultiple.toFixed(0)}
                   </span>{" "}

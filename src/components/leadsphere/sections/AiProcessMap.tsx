@@ -13,7 +13,6 @@ import {
   Lightbulb,
   Search,
   BadgeCheck,
-  Send,
   CalendarCheck,
   Trophy,
   MapPin,
@@ -241,11 +240,11 @@ function AiAssistantSection() {
         </Reveal>
 
         <SectionHeading
-          eyebrow="AI Assistant"
+          eyebrow="Smart Assistant"
           title={
             <>
               Meet your{" "}
-              <span className="text-gradient-electric">AI sales assistant</span>
+              <span className="text-gradient-electric">smart sales assistant</span>
             </>
           }
           description="Predict hot leads, draft emails, and never miss a follow-up."
@@ -281,32 +280,26 @@ function AiAssistantSection() {
 const STEPS = [
   {
     n: 1,
-    title: "Find Leads",
-    desc: "Search 200M+ records by neighborhood, value & intent signals.",
+    title: "Research & Identification",
+    desc: "Search 200M+ records by neighborhood, value & intent signals to find the right prospects.",
     icon: Search,
   },
   {
     n: 2,
-    title: "Verify Contacts",
-    desc: "Cross-check phone & email deliverability in real time.",
+    title: "Qualification & Verification",
+    desc: "Cross-check phone & email deliverability and score motivation in real time.",
     icon: BadgeCheck,
   },
   {
     n: 3,
-    title: "Start Outreach",
-    desc: "Launch multi-channel cadences — call, text & email — on autopilot.",
-    icon: Send,
-  },
-  {
-    n: 4,
-    title: "Book Appointments",
-    desc: "AI schedules meetings straight into your calendar.",
+    title: "Scheduling & Handoff",
+    desc: "Smart scheduling books meetings straight into your calendar, then hands off to your team.",
     icon: CalendarCheck,
   },
   {
-    n: 5,
-    title: "Close Listings",
-    desc: "Track deals to closing and measure ROI per lead source.",
+    n: 4,
+    title: "Ongoing Reporting & Support",
+    desc: "Track deals to closing, measure ROI per lead source, and get continuous support.",
     icon: Trophy,
   },
 ];
@@ -329,11 +322,11 @@ function ProcessTimelineSection() {
 
       <div className="relative z-10 flex flex-col gap-14">
         <SectionHeading
-          eyebrow="Workflow"
+          eyebrow="Real Estate Process"
           title={
             <>
-              From lead to listing in{" "}
-              <span className="text-gradient-electric">5 steps</span>
+              How we drive results in{" "}
+              <span className="text-gradient-electric">4 steps</span>
             </>
           }
         />

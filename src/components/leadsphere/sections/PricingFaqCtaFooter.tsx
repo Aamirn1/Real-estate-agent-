@@ -77,7 +77,7 @@ const PLANS: Plan[] = [
       "10,000 leads / month",
       "Full CRM + Pipeline",
       "Unlimited MLS areas",
-      "AI Assistant",
+      "Smart Assistant",
       "Power Dialer",
       "SMS + Email automation",
       "Advanced analytics",
@@ -108,15 +108,15 @@ const PLANS: Plan[] = [
 const FAQS: { q: string; a: string }[] = [
   {
     q: "How long is the free trial?",
-    a: "Every plan starts with a 14-day free trial — no credit card required. You'll get full access to your chosen tier so you can import leads, test the AI Assistant, and dial prospects before you ever pay. Cancel anytime during the trial and you won't be charged a cent.",
+    a: "Every plan starts with a 14-day free trial — no credit card required. You'll get full access to your chosen tier so you can import leads, test the Smart Assistant, and dial prospects before you ever pay. Cancel anytime during the trial and you won't be charged a cent.",
   },
   {
     q: "Which MLS markets do you cover?",
-    a: "LeadSphere connects to over 850 MLS markets across North America, covering 98% of active residential listings. Professional and Enterprise plans unlock unlimited MLS areas, and our team adds new markets every month. Don't see yours? Reach out and we'll prioritize it.",
+    a: "Opus connects to over 850 MLS markets across North America, covering 98% of active residential listings. Professional and Enterprise plans unlock unlimited MLS areas, and our team adds new markets every month. Don't see yours? Reach out and we'll prioritize it.",
   },
   {
-    q: "How accurate is the AI lead data?",
-    a: "Our AI cross-references 30+ data sources — property records, behavioral signals, life-event triggers, and consented contact data — to score and verify each lead. We refresh contact info nightly and flag unreachable numbers, so you're always dialing high-intent, verified prospects with an average 94% deliverability rate.",
+    q: "How accurate is the lead data?",
+    a: "Our platform cross-references 30+ data sources — property records, behavioral signals, life-event triggers, and consented contact data — to score and verify each lead. We refresh contact info nightly and flag unreachable numbers, so you're always dialing high-intent, verified prospects with an average 94% deliverability rate.",
   },
   {
     q: "Can I cancel my subscription anytime?",
@@ -127,11 +127,11 @@ const FAQS: { q: string; a: string }[] = [
     a: "Enterprise plans include unlimited team seats, role-based permissions, shared pipelines, and broker-level reporting. Assign agents to territories, route leads automatically, and track performance across your entire office. SSO and SCIM provisioning make onboarding new agents take minutes, not days.",
   },
   {
-    q: "What can the AI Assistant actually do?",
-    a: "The AI Assistant drafts personalized outreach across email, SMS, and call scripts, prioritizes your hottest leads, transcribes and summarizes calls, suggests next-best actions, and even books appointments directly to your calendar. It's trained on millions of real estate conversations and learns from every interaction on your account.",
+    q: "What can the Smart Assistant actually do?",
+    a: "The Smart Assistant drafts personalized outreach across email, SMS, and call scripts, prioritizes your hottest leads, transcribes and summarizes calls, suggests next-best actions, and even books appointments directly to your calendar. It's trained on millions of real estate conversations and learns from every interaction on your account.",
   },
   {
-    q: "Which tools does LeadSphere integrate with?",
+    q: "Which tools does Opus integrate with?",
     a: "We integrate natively with follow-up bosses, kvCORE, Salesforce, HubSpot, Google Workspace, Microsoft 365, Twilio, Zapier, and 200+ other tools. Enterprise customers get a REST API and custom integration support. If you're on a niche platform, ask us — we ship new connectors every month.",
   },
 ];
@@ -455,7 +455,7 @@ function CtaBanner() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="max-w-xl text-base leading-relaxed text-white/85 sm:text-lg"
           >
-            Join 50,000+ agents generating more listings with AI.
+            Join 50,000+ agents generating more listings with smart automation.
           </motion.p>
 
           <motion.div
@@ -507,7 +507,7 @@ function LogoMark() {
         <div className="absolute inset-0 rounded-xl ring-1 ring-inset ring-white/20" />
       </div>
       <span className="font-heading text-lg font-semibold tracking-tight text-white">
-        LeadSphere <span className="text-white/50">AI</span>
+        Opus <span className="text-white/50">Solutions</span>
       </span>
     </div>
   );
@@ -528,7 +528,7 @@ function Footer() {
           <div className="flex flex-col gap-6">
             <LogoMark />
             <p className="max-w-sm text-sm leading-relaxed text-white/55">
-              More listings. Powered by AI. The all-in-one platform that finds,
+              More listings. Powered by Opus. The all-in-one platform that finds,
               scores, and converts real estate leads — automatically.
             </p>
             <div className="flex items-center gap-3">
@@ -552,7 +552,7 @@ function Footer() {
                 Stay ahead of the market
               </h3>
               <p className="mt-1.5 text-sm text-white/50">
-                Weekly insights on AI-powered prospecting.
+                Weekly insights on smart prospecting.
               </p>
             </div>
             <form
@@ -610,12 +610,12 @@ function Footer() {
         {/* ---------- bottom bar ---------- */}
         <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-white/8 pt-8 md:flex-row">
           <p className="text-xs text-white/45">
-            © 2025 LeadSphere AI. All rights reserved.
+            © 2025 Opus Solutions. All rights reserved.
           </p>
           <div className="flex flex-col items-center gap-4 sm:flex-row sm:gap-6">
             <span className="inline-flex items-center gap-1.5 text-xs text-white/45">
               <ShieldCheck className="h-3.5 w-3.5 text-electric/70" />
-              Made with AI
+              Made with care
             </span>
             <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/60">
               <span className="relative flex h-2 w-2">

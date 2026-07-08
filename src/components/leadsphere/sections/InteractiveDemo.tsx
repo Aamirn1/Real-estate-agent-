@@ -708,12 +708,12 @@ function MarketingPanel() {
           <div className="mb-3 flex items-center gap-2 border-b border-white/8 pb-3">
             <Avatar className="h-8 w-8 border border-white/10">
               <AvatarFallback className="bg-electric/15 text-[11px] font-semibold text-electric">
-                LS
+                OS
               </AvatarFallback>
             </Avatar>
             <div className="min-w-0">
-              <div className="text-xs font-semibold text-white">LeadSphere AI</div>
-              <div className="truncate text-[11px] text-white/45">noreply@leadsphere.ai</div>
+              <div className="text-xs font-semibold text-white">Opus Solutions</div>
+              <div className="truncate text-[11px] text-white/45">noreply@opussolutions.com</div>
             </div>
             <span className="ml-auto rounded-md bg-white/5 px-2 py-0.5 text-[10px] text-white/45">
               Draft
@@ -741,7 +741,7 @@ function MarketingPanel() {
               Motivated buyers are actively searching in your zone. Want to see
               the full report and schedule a call?
             </p>
-            <p className="mt-3 text-white/45">— The LeadSphere Team</p>
+            <p className="mt-3 text-white/45">— The Opus Team</p>
           </div>
 
           <button className="mt-4 inline-flex items-center justify-center gap-2 rounded-lg bg-electric px-4 py-2.5 text-sm font-semibold text-white shadow-[0_0_24px_-6px_rgba(59,130,246,0.8)] transition-all hover:bg-electric/90 hover:shadow-[0_0_30px_-4px_rgba(59,130,246,0.9)]">
@@ -883,7 +883,7 @@ export default function InteractiveDemo() {
       <SectionHeading
         eyebrow="Live Demo"
         title="Explore the platform"
-        description="A real, interactive preview of the LeadSphere dashboard."
+        description="A real, interactive preview of the Opus dashboard."
       />
 
       <motion.div
@@ -907,7 +907,7 @@ export default function InteractiveDemo() {
             </div>
             <div className="mx-auto flex items-center gap-2 rounded-lg border border-white/8 bg-graphite/60 px-3 py-1 text-xs text-white/55">
               <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-              <span className="tnum">app.leadsphere.ai/dashboard</span>
+              <span className="tnum">app.opussolutions.com/dashboard</span>
             </div>
             <Avatar className="h-7 w-7 border border-white/10">
               <AvatarFallback className="bg-gradient-to-br from-electric to-violet text-[10px] font-semibold text-white">

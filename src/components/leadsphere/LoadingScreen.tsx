@@ -65,9 +65,9 @@ export function LoadingScreen() {
             className="relative mt-8 text-center"
           >
             <div className="font-heading text-2xl font-semibold tracking-tight text-white">
-              LeadSphere<span className="text-electric"> AI</span>
+              Opus<span className="text-electric"> Solutions</span>
             </div>
-            <div className="mt-1 text-xs text-white/40">More listings. Powered by AI.</div>
+            <div className="mt-1 text-xs text-white/40">More listings. Powered by Opus.</div>
           </motion.div>
 
           {/* Progress bar */}

@@ -40,7 +40,7 @@ export function Hero() {
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-electric opacity-70" />
               <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-electric" />
             </span>
-            Now with AI Lead Discovery 2.0
+            Now with Smart Lead Discovery 2.0
             <Sparkles className="h-3 w-3 text-violet" />
           </motion.div>
 
@@ -52,7 +52,7 @@ export function Hero() {
           >
             More Listings.
             <br />
-            <span className="text-gradient-electric text-glow">Powered by AI.</span>
+            <span className="text-gradient-electric text-glow">Powered by Opus.</span>
           </motion.h1>
 
           <motion.p
@@ -62,7 +62,7 @@ export function Hero() {
             className="mt-6 max-w-xl text-base leading-relaxed text-white/60 sm:text-lg"
           >
             Generate high-quality seller leads, automate prospecting, and close
-            more deals with one intelligent platform built for modern real
+            more deals with one smart platform built for modern real
             estate teams.
           </motion.p>
 
@@ -219,7 +219,7 @@ function MainPanel() {
           <span className="h-2 w-2 rounded-full bg-yellow-400/80" />
           <span className="h-2 w-2 rounded-full bg-emerald-400/80" />
         </div>
-        <span className="text-[10px] font-medium text-white/40">app.leadsphere.ai</span>
+        <span className="text-[10px] font-medium text-white/40">app.opussolutions.com</span>
         <div className="h-5 w-5 rounded-full bg-gradient-to-br from-electric to-violet" />
       </div>
 
@@ -343,7 +343,7 @@ function AiAssistant() {
           <span className="absolute inset-0 animate-pulse-ring rounded-full bg-violet/40" />
         </span>
         <div>
-          <div className="text-[10px] font-semibold text-white">AI Assistant</div>
+          <div className="text-[10px] font-semibold text-white">Smart Assistant</div>
           <div className="flex items-center gap-1 text-[8px] text-emerald-400">
             <span className="h-1 w-1 rounded-full bg-emerald-400" /> Online
           </div>

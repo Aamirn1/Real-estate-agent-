@@ -10,7 +10,7 @@ interface Msg {
 }
 
 const QUICK_PROMPTS = [
-  "How does AI Lead Discovery work?",
+  "How does Smart Lead Discovery work?",
   "What does it cost?",
   "Can it find expired listings?",
   "How accurate is skip tracing?",
@@ -19,7 +19,7 @@ const QUICK_PROMPTS = [
 const WELCOME: Msg = {
   role: "assistant",
   content:
-    "Hi! I'm Sphere, your AI assistant. I can show you how LeadSphere finds motivated sellers, automates outreach, and fills your pipeline. What would you like to know?",
+    "Hi! I'm the Opus Assistant. I can show you how Opus Solutions finds motivated sellers, automates outreach, and fills your pipeline. What would you like to know?",
 };
 
 export function AiAssistantWidget() {
@@ -96,7 +96,7 @@ export function AiAssistantWidget() {
           setOpen((v) => !v);
           setUnread(false);
         }}
-        aria-label="Open AI assistant"
+        aria-label="Open assistant"
         className="fixed bottom-5 right-5 z-[70] flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-electric via-violet to-cyan shadow-[0_10px_40px_-8px_rgba(59,130,246,0.7)] transition-transform hover:scale-105 sm:bottom-6 sm:right-6"
       >
         <span className="absolute inset-0 rounded-full bg-gradient-to-br from-electric to-violet opacity-60 blur-md" />
@@ -148,7 +148,7 @@ export function AiAssistantWidget() {
               </span>
               <div className="flex-1">
                 <div className="flex items-center gap-1.5 font-heading text-sm font-semibold text-white">
-                  Sphere AI
+                  Opus Assistant
                   <Sparkles className="h-3 w-3 text-violet" />
                 </div>
                 <div className="flex items-center gap-1 text-[11px] text-emerald-400">
@@ -205,7 +205,7 @@ export function AiAssistantWidget() {
               <input
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                placeholder="Ask Sphere anything…"
+                placeholder="Ask Opus anything…"
                 className="flex-1 rounded-xl border border-white/10 bg-white/5 px-3.5 py-2.5 text-sm text-white placeholder:text-white/35 focus:border-electric/50 focus:outline-none focus:ring-1 focus:ring-electric/30"
               />
               <button

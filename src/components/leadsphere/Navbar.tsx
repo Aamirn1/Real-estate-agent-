@@ -6,10 +6,11 @@ import { Menu, X, Sparkles, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const NAV_LINKS = [
-  { label: "Features", href: "#features" },
+  { label: "Services", href: "#services" },
+  { label: "About", href: "#about" },
   { label: "Demo", href: "#demo" },
-  { label: "AI", href: "#ai" },
   { label: "Pricing", href: "#pricing" },
+  { label: "Testimonials", href: "#testimonials" },
   { label: "FAQ", href: "#faq" },
 ];
 
@@ -46,7 +47,7 @@ export function Navbar() {
             <Sparkles className="relative h-4.5 w-4.5 text-white" strokeWidth={2.2} />
           </span>
           <span className="font-heading text-base font-semibold tracking-tight text-white">
-            LeadSphere<span className="text-electric"> AI</span>
+            Opus<span className="text-electric"> Solutions</span>
           </span>
         </a>
 

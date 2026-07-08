@@ -1,0 +1,797 @@
+     1→     1→"use client";
+     2→     2→
+     3→     3→import { motion } from "framer-motion";
+     4→     4→import { useEffect, useState } from "react";
+     5→     5→import {
+     6→     6→  DndContext,
+     7→     7→  DragEndEvent,
+     8→     8→  PointerSensor,
+     9→     9→  useSensor,
+    10→    10→  useSensors,
+    11→    11→  useDroppable,
+    12→    12→  closestCorners,
+    13→    13→  DragOverlay,
+    14→    14→  DragStartEvent,
+    15→    15→} from "@dnd-kit/core";
+    16→    16→import {
+    17→    17→  useSortable,
+    18→    18→  SortableContext,
+    19→    19→  verticalListSortingStrategy,
+    20→    20→  arrayMove,
+    21→    21→} from "@dnd-kit/sortable";
+    22→    22→import { CSS } from "@dnd-kit/utilities";
+    23→    23→import {
+    24→    24→  Star,
+    25→    25→  BadgeCheck,
+    26→    26→  Play,
+    27→    27→  GripVertical,
+    28→    28→  Chrome,
+    29→    29→  AppWindow as WindowIcon,
+    30→    30→  Zap,
+    31→    31→  Slack,
+    32→    32→  Video,
+    33→    33→  Calendar,
+    34→    34→  Hexagon,
+    35→    35→  Cloud,
+    36→    36→  Building2,
+    37→    37→  Phone,
+    38→    38→  CreditCard,
+    39→    39→  Mail,
+    40→    40→  type LucideIcon,
+    41→    41→} from "lucide-react";
+    42→    42→import { GlassCard, SectionHeading, SectionShell } from "@/components/leadsphere/primitives";
+    43→    43→import { Reveal } from "@/components/leadsphere/Reveal";
+    44→    44→import {
+    45→    45→  Carousel,
+    46→    46→  CarouselContent,
+    47→    47→  CarouselItem,
+    48→    48→  CarouselPrevious,
+    49→    49→  CarouselNext,
+    50→    50→  type CarouselApi,
+    51→    51→} from "@/components/ui/carousel";
+    52→    52→
+    53→    53→/* ============================================================================
+    54→    54→   TYPES & DATA
+    55→    55→   ========================================================================== */
+    56→    56→
+    57→    57→type Lead = {
+    58→    58→  id: string;
+    59→    59→  name: string;
+    60→    60→  initials: string;
+    61→    61→  value: string;
+    62→    62→  score: number;
+    63→    63→  tag: string;
+    64→    64→  avatar: string; // tailwind gradient classes
+    65→    65→};
+    66→    66→
+    67→    67→type Column = {
+    68→    68→  id: string;
+    69→    69→  name: string;
+    70→    70→  color: string; // hex
+    71→    71→  leads: Lead[];
+    72→    72→};
+    73→    73→
+    74→    74→const INITIAL_COLUMNS: Column[] = [
+    75→    75→  {
+    76→    76→    id: "new",
+    77→    77→    name: "New Lead",
+    78→    78→    color: "#06b6d4",
+    79→    79→    leads: [
+    80→    80→      {
+    81→    81→        id: "l-1",
+    82→    82→        name: "Sarah Mitchell",
+    83→    83→        initials: "SM",
+    84→    84→        value: "$850K",
+    85→    85→        score: 92,
+    86→    86→        tag: "Hot",
+    87→    87→        avatar: "from-cyan to-electric",
+    88→    88→      },
+    89→    89→      {
+    90→    90→        id: "l-2",
+    91→    91→        name: "James Wilson",
+    92→    92→        initials: "JW",
+    93→    93→        value: "$1.2M",
+    94→    94→        score: 84,
+    95→    95→        tag: "Motivated",
+    96→    96→        avatar: "from-electric to-violet",
+    97→    97→      },
+    98→    98→    ],
+    99→    99→  },
+   100→   100→  {
+   101→   101→    id: "contacted",
+   102→   102→    name: "Contacted",
+   103→   103→    color: "#3b82f6",
+   104→   104→    leads: [
+   105→   105→      {
+   106→   106→        id: "l-3",
+   107→   107→        name: "Emma Thompson",
+   108→   108→        initials: "ET",
+   109→   109→        value: "$675K",
+   110→   110→        score: 78,
+   111→   111→        tag: "Callback",
+   112→   112→        avatar: "from-violet to-fuchsia-500",
+   113→   113→      },
+   114→   114→      {
+   115→   115→        id: "l-4",
+   116→   116→        name: "Michael Rodriguez",
+   117→   117→        initials: "MR",
+   118→   118→        value: "$950K",
+   119→   119→        score: 88,
+   120→   120→        tag: "VIP",
+   121→   121→        avatar: "from-gold to-amber-500",
+   122→   122→      },
+   123→   123→    ],
+   124→   124→  },
+   125→   125→  {
+   126→   126→    id: "appointment",
+   127→   127→    name: "Appointment",
+   128→   128→    color: "#8b5cf6",
+   129→   129→    leads: [
+   130→   130→      {
+   131→   131→        id: "l-5",
+   132→   132→        name: "David Chen",
+   133→   133→        initials: "DC",
+   134→   134→        value: "$2.1M",
+   135→   135→        score: 95,
+   136→   136→        tag: "Hot",
+   137→   137→        avatar: "from-violet to-electric",
+   138→   138→      },
+   139→   139→      {
+   140→   140→        id: "l-6",
+   141→   141→        name: "Rachel Greene",
+   142→   142→        initials: "RG",
+   143→   143→        value: "$780K",
+   144→   144→        score: 81,
+   145→   145→        tag: "Motivated",
+   146→   146→        avatar: "from-electric to-cyan",
+   147→   147→      },
+   148→   148→    ],
+   149→   149→  },
+   150→   150→  {
+   151→   151→    id: "negotiation",
+   152→   152→    name: "Negotiation",
+   153→   153→    color: "#d4af37",
+   154→   154→    leads: [
+   155→   155→      {
+   156→   156→        id: "l-7",
+   157→   157→        name: "Tom Anderson",
+   158→   158→        initials: "TA",
+   159→   159→        value: "$1.5M",
+   160→   160→        score: 90,
+   161→   161→        tag: "Cash buyer",
+   162→   162→        avatar: "from-gold to-amber-500",
+   163→   163→      },
+   164→   164→      {
+   165→   165→        id: "l-8",
+   166→   166→        name: "Lisa Wang",
+   167→   167→        initials: "LW",
+   168→   168→        value: "$920K",
+   169→   169→        score: 83,
+   170→   170→        tag: "Hot",
+   171→   171→        avatar: "from-emerald-400 to-cyan",
+   172→   172→      },
+   173→   173→    ],
+   174→   174→  },
+   175→   175→  {
+   176→   176→    id: "closed",
+   177→   177→    name: "Closed",
+   178→   178→    color: "#34d399",
+   179→   179→    leads: [
+   180→   180→      {
+   181→   181→        id: "l-9",
+   182→   182→        name: "Robert Taylor",
+   183→   183→        initials: "RT",
+   184→   184→        value: "$1.1M",
+   185→   185→        score: 96,
+   186→   186→        tag: "Won",
+   187→   187→        avatar: "from-emerald-400 to-electric",
+   188→   188→      },
+   189→   189→      {
+   190→   190→        id: "l-10",
+   191→   191→        name: "Maria Garcia",
+   192→   192→        initials: "MG",
+   193→   193→        value: "$650K",
+   194→   194→        score: 89,
+   195→   195→        tag: "Won",
+   196→   196→        avatar: "from-cyan to-emerald-400",
+   197→   197→      },
+   198→   198→    ],
+   199→   199→  },
+   200→   200→];
+   201→   201→
+   202→   202→const TAG_STYLES: Record<string, string> = {
+   203→   203→  Hot: "bg-orange-500/15 text-orange-300 border-orange-500/30",
+   204→   204→  Motivated: "bg-electric/15 text-electric border-electric/30",
+   205→   205→  Callback: "bg-violet/15 text-violet border-violet/30",
+   206→   206→  VIP: "bg-gold/15 text-gold border-gold/30",
+   207→   207→  "Cash buyer": "bg-emerald-500/15 text-emerald-300 border-emerald-500/30",
+   208→   208→  Won: "bg-emerald-400/15 text-emerald-300 border-emerald-400/30",
+   209→   209→  New: "bg-cyan/15 text-cyan border-cyan/30",
+   210→   210→};
+   211→   211→
+   212→   212→function scoreStyle(score: number) {
+   213→   213→  if (score >= 90) return "bg-gold/15 text-gold border-gold/30";
+   214→   214→  if (score >= 80) return "bg-electric/15 text-electric border-electric/30";
+   215→   215→  return "bg-cyan/15 text-cyan border-cyan/30";
+   216→   216→}
+   217→   217→
+   218→   218→/* ============================================================================
+   219→   219→   1. CRM KANBAN
+   220→   220→   ========================================================================== */
+   221→   221→
+   222→   222→function SortableLeadCard({ lead }: { lead: Lead }) {
+   223→   223→  const {
+   224→   224→    attributes,
+   225→   225→    listeners,
+   226→   226→    setNodeRef,
+   227→   227→    transform,
+   228→   228→    transition,
+   229→   229→    isDragging,
+   230→   230→  } = useSortable({ id: lead.id });
+   231→   231→
+   232→   232→  const style: React.CSSProperties = {
+   233→   233→    transform: CSS.Transform.toString(transform),
+   234→   234→    transition,
+   235→   235→  };
+   236→   236→
+   237→   237→  return (
+   238→   238→    <div
+   239→   239→      ref={setNodeRef}
+   240→   240→      style={style}
+   241→   241→      {...attributes}
+   242→   242→      {...listeners}
+   243→   243→      className="touch-none"
+   244→   244→    >
+   245→   245→      <GlassCard
+   246→   246→        sheen
+   247→   247→        className={cnCard(isDragging)}
+   248→   248→      >
+   249→   249→        <div className="flex items-start gap-3 p-3.5">
+   250→   250→          <div
+   251→   251→            className={`grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-gradient-to-br ${lead.avatar} text-xs font-semibold text-white shadow-lg`}
+   252→   252→          >
+   253→   253→            {lead.initials}
+   254→   254→          </div>
+   255→   255→          <div className="min-w-0 flex-1">
+   256→   256→            <div className="flex items-center justify-between gap-2">
+   257→   257→              <p className="truncate font-heading text-sm font-medium text-white">
+   258→   258→                {lead.name}
+   259→   259→              </p>
+   260→   260→              <GripVertical className="h-3.5 w-3.5 shrink-0 text-white/25" />
+   261→   261→            </div>
+   262→   262→            <p className="tnum mt-0.5 text-sm font-semibold text-white/70">
+   263→   263→              {lead.value}
+   264→   264→            </p>
+   265→   265→            <div className="mt-2.5 flex items-center gap-1.5">
+   266→   266→              <span
+   267→   267→                className={`tnum rounded-md border px-1.5 py-0.5 text-[10px] font-semibold ${scoreStyle(
+   268→   268→                  lead.score
+   269→   269→                )}`}
+   270→   270→              >
+   271→   271→                {lead.score}
+   272→   272→              </span>
+   273→   273→              <span
+   274→   274→                className={`rounded-md border px-1.5 py-0.5 text-[10px] font-medium ${
+   275→   275→                  TAG_STYLES[lead.tag] ?? TAG_STYLES.New
+   276→   276→                }`}
+   277→   277→              >
+   278→   278→                {lead.tag}
+   279→   279→              </span>
+   280→   280→            </div>
+   281→   281→          </div>
+   282→   282→        </div>
+   283→   283→      </GlassCard>
+   284→   284→    </div>
+   285→   285→  );
+   286→   286→}
+   287→   287→
+   288→   288→function cnCard(isDragging: boolean) {
+   289→   289→  return [
+   290→   290→    "group cursor-grab active:cursor-grabbing border border-white/10 transition-all duration-200",
+   291→   291→    isDragging
+   292→   292→      ? "z-50 -rotate-1 scale-[1.03] border-white/25 shadow-[0_18px_50px_-12px_rgba(0,0,0,0.8)] ring-1 ring-white/20"
+   293→   293→      : "hover:border-white/20 hover:shadow-[0_8px_24px_-12px_rgba(0,0,0,0.6)]",
+   294→   294→  ].join(" ");
+   295→   295→}
+   296→   296→
+   297→   297→function LeadCardStatic({ lead }: { lead: Lead }) {
+   298→   298→  return (
+   299→   299→    <GlassCard className={cnCard(false)}>
+   300→   300→      <div className="flex items-start gap-3 p-3.5">
+   301→   301→        <div
+   302→   302→          className={`grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-gradient-to-br ${lead.avatar} text-xs font-semibold text-white shadow-lg`}
+   303→   303→        >
+   304→   304→          {lead.initials}
+   305→   305→        </div>
+   306→   306→        <div className="min-w-0 flex-1">
+   307→   307→          <p className="truncate font-heading text-sm font-medium text-white">
+   308→   308→            {lead.name}
+   309→   309→          </p>
+   310→   310→          <p className="tnum mt-0.5 text-sm font-semibold text-white/70">
+   311→   311→            {lead.value}
+   312→   312→          </p>
+   313→   313→          <div className="mt-2.5 flex items-center gap-1.5">
+   314→   314→            <span
+   315→   315→              className={`tnum rounded-md border px-1.5 py-0.5 text-[10px] font-semibold ${scoreStyle(
+   316→   316→                lead.score
+   317→   317→              )}`}
+   318→   318→            >
+   319→   319→              {lead.score}
+   320→   320→            </span>
+   321→   321→            <span
+   322→   322→              className={`rounded-md border px-1.5 py-0.5 text-[10px] font-medium ${
+   323→   323→                TAG_STYLES[lead.tag] ?? TAG_STYLES.New
+   324→   324→              }`}
+   325→   325→            >
+   326→   326→              {lead.tag}
+   327→   327→            </span>
+   328→   328→          </div>
+   329→   329→        </div>
+   330→   330→      </div>
+   331→   331→    </GlassCard>
+   332→   332→  );
+   333→   333→}
+   334→   334→
+   335→   335→function KanbanColumn({ column }: { column: Column }) {
+   336→   336→  const { setNodeRef, isOver } = useDroppable({ id: column.id });
+   337→   337→
+   338→   338→  return (
+   339→   339→    <div className="flex w-64 shrink-0 flex-col rounded-2xl border border-white/[0.07] bg-white/[0.02] p-3">
+   340→   340→      <div className="mb-3 flex items-center gap-2 px-1">
+   341→   341→        <span
+   342→   342→          className="h-2 w-2 rounded-full"
+   343→   343→          style={{
+   344→   344→            backgroundColor: column.color,
+   345→   345→            boxShadow: `0 0 10px ${column.color}`,
+   346→   346→          }}
+   347→   347→        />
+   348→   348→        <span className="font-heading text-sm font-medium text-white/80">
+   349→   349→          {column.name}
+   350→   350→        </span>
+   351→   351→        <span className="tnum ml-auto rounded-full border border-white/10 bg-white/5 px-2 py-0.5 text-[10px] font-medium text-white/60">
+   352→   352→          {column.leads.length}
+   353→   353→        </span>
+   354→   354→      </div>
+   355→   355→
+   356→   356→      <SortableContext
+   357→   357→        items={column.leads.map((l) => l.id)}
+   358→   358→        strategy={verticalListSortingStrategy}
+   359→   359→      >
+   360→   360→        <div
+   361→   361→          ref={setNodeRef}
+   362→   362→          className={`flex min-h-[120px] flex-1 flex-col gap-2.5 rounded-xl p-1.5 transition-colors ${
+   363→   363→            isOver ? "bg-white/[0.04]" : "bg-transparent"
+   364→   364→          }`}
+   365→   365→        >
+   366→   366→          {column.leads.length === 0 ? (
+   367→   367→            <div className="grid flex-1 place-items-center rounded-xl border border-dashed border-white/10 py-8 text-xs text-white/30">
+   368→   368→              Drop leads here
+   369→   369→            </div>
+   370→   370→          ) : (
+   371→   371→            column.leads.map((lead) => (
+   372→   372→              <SortableLeadCard key={lead.id} lead={lead} />
+   373→   373→            ))
+   374→   374→          )}
+   375→   375→        </div>
+   376→   376→      </SortableContext>
+   377→   377→    </div>
+   378→   378→  );
+   379→   379→}
+   380→   380→
+   381→   381→function CrmKanban() {
+   382→   382→  const [columns, setColumns] = useState<Column[]>(INITIAL_COLUMNS);
+   383→   383→  const [activeLead, setActiveLead] = useState<Lead | null>(null);
+   384→   384→
+   385→   385→  const sensors = useSensors(
+   386→   386→    useSensor(PointerSensor, { activationConstraint: { distance: 6 } })
+   387→   387→  );
+   388→   388→
+   389→   389→  function handleDragStart(event: DragStartEvent) {
+   390→   390→    const id = String(event.active.id);
+   391→   391→    const lead = columns
+   392→   392→      .flatMap((c) => c.leads)
+   393→   393→      .find((l) => l.id === id);
+   394→   394→    setActiveLead(lead ?? null);
+   395→   395→  }
+   396→   396→
+   397→   397→  function handleDragEnd(event: DragEndEvent) {
+   398→   398→    setActiveLead(null);
+   399→   399→    const { active, over } = event;
+   400→   400→    if (!over) return;
+   401→   401→
+   402→   402→    const activeId = String(active.id);
+   403→   403→    const overId = String(over.id);
+   404→   404→    if (activeId === overId) return;
+   405→   405→
+   406→   406→    setColumns((prev) => {
+   407→   407→      const srcCol = prev.find((c) => c.leads.some((l) => l.id === activeId));
+   408→   408→      if (!srcCol) return prev;
+   409→   409→      const activeLeadCard = srcCol.leads.find((l) => l.id === activeId);
+   410→   410→      if (!activeLeadCard) return prev;
+   411→   411→
+   412→   412→      // Dropped onto a column droppable (empty area / end of column)
+   413→   413→      const destColById = prev.find((c) => c.id === overId);
+   414→   414→      if (destColById) {
+   415→   415→        if (destColById.id === srcCol.id) return prev;
+   416→   416→        return prev.map((c) => {
+   417→   417→          if (c.id === srcCol.id)
+   418→   418→            return { ...c, leads: c.leads.filter((l) => l.id !== activeId) };
+   419→   419→          if (c.id === destColById.id)
+   420→   420→            return { ...c, leads: [...c.leads, activeLeadCard] };
+   421→   421→          return c;
+   422→   422→        });
+   423→   423→      }
+   424→   424→
+   425→   425→      // Dropped onto another card
+   426→   426→      const overCol = prev.find((c) => c.leads.some((l) => l.id === overId));
+   427→   427→      if (!overCol) return prev;
+   428→   428→
+   429→   429→      if (overCol.id === srcCol.id) {
+   430→   430→        const oldIndex = srcCol.leads.findIndex((l) => l.id === activeId);
+   431→   431→        const newIndex = srcCol.leads.findIndex((l) => l.id === overId);
+   432→   432→        if (oldIndex === -1 || newIndex === -1 || oldIndex === newIndex)
+   433→   433→          return prev;
+   434→   434→        return prev.map((c) =>
+   435→   435→          c.id === srcCol.id
+   436→   436→            ? { ...c, leads: arrayMove(c.leads, oldIndex, newIndex) }
+   437→   437→            : c
+   438→   438→        );
+   439→   439→      }
+   440→   440→
+   441→   441→      // Cross-column move to a specific index
+   442→   442→      const overIndex = overCol.leads.findIndex((l) => l.id === overId);
+   443→   443→      return prev.map((c) => {
+   444→   444→        if (c.id === srcCol.id)
+   445→   445→          return { ...c, leads: c.leads.filter((l) => l.id !== activeId) };
+   446→   446→        if (c.id === overCol.id) {
+   447→   447→          const next = [...c.leads];
+   448→   448→          next.splice(overIndex, 0, activeLeadCard);
+   449→   449→          return { ...c, leads: next };
+   450→   450→        }
+   451→   451→        return c;
+   452→   452→      });
+   453→   453→    });
+   454→   454→  }
+   455→   455→
+   456→   456→  return (
+   457→   457→    <DndContext
+   458→   458→      sensors={sensors}
+   459→   459→      collisionDetection={closestCorners}
+   460→   460→      onDragStart={handleDragStart}
+   461→   461→      onDragEnd={handleDragEnd}
+   462→   462→    >
+   463→   463→      <div className="custom-scroll -mx-1 overflow-x-auto px-1 pb-3">
+   464→   464→        <div className="flex items-start gap-3">
+   465→   465→          {columns.map((col) => (
+   466→   466→            <KanbanColumn key={col.id} column={col} />
+   467→   467→          ))}
+   468→   468→        </div>
+   469→   469→      </div>
+   470→   470→
+   471→   471→      <DragOverlay dropAnimation={{ duration: 220, easing: "cubic-bezier(0.22,1,0.36,1)" }}>
+   472→   472→        {activeLead ? (
+   473→   473→          <div className="rotate-2 scale-[1.03] opacity-95">
+   474→   474→            <LeadCardStatic lead={activeLead} />
+   475→   475→          </div>
+   476→   476→        ) : null}
+   477→   477→      </DragOverlay>
+   478→   478→    </DndContext>
+   479→   479→  );
+   480→   480→}
+   481→   481→
+   482→   482→/* ============================================================================
+   483→   483→   2. INTEGRATIONS
+   484→   484→   ========================================================================== */
+   485→   485→
+   486→   486→type Integration = {
+   487→   487→  name: string;
+   488→   488→  icon: LucideIcon;
+   489→   489→  color: string;
+   490→   490→};
+   491→   491→
+   492→   492→const INTEGRATIONS: Integration[] = [
+   493→   493→  { name: "Google", icon: Chrome, color: "#ea4335" },
+   494→   494→  { name: "Microsoft", icon: WindowIcon, color: "#2b8fff" },
+   495→   495→  { name: "Zapier", icon: Zap, color: "#ff6a00" },
+   496→   496→  { name: "Slack", icon: Slack, color: "#8b5cf6" },
+   497→   497→  { name: "Zoom", icon: Video, color: "#2d8cff" },
+   498→   498→  { name: "Calendly", icon: Calendar, color: "#06b6d4" },
+   499→   499→  { name: "HubSpot", icon: Hexagon, color: "#ff7a59" },
+   500→   500→  { name: "Salesforce", icon: Cloud, color: "#00a1e0" },
+   501→   501→  { name: "MLS", icon: Building2, color: "#3b82f6" },
+   502→   502→  { name: "Twilio", icon: Phone, color: "#f22f46" },
+   503→   503→  { name: "Stripe", icon: CreditCard, color: "#8b5cf6" },
+   504→   504→  { name: "Mailchimp", icon: Mail, color: "#d4af37" },
+   505→   505→];
+   506→   506→
+   507→   507→function IntegrationCard({ item, index }: { item: Integration; index: number }) {
+   508→   508→  const Icon = item.icon;
+   509→   509→  return (
+   510→   510→    <Reveal delay={index * 0.04}>
+   511→   511→      <div
+   512→   512→        className="group relative flex h-full flex-col items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.03] p-5 backdrop-blur-xl transition-all duration-300 hover:-translate-y-1.5"
+   513→   513→        style={{ boxShadow: "0 1px 0 0 rgba(255,255,255,0.04) inset" }}
+   514→   514→      >
+   515→   515→        <div
+   516→   516→          className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+   517→   517→          style={{
+   518→   518→            boxShadow: `0 0 34px -10px ${item.color}, inset 0 0 0 1px ${item.color}55`,
+   519→   519→          }}
+   520→   520→        />
+   521→   521→        <div
+   522→   522→          className="grid h-12 w-12 place-items-center rounded-xl border border-white/10 transition-transform duration-300 group-hover:scale-110"
+   523→   523→          style={{
+   524→   524→            backgroundColor: `${item.color}1f`,
+   525→   525→            color: item.color,
+   526→   526→          }}
+   527→   527→        >
+   528→   528→          <Icon className="h-6 w-6" />
+   529→   529→        </div>
+   530→   530→        <span className="font-heading text-sm font-medium text-white/80">
+   531→   531→          {item.name}
+   532→   532→        </span>
+   533→   533→      </div>
+   534→   534→    </Reveal>
+   535→   535→  );
+   536→   536→}
+   537→   537→
+   538→   538→function IntegrationsGrid() {
+   539→   539→  return (
+   540→   540→    <div className="grid grid-cols-3 gap-3 sm:grid-cols-4 sm:gap-4 lg:grid-cols-6">
+   541→   541→      {INTEGRATIONS.map((item, i) => (
+   542→   542→        <IntegrationCard key={item.name} item={item} index={i} />
+   543→   543→      ))}
+   544→   544→    </div>
+   545→   545→  );
+   546→   546→}
+   547→   547→
+   548→   548→/* ============================================================================
+   549→   549→   3. TESTIMONIALS
+   550→   550→   ========================================================================== */
+   551→   551→
+   552→   552→type Testimonial = {
+   553→   553→  quote: string;
+   554→   554→  name: string;
+   555→   555→  role: string;
+   556→   556→  initials: string;
+   557→   557→  avatar: string;
+   558→   558→};
+   559→   559→
+   560→   560→const TESTIMONIALS: Testimonial[] = [
+   561→   561→  {
+   562→   562→    quote:
+   563→   563→      "LeadSphere AI transformed my pipeline in 60 days. The AI assistant pre-qualifies every lead before I even pick up the phone — I closed 14 deals last quarter without cold-calling once.",
+   564→   564→    name: "Jennifer Hayes",
+   565→   565→    role: "Top Producer, Compass",
+   566→   566→    initials: "JH",
+   567→   567→    avatar: "from-electric to-violet",
+   568→   568→  },
+   569→   569→  {
+   570→   570→    quote:
+   571→   571→      "We cut our cost-per-lead by 47% in the first month. The predictive scoring is scary accurate — leads rated 90+ close at 4x the rate of our old system. My agents actually fight over the hot ones now.",
+   572→   572→    name: "Marcus Chen",
+   573→   573→    role: "Team Lead, eXp Realty",
+   574→   574→    initials: "MC",
+   575→   575→    avatar: "from-cyan to-electric",
+   576→   576→  },
+   577→   577→  {
+   578→   578→    quote:
+   579→   579→      "The kanban pipeline alone saved my team 12 hours a week. Drag, drop, done. Add the AI follow-up sequences and we went from 2% to 6.8% conversion in a single quarter.",
+   580→   580→    name: "Priya Patel",
+   581→   581→    role: "Broker, Keller Williams",
+   582→   582→    initials: "PP",
+   583→   583→    avatar: "from-violet to-fuchsia-500",
+   584→   584→  },
+   585→   585→  {
+   586→   586→    quote:
+   587→   587→      "I acquire 30+ properties a year. LeadSphere surfaces off-market opportunities before they hit the MLS. I've closed three deals this month that nobody else even knew existed.",
+   588→   588→    name: "David Okonkwo",
+   589→   589→    role: "Investor",
+   590→   590→    initials: "DO",
+   591→   591→    avatar: "from-gold to-amber-500",
+   592→   592→  },
+   593→   593→  {
+   594→   594→    quote:
+   595→   595→      "Luxury clients expect instant, intelligent response. LeadSphere's AI concierge handles inquiries 24/7 and books showings while I sleep. My listing-to-close time dropped from 90 to 41 days.",
+   596→   596→    name: "Sofia Ramirez",
+   597→   597→    role: "Agent, Sotheby's",
+   598→   598→    initials: "SR",
+   599→   599→    avatar: "from-emerald-400 to-cyan",
+   600→   600→  },
+   601→   601→];
+   602→   602→
+   603→   603→function TestimonialCard({ t }: { t: Testimonial }) {
+   604→   604→  return (
+   605→   605→    <GlassCard sheen strong className="relative overflow-hidden p-8 sm:p-10">
+   606→   606→      {/* soft color wash */}
+   607→   607→      <div
+   608→   608→        className="pointer-events-none absolute -right-20 -top-20 h-56 w-56 rounded-full opacity-20 blur-3xl"
+   609→   609→        style={{
+   610→   610→          background:
+   611→   611→            "radial-gradient(circle, rgba(139,92,246,0.55) 0%, rgba(59,130,246,0.25) 60%, transparent 100%)",
+   612→   612→        }}
+   613→   613→      />
+   614→   614→
+   615→   615→      {/* video play button overlay */}
+   616→   616→      <button
+   617→   617→        type="button"
+   618→   618→        aria-label="Play video testimonial"
+   619→   619→        className="group/play absolute right-5 top-5 grid h-11 w-11 place-items-center rounded-full border border-white/15 bg-white/5 backdrop-blur-md transition-all hover:border-electric/50 hover:bg-electric/10"
+   620→   620→      >
+   621→   621→        <motion.span
+   622→   622→          className="absolute inset-0 rounded-full border border-electric/40"
+   623→   623→          animate={{ scale: [1, 1.35], opacity: [0.6, 0] }}
+   624→   624→          transition={{ duration: 2, repeat: Infinity, ease: "easeOut" }}
+   625→   625→        />
+   626→   626→        <Play className="h-4 w-4 fill-electric text-electric transition-transform group-hover/play:scale-110" />
+   627→   627→      </button>
+   628→   628→
+   629→   629→      <div className="relative mx-auto max-w-2xl text-center">
+   630→   630→        <div className="mb-5 flex items-center justify-center gap-1">
+   631→   631→          {Array.from({ length: 5 }).map((_, i) => (
+   632→   632→            <Star
+   633→   633→              key={i}
+   634→   634→              className="h-5 w-5 fill-gold text-gold"
+   635→   635→              style={{ filter: "drop-shadow(0 0 6px rgba(212,175,55,0.45))" }}
+   636→   636→            />
+   637→   637→          ))}
+   638→   638→        </div>
+   639→   639→
+   640→   640→        <blockquote className="font-heading text-xl font-medium leading-relaxed tracking-tight text-white/90 sm:text-2xl">
+   641→   641→          &ldquo;{t.quote}&rdquo;
+   642→   642→        </blockquote>
+   643→   643→
+   644→   644→        <div className="mx-auto my-6 h-px w-24 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+   645→   645→
+   646→   646→        <div className="flex items-center justify-center gap-3">
+   647→   647→          <div
+   648→   648→            className={`grid h-11 w-11 place-items-center rounded-full bg-gradient-to-br ${t.avatar} text-sm font-semibold text-white shadow-lg ring-2 ring-white/10`}
+   649→   649→          >
+   650→   650→            {t.initials}
+   651→   651→          </div>
+   652→   652→          <div className="text-left">
+   653→   653→            <div className="flex items-center gap-1.5">
+   654→   654→              <span className="font-heading text-sm font-semibold text-white">
+   655→   655→                {t.name}
+   656→   656→              </span>
+   657→   657→              <BadgeCheck className="h-4 w-4 text-electric" />
+   658→   658→            </div>
+   659→   659→            <p className="text-xs text-white/55">{t.role}</p>
+   660→   660→          </div>
+   661→   661→        </div>
+   662→   662→      </div>
+   663→   663→    </GlassCard>
+   664→   664→  );
+   665→   665→}
+   666→   666→
+   667→   667→function TestimonialsCarousel() {
+   668→   668→  const [api, setApi] = useState<CarouselApi | null>(null);
+   669→   669→  const [current, setCurrent] = useState(0);
+   670→   670→  const [count, setCount] = useState(0);
+   671→   671→  const [paused, setPaused] = useState(false);
+   672→   672→
+   673→   673→  useEffect(() => {
+   674→   674→    if (!api) return;
+   675→   675→    const onSelect = () => {
+   676→   676→      setCount(api.scrollSnapList().length);
+   677→   677→      setCurrent(api.selectedScrollSnap());
+   678→   678→    };
+   679→   679→    api.on("select", onSelect);
+   680→   680→    api.on("reInit", onSelect);
+   681→   681→    // Defer initial sync to avoid synchronous setState in the effect body.
+   682→   682→    queueMicrotask(onSelect);
+   683→   683→    return () => {
+   684→   684→      api.off("select", onSelect);
+   685→   685→      api.off("reInit", onSelect);
+   686→   686→    };
+   687→   687→  }, [api]);
+   688→   688→
+   689→   689→  useEffect(() => {
+   690→   690→    if (!api || paused) return;
+   691→   691→    const id = setInterval(() => {
+   692→   692→      api.scrollNext();
+   693→   693→    }, 5000);
+   694→   694→    return () => clearInterval(id);
+   695→   695→  }, [api, paused]);
+   696→   696→
+   697→   697→  return (
+   698→   698→    <div
+   699→   699→      className="relative mx-auto max-w-3xl"
+   700→   700→      onMouseEnter={() => setPaused(true)}
+   701→   701→      onMouseLeave={() => setPaused(false)}
+   702→   702→    >
+   703→   703→      <Carousel
+   704→   704→        opts={{ loop: true, align: "center" }}
+   705→   705→        setApi={setApi}
+   706→   706→        className="overflow-visible"
+   707→   707→      >
+   708→   708→        <CarouselContent className="-ml-4">
+   709→   709→          {TESTIMONIALS.map((t, i) => (
+   710→   710→            <CarouselItem key={t.name} className="basis-full pl-4">
+   711→   711→              <TestimonialCard t={t} />
+   712→   712→            </CarouselItem>
+   713→   713→          ))}
+   714→   714→        </CarouselContent>
+   715→   715→
+   716→   716→        <CarouselPrevious className="left-0 top-1/2 hidden h-10 w-10 -translate-y-1/2 border-white/15 bg-black/40 text-white/70 backdrop-blur-md hover:bg-white/10 hover:text-white sm:flex" />
+   717→   717→        <CarouselNext className="right-0 top-1/2 hidden h-10 w-10 -translate-y-1/2 border-white/15 bg-black/40 text-white/70 backdrop-blur-md hover:bg-white/10 hover:text-white sm:flex" />
+   718→   718→      </Carousel>
+   719→   719→
+   720→   720→      {/* dots */}
+   721→   721→      <div className="mt-7 flex items-center justify-center gap-2">
+   722→   722→        {Array.from({ length: count || TESTIMONIALS.length }).map((_, i) => (
+   723→   723→          <button
+   724→   724→            key={i}
+   725→   725→            type="button"
+   726→   726→            aria-label={`Go to testimonial ${i + 1}`}
+   727→   727→            onClick={() => api?.scrollTo(i)}
+   728→   728→            className="h-1.5 rounded-full transition-all duration-300"
+   729→   729→            style={{
+   730→   730→              width: i === current ? 26 : 8,
+   731→   731→              backgroundColor:
+   732→   732→                i === current ? "#3b82f6" : "rgba(255,255,255,0.2)",
+   733→   733→              boxShadow:
+   734→   734→                i === current ? "0 0 12px rgba(59,130,246,0.6)" : "none",
+   735→   735→            }}
+   736→   736→          />
+   737→   737→        ))}
+   738→   738→      </div>
+   739→   739→    </div>
+   740→   740→  );
+   741→   741→}
+   742→   742→
+   743→   743→/* ============================================================================
+   744→   744→   MAIN
+   745→   745→   ========================================================================== */
+   746→   746→
+   747→   747→export default function CrmIntegrationsTestimonials() {
+   748→   748→  return (
+   749→   749→    <>
+   750→   750→      {/* 1. CRM KANBAN */}
+   751→   751→      <SectionShell id="crm">
+   752→   752→        <Reveal className="mb-10">
+   753→   753→          <SectionHeading
+   754→   754→            eyebrow="Smart CRM"
+   755→   755→            title="Drag, drop, and close"
+   756→   756→            description="Every lead organized in a pipeline that flows."
+   757→   757→          />
+   758→   758→        </Reveal>
+   759→   759→
+   760→   760→        <Reveal delay={0.1}>
+   761→   761→          <div className="rounded-3xl border border-white/[0.07] bg-gradient-to-b from-white/[0.04] to-transparent p-3 sm:p-5">
+   762→   762→            <CrmKanban />
+   763→   763→          </div>
+   764→   764→        </Reveal>
+   765→   765→
+   766→   766→        <p className="mt-5 text-center text-xs text-white/40">
+   767→   767→          Try it — drag a lead card between columns. Live interactive demo.
+   768→   768→        </p>
+   769→   769→      </SectionShell>
+   770→   770→
+   771→   771→      {/* 2. INTEGRATIONS */}
+   772→   772→      <SectionShell id="integrations" className="pt-0">
+   773→   773→        <Reveal className="mb-10">
+   774→   774→          <SectionHeading
+   775→   775→            eyebrow="Integrations"
+   776→   776→            title="Connects with your favorite tools"
+   777→   777→            description="200+ integrations. Sync everything in one click."
+   778→   778→          />
+   779→   779→        </Reveal>
+   780→   780→        <IntegrationsGrid />
+   781→   781→      </SectionShell>
+   782→   782→
+   783→   783→      {/* 3. TESTIMONIALS */}
+   784→   784→      <SectionShell id="testimonials" className="pt-0">
+   785→   785→        <Reveal className="mb-10">
+   786→   786→          <SectionHeading
+   787→   787→            eyebrow="Testimonials"
+   788→   788→            title="Loved by top-producing agents"
+   789→   789→            description="Real results from real estate teams across North America."
+   790→   790→          />
+   791→   791→        </Reveal>
+   792→   792→        <TestimonialsCarousel />
+   793→   793→      </SectionShell>
+   794→   794→    </>
+   795→   795→  );
+   796→   796→}
+   797→   797→

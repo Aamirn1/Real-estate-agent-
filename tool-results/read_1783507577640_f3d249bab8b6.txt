@@ -1,0 +1,852 @@
+     1→"use client";
+     2→
+     3→import { useMemo, useState } from "react";
+     4→import { motion } from "framer-motion";
+     5→import {
+     6→  Sparkles,
+     7→  ScrollText,
+     8→  FileText,
+     9→  BellRing,
+    10→  Clock,
+    11→  Mail,
+    12→  Gauge,
+    13→  Lightbulb,
+    14→  Search,
+    15→  BadgeCheck,
+    16→  Send,
+    17→  CalendarCheck,
+    18→  Trophy,
+    19→  MapPin,
+    20→  Layers,
+    21→  Crosshair,
+    22→} from "lucide-react";
+    23→import {
+    24→  GlassCard,
+    25→  SectionHeading,
+    26→  SectionShell,
+    27→} from "@/components/leadsphere/primitives";
+    28→import { Reveal } from "@/components/leadsphere/Reveal";
+    29→import { AnimatedBackground } from "@/components/leadsphere/AnimatedBackground";
+    30→import { useMouseParallax } from "@/lib/leadsphere/hooks";
+    31→
+    32→/* ============================================================================
+    33→ * SECTION 1 — AI Sales Assistant
+    34→ * ========================================================================== */
+    35→
+    36→const AI_FEATURES = [
+    37→  { icon: Sparkles, label: "Predict hot leads" },
+    38→  { icon: ScrollText, label: "Summarize conversations" },
+    39→  { icon: FileText, label: "Generate scripts" },
+    40→  { icon: BellRing, label: "Follow-up reminders" },
+    41→  { icon: Clock, label: "Best call time" },
+    42→  { icon: Mail, label: "Email drafting" },
+    43→  { icon: Gauge, label: "Lead scoring" },
+    44→  { icon: Lightbulb, label: "Smart recommendations" },
+    45→];
+    46→
+    47→/** 12 neural-net nodes positioned in % across the section background. */
+    48→const NEURAL_NODES = [
+    49→  { x: 8, y: 18 },
+    50→  { x: 18, y: 55 },
+    51→  { x: 12, y: 84 },
+    52→  { x: 32, y: 12 },
+    53→  { x: 28, y: 78 },
+    54→  { x: 45, y: 8 },
+    55→  { x: 55, y: 92 },
+    56→  { x: 68, y: 14 },
+    57→  { x: 72, y: 80 },
+    58→  { x: 88, y: 22 },
+    59→  { x: 82, y: 58 },
+    60→  { x: 92, y: 86 },
+    61→];
+    62→
+    63→const NEURAL_EDGES: Array<[number, number]> = [
+    64→  [0, 3],
+    65→  [0, 1],
+    66→  [1, 2],
+    67→  [1, 4],
+    68→  [2, 4],
+    69→  [3, 10],
+    70→  [3, 5],
+    71→  [4, 6],
+    72→  [4, 11],
+    73→  [5, 7],
+    74→  [5, 10],
+    75→  [6, 8],
+    76→  [6, 9],
+    77→  [7, 8],
+    78→  [8, 9],
+    79→  [10, 11],
+    80→  [7, 10],
+    81→];
+    82→
+    83→function NeuralNetwork() {
+    84→  return (
+    85→    <div
+    86→      aria-hidden
+    87→      className="pointer-events-none absolute inset-0 overflow-hidden"
+    88→    >
+    89→      {/* Connecting lines via non-scaling-stroke SVG */}
+    90→      <svg
+    91→        className="absolute inset-0 h-full w-full"
+    92→        viewBox="0 0 100 100"
+    93→        preserveAspectRatio="none"
+    94→      >
+    95→        <defs>
+    96→          <linearGradient id="nn-grad" x1="0" y1="0" x2="1" y2="1">
+    97→            <stop offset="0%" stopColor="#3b82f6" />
+    98→            <stop offset="50%" stopColor="#8b5cf6" />
+    99→            <stop offset="100%" stopColor="#06b6d4" />
+   100→          </linearGradient>
+   101→        </defs>
+   102→        {NEURAL_EDGES.map(([a, b], i) => {
+   103→          const na = NEURAL_NODES[a];
+   104→          const nb = NEURAL_NODES[b];
+   105→          return (
+   106→            <motion.line
+   107→              key={`e-${i}`}
+   108→              x1={na.x}
+   109→              y1={na.y}
+   110→              x2={nb.x}
+   111→              y2={nb.y}
+   112→              stroke="url(#nn-grad)"
+   113→              strokeWidth={1}
+   114→              vectorEffect="non-scaling-stroke"
+   115→              initial={{ opacity: 0 }}
+   116→              animate={{ opacity: [0.06, 0.32, 0.06] }}
+   117→              transition={{
+   118→                duration: 4 + (i % 5),
+   119→                repeat: Infinity,
+   120→                delay: i * 0.18,
+   121→                ease: "easeInOut",
+   122→              }}
+   123→            />
+   124→          );
+   125→        })}
+   126→      </svg>
+   127→
+   128→      {/* Nodes as round dots (avoid SVG ellipse distortion) */}
+   129→      {NEURAL_NODES.map((n, i) => (
+   130→        <motion.span
+   131→          key={`n-${i}`}
+   132→          className="absolute rounded-full"
+   133→          style={{
+   134→            left: `${n.x}%`,
+   135→            top: `${n.y}%`,
+   136→            width: 5,
+   137→            height: 5,
+   138→            transform: "translate(-50%, -50%)",
+   139→            background:
+   140→              i % 3 === 0
+   141→                ? "#60a5fa"
+   142→                : i % 3 === 1
+   143→                ? "#a78bfa"
+   144→                : "#22d3ee",
+   145→            boxShadow: "0 0 8px currentColor",
+   146→          }}
+   147→          animate={{
+   148→            opacity: [0.35, 1, 0.35],
+   149→            scale: [1, 1.5, 1],
+   150→          }}
+   151→          transition={{
+   152→            duration: 3 + (i % 4),
+   153→            repeat: Infinity,
+   154→            delay: i * 0.25,
+   155→            ease: "easeInOut",
+   156→          }}
+   157→        />
+   158→      ))}
+   159→    </div>
+   160→  );
+   161→}
+   162→
+   163→function AiOrb() {
+   164→  const mouse = useMouseParallax(1);
+   165→  return (
+   166→    <div className="relative flex h-[300px] w-full items-center justify-center">
+   167→      <motion.div
+   168→        style={{ x: mouse.x * 22, y: mouse.y * 22 }}
+   169→        className="relative flex items-center justify-center"
+   170→      >
+   171→        {/* Pulse rings */}
+   172→        <span className="absolute h-[150px] w-[150px] rounded-full bg-electric/25 animate-pulse-ring" />
+   173→        <span className="absolute h-[150px] w-[150px] rounded-full bg-violet/25 animate-pulse-ring [animation-delay:1.1s]" />
+   174→        <span className="absolute h-[150px] w-[150px] rounded-full bg-cyan/25 animate-pulse-ring [animation-delay:2.1s]" />
+   175→
+   176→        {/* Rotating rings */}
+   177→        <span className="absolute h-[200px] w-[200px] rounded-full border border-dashed border-electric/30 animate-spin-slow" />
+   178→        <span className="absolute h-[240px] w-[240px] rounded-full border border-violet/20 animate-spin-slow [animation-direction:reverse] [animation-duration:32s]" />
+   179→        <span className="absolute h-[280px] w-[280px] rounded-full border border-cyan/15 animate-spin-slow [animation-duration:40s]" />
+   180→
+   181→        {/* The orb */}
+   182→        <div
+   183→          className="animate-orb-breathe relative flex h-[180px] w-[180px] items-center justify-center rounded-full"
+   184→          style={{
+   185→            background:
+   186→              "radial-gradient(circle at 35% 28%, #bfdbfe 0%, #3b82f6 24%, #8b5cf6 58%, #06b6d4 100%)",
+   187→            boxShadow:
+   188→              "0 0 60px -8px rgba(59,130,246,0.6), 0 0 140px -24px rgba(139,92,246,0.55), inset 0 0 50px rgba(255,255,255,0.18)",
+   189→          }}
+   190→        >
+   191→          {/* Specular highlight */}
+   192→          <div
+   193→            className="absolute inset-0 rounded-full opacity-70"
+   194→            style={{
+   195→              background:
+   196→                "radial-gradient(circle at 30% 22%, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0) 42%)",
+   197→            }}
+   198→          />
+   199→          {/* Inner rings */}
+   200→          <div className="absolute inset-5 rounded-full border border-white/20" />
+   201→          <div className="absolute inset-10 rounded-full border border-white/10" />
+   202→          {/* Center sparkle */}
+   203→          <Sparkles className="relative h-7 w-7 text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.8)]" />
+   204→        </div>
+   205→
+   206→        {/* Floating "Live" badge */}
+   207→        <motion.div
+   208→          initial={{ opacity: 0, y: 8 }}
+   209→          whileInView={{ opacity: 1, y: 0 }}
+   210→          viewport={{ once: true }}
+   211→          transition={{ delay: 0.6, duration: 0.6 }}
+   212→          className="absolute -right-2 top-6 sm:right-6"
+   213→        >
+   214→          <GlassCard
+   215→            strong
+   216→            className="flex items-center gap-2 px-3 py-1.5"
+   217→          >
+   218→            <span className="relative flex h-2 w-2">
+   219→              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan opacity-75" />
+   220→              <span className="relative inline-flex h-2 w-2 rounded-full bg-cyan" />
+   221→            </span>
+   222→            <span className="text-[11px] font-medium tracking-wide text-white/70">
+   223→              Live · 1,247 leads
+   224→            </span>
+   225→          </GlassCard>
+   226→        </motion.div>
+   227→      </motion.div>
+   228→    </div>
+   229→  );
+   230→}
+   231→
+   232→function AiAssistantSection() {
+   233→  return (
+   234→    <SectionShell id="ai" className="overflow-hidden">
+   235→      <AnimatedBackground variant="ai" />
+   236→      <NeuralNetwork />
+   237→
+   238→      <div className="relative z-10 flex flex-col items-center gap-10">
+   239→        <Reveal>
+   240→          <AiOrb />
+   241→        </Reveal>
+   242→
+   243→        <SectionHeading
+   244→          eyebrow="AI Assistant"
+   245→          title={
+   246→            <>
+   247→              Meet your{" "}
+   248→              <span className="text-gradient-electric">AI sales assistant</span>
+   249→            </>
+   250→          }
+   251→          description="Predict hot leads, draft emails, and never miss a follow-up."
+   252→        />
+   253→
+   254→        {/* Feature pills */}
+   255→        <div className="grid w-full grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4">
+   256→          {AI_FEATURES.map((f, i) => (
+   257→            <Reveal key={f.label} delay={i * 0.05} className="h-full">
+   258→              <GlassCard
+   259→                sheen
+   260→                className="group flex h-full items-center gap-3 p-3 transition-all duration-300 hover:border-white/20 hover:shadow-[0_0_34px_-10px_rgba(59,130,246,0.55)] sm:p-4"
+   261→              >
+   262→                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-electric/25 to-violet/25 text-cyan transition-transform duration-300 group-hover:scale-110">
+   263→                  <f.icon className="h-4 w-4" />
+   264→                </div>
+   265→                <span className="text-xs font-medium leading-tight text-white/80 sm:text-sm">
+   266→                  {f.label}
+   267→                </span>
+   268→              </GlassCard>
+   269→            </Reveal>
+   270→          ))}
+   271→        </div>
+   272→      </div>
+   273→    </SectionShell>
+   274→  );
+   275→}
+   276→
+   277→/* ============================================================================
+   278→ * SECTION 2 — Lead Generation Process Timeline
+   279→ * ========================================================================== */
+   280→
+   281→const STEPS = [
+   282→  {
+   283→    n: 1,
+   284→    title: "Find Leads",
+   285→    desc: "Search 200M+ records by neighborhood, value & intent signals.",
+   286→    icon: Search,
+   287→  },
+   288→  {
+   289→    n: 2,
+   290→    title: "Verify Contacts",
+   291→    desc: "Cross-check phone & email deliverability in real time.",
+   292→    icon: BadgeCheck,
+   293→  },
+   294→  {
+   295→    n: 3,
+   296→    title: "Start Outreach",
+   297→    desc: "Launch multi-channel cadences — call, text & email — on autopilot.",
+   298→    icon: Send,
+   299→  },
+   300→  {
+   301→    n: 4,
+   302→    title: "Book Appointments",
+   303→    desc: "AI schedules meetings straight into your calendar.",
+   304→    icon: CalendarCheck,
+   305→  },
+   306→  {
+   307→    n: 5,
+   308→    title: "Close Listings",
+   309→    desc: "Track deals to closing and measure ROI per lead source.",
+   310→    icon: Trophy,
+   311→  },
+   312→];
+   313→
+   314→function StepNumber({ n }: { n: number }) {
+   315→  return (
+   316→    <div className="relative flex h-14 w-14 items-center justify-center">
+   317→      <span className="absolute inset-0 rounded-full bg-gradient-to-br from-electric via-violet to-cyan opacity-60 blur-md" />
+   318→      <span className="relative flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-electric via-violet to-cyan font-heading text-lg font-semibold text-white shadow-[0_0_30px_-6px_rgba(139,92,246,0.75)]">
+   319→        {n}
+   320→      </span>
+   321→    </div>
+   322→  );
+   323→}
+   324→
+   325→function ProcessTimelineSection() {
+   326→  return (
+   327→    <SectionShell id="process" className="overflow-hidden">
+   328→      <AnimatedBackground variant="section" />
+   329→
+   330→      <div className="relative z-10 flex flex-col gap-14">
+   331→        <SectionHeading
+   332→          eyebrow="Workflow"
+   333→          title={
+   334→            <>
+   335→              From lead to listing in{" "}
+   336→              <span className="text-gradient-electric">5 steps</span>
+   337→            </>
+   338→          }
+   339→        />
+   340→
+   341→        {/* Desktop — horizontal timeline */}
+   342→        <div className="relative hidden md:block">
+   343→          {/* Base gradient line */}
+   344→          <div className="absolute left-0 right-0 top-7 h-[2px] rounded-full bg-gradient-to-r from-electric via-violet to-cyan opacity-40" />
+   345→          {/* Animated shimmer comet */}
+   346→          <motion.div
+   347→            className="absolute left-0 right-0 top-7 h-[2px] overflow-hidden rounded-full"
+   348→            initial={{ opacity: 0 }}
+   349→            whileInView={{ opacity: 1 }}
+   350→            viewport={{ once: true }}
+   351→            transition={{ delay: 0.4 }}
+   352→          >
+   353→            <motion.div
+   354→              className="absolute inset-y-0 w-1/4 bg-gradient-to-r from-transparent via-white to-transparent"
+   355→              initial={{ x: "-30%" }}
+   356→              animate={{ x: "420%" }}
+   357→              transition={{
+   358→                duration: 3.6,
+   359→                repeat: Infinity,
+   360→                ease: "linear",
+   361→              }}
+   362→            />
+   363→          </motion.div>
+   364→
+   365→          {/* Steps */}
+   366→          <div className="relative grid grid-cols-5 gap-4">
+   367→            {STEPS.map((s, i) => (
+   368→              <Reveal
+   369→                key={s.n}
+   370→                delay={i * 0.12}
+   371→                className="flex flex-col items-center text-center"
+   372→              >
+   373→                <StepNumber n={s.n} />
+   374→                <GlassCard sheen className="mt-6 w-full p-4">
+   375→                  <s.icon className="mx-auto mb-3 h-5 w-5 text-cyan" />
+   376→                  <h3 className="font-heading text-sm font-semibold sm:text-base">
+   377→                    {s.title}
+   378→                  </h3>
+   379→                  <p className="mt-2 text-xs leading-relaxed text-white/55">
+   380→                    {s.desc}
+   381→                  </p>
+   382→                </GlassCard>
+   383→              </Reveal>
+   384→            ))}
+   385→          </div>
+   386→        </div>
+   387→
+   388→        {/* Mobile — vertical timeline */}
+   389→        <div className="relative md:hidden">
+   390→          <div className="absolute bottom-2 left-6 top-2 w-[2px] rounded-full bg-gradient-to-b from-electric via-violet to-cyan opacity-40" />
+   391→          <motion.div
+   392→            className="absolute bottom-2 left-6 top-2 w-[2px] overflow-hidden"
+   393→            initial={{ opacity: 0 }}
+   394→            whileInView={{ opacity: 1 }}
+   395→            viewport={{ once: true }}
+   396→            transition={{ delay: 0.4 }}
+   397→          >
+   398→            <motion.div
+   399→              className="absolute inset-x-0 h-1/4 bg-gradient-to-b from-transparent via-white to-transparent"
+   400→              initial={{ y: "-30%" }}
+   401→              animate={{ y: "420%" }}
+   402→              transition={{
+   403→                duration: 3.6,
+   404→                repeat: Infinity,
+   405→                ease: "linear",
+   406→              }}
+   407→            />
+   408→          </motion.div>
+   409→
+   410→          <div className="relative space-y-5">
+   411→            {STEPS.map((s, i) => (
+   412→              <Reveal
+   413→                key={s.n}
+   414→                delay={i * 0.1}
+   415→                className="relative pl-16"
+   416→              >
+   417→                <div className="absolute left-0 top-0">
+   418→                  <StepNumber n={s.n} />
+   419→                </div>
+   420→                <GlassCard sheen className="p-4">
+   421→                  <div className="flex items-center gap-2">
+   422→                    <s.icon className="h-4 w-4 text-cyan" />
+   423→                    <h3 className="font-heading text-sm font-semibold">
+   424→                      {s.title}
+   425→                    </h3>
+   426→                  </div>
+   427→                  <p className="mt-1.5 text-xs leading-relaxed text-white/55">
+   428→                    {s.desc}
+   429→                  </p>
+   430→                </GlassCard>
+   431→              </Reveal>
+   432→            ))}
+   433→          </div>
+   434→        </div>
+   435→      </div>
+   436→    </SectionShell>
+   437→  );
+   438→}
+   439→
+   440→/* ============================================================================
+   441→ * SECTION 3 — Interactive Geo Prospecting Map
+   442→ * ========================================================================== */
+   443→
+   444→type PinType = "motivated" | "expired" | "fsbo" | "highValue";
+   445→
+   446→const PIN_COLORS: Record<PinType, string> = {
+   447→  motivated: "#3b82f6",
+   448→  expired: "#8b5cf6",
+   449→  fsbo: "#06b6d4",
+   450→  highValue: "#d4af37",
+   451→};
+   452→
+   453→const PIN_LABELS: Record<PinType, string> = {
+   454→  motivated: "Motivated",
+   455→  expired: "Expired",
+   456→  fsbo: "FSBO",
+   457→  highValue: "High Value",
+   458→};
+   459→
+   460→const PINS: Array<{
+   461→  x: number;
+   462→  y: number;
+   463→  type: PinType;
+   464→  address: string;
+   465→  value: string;
+   466→}> = [
+   467→  { x: 24, y: 32, type: "motivated", address: "1420 Vine St · Austin, TX", value: "$485K" },
+   468→  { x: 38, y: 22, type: "highValue", address: "88 Sunset Blvd · Beverly Hills, CA", value: "$2.4M" },
+   469→  { x: 31, y: 48, type: "fsbo", address: "512 Cedar Ave · Phoenix, AZ", value: "$612K" },
+   470→  { x: 46, y: 38, type: "expired", address: "77 Lakeshore Dr · Chicago, IL", value: "$740K" },
+   471→  { x: 55, y: 28, type: "motivated", address: "9 Park Pl · Denver, CO", value: "$528K" },
+   472→  { x: 62, y: 44, type: "highValue", address: "1 Ocean Dr · Miami, FL", value: "$1.9M" },
+   473→  { x: 68, y: 24, type: "fsbo", address: "230 Hill Rd · Seattle, WA", value: "$865K" },
+   474→  { x: 73, y: 56, type: "expired", address: "14 Magnolia St · Atlanta, GA", value: "$445K" },
+   475→  { x: 80, y: 34, type: "motivated", address: "601 Elm Way · Boston, MA", value: "$980K" },
+   476→  { x: 84, y: 50, type: "highValue", address: "5 Fifth Ave · New York, NY", value: "$3.2M" },
+   477→  { x: 50, y: 66, type: "fsbo", address: "321 Bay St · Houston, TX", value: "$395K" },
+   478→  { x: 42, y: 72, type: "motivated", address: "18 Mesa Ln · Albuquerque, NM", value: "$358K" },
+   479→];
+   480→
+   481→const CLUSTERS: Array<{ x: number; y: number; count: number; color: string }> = [
+   482→  { x: 33, y: 30, count: 248, color: "#3b82f6" },
+   483→  { x: 58, y: 40, count: 156, color: "#8b5cf6" },
+   484→  { x: 80, y: 48, count: 92, color: "#06b6d4" },
+   485→];
+   486→
+   487→const FILTERS: Array<{ id: "all" | PinType; label: string; count: number }> = [
+   488→  { id: "all", label: "All Leads", count: 1247 },
+   489→  { id: "motivated", label: "Motivated", count: 312 },
+   490→  { id: "expired", label: "Expired", count: 184 },
+   491→  { id: "fsbo", label: "FSBO", count: 96 },
+   492→  { id: "highValue", label: "High Value", count: 58 },
+   493→];
+   494→
+   495→function InteractiveMapSection() {
+   496→  const [active, setActive] = useState<"all" | PinType>("all");
+   497→  const [query, setQuery] = useState("");
+   498→  const [hovered, setHovered] = useState<number | null>(null);
+   499→
+   500→  const visiblePins = useMemo(() => {
+   501→    const q = query.trim().toLowerCase();
+   502→    return PINS.map((p, i) => {
+   503→      const chipOk = active === "all" || p.type === active;
+   504→      const queryOk = q === "" || p.address.toLowerCase().includes(q);
+   505→      return { ...p, i, dim: !(chipOk && queryOk) };
+   506→    });
+   507→  }, [active, query]);
+   508→
+   509→  return (
+   510→    <SectionShell id="map" className="overflow-hidden">
+   511→      <AnimatedBackground variant="section" />
+   512→
+   513→      <div className="relative z-10 flex flex-col gap-12">
+   514→        <SectionHeading
+   515→          eyebrow="Geo Prospecting"
+   516→          title={
+   517→            <>
+   518→              Find leads{" "}
+   519→              <span className="text-gradient-electric">anywhere on the map</span>
+   520→            </>
+   521→          }
+   522→          description="Stylized heatmaps, property clusters and live lead pins across North America."
+   523→        />
+   524→
+   525→        <Reveal y={36}>
+   526→          <GlassCard
+   527→            strong
+   528→            sheen
+   529→            className="overflow-hidden p-0"
+   530→          >
+   531→            <div className="flex flex-col md:flex-row">
+   532→              {/* ---------- Sidebar ---------- */}
+   533→              <aside className="flex w-full shrink-0 flex-col gap-4 border-b border-white/10 p-4 md:w-60 md:border-b-0 md:border-r">
+   534→                <div className="flex items-center justify-between">
+   535→                  <div className="flex items-center gap-2">
+   536→                    <Layers className="h-4 w-4 text-cyan" />
+   537→                    <span className="font-heading text-sm font-semibold">
+   538→                      Filters
+   539→                    </span>
+   540→                  </div>
+   541→                  <span className="rounded-full bg-white/5 px-2 py-0.5 text-[10px] text-white/55">
+   542→                    1,247 active
+   543→                  </span>
+   544→                </div>
+   545→
+   546→                {/* Search */}
+   547→                <div className="relative">
+   548→                  <Search className="pointer-events-none absolute left-2.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-white/40" />
+   549→                  <input
+   550→                    value={query}
+   551→                    onChange={(e) => setQuery(e.target.value)}
+   552→                    placeholder="Search address…"
+   553→                    className="w-full rounded-lg border border-white/10 bg-white/5 py-2 pl-8 pr-3 text-xs text-white/80 outline-none transition placeholder:text-white/35 focus:border-electric/50 focus:bg-white/8"
+   554→                  />
+   555→                </div>
+   556→
+   557→                {/* Filter chips */}
+   558→                <div className="flex flex-col gap-1.5">
+   559→                  {FILTERS.map((f) => {
+   560→                    const isActive = active === f.id;
+   561→                    return (
+   562→                      <button
+   563→                        key={f.id}
+   564→                        onClick={() => setActive(f.id)}
+   565→                        className={[
+   566→                          "group flex items-center justify-between rounded-lg px-3 py-2 text-left text-xs transition-all duration-200",
+   567→                          isActive
+   568→                            ? "bg-gradient-to-r from-electric/25 to-violet/20 text-white shadow-[0_0_24px_-10px_rgba(59,130,246,0.7)] ring-1 ring-inset ring-white/15"
+   569→                            : "text-white/60 hover:bg-white/5 hover:text-white/85",
+   570→                        ].join(" ")}
+   571→                      >
+   572→                        <span className="flex items-center gap-2">
+   573→                          <span
+   574→                            className="h-2 w-2 rounded-full transition-shadow"
+   575→                            style={{
+   576→                              background:
+   577→                                f.id === "all" ? "#f5f5f7" : PIN_COLORS[f.id],
+   578→                              boxShadow:
+   579→                                isActive && f.id !== "all"
+   580→                                  ? `0 0 8px ${PIN_COLORS[f.id]}`
+   581→                                  : "none",
+   582→                            }}
+   583→                          />
+   584→                          {f.label}
+   585→                        </span>
+   586→                        <span className="tnum text-[10px] text-white/45">
+   587→                          {f.count}
+   588→                        </span>
+   589→                      </button>
+   590→                    );
+   591→                  })}
+   592→                </div>
+   593→
+   594→                <div className="mt-auto hidden border-t border-white/8 pt-3 md:block">
+   595→                  <div className="flex items-center gap-2 text-[10px] text-white/40">
+   596→                    <Crosshair className="h-3 w-3" />
+   597→                    Live data · refreshed 2m ago
+   598→                  </div>
+   599→                </div>
+   600→              </aside>
+   601→
+   602→              {/* ---------- Map canvas ---------- */}
+   603→              <div className="relative h-[440px] flex-1 overflow-hidden sm:h-[540px]">
+   604→                {/* Tilted backdrop layer (3D-ish) */}
+   605→                <div
+   606→                  className="absolute inset-0"
+   607→                  style={{
+   608→                    transform:
+   609→                      "perspective(1400px) rotateX(7deg)",
+   610→                    transformOrigin: "center 75%",
+   611→                  }}
+   612→                >
+   613→                  {/* Dotted grid pattern */}
+   614→                  <div
+   615→                    className="absolute inset-0 opacity-70"
+   616→                    style={{
+   617→                      backgroundImage:
+   618→                        "radial-gradient(circle, rgba(255,255,255,0.10) 1px, transparent 1.4px)",
+   619→                      backgroundSize: "22px 22px",
+   620→                    }}
+   621→                  />
+   622→                  {/* Stylized continent silhouette */}
+   623→                  <svg
+   624→                    aria-hidden
+   625→                    className="absolute inset-0 h-full w-full"
+   626→                    viewBox="0 0 400 320"
+   627→                    preserveAspectRatio="xMidYMid meet"
+   628→                  >
+   629→                    <defs>
+   630→                      <linearGradient id="land-grad" x1="0" y1="0" x2="1" y2="1">
+   631→                        <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.18" />
+   632→                        <stop offset="55%" stopColor="#8b5cf6" stopOpacity="0.14" />
+   633→                        <stop offset="100%" stopColor="#06b6d4" stopOpacity="0.10" />
+   634→                      </linearGradient>
+   635→                      <linearGradient id="land-stroke" x1="0" y1="0" x2="1" y2="1">
+   636→                        <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.5" />
+   637→                        <stop offset="100%" stopColor="#06b6d4" stopOpacity="0.35" />
+   638→                      </linearGradient>
+   639→                    </defs>
+   640→                    <path
+   641→                      d="M 70 60 C 130 38, 220 40, 270 58 L 305 82 L 312 124 L 296 162 L 270 192 L 238 220 L 212 250 L 196 288 L 184 262 L 172 238 L 150 214 L 124 192 L 100 168 L 80 138 L 70 100 Z"
+   642→                      fill="url(#land-grad)"
+   643→                      stroke="url(#land-stroke)"
+   644→                      strokeWidth="1.2"
+   645→                      opacity="0.9"
+   646→                    />
+   647→                  </svg>
+   648→
+   649→                  {/* Heatmap density blobs */}
+   650→                  <div
+   651→                    className="absolute h-[220px] w-[220px] rounded-full blur-[60px]"
+   652→                    style={{
+   653→                      left: "22%",
+   654→                      top: "22%",
+   655→                      background:
+   656→                        "radial-gradient(circle, rgba(59,130,246,0.55) 0%, rgba(59,130,246,0) 70%)",
+   657→                    }}
+   658→                  />
+   659→                  <div
+   660→                    className="absolute h-[260px] w-[260px] rounded-full blur-[70px]"
+   661→                    style={{
+   662→                      left: "48%",
+   663→                      top: "30%",
+   664→                      background:
+   665→                        "radial-gradient(circle, rgba(139,92,246,0.5) 0%, rgba(139,92,246,0) 70%)",
+   666→                    }}
+   667→                  />
+   668→                  <div
+   669→                    className="absolute h-[200px] w-[200px] rounded-full blur-[60px]"
+   670→                    style={{
+   671→                      left: "70%",
+   672→                      top: "38%",
+   673→                      background:
+   674→                        "radial-gradient(circle, rgba(6,182,212,0.45) 0%, rgba(6,182,212,0) 70%)",
+   675→                    }}
+   676→                  />
+   677→                </div>
+   678→
+   679→                {/* Top horizon gradient for depth */}
+   680→                <div className="pointer-events-none absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-[#070708] to-transparent" />
+   681→
+   682→                {/* ---------- Pins layer (flat, not tilted) ---------- */}
+   683→                <div className="absolute inset-0">
+   684→                  {visiblePins.map((p) => {
+   685→                    const isHovered = hovered === p.i;
+   686→                    return (
+   687→                      <button
+   688→                        key={p.i}
+   689→                        onMouseEnter={() => setHovered(p.i)}
+   690→                        onMouseLeave={() => setHovered(null)}
+   691→                        onClick={() =>
+   692→                          setHovered((h) => (h === p.i ? null : p.i))
+   693→                        }
+   694→                        className="group absolute -translate-x-1/2 -translate-y-full transition-opacity duration-300"
+   695→                        style={{
+   696→                          left: `${p.x}%`,
+   697→                          top: `${p.y}%`,
+   698→                          opacity: p.dim ? 0.22 : 1,
+   699→                          zIndex: isHovered ? 30 : 10,
+   700→                        }}
+   701→                        aria-label={`${PIN_LABELS[p.type]} lead at ${p.address}`}
+   702→                      >
+   703→                        <div className="relative">
+   704→                          {/* Pulse ring at the pin tip */}
+   705→                          <span
+   706→                            className="absolute bottom-0 left-1/2 h-3 w-3 -translate-x-1/2 translate-y-1/2 rounded-full animate-pulse-ring"
+   707→                            style={{ background: PIN_COLORS[p.type] }}
+   708→                          />
+   709→                          <MapPin
+   710→                            className="relative h-7 w-7 transition-transform duration-300 group-hover:scale-115"
+   711→                            style={{
+   712→                              color: PIN_COLORS[p.type],
+   713→                              filter: `drop-shadow(0 0 10px ${PIN_COLORS[p.type]})`,
+   714→                            }}
+   715→                            fill="currentColor"
+   716→                          />
+   717→
+   718→                          {/* Hover tooltip */}
+   719→                          {isHovered && (
+   720→                            <motion.div
+   721→                              initial={{ opacity: 0, y: 6, scale: 0.96 }}
+   722→                              animate={{ opacity: 1, y: 0, scale: 1 }}
+   723→                              transition={{ duration: 0.18 }}
+   724→                              className="absolute bottom-full left-1/2 z-40 mb-2 -translate-x-1/2 whitespace-nowrap"
+   725→                            >
+   726→                              <GlassCard
+   727→                                strong
+   728→                                className="px-3 py-2"
+   729→                              >
+   730→                                <div className="flex items-center gap-1.5">
+   731→                                  <span
+   732→                                    className="h-1.5 w-1.5 rounded-full"
+   733→                                    style={{
+   734→                                      background: PIN_COLORS[p.type],
+   735→                                      boxShadow: `0 0 6px ${PIN_COLORS[p.type]}`,
+   736→                                    }}
+   737→                                  />
+   738→                                  <span className="text-[11px] font-medium text-white/90">
+   739→                                    {p.address}
+   740→                                  </span>
+   741→                                </div>
+   742→                                <div className="mt-0.5 pl-3 text-[10px] text-white/55">
+   743→                                  Est. value{" "}
+   744→                                  <span className="tnum font-medium text-white/80">
+   745→                                    {p.value}
+   746→                                  </span>{" "}
+   747→                                  · {PIN_LABELS[p.type]}
+   748→                                </div>
+   749→                              </GlassCard>
+   750→                              {/* Tooltip arrow */}
+   751→                              <span className="absolute left-1/2 top-full -mt-1 h-2 w-2 -translate-x-1/2 rotate-45 bg-[rgba(13,13,16,0.85)] ring-1 ring-white/10" />
+   752→                            </motion.div>
+   753→                          )}
+   754→                        </div>
+   755→                      </button>
+   756→                    );
+   757→                  })}
+   758→
+   759→                  {/* ---------- Clusters ---------- */}
+   760→                  {CLUSTERS.map((c, i) => (
+   761→                    <div
+   762→                      key={i}
+   763→                      className="absolute -translate-x-1/2 -translate-y-1/2"
+   764→                      style={{ left: `${c.x}%`, top: `${c.y}%`, zIndex: 20 }}
+   765→                    >
+   766→                      <div className="relative flex h-14 w-14 items-center justify-center">
+   767→                        <span
+   768→                          className="absolute inset-0 rounded-full animate-pulse-ring"
+   769→                          style={{ background: c.color, opacity: 0.4 }}
+   770→                        />
+   771→                        <span
+   772→                          className="absolute inset-0 rounded-full blur-md opacity-50"
+   773→                          style={{ background: c.color }}
+   774→                        />
+   775→                        <div
+   776→                          className="glass-strong relative flex h-14 w-14 items-center justify-center rounded-full ring-1 ring-white/15"
+   777→                          style={{ boxShadow: `0 0 28px -6px ${c.color}` }}
+   778→                        >
+   779→                          <span
+   780→                            className="tnum font-heading text-sm font-semibold"
+   781→                            style={{ color: c.color }}
+   782→                          >
+   783→                            {c.count}
+   784→                          </span>
+   785→                        </div>
+   786→                      </div>
+   787→                    </div>
+   788→                  ))}
+   789→                </div>
+   790→
+   791→                {/* ---------- Legend (top-right) ---------- */}
+   792→                <div className="absolute right-3 top-3 z-40 sm:right-4 sm:top-4">
+   793→                  <GlassCard strong className="px-3 py-2.5">
+   794→                    <div className="mb-1.5 text-[10px] font-medium uppercase tracking-wider text-white/45">
+   795→                      Pin legend
+   796→                    </div>
+   797→                    <div className="flex flex-col gap-1.5">
+   798→                      {(Object.keys(PIN_COLORS) as PinType[]).map((t) => (
+   799→                        <div
+   800→                          key={t}
+   801→                          className="flex items-center gap-2 text-[11px] text-white/70"
+   802→                        >
+   803→                          <span
+   804→                            className="h-2 w-2 rounded-full"
+   805→                            style={{
+   806→                              background: PIN_COLORS[t],
+   807→                              boxShadow: `0 0 6px ${PIN_COLORS[t]}`,
+   808→                            }}
+   809→                          />
+   810→                          {PIN_LABELS[t]}
+   811→                        </div>
+   812→                      ))}
+   813→                    </div>
+   814→                  </GlassCard>
+   815→                </div>
+   816→
+   817→                {/* ---------- Bottom status bar ---------- */}
+   818→                <div className="absolute bottom-3 left-3 z-40 flex items-center gap-2 sm:bottom-4 sm:left-4">
+   819→                  <GlassCard className="flex items-center gap-2 px-3 py-1.5">
+   820→                    <span className="relative flex h-1.5 w-1.5">
+   821→                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan opacity-75" />
+   822→                      <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-cyan" />
+   823→                    </span>
+   824→                    <span className="text-[10px] text-white/60">
+   825→                      {visiblePins.filter((p) => !p.dim).length} of{" "}
+   826→                      {PINS.length} pins shown
+   827→                    </span>
+   828→                  </GlassCard>
+   829→                </div>
+   830→              </div>
+   831→            </div>
+   832→          </GlassCard>
+   833→        </Reveal>
+   834→      </div>
+   835→    </SectionShell>
+   836→  );
+   837→}
+   838→
+   839→/* ============================================================================
+   840→ * DEFAULT EXPORT — three stacked sections
+   841→ * ========================================================================== */
+   842→
+   843→export default function AiProcessMap() {
+   844→  return (
+   845→    <>
+   846→      <AiAssistantSection />
+   847→      <ProcessTimelineSection />
+   848→      <InteractiveMapSection />
+   849→    </>
+   850→  );
+   851→}
+   852→

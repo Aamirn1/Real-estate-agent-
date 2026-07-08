@@ -1,0 +1,1058 @@
+     1→"use client";
+     2→
+     3→import { useState } from "react";
+     4→import { motion } from "framer-motion";
+     5→import {
+     6→  LayoutDashboard,
+     7→  Users,
+     8→  Map,
+     9→  BarChart3,
+    10→  Mail,
+    11→  Phone,
+    12→  Calendar,
+    13→  FileText,
+    14→  Search,
+    15→  MapPin,
+    16→  Send,
+    17→  PhoneCall,
+    18→  Thermometer,
+    19→  TrendingUp,
+    20→  DollarSign,
+    21→  Plus,
+    22→  MoreHorizontal,
+    23→  Clock,
+    24→  CheckCircle2,
+    25→  Flame,
+    26→  Zap,
+    27→} from "lucide-react";
+    28→import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+    29→import {
+    30→  Table,
+    31→  TableHeader,
+    32→  TableBody,
+    33→  TableHead,
+    34→  TableRow,
+    35→  TableCell,
+    36→} from "@/components/ui/table";
+    37→import { Input } from "@/components/ui/input";
+    38→import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+    39→import { Progress } from "@/components/ui/progress";
+    40→import {
+    41→  AreaChart,
+    42→  Area,
+    43→  BarChart,
+    44→  Bar,
+    45→  XAxis,
+    46→  YAxis,
+    47→  Tooltip,
+    48→  ResponsiveContainer,
+    49→  CartesianGrid,
+    50→} from "recharts";
+    51→import {
+    52→  GlassCard,
+    53→  SectionHeading,
+    54→  SectionShell,
+    55→  CountUp,
+    56→} from "@/components/leadsphere/primitives";
+    57→
+    58→/* =========================================================
+    59→   Sample data
+    60→   ========================================================= */
+    61→const CRM_LEADS = [
+    62→  { name: "Sarah Mitchell", status: "Motivated Seller", score: 94, lastContact: "2h ago", value: "$890K", tone: "rose" },
+    63→  { name: "David Chen", status: "Pre-approved Buyer", score: 87, lastContact: "5h ago", value: "$1.2M", tone: "emerald" },
+    64→  { name: "Maria Rodriguez", status: "New Listing", score: 78, lastContact: "1d ago", value: "$650K", tone: "cyan" },
+    65→  { name: "James Wilson", status: "Cash Buyer", score: 91, lastContact: "3h ago", value: "$2.1M", tone: "gold" },
+    66→  { name: "Emily Thompson", status: "Divorce Sale", score: 85, lastContact: "8h ago", value: "$475K", tone: "violet" },
+    67→  { name: "Robert Garcia", status: "Relocation", score: 72, lastContact: "1d ago", value: "$920K", tone: "electric" },
+    68→] as const;
+    69→
+    70→const TONE_BADGE: Record<string, string> = {
+    71→  rose: "bg-rose-500/15 text-rose-300 border-rose-500/30",
+    72→  emerald: "bg-emerald-500/15 text-emerald-300 border-emerald-500/30",
+    73→  cyan: "bg-cyan-500/15 text-cyan-300 border-cyan-500/30",
+    74→  gold: "bg-gold/15 text-gold border-gold/30",
+    75→  violet: "bg-violet-500/15 text-violet-300 border-violet-500/30",
+    76→  electric: "bg-electric/15 text-electric border-electric/30",
+    77→};
+    78→const TONE_BAR: Record<string, string> = {
+    79→  rose: "from-rose-500 to-orange-400",
+    80→  emerald: "from-emerald-500 to-teal-400",
+    81→  cyan: "from-cyan-500 to-sky-400",
+    82→  gold: "from-gold to-amber-400",
+    83→  violet: "from-violet-500 to-fuchsia-400",
+    84→  electric: "from-electric to-cyan-400",
+    85→};
+    86→
+    87→const PIPELINE_COLUMNS = [
+    88→  {
+    89→    key: "New",
+    90→    accent: "bg-cyan",
+    91→    glow: "shadow-[0_0_18px_-2px_rgba(6,182,212,0.6)]",
+    92→    cards: [
+    93→      { name: "Linda Park", value: "$540K", initials: "LP", color: "bg-cyan/20 text-cyan-300" },
+    94→      { name: "Marcus Webb", value: "$1.05M", initials: "MW", color: "bg-electric/20 text-electric" },
+    95→      { name: "Aisha Khan", value: "$720K", initials: "AK", color: "bg-violet/20 text-violet-300" },
+    96→    ],
+    97→  },
+    98→  {
+    99→    key: "Contacted",
+   100→    accent: "bg-electric",
+   101→    glow: "shadow-[0_0_18px_-2px_rgba(59,130,246,0.6)]",
+   102→    cards: [
+   103→      { name: "Thomas Reed", value: "$880K", initials: "TR", color: "bg-electric/20 text-electric" },
+   104→      { name: "Nora Bailey", value: "$1.4M", initials: "NB", color: "bg-gold/20 text-gold" },
+   105→    ],
+   106→  },
+   107→  {
+   108→    key: "Appointment",
+   109→    accent: "bg-violet",
+   110→    glow: "shadow-[0_0_18px_-2px_rgba(139,92,246,0.6)]",
+   111→    cards: [
+   112→      { name: "Elena Cruz", value: "$2.2M", initials: "EC", color: "bg-violet/20 text-violet-300" },
+   113→      { name: "Henry Adams", value: "$675K", initials: "HA", color: "bg-emerald-500/20 text-emerald-300" },
+   114→      { name: "Priya Nair", value: "$990K", initials: "PN", color: "bg-cyan/20 text-cyan-300" },
+   115→    ],
+   116→  },
+   117→  {
+   118→    key: "Closed",
+   119→    accent: "bg-gold",
+   120→    glow: "shadow-[0_0_18px_-2px_rgba(212,175,55,0.6)]",
+   121→    cards: [
+   122→      { name: "Olivia Stone", value: "$3.1M", initials: "OS", color: "bg-gold/20 text-gold" },
+   123→      { name: "Victor Hale", value: "$1.25M", initials: "VH", color: "bg-rose-500/20 text-rose-300" },
+   124→    ],
+   125→  },
+   126→];
+   127→
+   128→const MAP_PINS = [
+   129→  { x: "18%", y: "32%", color: "#3b82f6", label: "$890K" },
+   130→  { x: "32%", y: "58%", color: "#8b5cf6", label: "$1.2M" },
+   131→  { x: "44%", y: "22%", color: "#06b6d4", label: "$540K" },
+   132→  { x: "58%", y: "44%", color: "#d4af37", label: "$2.1M" },
+   133→  { x: "66%", y: "68%", color: "#ec4899", label: "$990K" },
+   134→  { x: "74%", y: "28%", color: "#3b82f6", label: "$1.4M" },
+   135→  { x: "82%", y: "54%", color: "#06b6d4", label: "$720K" },
+   136→  { x: "26%", y: "76%", color: "#8b5cf6", label: "$650K" },
+   137→];
+   138→const MAP_CLUSTERS = [
+   139→  { x: "40%", y: "38%", count: 12, color: "rgba(59,130,246,0.85)" },
+   140→  { x: "70%", y: "48%", count: 7, color: "rgba(139,92,246,0.85)" },
+   141→];
+   142→
+   143→const LEADS_AREA_DATA = [
+   144→  { m: "Jan", v: 980 },
+   145→  { m: "Feb", v: 1240 },
+   146→  { m: "Mar", v: 1120 },
+   147→  { m: "Apr", v: 1680 },
+   148→  { m: "May", v: 2010 },
+   149→  { m: "Jun", v: 2380 },
+   150→  { m: "Jul", v: 2920 },
+   151→];
+   152→const SOURCE_BAR_DATA = [
+   153→  { name: "Referral", v: 318 },
+   154→  { name: "Zillow", v: 412 },
+   155→  { name: "Social", v: 264 },
+   156→  { name: "Direct Mail", v: 176 },
+   157→];
+   158→
+   159→const CAMPAIGNS = [
+   160→  { name: "Spring Sellers Blast", channel: "Email", progress: 78, sent: 4820, tone: "electric" },
+   161→  { name: "Open House Reminders", channel: "SMS", progress: 92, sent: 1240, tone: "violet" },
+   162→  { name: "Buyer Nurture Sequence", channel: "Email", progress: 54, sent: 3110, tone: "cyan" },
+   163→] as const;
+   164→
+   165→const RECENT_CALLS = [
+   166→  { name: "Diane Foster", number: "+1 (415) 555-0148", status: "Connected", time: "2m ago", tone: "emerald" },
+   167→  { name: "Patrick Lee", number: "+1 (415) 555-0192", status: "Voicemail", time: "8m ago", tone: "cyan" },
+   168→  { name: "Grace Kim", number: "+1 (415) 555-0173", status: "Connected", time: "14m ago", tone: "emerald" },
+   169→  { name: "Marcus Bell", number: "+1 (415) 555-0166", status: "No Answer", time: "21m ago", tone: "rose" },
+   170→];
+   171→
+   172→const NAV_ITEMS = [
+   173→  { icon: LayoutDashboard, label: "Dashboard", active: true },
+   174→  { icon: Users, label: "CRM" },
+   175→  { icon: Map, label: "Lead Map" },
+   176→  { icon: BarChart3, label: "Analytics" },
+   177→  { icon: Mail, label: "Marketing" },
+   178→  { icon: Phone, label: "Dialer" },
+   179→  { icon: Calendar, label: "Calendar" },
+   180→  { icon: FileText, label: "Reports" },
+   181→];
+   182→
+   183→/* =========================================================
+   184→   Small subcomponents
+   185→   ========================================================= */
+   186→function KpiTile({
+   187→  icon: Icon,
+   188→  label,
+   189→  value,
+   190→  suffix,
+   191→  prefix,
+   192→  accent,
+   193→}: {
+   194→  icon: React.ElementType;
+   195→  label: string;
+   196→  value: number;
+   197→  suffix?: string;
+   198→  prefix?: string;
+   199→  accent: string;
+   200→}) {
+   201→  return (
+   202→    <GlassCard className="flex items-center gap-3 p-4">
+   203→      <div
+   204→        className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ${accent}`}
+   205→      >
+   206→        <Icon className="h-5 w-5" />
+   207→      </div>
+   208→      <div className="min-w-0">
+   209→        <div className="text-[11px] uppercase tracking-wider text-white/45">
+   210→          {label}
+   211→        </div>
+   212→        <div className="font-heading text-xl font-semibold tnum text-white">
+   213→          <CountUp value={value} prefix={prefix} suffix={suffix} />
+   214→        </div>
+   215→      </div>
+   216→    </GlassCard>
+   217→  );
+   218→}
+   219→
+   220→function SidebarIcon({
+   221→  icon: Icon,
+   222→  label,
+   223→  active,
+   224→}: {
+   225→  icon: React.ElementType;
+   226→  label: string;
+   227→  active?: boolean;
+   228→}) {
+   229→  return (
+   230→    <button
+   231→      aria-label={label}
+   232→      className={`group relative flex h-10 w-10 items-center justify-center rounded-xl transition-all ${
+   233→        active
+   234→          ? "bg-electric text-white shadow-[0_0_18px_-2px_rgba(59,130,246,0.7)]"
+   235→          : "text-white/45 hover:bg-white/5 hover:text-white"
+   236→      }`}
+   237→    >
+   238→      <Icon className="h-[18px] w-[18px]" />
+   239→      <span className="pointer-events-none absolute left-12 z-50 hidden whitespace-nowrap rounded-md border border-white/10 bg-graphite/95 px-2 py-1 text-xs text-white shadow-lg group-hover:block">
+   240→        {label}
+   241→      </span>
+   242→    </button>
+   243→  );
+   244→}
+   245→
+   246→/* =========================================================
+   247→   Tab content panels
+   248→   ========================================================= */
+   249→function CrmPanel() {
+   250→  const [query, setQuery] = useState("");
+   251→  const filtered = CRM_LEADS.filter((l) =>
+   252→    l.name.toLowerCase().includes(query.toLowerCase())
+   253→  );
+   254→  return (
+   255→    <div className="flex h-full flex-col gap-4">
+   256→      <div className="flex flex-wrap items-center justify-between gap-3">
+   257→        <div>
+   258→          <h3 className="font-heading text-lg font-semibold text-white">
+   259→            Lead Inbox
+   260→          </h3>
+   261→          <p className="text-xs text-white/45">
+   262→            {filtered.length} leads · sorted by score
+   263→          </p>
+   264→        </div>
+   265→        <div className="relative w-full sm:w-72">
+   266→          <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-white/40" />
+   267→          <Input
+   268→            value={query}
+   269→            onChange={(e) => setQuery(e.target.value)}
+   270→            placeholder="Search leads..."
+   271→            className="h-9 border-white/10 bg-white/5 pl-9 text-sm text-white placeholder:text-white/40 focus-visible:border-electric/50"
+   272→          />
+   273→        </div>
+   274→      </div>
+   275→
+   276→      <div className="overflow-x-auto scroll-thin rounded-xl border border-white/8">
+   277→        <Table>
+   278→          <TableHeader>
+   279→            <TableRow className="border-white/8 hover:bg-transparent">
+   280→              <TableHead className="text-white/45 text-xs uppercase tracking-wider">Name</TableHead>
+   281→              <TableHead className="text-white/45 text-xs uppercase tracking-wider">Status</TableHead>
+   282→              <TableHead className="text-white/45 text-xs uppercase tracking-wider">Score</TableHead>
+   283→              <TableHead className="text-white/45 text-xs uppercase tracking-wider">Last Contact</TableHead>
+   284→              <TableHead className="text-white/45 text-xs uppercase tracking-wider text-right">Value</TableHead>
+   285→            </TableRow>
+   286→          </TableHeader>
+   287→          <TableBody>
+   288→            {filtered.map((lead) => (
+   289→              <TableRow
+   290→                key={lead.name}
+   291→                className="border-white/8 transition-colors hover:bg-white/[0.03] data-[state=selected]:bg-white/5"
+   292→              >
+   293→                <TableCell className="py-3">
+   294→                  <div className="flex items-center gap-3">
+   295→                    <Avatar className="h-8 w-8 border border-white/10">
+   296→                      <AvatarFallback className="bg-white/5 text-[11px] text-white/70">
+   297→                        {lead.name.split(" ").map((n) => n[0]).join("")}
+   298→                      </AvatarFallback>
+   299→                    </Avatar>
+   300→                    <span className="text-sm font-medium text-white">
+   301→                      {lead.name}
+   302→                    </span>
+   303→                  </div>
+   304→                </TableCell>
+   305→                <TableCell>
+   306→                  <span
+   307→                    className={`inline-flex items-center rounded-full border px-2 py-0.5 text-[11px] font-medium ${TONE_BADGE[lead.tone]}`}
+   308→                  >
+   309→                    {lead.status}
+   310→                  </span>
+   311→                </TableCell>
+   312→                <TableCell>
+   313→                  <div className="flex items-center gap-2">
+   314→                    <div className="h-1.5 w-20 overflow-hidden rounded-full bg-white/10">
+   315→                      <div
+   316→                        className={`h-full rounded-full bg-gradient-to-r ${TONE_BAR[lead.tone]}`}
+   317→                        style={{ width: `${lead.score}%` }}
+   318→                      />
+   319→                    </div>
+   320→                    <span className="tnum text-xs font-semibold text-white/80">
+   321→                      {lead.score}
+   322→                    </span>
+   323→                  </div>
+   324→                </TableCell>
+   325→                <TableCell className="text-xs text-white/55">{lead.lastContact}</TableCell>
+   326→                <TableCell className="tnum text-right text-sm font-semibold text-white">
+   327→                  {lead.value}
+   328→                </TableCell>
+   329→              </TableRow>
+   330→            ))}
+   331→          </TableBody>
+   332→        </Table>
+   333→      </div>
+   334→    </div>
+   335→  );
+   336→}
+   337→
+   338→function PipelinePanel() {
+   339→  return (
+   340→    <div className="flex h-full flex-col gap-4">
+   341→      <div className="flex items-center justify-between">
+   342→        <div>
+   343→          <h3 className="font-heading text-lg font-semibold text-white">
+   344→            Sales Pipeline
+   345→          </h3>
+   346→          <p className="text-xs text-white/45">10 active deals · $19.4M in pipeline</p>
+   347→        </div>
+   348→        <button className="inline-flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-medium text-white/80 transition-colors hover:bg-white/10">
+   349→          <Plus className="h-3.5 w-3.5" /> Add deal
+   350→        </button>
+   351→      </div>
+   352→
+   353→      <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
+   354→        {PIPELINE_COLUMNS.map((col) => (
+   355→          <div
+   356→            key={col.key}
+   357→            className="flex flex-col overflow-hidden rounded-xl border border-white/8 bg-white/[0.02]"
+   358→          >
+   359→            <div className={`h-1 w-full ${col.accent} ${col.glow}`} />
+   360→            <div className="flex items-center justify-between px-3 py-2.5">
+   361→              <span className="text-xs font-semibold uppercase tracking-wider text-white/70">
+   362→                {col.key}
+   363→              </span>
+   364→              <span className="rounded-full bg-white/5 px-2 py-0.5 text-[10px] tnum text-white/55">
+   365→                {col.cards.length}
+   366→              </span>
+   367→            </div>
+   368→            <div className="flex flex-col gap-2 px-2 pb-2">
+   369→              {col.cards.map((c) => (
+   370→                <motion.div
+   371→                  key={c.name}
+   372→                  whileHover={{ y: -2 }}
+   373→                  className="group cursor-pointer rounded-lg border border-white/8 bg-graphite/60 p-3 transition-colors hover:border-white/20"
+   374→                >
+   375→                  <div className="mb-2 flex items-center gap-2">
+   376→                    <div
+   377→                      className={`flex h-7 w-7 items-center justify-center rounded-full text-[10px] font-semibold ${c.color}`}
+   378→                    >
+   379→                      {c.initials}
+   380→                    </div>
+   381→                    <span className="truncate text-xs font-medium text-white">
+   382→                      {c.name}
+   383→                    </span>
+   384→                  </div>
+   385→                  <div className="flex items-center justify-between">
+   386→                    <span className="tnum text-sm font-semibold text-white">
+   387→                      {c.value}
+   388→                    </span>
+   389→                    <MoreHorizontal className="h-3.5 w-3.5 text-white/30 opacity-0 transition-opacity group-hover:opacity-100" />
+   390→                  </div>
+   391→                </motion.div>
+   392→              ))}
+   393→            </div>
+   394→          </div>
+   395→        ))}
+   396→      </div>
+   397→    </div>
+   398→  );
+   399→}
+   400→
+   401→function LeadMapPanel() {
+   402→  const [heatmap, setHeatmap] = useState(false);
+   403→  return (
+   404→    <div className="flex h-full flex-col gap-4">
+   405→      <div className="flex flex-wrap items-center justify-between gap-3">
+   406→        <div>
+   407→          <h3 className="font-heading text-lg font-semibold text-white">
+   408→            Lead Heat Map
+   409→          </h3>
+   410→          <p className="text-xs text-white/45">Bay Area · 8 active properties</p>
+   411→        </div>
+   412→        <button
+   413→          onClick={() => setHeatmap((v) => !v)}
+   414→          className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-medium transition-all ${
+   415→            heatmap
+   416→              ? "border-rose-500/40 bg-rose-500/15 text-rose-300"
+   417→              : "border-white/10 bg-white/5 text-white/70"
+   418→          }`}
+   419→        >
+   420→          <Thermometer className="h-3.5 w-3.5" /> Heatmap
+   421→        </button>
+   422→      </div>
+   423→
+   424→      <div className="relative h-full min-h-[280px] overflow-hidden rounded-xl border border-white/8 bg-[#070709]">
+   425→        {/* Grid background */}
+   426→        <div className="absolute inset-0 bg-grid opacity-60" />
+   427→        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.08),transparent_70%)]" />
+   428→
+   429→        {/* Heatmap blobs */}
+   430→        {heatmap && (
+   431→          <>
+   432→            <div className="absolute left-[35%] top-[30%] h-40 w-40 -translate-x-1/2 -translate-y-1/2 rounded-full bg-rose-500/30 blur-3xl" />
+   433→            <div className="absolute left-[68%] top-[55%] h-44 w-44 -translate-x-1/2 -translate-y-1/2 rounded-full bg-orange-500/25 blur-3xl" />
+   434→            <div className="absolute left-[22%] top-[65%] h-32 w-32 -translate-x-1/2 -translate-y-1/2 rounded-full bg-electric/25 blur-3xl" />
+   435→          </>
+   436→        )}
+   437→
+   438→        {/* Pins */}
+   439→        {MAP_PINS.map((pin, i) => (
+   440→          <motion.div
+   441→            key={i}
+   442→            initial={{ opacity: 0, scale: 0 }}
+   443→            animate={{ opacity: 1, scale: 1 }}
+   444→            transition={{ delay: i * 0.06, type: "spring", stiffness: 200 }}
+   445→            className="group absolute -translate-x-1/2 -translate-y-full"
+   446→            style={{ left: pin.x, top: pin.y }}
+   447→          >
+   448→            <div className="relative">
+   449→              <div
+   450→                className="absolute inset-0 rounded-full blur-md"
+   451→                style={{ background: pin.color, opacity: 0.6 }}
+   452→              />
+   453→              <MapPin
+   454→                className="relative h-6 w-6 drop-shadow-lg"
+   455→                style={{ color: pin.color, fill: pin.color }}
+   456→              />
+   457→              <span className="pointer-events-none absolute left-1/2 top-[-22px] -translate-x-1/2 whitespace-nowrap rounded-md border border-white/10 bg-graphite/95 px-1.5 py-0.5 text-[10px] font-semibold text-white opacity-0 transition-opacity group-hover:opacity-100">
+   458→                {pin.label}
+   459→              </span>
+   460→            </div>
+   461→          </motion.div>
+   462→        ))}
+   463→
+   464→        {/* Cluster circles */}
+   465→        {MAP_CLUSTERS.map((c, i) => (
+   466→          <div
+   467→            key={i}
+   468→            className="absolute flex -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full text-[11px] font-bold text-white ring-2 ring-white/20"
+   469→            style={{
+   470→              left: c.x,
+   471→              top: c.y,
+   472→              width: 36,
+   473→              height: 36,
+   474→              background: c.color,
+   475→              boxShadow: `0 0 24px -4px ${c.color}`,
+   476→            }}
+   477→          >
+   478→            {c.count}
+   479→          </div>
+   480→        ))}
+   481→
+   482→        {/* Legend */}
+   483→        <div className="absolute bottom-3 left-3 flex flex-wrap items-center gap-3 rounded-lg border border-white/10 bg-graphite/80 px-3 py-2 backdrop-blur">
+   484→          <div className="flex items-center gap-1.5">
+   485→            <span className="h-2 w-2 rounded-full bg-electric" />
+   486→            <span className="text-[10px] text-white/60">Buyer</span>
+   487→          </div>
+   488→          <div className="flex items-center gap-1.5">
+   489→            <span className="h-2 w-2 rounded-full bg-violet" />
+   490→            <span className="text-[10px] text-white/60">Seller</span>
+   491→          </div>
+   492→          <div className="flex items-center gap-1.5">
+   493→            <span className="h-2 w-2 rounded-full bg-gold" />
+   494→            <span className="text-[10px] text-white/60">High Value</span>
+   495→          </div>
+   496→          <div className="flex items-center gap-1.5">
+   497→            <span className="h-2 w-2 rounded-full bg-cyan" />
+   498→            <span className="text-[10px] text-white/60">New Lead</span>
+   499→          </div>
+   500→        </div>
+   501→      </div>
+   502→    </div>
+   503→  );
+   504→}
+   505→
+   506→function AnalyticsPanel() {
+   507→  return (
+   508→    <div className="flex h-full flex-col gap-4">
+   509→      <div>
+   510→        <h3 className="font-heading text-lg font-semibold text-white">
+   511→          Performance Analytics
+   512→        </h3>
+   513→        <p className="text-xs text-white/45">Last 7 months · updated 3m ago</p>
+   514→      </div>
+   515→
+   516→      <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+   517→        <KpiTile
+   518→          icon={Users}
+   519→          label="Total Leads"
+   520→          value={12840}
+   521→          accent="bg-electric/15 text-electric"
+   522→        />
+   523→        <KpiTile
+   524→          icon={TrendingUp}
+   525→          label="Conversion"
+   526→          value={92}
+   527→          suffix="%"
+   528→          accent="bg-emerald-500/15 text-emerald-300"
+   529→        />
+   530→        <KpiTile
+   531→          icon={DollarSign}
+   532→          label="Revenue"
+   533→          value={4.2}
+   534→          prefix="$"
+   535→          suffix="M"
+   536→          accent="bg-gold/15 text-gold"
+   537→        />
+   538→      </div>
+   539→
+   540→      <div className="grid grid-cols-1 gap-3 lg:grid-cols-5">
+   541→        <GlassCard className="p-4 lg:col-span-3">
+   542→          <div className="mb-3 flex items-center justify-between">
+   543→            <div>
+   544→              <h4 className="text-sm font-semibold text-white">Leads Generated</h4>
+   545→              <p className="text-[11px] text-white/45">Monthly trend</p>
+   546→            </div>
+   547→            <span className="inline-flex items-center gap-1 rounded-full bg-emerald-500/10 px-2 py-0.5 text-[11px] font-medium text-emerald-300">
+   548→              <TrendingUp className="h-3 w-3" /> +28%
+   549→            </span>
+   550→          </div>
+   551→          <div className="h-44 w-full">
+   552→            <ResponsiveContainer width="100%" height="100%">
+   553→              <AreaChart data={LEADS_AREA_DATA} margin={{ top: 5, right: 5, left: -20, bottom: 0 }}>
+   554→                <defs>
+   555→                  <linearGradient id="leadFill" x1="0" y1="0" x2="0" y2="1">
+   556→                    <stop offset="0%" stopColor="#3b82f6" stopOpacity={0.55} />
+   557→                    <stop offset="50%" stopColor="#8b5cf6" stopOpacity={0.3} />
+   558→                    <stop offset="100%" stopColor="#3b82f6" stopOpacity={0} />
+   559→                  </linearGradient>
+   560→                  <linearGradient id="leadStroke" x1="0" y1="0" x2="1" y2="0">
+   561→                    <stop offset="0%" stopColor="#3b82f6" />
+   562→                    <stop offset="100%" stopColor="#8b5cf6" />
+   563→                  </linearGradient>
+   564→                </defs>
+   565→                <CartesianGrid stroke="rgba(255,255,255,0.06)" vertical={false} />
+   566→                <XAxis
+   567→                  dataKey="m"
+   568→                  tick={{ fill: "rgba(255,255,255,0.4)", fontSize: 11 }}
+   569→                  axisLine={{ stroke: "rgba(255,255,255,0.08)" }}
+   570→                  tickLine={false}
+   571→                />
+   572→                <YAxis
+   573→                  tick={{ fill: "rgba(255,255,255,0.4)", fontSize: 11 }}
+   574→                  axisLine={false}
+   575→                  tickLine={false}
+   576→                />
+   577→                <Tooltip
+   578→                  cursor={{ stroke: "rgba(255,255,255,0.15)" }}
+   579→                  contentStyle={{
+   580→                    background: "rgba(13,13,16,0.95)",
+   581→                    border: "1px solid rgba(255,255,255,0.1)",
+   582→                    borderRadius: 10,
+   583→                    fontSize: 12,
+   584→                    color: "#fff",
+   585→                  }}
+   586→                  labelStyle={{ color: "rgba(255,255,255,0.6)" }}
+   587→                />
+   588→                <Area
+   589→                  type="monotone"
+   590→                  dataKey="v"
+   591→                  stroke="url(#leadStroke)"
+   592→                  strokeWidth={2.5}
+   593→                  fill="url(#leadFill)"
+   594→                  activeDot={{ r: 4, fill: "#8b5cf6", stroke: "#fff", strokeWidth: 2 }}
+   595→                />
+   596→              </AreaChart>
+   597→            </ResponsiveContainer>
+   598→          </div>
+   599→        </GlassCard>
+   600→
+   601→        <GlassCard className="p-4 lg:col-span-2">
+   602→          <div className="mb-3">
+   603→            <h4 className="text-sm font-semibold text-white">Conversions by Source</h4>
+   604→            <p className="text-[11px] text-white/45">This quarter</p>
+   605→          </div>
+   606→          <div className="h-44 w-full">
+   607→            <ResponsiveContainer width="100%" height="100%">
+   608→              <BarChart data={SOURCE_BAR_DATA} margin={{ top: 5, right: 5, left: -20, bottom: 0 }}>
+   609→                <defs>
+   610→                  <linearGradient id="barFill" x1="0" y1="0" x2="0" y2="1">
+   611→                    <stop offset="0%" stopColor="#8b5cf6" />
+   612→                    <stop offset="100%" stopColor="#3b82f6" stopOpacity={0.5} />
+   613→                  </linearGradient>
+   614→                </defs>
+   615→                <CartesianGrid stroke="rgba(255,255,255,0.06)" vertical={false} />
+   616→                <XAxis
+   617→                  dataKey="name"
+   618→                  tick={{ fill: "rgba(255,255,255,0.4)", fontSize: 11 }}
+   619→                  axisLine={{ stroke: "rgba(255,255,255,0.08)" }}
+   620→                  tickLine={false}
+   621→                  interval={0}
+   622→                />
+   623→                <YAxis
+   624→                  tick={{ fill: "rgba(255,255,255,0.4)", fontSize: 11 }}
+   625→                  axisLine={false}
+   626→                  tickLine={false}
+   627→                />
+   628→                <Tooltip
+   629→                  cursor={{ fill: "rgba(255,255,255,0.04)" }}
+   630→                  contentStyle={{
+   631→                    background: "rgba(13,13,16,0.95)",
+   632→                    border: "1px solid rgba(255,255,255,0.1)",
+   633→                    borderRadius: 10,
+   634→                    fontSize: 12,
+   635→                    color: "#fff",
+   636→                  }}
+   637→                  labelStyle={{ color: "rgba(255,255,255,0.6)" }}
+   638→                />
+   639→                <Bar dataKey="v" fill="url(#barFill)" radius={[6, 6, 0, 0]} maxBarSize={48} />
+   640→              </BarChart>
+   641→            </ResponsiveContainer>
+   642→          </div>
+   643→        </GlassCard>
+   644→      </div>
+   645→    </div>
+   646→  );
+   647→}
+   648→
+   649→function MarketingPanel() {
+   650→  return (
+   651→    <div className="grid h-full grid-cols-1 gap-4 lg:grid-cols-2">
+   652→      {/* Left: campaigns */}
+   653→      <div className="flex flex-col gap-3">
+   654→        <div className="flex items-center justify-between">
+   655→          <h3 className="font-heading text-lg font-semibold text-white">
+   656→            Active Campaigns
+   657→          </h3>
+   658→          <button className="inline-flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-medium text-white/80 transition-colors hover:bg-white/10">
+   659→            <Plus className="h-3.5 w-3.5" /> New
+   660→          </button>
+   661→        </div>
+   662→
+   663→        <div className="flex flex-col gap-3">
+   664→          {CAMPAIGNS.map((c) => (
+   665→            <motion.div
+   666→              key={c.name}
+   667→              whileHover={{ y: -2 }}
+   668→              className="rounded-xl border border-white/8 bg-white/[0.02] p-4 transition-colors hover:border-white/20"
+   669→            >
+   670→              <div className="mb-3 flex items-start justify-between gap-2">
+   671→                <div>
+   672→                  <div className="text-sm font-semibold text-white">{c.name}</div>
+   673→                  <div className="mt-1 flex items-center gap-2">
+   674→                    <span
+   675→                      className={`inline-flex items-center gap-1 rounded-md border px-1.5 py-0.5 text-[10px] font-medium ${
+   676→                        c.channel === "Email"
+   677→                          ? "border-electric/30 bg-electric/10 text-electric"
+   678→                          : "border-violet/30 bg-violet/10 text-violet-300"
+   679→                      }`}
+   680→                    >
+   681→                      {c.channel === "Email" ? <Mail className="h-2.5 w-2.5" /> : <Phone className="h-2.5 w-2.5" />}
+   682→                      {c.channel}
+   683→                    </span>
+   684→                    <span className="tnum text-[11px] text-white/45">
+   685→                      {c.sent.toLocaleString()} sent
+   686→                    </span>
+   687→                  </div>
+   688→                </div>
+   689→                <span className="tnum text-xs font-semibold text-white/80">
+   690→                  {c.progress}%
+   691→                </span>
+   692→              </div>
+   693→              <Progress
+   694→                value={c.progress}
+   695→                className="h-1.5 bg-white/10"
+   696→              />
+   697→            </motion.div>
+   698→          ))}
+   699→        </div>
+   700→      </div>
+   701→
+   702→      {/* Right: email preview */}
+   703→      <div className="flex flex-col gap-3">
+   704→        <h3 className="font-heading text-lg font-semibold text-white">
+   705→          Email Preview
+   706→        </h3>
+   707→        <GlassCard strong className="flex flex-1 flex-col p-4">
+   708→          <div className="mb-3 flex items-center gap-2 border-b border-white/8 pb-3">
+   709→            <Avatar className="h-8 w-8 border border-white/10">
+   710→              <AvatarFallback className="bg-electric/15 text-[11px] font-semibold text-electric">
+   711→                LS
+   712→              </AvatarFallback>
+   713→            </Avatar>
+   714→            <div className="min-w-0">
+   715→              <div className="text-xs font-semibold text-white">LeadSphere AI</div>
+   716→              <div className="truncate text-[11px] text-white/45">noreply@leadsphere.ai</div>
+   717→            </div>
+   718→            <span className="ml-auto rounded-md bg-white/5 px-2 py-0.5 text-[10px] text-white/45">
+   719→              Draft
+   720→            </span>
+   721→          </div>
+   722→
+   723→          <div className="mb-2">
+   724→            <div className="text-[10px] uppercase tracking-wider text-white/40">
+   725→              Subject
+   726→            </div>
+   727→            <div className="text-sm font-semibold text-white">
+   728→              Your home valuation is ready, Sarah 🏡
+   729→            </div>
+   730→          </div>
+   731→
+   732→          <div className="mt-1 flex-1 overflow-y-auto scroll-thin text-[13px] leading-relaxed text-white/65">
+   733→            <p>Hi Sarah,</p>
+   734→            <p className="mt-2">
+   735→              Based on recent comparable sales in your neighborhood, your
+   736→              property at <span className="text-white/85">248 Maple Ridge Dr</span> is
+   737→              now estimated at <span className="font-semibold text-white">$890,000</span> —
+   738→              up <span className="text-emerald-300">4.2%</span> in the last quarter.
+   739→            </p>
+   740→            <p className="mt-2">
+   741→              Motivated buyers are actively searching in your zone. Want to see
+   742→              the full report and schedule a call?
+   743→            </p>
+   744→            <p className="mt-3 text-white/45">— The LeadSphere Team</p>
+   745→          </div>
+   746→
+   747→          <button className="mt-4 inline-flex items-center justify-center gap-2 rounded-lg bg-electric px-4 py-2.5 text-sm font-semibold text-white shadow-[0_0_24px_-6px_rgba(59,130,246,0.8)] transition-all hover:bg-electric/90 hover:shadow-[0_0_30px_-4px_rgba(59,130,246,0.9)]">
+   748→            <Send className="h-4 w-4" /> Send Campaign
+   749→          </button>
+   750→        </GlassCard>
+   751→      </div>
+   752→    </div>
+   753→  );
+   754→}
+   755→
+   756→function DialerPanel() {
+   757→  return (
+   758→    <div className="grid h-full grid-cols-1 gap-4 lg:grid-cols-5">
+   759→      {/* Center: contact + call */}
+   760→      <GlassCard strong className="flex flex-col items-center justify-center gap-5 p-6 lg:col-span-2">
+   761→        <div className="text-center">
+   762→          <div className="text-[11px] uppercase tracking-wider text-white/40">
+   763→            Now dialing
+   764→          </div>
+   765→        </div>
+   766→
+   767→        <div className="relative">
+   768→          {/* Pulse rings */}
+   769→          <span className="absolute inset-0 rounded-full bg-emerald-500/40 animate-pulse-ring" />
+   770→          <span className="absolute inset-0 rounded-full bg-emerald-500/30 animate-pulse-ring" style={{ animationDelay: "1.2s" }} />
+   771→          <Avatar className="relative h-20 w-20 border-2 border-emerald-400/40 shadow-[0_0_30px_-4px_rgba(16,185,129,0.6)]">
+   772→            <AvatarFallback className="bg-emerald-500/15 text-lg font-semibold text-emerald-300">
+   773→              JR
+   774→            </AvatarFallback>
+   775→          </Avatar>
+   776→        </div>
+   777→
+   778→        <div className="text-center">
+   779→          <div className="font-heading text-xl font-semibold text-white">
+   780→            John Reynolds
+   781→          </div>
+   782→          <div className="tnum mt-1 text-sm text-white/55">+1 (415) 555-0182</div>
+   783→          <div className="mt-3 inline-flex items-center gap-1.5 rounded-full border border-gold/30 bg-gold/10 px-3 py-1 text-xs font-semibold text-gold">
+   784→            <Flame className="h-3 w-3" /> Property $1.45M
+   785→          </div>
+   786→        </div>
+   787→
+   788→        <button
+   789→          aria-label="Start call"
+   790→          className="relative flex h-16 w-16 items-center justify-center rounded-full bg-emerald-500 text-white shadow-[0_0_36px_-4px_rgba(16,185,129,0.8)] transition-transform hover:scale-105 active:scale-95"
+   791→        >
+   792→          <PhoneCall className="h-7 w-7" />
+   793→        </button>
+   794→
+   795→        <div className="grid w-full grid-cols-3 gap-2 border-t border-white/8 pt-4">
+   796→          <div className="text-center">
+   797→            <div className="tnum font-heading text-lg font-semibold text-white">47</div>
+   798→            <div className="text-[10px] uppercase tracking-wider text-white/40">Calls</div>
+   799→          </div>
+   800→          <div className="text-center">
+   801→            <div className="tnum font-heading text-lg font-semibold text-emerald-300">31</div>
+   802→            <div className="text-[10px] uppercase tracking-wider text-white/40">Connected</div>
+   803→          </div>
+   804→          <div className="text-center">
+   805→            <div className="tnum font-heading text-lg font-semibold text-white">4:22</div>
+   806→            <div className="text-[10px] uppercase tracking-wider text-white/40">Avg</div>
+   807→          </div>
+   808→        </div>
+   809→      </GlassCard>
+   810→
+   811→      {/* Right: recent calls */}
+   812→      <div className="flex flex-col gap-3 lg:col-span-3">
+   813→        <div className="flex items-center justify-between">
+   814→          <h3 className="font-heading text-lg font-semibold text-white">
+   815→            Recent Calls
+   816→          </h3>
+   817→          <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/10 px-2.5 py-1 text-[11px] font-medium text-emerald-300">
+   818→            <Zap className="h-3 w-3" /> Power dialer on
+   819→          </span>
+   820→        </div>
+   821→
+   822→        <div className="flex flex-col gap-2">
+   823→          {RECENT_CALLS.map((call) => (
+   824→            <motion.div
+   825→              key={call.name}
+   826→              whileHover={{ x: 2 }}
+   827→              className="flex items-center gap-3 rounded-xl border border-white/8 bg-white/[0.02] p-3 transition-colors hover:border-white/20"
+   828→            >
+   829→              <Avatar className="h-9 w-9 border border-white/10">
+   830→                <AvatarFallback className="bg-white/5 text-[11px] text-white/70">
+   831→                  {call.name.split(" ").map((n) => n[0]).join("")}
+   832→                </AvatarFallback>
+   833→              </Avatar>
+   834→              <div className="min-w-0 flex-1">
+   835→                <div className="text-sm font-medium text-white">{call.name}</div>
+   836→                <div className="tnum text-[11px] text-white/45">{call.number}</div>
+   837→              </div>
+   838→              <div className="flex flex-col items-end gap-1">
+   839→                <span
+   840→                  className={`inline-flex items-center gap-1 rounded-md px-1.5 py-0.5 text-[10px] font-medium ${
+   841→                    call.tone === "emerald"
+   842→                      ? "bg-emerald-500/15 text-emerald-300"
+   843→                      : call.tone === "cyan"
+   844→                      ? "bg-cyan-500/15 text-cyan-300"
+   845→                      : "bg-rose-500/15 text-rose-300"
+   846→                  }`}
+   847→                >
+   848→                  {call.tone === "emerald" && <CheckCircle2 className="h-2.5 w-2.5" />}
+   849→                  {call.status}
+   850→                </span>
+   851→                <span className="flex items-center gap-1 text-[10px] text-white/40">
+   852→                  <Clock className="h-2.5 w-2.5" /> {call.time}
+   853→                </span>
+   854→              </div>
+   855→            </motion.div>
+   856→          ))}
+   857→        </div>
+   858→
+   859→        <div className="mt-auto rounded-xl border border-white/8 bg-gradient-to-r from-electric/10 to-violet/10 p-3">
+   860→          <div className="flex items-center justify-between">
+   861→            <div>
+   862→              <div className="text-xs font-semibold text-white">Next in queue</div>
+   863→              <div className="text-[11px] text-white/55">Diane Foster · motivated seller</div>
+   864→            </div>
+   865→            <button className="rounded-lg bg-white/10 px-3 py-1.5 text-xs font-medium text-white transition-colors hover:bg-white/20">
+   866→              Skip
+   867→            </button>
+   868→          </div>
+   869→        </div>
+   870→      </div>
+   871→    </div>
+   872→  );
+   873→}
+   874→
+   875→/* =========================================================
+   876→   Main component
+   877→   ========================================================= */
+   878→export default function InteractiveDemo() {
+   879→  const [tab, setTab] = useState("crm");
+   880→
+   881→  return (
+   882→    <SectionShell id="demo">
+   883→      <SectionHeading
+   884→        eyebrow="Live Demo"
+   885→        title="Explore the platform"
+   886→        description="A real, interactive preview of the LeadSphere dashboard."
+   887→      />
+   888→
+   889→      <motion.div
+   890→        initial={{ opacity: 0, y: 24 }}
+   891→        whileInView={{ opacity: 1, y: 0 }}
+   892→        viewport={{ once: true, margin: "-10% 0px" }}
+   893→        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+   894→        className="mt-12"
+   895→      >
+   896→        <GlassCard
+   897→          strong
+   898→          sheen
+   899→          className="overflow-hidden rounded-3xl p-0 shadow-[0_30px_120px_-30px_rgba(59,130,246,0.35)]"
+   900→        >
+   901→          {/* Browser / app top bar */}
+   902→          <div className="flex items-center gap-3 border-b border-white/8 bg-white/[0.02] px-4 py-3">
+   903→            <div className="flex items-center gap-1.5">
+   904→              <span className="h-3 w-3 rounded-full bg-[#ff5f57]" />
+   905→              <span className="h-3 w-3 rounded-full bg-[#febc2e]" />
+   906→              <span className="h-3 w-3 rounded-full bg-[#28c840]" />
+   907→            </div>
+   908→            <div className="mx-auto flex items-center gap-2 rounded-lg border border-white/8 bg-graphite/60 px-3 py-1 text-xs text-white/55">
+   909→              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+   910→              <span className="tnum">app.leadsphere.ai/dashboard</span>
+   911→            </div>
+   912→            <Avatar className="h-7 w-7 border border-white/10">
+   913→              <AvatarFallback className="bg-gradient-to-br from-electric to-violet text-[10px] font-semibold text-white">
+   914→                AK
+   915→              </AvatarFallback>
+   916→            </Avatar>
+   917→          </div>
+   918→
+   919→          {/* Body: sidebar + content */}
+   920→          <div className="flex">
+   921→            {/* Sidebar (md+) */}
+   922→            <aside className="hidden md:flex w-16 shrink-0 flex-col items-center gap-1.5 border-r border-white/8 bg-graphite/40 py-4">
+   923→              {NAV_ITEMS.map((item) => (
+   924→                <SidebarIcon
+   925→                  key={item.label}
+   926→                  icon={item.icon}
+   927→                  label={item.label}
+   928→                  active={item.active}
+   929→                />
+   930→              ))}
+   931→            </aside>
+   932→
+   933→            {/* Main content */}
+   934→            <div className="flex min-w-0 flex-1 flex-col">
+   935→              <Tabs
+   936→                value={tab}
+   937→                onValueChange={setTab}
+   938→                defaultValue="crm"
+   939→                className="flex flex-1 flex-col gap-0"
+   940→              >
+   941→                {/* Horizontal tab bar */}
+   942→                <div className="border-b border-white/8 px-3 py-2 overflow-x-auto no-scrollbar">
+   943→                  <TabsList className="h-9 w-full justify-start gap-1 rounded-lg border border-white/8 bg-graphite/50 p-1 sm:w-auto">
+   944→                    <TabsTrigger
+   945→                      value="crm"
+   946→                      className="data-[state=active]:bg-electric data-[state=active]:text-white data-[state=active]:shadow-[0_0_16px_-4px_rgba(59,130,246,0.8)] text-white/55"
+   947→                    >
+   948→                      CRM
+   949→                    </TabsTrigger>
+   950→                    <TabsTrigger
+   951→                      value="pipeline"
+   952→                      className="data-[state=active]:bg-electric data-[state=active]:text-white data-[state=active]:shadow-[0_0_16px_-4px_rgba(59,130,246,0.8)] text-white/55"
+   953→                    >
+   954→                      Pipeline
+   955→                    </TabsTrigger>
+   956→                    <TabsTrigger
+   957→                      value="map"
+   958→                      className="data-[state=active]:bg-electric data-[state=active]:text-white data-[state=active]:shadow-[0_0_16px_-4px_rgba(59,130,246,0.8)] text-white/55"
+   959→                    >
+   960→                      Lead Map
+   961→                    </TabsTrigger>
+   962→                    <TabsTrigger
+   963→                      value="analytics"
+   964→                      className="data-[state=active]:bg-electric data-[state=active]:text-white data-[state=active]:shadow-[0_0_16px_-4px_rgba(59,130,246,0.8)] text-white/55"
+   965→                    >
+   966→                      Analytics
+   967→                    </TabsTrigger>
+   968→                    <TabsTrigger
+   969→                      value="marketing"
+   970→                      className="data-[state=active]:bg-electric data-[state=active]:text-white data-[state=active]:shadow-[0_0_16px_-4px_rgba(59,130,246,0.8)] text-white/55"
+   971→                    >
+   972→                      Marketing
+   973→                    </TabsTrigger>
+   974→                    <TabsTrigger
+   975→                      value="dialer"
+   976→                      className="data-[state=active]:bg-electric data-[state=active]:text-white data-[state=active]:shadow-[0_0_16px_-4px_rgba(59,130,246,0.8)] text-white/55"
+   977→                    >
+   978→                      Dialer
+   979→                    </TabsTrigger>
+   980→                  </TabsList>
+   981→                </div>
+   982→
+   983→                {/* Scrollable content */}
+   984→                <div className="scroll-thin h-[460px] overflow-y-auto p-4 md:h-[552px] md:p-6">
+   985→                  <TabsContent value="crm" className="mt-0">
+   986→                    <motion.div
+   987→                      key={tab}
+   988→                      initial={{ opacity: 0, y: 8 }}
+   989→                      animate={{ opacity: 1, y: 0 }}
+   990→                      transition={{ duration: 0.3 }}
+   991→                    >
+   992→                      <CrmPanel />
+   993→                    </motion.div>
+   994→                  </TabsContent>
+   995→                  <TabsContent value="pipeline" className="mt-0">
+   996→                    <motion.div
+   997→                      key={tab}
+   998→                      initial={{ opacity: 0, y: 8 }}
+   999→                      animate={{ opacity: 1, y: 0 }}
+  1000→                      transition={{ duration: 0.3 }}
+  1001→                    >
+  1002→                      <PipelinePanel />
+  1003→                    </motion.div>
+  1004→                  </TabsContent>
+  1005→                  <TabsContent value="map" className="mt-0">
+  1006→                    <motion.div
+  1007→                      key={tab}
+  1008→                      initial={{ opacity: 0, y: 8 }}
+  1009→                      animate={{ opacity: 1, y: 0 }}
+  1010→                      transition={{ duration: 0.3 }}
+  1011→                    >
+  1012→                      <LeadMapPanel />
+  1013→                    </motion.div>
+  1014→                  </TabsContent>
+  1015→                  <TabsContent value="analytics" className="mt-0">
+  1016→                    <motion.div
+  1017→                      key={tab}
+  1018→                      initial={{ opacity: 0, y: 8 }}
+  1019→                      animate={{ opacity: 1, y: 0 }}
+  1020→                      transition={{ duration: 0.3 }}
+  1021→                    >
+  1022→                      <AnalyticsPanel />
+  1023→                    </motion.div>
+  1024→                  </TabsContent>
+  1025→                  <TabsContent value="marketing" className="mt-0">
+  1026→                    <motion.div
+  1027→                      key={tab}
+  1028→                      initial={{ opacity: 0, y: 8 }}
+  1029→                      animate={{ opacity: 1, y: 0 }}
+  1030→                      transition={{ duration: 0.3 }}
+  1031→                    >
+  1032→                      <MarketingPanel />
+  1033→                    </motion.div>
+  1034→                  </TabsContent>
+  1035→                  <TabsContent value="dialer" className="mt-0">
+  1036→                    <motion.div
+  1037→                      key={tab}
+  1038→                      initial={{ opacity: 0, y: 8 }}
+  1039→                      animate={{ opacity: 1, y: 0 }}
+  1040→                      transition={{ duration: 0.3 }}
+  1041→                    >
+  1042→                      <DialerPanel />
+  1043→                    </motion.div>
+  1044→                  </TabsContent>
+  1045→                </div>
+  1046→              </Tabs>
+  1047→            </div>
+  1048→          </div>
+  1049→        </GlassCard>
+  1050→      </motion.div>
+  1051→
+  1052→      <p className="mt-6 text-center text-xs text-white/40">
+  1053→        Fully interactive — click through every tab. No screenshots, just real components.
+  1054→      </p>
+  1055→    </SectionShell>
+  1056→  );
+  1057→}
+  1058→

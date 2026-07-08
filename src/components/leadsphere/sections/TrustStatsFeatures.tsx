@@ -356,7 +356,7 @@ const FEATURES: {
   {
     icon: Sparkles,
     color: "electric",
-    title: "AI Lead Discovery",
+    title: "Lead Discovery",
     desc: "Automatically identify motivated homeowners before they list.",
   },
   {
@@ -410,7 +410,7 @@ const FEATURES: {
   {
     icon: BellRing,
     color: "electric",
-    title: "AI Follow-up",
+    title: "Smart Follow-up",
     desc: "Automatic reminders and smart sequences.",
   },
   {
@@ -429,8 +429,7 @@ const FEATURES: {
 
 function FeaturesSection() {
   return (
-    <SectionShell className="relative overflow-hidden">
-      {/* ambient orbs */}
+    <SectionShell id="services" className="relative overflow-hidden">
       <div
         aria-hidden
         className="pointer-events-none absolute -left-32 top-24 -z-10 h-[420px] w-[420px] rounded-full bg-violet/10 blur-[150px]"
@@ -441,9 +440,9 @@ function FeaturesSection() {
       />
 
       <SectionHeading
-        eyebrow="Platform"
-        title="Everything you need to fill your pipeline"
-        description="Twelve powerful tools working together as one intelligent platform."
+        eyebrow="Services"
+        title="How we drive growth for real estate professionals"
+        description="Lead discovery, outreach, campaigns, and CRM — twelve powerful tools working together as one smart platform."
       />
 
       <div className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">

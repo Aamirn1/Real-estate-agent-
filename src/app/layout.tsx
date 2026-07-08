@@ -16,18 +16,19 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "LeadSphere AI — More Listings. Powered by AI.",
+  title: "Opus Solutions — More Listings. Powered by Opus.",
   description:
-    "Generate high-quality seller leads, automate prospecting, and close more deals with LeadSphere AI — the intelligent real estate lead generation platform.",
+    "Generate high-quality seller leads, automate prospecting, and close more deals with Opus Solutions — the real estate lead generation and workflow automation platform.",
   keywords: [
     "real estate leads",
-    "AI lead generation",
+    "lead generation",
     "real estate CRM",
     "prospecting",
     "skip tracing",
     "seller leads",
+    "workflow automation",
   ],
-  authors: [{ name: "LeadSphere AI" }],
+  authors: [{ name: "Opus Solutions" }],
   // Publicly-accessible base so OG/Twitter image URLs resolve as absolute.
   // Uses the GitHub raw URL so link previews work even before you deploy.
   // After deploying to Vercel, you can change this to your production URL.
@@ -43,10 +44,10 @@ export const metadata: Metadata = {
     other: [{ url: "/favicon-512.png", sizes: "512x512", type: "image/png" }],
   },
   openGraph: {
-    title: "LeadSphere AI — More Listings. Powered by AI.",
+    title: "Opus Solutions — More Listings. Powered by Opus.",
     description:
-      "The AI-powered real estate lead generation platform for modern agents and teams. Generate high-quality seller leads, automate prospecting, and close more deals.",
-    siteName: "LeadSphere AI",
+      "The real estate lead generation and workflow automation platform for modern agents and teams. Generate high-quality seller leads, automate prospecting, and close more deals.",
+    siteName: "Opus Solutions",
     type: "website",
     locale: "en_US",
     images: [
@@ -54,15 +55,15 @@ export const metadata: Metadata = {
         url: "https://raw.githubusercontent.com/Aamirn1/Real-estate-agent-/main/public/og-image.png",
         width: 1344,
         height: 768,
-        alt: "LeadSphere AI — More Listings. Powered by AI.",
+        alt: "Opus Solutions — More Listings. Powered by Opus.",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "LeadSphere AI — More Listings. Powered by AI.",
+    title: "Opus Solutions — More Listings. Powered by Opus.",
     description:
-      "The AI-powered real estate lead generation platform for modern agents and teams.",
+      "The real estate lead generation and workflow automation platform for modern agents and teams.",
     images: ["https://raw.githubusercontent.com/Aamirn1/Real-estate-agent-/main/public/og-image.png"],
   },
 };

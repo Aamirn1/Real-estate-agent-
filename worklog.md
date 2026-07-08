@@ -216,3 +216,115 @@ Stage Summary:
 - All 16+ sections rendering: Hero, Trust, Stats, Features, Interactive Demo (6 tabs), Before/After, AI Assistant section, Process timeline, Interactive Map, CRM Kanban (drag-drop), Integrations, Testimonials (carousel), ROI Calculator, Pricing (3 tiers + toggle), FAQ, CTA banner, Footer
 - Portfolio enhancements delivered: AI conversational assistant, ROI calculator, before/after comparison, branded loading screen, live KPI dashboard, 3D-ish interactive map
 - Lint: 0 errors. Dev server: clean, no runtime errors.
+
+---
+Task ID: 2
+Agent: rebrand-editor
+Task: Rebrand "LeadSphere AI" → "Opus Solutions" and remove all user-visible "AI" mentions from 3 section files
+
+Work Log:
+- Read worklog.md to align with the design system and prior agent work.
+- Read all 3 target files: TrustStatsFeatures.tsx, BeforeAfter.tsx, RoiCalculator.tsx.
+
+- File 1 — TrustStatsFeatures.tsx:
+  - Renamed feature "AI Lead Discovery" → "Lead Discovery" (icon/color unchanged).
+  - Renamed feature "AI Follow-up" → "Smart Follow-up" (icon/color unchanged).
+  - Audited all 12 feature descriptions, stats labels, and trust copy — no other AI/LeadSphere mentions found.
+  - File had no "LeadSphere" mentions to begin with (branding lives in Navbar/Hero/Footer, not this file).
+
+- File 2 — BeforeAfter.tsx:
+  - Title: "Traditional prospecting vs. AI-powered" → "Traditional prospecting vs. Opus-powered".
+  - Description: "Let AI do the heavy lifting" → "Let Opus do the heavy lifting".
+  - AI_POWERED array item 1: "AI finds motivated sellers automatically" → "Opus finds motivated sellers automatically".
+  - AI_POWERED array item 3: "AI-triggered follow-ups at the perfect moment" → "Smart-triggered follow-ups at the perfect moment".
+  - After-card heading: "The LeadSphere way" → "The Opus way".
+  - After-card badge: "AI-Powered" → "Opus-Powered".
+  - NOTE: Variable/array name `AI_POWERED` was intentionally NOT changed (internal identifier, not user-visible), per rule #3.
+
+- File 3 — RoiCalculator.tsx:
+  - Section description: "with LeadSphere AI" → "with Opus Solutions".
+  - Helper text: "LeadSphere agents average" → "Opus agents average"; "thanks to AI lead scoring" → "thanks to smart lead scoring".
+  - ROI multiple helper: "For every $1 spent on LeadSphere" → "For every $1 spent on Opus".
+  - CTA "Start your free trial" left untouched as instructed.
+  - No wordmark `<span class="text-electric"> AI</span>` pattern existed in this file; brand name already inline in prose.
+
+- Verification:
+  - Ripgrep for `\b(AI|Ai)\b` in all 3 files: 0 matches.
+  - Ripgrep for `LeadSphere` in all 3 files: 0 matches.
+  - Ripgrep for `Sphere` in all 3 files: 0 matches (no standalone "LeadSphere" lingering).
+  - `bun run lint` → exit 0, zero errors/warnings introduced.
+  - No file names, component function names, import paths, CSS class names, or variable names (including `AI_POWERED`) were changed. Icons, colors, glassmorphism styling, framer-motion animations, CountUp, Reveal, and all feature functionality remain intact.
+
+Stage Summary:
+- All 3 files rebranded to "Opus Solutions" with zero user-visible "AI" text remaining.
+- Brand voice preserved contextually ("Opus-powered", "Smart Follow-up", "smart lead scoring", "The Opus way", "Opus finds motivated sellers", "Opus agents average").
+- Lint clean (exit 0). Premium dark design system untouched. Ready for orchestrator review.
+
+---
+Task ID: 3
+Agent: full-stack-developer
+Task: Rebrand "LeadSphere AI" → "Opus Solutions" and strip all user-visible "AI" text from InteractiveDemo.tsx and CrmIntegrationsTestimonials.tsx
+
+Work Log:
+- Read worklog.md to absorb the design system + history (kept dark luxury glass aesthetic, electric/violet/cyan/gold palette, all features intact).
+- Read both target files in full (~1058 lines InteractiveDemo.tsx, ~797 lines CrmIntegrationsTestimonials.tsx).
+- Grepped both files for AI|LeadSphere|Sphere and for word-boundary \bAI\b|\bai\b|\bAi\b to enumerate every user-visible brand/AI mention (excluding names like "Aisha", "Bailey", "Nair" and channel words like "Mail"/"Email" which are letters-within-words, not the AI acronym).
+- InteractiveDemo.tsx edits (6 targeted text changes, NO code identifier / class / import / filename / function-name changes):
+  • Marketing tab → Email Preview sender avatar initials "LS" → "OS" (matches new brand "Opus Solutions")
+  • Email Preview sender name "LeadSphere AI" → "Opus Solutions"
+  • Email Preview sender email "noreply@leadsphere.ai" → "noreply@opussolutions.com"
+  • Email body sign-off "— The LeadSphere Team" → "— The Opus Team"
+  • SectionHeading description "A real, interactive preview of the LeadSphere dashboard." → "A real, interactive preview of the Opus dashboard."
+  • Browser top-bar URL pill "app.leadsphere.ai/dashboard" → "app.opussolutions.com/dashboard"
+- CrmIntegrationsTestimonials.tsx edits (4 testimonial quote text changes; CRM Kanban lead cards/tags, Integrations grid, and section headings already had zero AI/LeadSphere mentions):
+  • Testimonial 1 (Jennifer Hayes): "LeadSphere AI transformed my pipeline..." → "Opus Solutions transformed my pipeline..."; "The AI assistant pre-qualifies..." → "The smart assistant pre-qualifies..."
+  • Testimonial 3 (Priya Patel): "Add the AI follow-up sequences..." → "Add the smart follow-up sequences..."
+  • Testimonial 4 (David Okonkwo): "LeadSphere surfaces off-market opportunities..." → "Opus surfaces off-market opportunities..."
+  • Testimonial 5 (Sofia Ramirez): "LeadSphere's AI concierge handles inquiries 24/7..." → "Opus's smart concierge handles inquiries 24/7..."
+- Verified: post-edit grep for AI|LeadSphere|Sphere and \bAI\b|\bai\b|\bAi\b in BOTH files returns zero matches.
+- Ran `bun run lint 2>&1 | tail -5` → output was just "$ eslint ." with NO errors/warnings. Clean.
+- Did NOT change: file names, component function names (InteractiveDemo, CrmIntegrationsTestimonials, SortableLeadCard, etc.), import paths, CSS class names, variable names, theme tokens, chart data, drag-and-drop logic, carousel autoplay, or any feature/animation. Only user-visible text was edited.
+
+Stage Summary:
+- Rebrand complete on both files. Every user-visible "LeadSphere AI" / "LeadSphere" / standalone "AI" mention has been replaced contextually (Opus Solutions, Opus, smart assistant, smart follow-up, smart concierge) per the global rules. No "AI" remains in any heading, label, description, button text, alt text, tooltip, table cell, campaign name, tab label, testimonial quote, sender name, or URL pill in either file.
+- All features intact: 6-tab interactive dashboard, CRM table search, Pipeline Kanban, Lead Map with heatmap toggle, Analytics charts (recharts), Marketing email preview, Dialer with pulse rings, @dnd-kit drag-and-drop CRM Kanban, Integrations grid, autoplay testimonials carousel.
+- Lint: 0 errors. No type errors introduced (text-only edits). Dev server unaffected.
+
+---
+Task ID: 4
+Agent: full-stack-developer
+Task: Rebrand LeadSphere AI → Opus Solutions, remove all user-visible "AI" mentions (AiProcessMap.tsx + PricingFaqCtaFooter.tsx)
+
+Work Log:
+- Read worklog.md to learn the design system + brand context, then read both target section files in full (AiProcessMap.tsx ~852 lines, PricingFaqCtaFooter.tsx ~753 lines).
+- Grepped both files for `AI|Ai`, `LeadSphere|Sphere` (case-insensitive, word-boundary) to enumerate every occurrence; classified each as user-visible text vs. internal (comments, variable names, component function names, import paths, prop variant values, section anchor ids) — only user-visible text was changed per the rules.
+- AiProcessMap.tsx edits (3 user-visible changes; feature pills, map chips, pin tooltips, legend, status bar all already AI-free):
+  - Section 1 eyebrow: "AI Assistant" → "Smart Assistant"
+  - Section 1 title span: "AI sales assistant" → "smart sales assistant" (full title now reads "Meet your smart sales assistant")
+  - Process timeline step 4 description: "AI schedules meetings straight into your calendar." → "Smart scheduling books meetings straight into your calendar."
+  - Verified all 8 feature pills (Predict hot leads, Summarize conversations, Generate scripts, Follow-up reminders, Best call time, Email drafting, Lead scoring, Smart recommendations) — no AI text, untouched.
+  - Verified Interactive Map filter chips (All Leads/Motivated/Expired/FSBO/High Value), pin tooltips, legend ("Pin legend"), bottom status ("{n} of {n} pins shown") — no AI text, untouched.
+  - Left untouched (per rules): comment "SECTION 1 — AI Sales Assistant", `AI_FEATURES` const, `AiOrb`, `AiAssistantSection`, `AiProcessMap` function names, `<SectionShell id="ai">`, `<AnimatedBackground variant="ai" />`. No "LeadSphere"/"Sphere" existed in user-visible text in this file.
+- PricingFaqCtaFooter.tsx edits (12 user-visible changes; pricing eyebrow/title/description, plan taglines, CTAs, billing toggle, FAQ contact strip, CTA banner eyebrow/headline/buttons all already AI-free):
+  - Professional plan feature: "AI Assistant" → "Smart Assistant"
+  - FAQ #1 answer: "test the AI Assistant" → "test the Smart Assistant"
+  - FAQ #2 answer: "LeadSphere connects to over 850 MLS markets" → "Opus connects to over 850 MLS markets"
+  - FAQ #3 question: "How accurate is the AI lead data?" → "How accurate is the lead data?"
+  - FAQ #3 answer: "Our AI cross-references 30+ data sources" → "Our platform cross-references 30+ data sources"
+  - FAQ #6 question: "What can the AI Assistant actually do?" → "What can the Smart Assistant actually do?"
+  - FAQ #6 answer: "The AI Assistant drafts personalized outreach…" → "The Smart Assistant drafts personalized outreach…"
+  - FAQ #7 question: "Which tools does LeadSphere integrate with?" → "Which tools does Opus integrate with?"
+  - CTA banner subtext: "Join 50,000+ agents generating more listings with AI." → "Join 50,000+ agents generating more listings with smart automation."
+  - Footer LogoMark wordmark: `LeadSphere <span>AI</span>` → `Opus <span>Solutions</span>`
+  - Footer tagline: "More listings. Powered by AI." → "More listings. Powered by Opus."
+  - Newsletter helper text: "Weekly insights on AI-powered prospecting." → "Weekly insights on smart prospecting."
+  - Bottom-bar copyright: "© 2025 LeadSphere AI. All rights reserved." → "© 2025 Opus Solutions. All rights reserved."
+  - Bottom-bar badge: "Made with AI" → "Made with care"
+  - Left untouched: code comment "MAIN" (line 635, not user-visible), all variable names, function names, CSS classes, import paths. All 7 FAQ answers remain realistic & helpful; pricing feature lists, accordion behavior, monthly/annual toggle, magnetic buttons, animated gradient borders, and dark luxury design all preserved.
+- Verification: re-grepped both files — remaining `AI|Ai` matches are ONLY internal identifiers (AI_FEATURES, AiOrb, AiAssistantSection, AiProcessMap, comment "SECTION 1 — AI Sales Assistant", comment "MAIN"). No `LeadSphere` or `Sphere` remains in either file. No user-visible "AI"/"ai"/"Ai" text remains.
+- Ran `cd /home/z/my-project && bun run lint 2>&1 | tail -5` → clean, 0 errors.
+
+Stage Summary:
+- Rebrand complete on both files. Brand wordmarks now read "Opus Solutions", standalone brand references say "Opus", and every user-visible "AI" mention (eyebrows, headings, descriptions, feature pills, FAQ Q&As, pricing feature lists, CTA subtext, footer tagline, newsletter text, copyright, "Made with care" badge) has been removed or contextually replaced with "Smart"/"Opus"/"smart automation".
+- All features, animations, accordion, pricing toggle, map interactivity, and the premium dark glass design are 100% intact. No file names, component function names, import paths, CSS class names, or variable names were changed.
+- Lint clean. Ready for orchestrator/preview.

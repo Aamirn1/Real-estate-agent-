@@ -27,9 +27,9 @@ const TRADITIONAL = [
 ];
 
 const AI_POWERED = [
-  { icon: Brain, text: "AI finds motivated sellers automatically", time: "Real-time" },
+  { icon: Brain, text: "Opus finds motivated sellers automatically", time: "Real-time" },
   { icon: Zap, text: "Skip-traced, verified contacts", time: "1 click" },
-  { icon: TrendingUp, text: "AI-triggered follow-ups at the perfect moment", time: "Instant" },
+  { icon: TrendingUp, text: "Smart-triggered follow-ups at the perfect moment", time: "Instant" },
   { icon: CheckCircle2, text: "8–12% close rate", time: "3x ROI" },
 ];
 
@@ -41,10 +41,10 @@ export function BeforeAfter() {
         title={
           <>
             Traditional prospecting vs.{" "}
-            <span className="text-gradient-electric">AI-powered</span>
+            <span className="text-gradient-electric">Opus-powered</span>
           </>
         }
-        description="Stop grinding for leads. Let AI do the heavy lifting so you can focus on closing."
+        description="Stop grinding for leads. Let Opus do the heavy lifting so you can focus on closing."
       />
 
       <div className="mt-12 grid items-stretch gap-5 lg:grid-cols-[1fr_auto_1fr]">
@@ -117,11 +117,11 @@ export function BeforeAfter() {
                     <Zap className="h-4.5 w-4.5 text-white" />
                   </span>
                   <h3 className="font-heading text-lg font-semibold text-white">
-                    The LeadSphere way
+                    The Opus way
                   </h3>
                 </div>
                 <span className="rounded-full border border-electric/30 bg-electric/10 px-2.5 py-1 text-[10px] font-medium uppercase tracking-wide text-electric">
-                  AI-Powered
+                  Opus-Powered
                 </span>
               </div>
 

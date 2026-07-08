@@ -560,7 +560,7 @@ type Testimonial = {
 const TESTIMONIALS: Testimonial[] = [
   {
     quote:
-      "LeadSphere AI transformed my pipeline in 60 days. The AI assistant pre-qualifies every lead before I even pick up the phone — I closed 14 deals last quarter without cold-calling once.",
+      "Opus Solutions transformed my pipeline in 60 days. The smart assistant pre-qualifies every lead before I even pick up the phone — I closed 14 deals last quarter without cold-calling once.",
     name: "Jennifer Hayes",
     role: "Top Producer, Compass",
     initials: "JH",
@@ -576,7 +576,7 @@ const TESTIMONIALS: Testimonial[] = [
   },
   {
     quote:
-      "The kanban pipeline alone saved my team 12 hours a week. Drag, drop, done. Add the AI follow-up sequences and we went from 2% to 6.8% conversion in a single quarter.",
+      "The kanban pipeline alone saved my team 12 hours a week. Drag, drop, done. Add the smart follow-up sequences and we went from 2% to 6.8% conversion in a single quarter.",
     name: "Priya Patel",
     role: "Broker, Keller Williams",
     initials: "PP",
@@ -584,7 +584,7 @@ const TESTIMONIALS: Testimonial[] = [
   },
   {
     quote:
-      "I acquire 30+ properties a year. LeadSphere surfaces off-market opportunities before they hit the MLS. I've closed three deals this month that nobody else even knew existed.",
+      "I acquire 30+ properties a year. Opus surfaces off-market opportunities before they hit the MLS. I've closed three deals this month that nobody else even knew existed.",
     name: "David Okonkwo",
     role: "Investor",
     initials: "DO",
@@ -592,7 +592,7 @@ const TESTIMONIALS: Testimonial[] = [
   },
   {
     quote:
-      "Luxury clients expect instant, intelligent response. LeadSphere's AI concierge handles inquiries 24/7 and books showings while I sleep. My listing-to-close time dropped from 90 to 41 days.",
+      "Luxury clients expect instant, intelligent response. Opus's smart concierge handles inquiries 24/7 and books showings while I sleep. My listing-to-close time dropped from 90 to 41 days.",
     name: "Sofia Ramirez",
     role: "Agent, Sotheby's",
     initials: "SR",
