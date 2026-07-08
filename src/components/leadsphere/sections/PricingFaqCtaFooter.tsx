@@ -225,26 +225,54 @@ const FAQS: { q: string; a: string }[] = [
   },
 ];
 
-const FOOTER_COLUMNS: { title: string; links: string[] }[] = [
+const FOOTER_COLUMNS: { title: string; links: { label: string; href: string }[] }[] = [
   {
-    title: "Plans",
-    links: ["Custom", "Trial", "Silver", "Gold", "Platinum", "Sapphire"],
+    title: "Pages",
+    links: [
+      { label: "Home", href: "/" },
+      { label: "Services", href: "/services" },
+      { label: "Pricing", href: "/pricing" },
+      { label: "Testimonials", href: "/testimonials" },
+      { label: "Blog", href: "/blog" },
+      { label: "About Us", href: "/about" },
+      { label: "Contact", href: "/contact" },
+    ],
   },
   {
     title: "Solutions",
-    links: ["Agents", "Teams", "Brokerages", "Investors"],
+    links: [
+      { label: "Marketing Consulting", href: "/services" },
+      { label: "CRM Support", href: "/services" },
+      { label: "Workflow Automation", href: "/services" },
+      { label: "Virtual Assistance", href: "/services" },
+      { label: "Outreach Support", href: "/services" },
+    ],
   },
   {
     title: "Resources",
-    links: ["Blog", "Guides", "Case Studies", "Videos", "Help Center"],
+    links: [
+      { label: "Blog", href: "/blog" },
+      { label: "FAQs", href: "/faqs" },
+      { label: "Case Studies", href: "/testimonials" },
+      { label: "Contact", href: "/contact" },
+    ],
   },
   {
     title: "Company",
-    links: ["About", "Careers", "Contact", "Partners"],
+    links: [
+      { label: "About Us", href: "/about" },
+      { label: "Contact", href: "/contact" },
+      { label: "FAQs", href: "/faqs" },
+      { label: "Testimonials", href: "/testimonials" },
+    ],
   },
   {
     title: "Legal",
-    links: ["Privacy", "Terms", "Security", "DPA"],
+    links: [
+      { label: "Privacy Policy", href: "/privacy-policy" },
+      { label: "Terms & Conditions", href: "/terms" },
+      { label: "Refund Policy", href: "/refund-policy" },
+    ],
   },
 ];
 
@@ -949,12 +977,12 @@ function Footer() {
               </h4>
               <ul className="flex flex-col gap-2.5">
                 {col.links.map((link) => (
-                  <li key={link}>
+                  <li key={link.label}>
                     <a
-                      href="#"
+                      href={link.href}
                       className="text-sm text-white/55 transition-colors hover:text-white"
                     >
-                      {link}
+                      {link.label}
                     </a>
                   </li>
                 ))}

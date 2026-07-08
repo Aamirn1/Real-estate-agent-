@@ -12,9 +12,12 @@ import {
   Gauge,
   Lightbulb,
   Search,
-  BadgeCheck,
-  CalendarCheck,
-  Trophy,
+  ClipboardList,
+  Rocket,
+  PhoneCall,
+  Table2,
+  BarChart3,
+  TrendingUp,
   MapPin,
   Layers,
   Crosshair,
@@ -280,27 +283,45 @@ function AiAssistantSection() {
 const STEPS = [
   {
     n: 1,
-    title: "Research & Identification",
-    desc: "Search 200M+ records by neighborhood, value & intent signals to find the right prospects.",
+    title: "Discovery",
+    desc: "We learn your goals, market, and the support you need most.",
     icon: Search,
   },
   {
     n: 2,
-    title: "Qualification & Verification",
-    desc: "Cross-check phone & email deliverability and score motivation in real time.",
-    icon: BadgeCheck,
+    title: "Planning",
+    desc: "We build a documented strategy and workflow tailored to your business.",
+    icon: ClipboardList,
   },
   {
     n: 3,
-    title: "Scheduling & Handoff",
-    desc: "Smart scheduling books meetings straight into your calendar, then hands off to your team.",
-    icon: CalendarCheck,
+    title: "Campaign Setup",
+    desc: "CRM, campaigns, and outreach sequences are configured and documented.",
+    icon: Rocket,
   },
   {
     n: 4,
-    title: "Ongoing Reporting & Support",
-    desc: "Track deals to closing, measure ROI per lead source, and get continuous support.",
-    icon: Trophy,
+    title: "Outreach Support",
+    desc: "Human-only, verified outreach with documented follow-up processes.",
+    icon: PhoneCall,
+  },
+  {
+    n: 5,
+    title: "CRM Organization",
+    desc: "Leads organized, pipeline optimized, and tasks automated in your CRM.",
+    icon: Table2,
+  },
+  {
+    n: 6,
+    title: "Performance Reporting",
+    desc: "Monthly milestone reports and analytics keep everything transparent.",
+    icon: BarChart3,
+  },
+  {
+    n: 7,
+    title: "Business Growth",
+    desc: "Scalable workflows and ongoing support drive lasting results.",
+    icon: TrendingUp,
   },
 ];
 
@@ -322,11 +343,11 @@ function ProcessTimelineSection() {
 
       <div className="relative z-10 flex flex-col gap-14">
         <SectionHeading
-          eyebrow="Real Estate Process"
+          eyebrow="Our Process"
           title={
             <>
               How we drive results in{" "}
-              <span className="text-gradient-electric">4 steps</span>
+              <span className="text-gradient-electric">7 steps</span>
             </>
           }
         />
@@ -356,7 +377,7 @@ function ProcessTimelineSection() {
           </motion.div>
 
           {/* Steps */}
-          <div className="relative grid grid-cols-5 gap-4">
+          <div className="relative grid grid-cols-7 gap-3">
             {STEPS.map((s, i) => (
               <Reveal
                 key={s.n}

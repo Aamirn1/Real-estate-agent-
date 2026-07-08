@@ -50,9 +50,9 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
             className="mt-6 font-heading text-[2.75rem] font-semibold leading-[1.02] tracking-tight text-white sm:text-6xl lg:text-[4.25rem]"
           >
-            Workflow Automation
+            Scale Your Real Estate Business
             <br />
-            <span className="text-gradient-electric text-glow">For Realtors.</span>
+            <span className="text-gradient-electric text-glow">with Professional Support.</span>
           </motion.h1>
 
           <motion.p
@@ -62,8 +62,8 @@ export function Hero() {
             className="mt-6 max-w-xl text-base leading-relaxed text-white/60 sm:text-lg"
           >
             Your trusted partner for marketing consulting, outreach support,
-            and CRM solutions designed for licensed real estate professionals.
-            We help you expand your reach through verified, human-only outreach.
+            CRM assistance, workflow automation, and administrative services —
+            all delivered through verified, human-only outreach.
           </motion.p>
 
           <motion.div
@@ -77,18 +77,18 @@ export function Hero() {
                 href="/pricing"
                 className="group relative inline-flex items-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-electric to-violet px-6 py-3.5 text-sm font-semibold text-white shadow-[0_0_30px_-6px_rgba(59,130,246,0.7)] transition-all hover:shadow-[0_0_40px_-4px_rgba(139,92,246,0.85)]"
               >
-                <span className="relative z-10">Get Started Now</span>
+                <span className="relative z-10">Get Started</span>
                 <ArrowRight className="relative z-10 h-4 w-4 transition-transform group-hover:translate-x-0.5" />
                 <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/30 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
               </a>
             </MagneticButton>
             <MagneticButton strength={0.3}>
               <a
-                href="/about"
+                href="/contact"
                 className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-6 py-3.5 text-sm font-semibold text-white backdrop-blur transition-all hover:border-white/25 hover:bg-white/10"
               >
                 <PlayCircle className="h-4.5 w-4.5 text-cyan" />
-                Request a Quote
+                Book a Consultation
               </a>
             </MagneticButton>
           </motion.div>

@@ -2,21 +2,17 @@
 
 import { motion } from "framer-motion";
 import {
-  Sparkles,
-  Clock,
-  Home,
-  Map,
-  Search,
-  LayoutDashboard,
-  Phone,
-  Mail,
-  MessageSquare,
-  BellRing,
+  Megaphone,
+  Table2,
+  Workflow,
+  Headset,
+  PhoneCall,
+  Share2,
+  CalendarClock,
   BarChart3,
-  UsersRound,
-  Database,
-  TrendingUp,
+  Handshake,
   Users,
+  TrendingUp,
   Network,
 } from "lucide-react";
 import {
@@ -272,16 +268,16 @@ function TrustSection() {
    2. ANIMATED STATISTICS SECTION
    ============================================================ */
 const STATS: {
-  icon: typeof Database;
+  icon: typeof Handshake;
   color: ColorKey;
   value: number;
   suffix: string;
   label: string;
 }[] = [
-  { icon: Database, color: "electric", value: 250, suffix: "M+", label: "Lead Records" },
-  { icon: TrendingUp, color: "violet", value: 92, suffix: "%", label: "Conversion Improvement" },
-  { icon: Users, color: "cyan", value: 50, suffix: "K+", label: "Active Agents" },
-  { icon: Network, color: "electric", value: 100, suffix: "+", label: "MLS Integrations" },
+  { icon: Handshake, color: "electric", value: 12, suffix: "K+", label: "Warm Introductions" },
+  { icon: Users, color: "violet", value: 4, suffix: "+", label: "Agent Teams Supported" },
+  { icon: Network, color: "cyan", value: 850, suffix: "+", label: "Campaigns Managed" },
+  { icon: TrendingUp, color: "electric", value: 98, suffix: "%", label: "Satisfaction Rate" },
 ];
 
 function StatsSection() {
@@ -294,7 +290,7 @@ function StatsSection() {
       />
       <SectionHeading
         eyebrow="By the Numbers"
-        title="Metrics that move your pipeline"
+        title="Results that speak for themselves"
       />
 
       <div className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
@@ -348,82 +344,58 @@ function StatsSection() {
    3. INTERACTIVE FEATURES SECTION
    ============================================================ */
 const FEATURES: {
-  icon: typeof Sparkles;
+  icon: typeof Megaphone;
   color: ColorKey;
   title: string;
   desc: string;
 }[] = [
   {
-    icon: Sparkles,
+    icon: Megaphone,
     color: "electric",
-    title: "Lead Discovery",
-    desc: "Automatically identify motivated homeowners before they list.",
+    title: "Marketing Consulting",
+    desc: "Campaign planning, growth strategy, and brand positioning tailored to your market.",
   },
   {
-    icon: Clock,
+    icon: Table2,
     color: "violet",
-    title: "Expired Listings",
-    desc: "Find expired listings before your competitors even notice.",
+    title: "CRM Support",
+    desc: "CRM setup, lead organization, pipeline optimization, and automation.",
   },
   {
-    icon: Home,
+    icon: Workflow,
     color: "cyan",
-    title: "FSBO Leads",
-    desc: "Locate homeowners selling without an agent.",
+    title: "Workflow Automation",
+    desc: "Automate repetitive tasks, lead tracking, reminders, and follow-ups.",
   },
   {
-    icon: Map,
+    icon: Headset,
     color: "electric",
-    title: "Geo Prospecting",
-    desc: "Search neighborhoods visually with smart filters.",
+    title: "Virtual Assistance",
+    desc: "Administrative support, scheduling, data organization, and client communication.",
   },
   {
-    icon: Search,
+    icon: PhoneCall,
     color: "violet",
-    title: "Skip Tracing",
-    desc: "Verified phone numbers and emails in seconds.",
+    title: "Outreach Support",
+    desc: "Human-based, verified communication with documented follow-up processes.",
   },
   {
-    icon: LayoutDashboard,
+    icon: Share2,
     color: "cyan",
-    title: "Smart CRM",
-    desc: "Manage every lead from one intelligent dashboard.",
+    title: "Digital Marketing",
+    desc: "Social campaigns, email marketing, landing pages, and lead funnels.",
   },
   {
-    icon: Phone,
+    icon: CalendarClock,
     color: "electric",
-    title: "Power Dialer",
-    desc: "One-click calling system with call logging.",
-  },
-  {
-    icon: Mail,
-    color: "violet",
-    title: "Email Automation",
-    desc: "Automated drip campaigns that convert.",
-  },
-  {
-    icon: MessageSquare,
-    color: "cyan",
-    title: "SMS Campaigns",
-    desc: "Mass texting with delivery analytics.",
-  },
-  {
-    icon: BellRing,
-    color: "electric",
-    title: "Smart Follow-up",
-    desc: "Automatic reminders and smart sequences.",
+    title: "Appointment Coordination",
+    desc: "Scheduling, calendar management, and client reminders handled for you.",
   },
   {
     icon: BarChart3,
     color: "violet",
-    title: "Analytics Dashboard",
-    desc: "Monitor conversions and team performance.",
-  },
-  {
-    icon: UsersRound,
-    color: "cyan",
-    title: "Team Collaboration",
-    desc: "Assign leads and track performance.",
+    title: "Reporting & Analytics",
+    desc: "Campaign reports, monthly performance tracking, and growth insights.",
   },
 ];
 

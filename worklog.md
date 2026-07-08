@@ -577,3 +577,88 @@ Stage Summary:
 - Testimonials page composes Trust + Stats + Features, the CRM/Integrations/Testimonials-carousel section, a NEW 6-card "More Client Stories" grid (real names, gold stars, verified badges, gradient avatars), and the CTA banner.
 - Pricing page builds a NEW 6-plan pricing grid inline (Custom/Trial/Silver[highlighted]/Gold/Platinum/Sapphire[premium]) with CountUp-animated prices, animated gradient borders on highlighted plans, the interactive RoiCalculator, a NEW 12-Q&A FAQ accordion, and the CTA banner.
 - Premium dark glassmorphism preserved throughout (electric/violet/cyan/gold palette, glass-strong cards, animate-gradient-x borders, custom-scroll feature lists, Reveal scroll-ins, framer-motion via client components). Fully responsive (1/2/3-col grids, mobile-first). Lint clean (exit 0). Both routes return HTTP 200 with all specified content rendering server-side. No "LeadSphere" or user-visible "AI" text. No file names, component names, or existing import paths changed.
+
+---
+Task ID: 10
+Agent: full-stack-developer
+Task: Build 5 new Next.js page routes for Opus Solutions — /contact, /faqs, /privacy-policy, /terms, /refund-policy (premium dark glassmorphism)
+
+Work Log:
+- Read worklog.md (Tasks 0–9) to absorb the design system (deep black #050505 base, electric/violet/cyan/gold palette, glass-strong/glass-card utilities, text-gradient-electric, animate-ping/pulse, custom-scroll, tnum) and confirm shared infrastructure contracts (SiteChrome + PageHero from @/components/leadsphere/SiteChrome; CTABanner from @/components/leadsphere/CTABanner; GlassCard / SectionHeading / SectionShell / CountUp from @/components/leadsphere/primitives; Reveal from @/components/leadsphere/Reveal; shadcn Accordion / Input / Textarea / Label / Button / Select).
+- Reviewed prior multi-page patterns by reading src/app/about/page.tsx, src/app/services/page.tsx, src/app/pricing/page.tsx, src/app/blog/layout.tsx, src/app/blog/page.tsx, and src/app/about/ContactForm.tsx — confirmed the established Server-Component-with-metadata pattern (no "use client" at the top of page.tsx), with interactive bits extracted into separate client components (ContactForm pattern).
+- Read primitives.tsx (GlassCard/CountUp/SectionHeading/SectionShell), Reveal.tsx, SiteChrome.tsx, CTABanner.tsx, accordion.tsx, and select.tsx to confirm exact prop signatures before usage.
+
+- Created directories: src/app/contact/, src/app/faqs/, src/app/privacy-policy/, src/app/terms/, src/app/refund-policy/.
+
+- PAGE 1 — /contact (src/app/contact/page.tsx + src/app/contact/ContactFormSection.tsx):
+  • page.tsx = SERVER component exporting metadata (title "Contact — Opus Solutions" + required description). Imports SiteChrome + PageHero + CTABanner + GlassCard + SectionShell + Reveal + lucide Mail/Phone/MapPin/Clock icons.
+  • PageHero: eyebrow "Contact", title with `text-gradient-electric` span on "great work" (full title: "Let's do great work together"), description verbatim from spec.
+  • Body = 2-column grid (lg:grid-cols-2) inside SectionShell id="contact":
+    - LEFT: GlassCard strong+sheel (p-0 wrapper, internal padding) with ambient electric + violet blur orbs in corners, wrapping `<ContactFormSection />`.
+    - RIGHT: vertical stack of (2×2 info-card grid) + (StylizedMap sub-component, flex-1 min-h-[280px]).
+      · INFO_THEME record (electric/violet/cyan/gold → static iconWrap/icon/glow classes) so Tailwind v4 picks them up.
+      · 4 info cards (Email/Mail/electric → info@opussolutions.com mailto link; Phone/Phone/violet → 3 tel links for (320) 331-0910 / 8501 / 3559; Address/MapPin/cyan → 3 address lines; Office Hours/Clock/gold → "10:00 A.M. to 08:00 P.M (EST)"). Each card: ambient corner blur orb in card color, icon chip, uppercase label, value lines. Hover lifts (-translate-y-1) + drop-shadow glow in the card's brand color.
+      · StylizedMap: pure CSS/SVG — dark base #070a12, two layered grid overlays (32px electric at 40% opacity, 128px violet at 30% opacity) both with radial mask for fade-at-edges, central radial glow (electric→violet), glowing MapPin at center with drop-shadow filter + dual pulse rings (animate-ping outer + animate-pulse inner blur) + "Albany, NY" label pill in a dark glass bg. Top-left "HQ · Albany" badge with animated pinging green dot. Bottom-right "42.6526° N, 73.7562° W" coordinates (tnum).
+  • ContactFormSection.tsx = CLIENT component ("use client"): shadcn Input/Textarea/Label/Button + shadcn Select (SelectTrigger/SelectContent/SelectItem/SelectValue). Fields: Name + Email (2-col on sm), Phone + Company/Team (2-col on sm), Service of Interest (Select dropdown with the 8 services: Marketing Consulting, CRM Support, Workflow Automation, Virtual Assistance, Outreach Support, Digital Marketing, Appointment Coordination, Reporting & Analytics), Message textarea (min-h-[140px]). Header row with MessageSquare icon + "Send us a message" title + "We reply within one business day." subtitle. Submit triggers preventDefault → swaps to success state (motion.div fade+scale, CheckCircle2 in electric ring, "Message received" + "Send another message" reset button that also clears the service select). Send Message button uses gradient bg (electric→violet) + shimmer-free glow shadow matching About page ContactForm.
+  • Closing: `<CTABanner title="Ready to get started?" subtitle="Book a free consultation and discover how Opus Solutions can help your business grow." />`
+
+- PAGE 2 — /faqs (src/app/faqs/page.tsx):
+  • SERVER component exporting metadata (title "FAQs — Opus Solutions" + required description). No "use client" needed — shadcn Accordion is itself a client component so the server component can use it directly (same pattern as src/app/pricing/page.tsx).
+  • PageHero: eyebrow "FAQs", title with `text-gradient-electric` span on "Frequently asked" (full title: "Frequently asked questions"), description verbatim from spec.
+  • Body = SectionShell id="faqs" with SectionHeading (eyebrow "Questions", title "Everything you need to know", description). max-w-3xl container with Accordion type="single" collapsible defaultValue="faq-0". 14 FAQ items rendered from FAQS data array (Services list / Not a brokerage / Don't sell data / Human-only outreach / CRM setup / Dedicated account manager / TCPA DNC CAN-SPAM CCPA/CPRA Fair Housing / PCI-compliant payments / 6 pricing plans / One-time setup fee / Calendar & appointments / Digital marketing / Cancellation / Getting started) — all answers realistic 1-3 sentences verbatim per spec.
+  • Each AccordionItem styled as glass-strong card with border; default chevron hidden via [&>svg:last-child]:hidden, custom ChevronDown in a circle that rotates 180deg + turns electric on group-data-[state=open] (matches existing pricing-page FaqList styling). Wrapped each item in Reveal with staggered delay = Math.min(i * 0.04, 0.4).
+  • Closing: `<CTABanner title="Still have questions?" subtitle="Our team replies within a few hours, 7 days a week. Reach out and we'll help." />`
+
+- PAGE 3 — /privacy-policy (src/app/privacy-policy/page.tsx):
+  • SERVER component exporting metadata (title "Privacy Policy — Opus Solutions").
+  • PageHero: eyebrow "Legal", title "Privacy Policy" (no gradient span per spec), description "How Opus Solutions collects, uses, and protects your information."
+  • Body = SectionShell id="privacy-policy" with max-w-3xl container wrapping a single GlassCard strong+sheel (p-7 sm:p-10). Ambient electric (top-right) + violet (bottom-left) blur-3xl corner orbs. Header row: ShieldCheck icon in electric chip + "Legal" eyebrow + "Privacy Policy" title + "Last updated: January 2025" caption. Sections rendered from SECTIONS array (10 sections: Introduction, Information We Collect [5 bullets], How We Use Information [5 bullets], Information Sharing, Data Security, Your Rights, Cookies, Compliance, Changes to This Policy, Contact [2 bullets: email + address]).
+  • Section prose: h2 = font-heading text-lg font-semibold text-white; p = text-sm leading-relaxed text-white/60; bullets = electric glowing dot bullets (h-1.5 w-1.5 bg-electric/70 with shadow-[0_0_8px_#3b82f6]).
+  • Footer contact strip below sections (border-top): Mail icon + info@opussolutions.com mailto link, MapPin icon + "418 Broadway, Ste. R, Albany, NY 12207" address.
+  • Closing: `<CTABanner title="Questions about privacy?" subtitle="Contact our team and we'll be happy to help." />`
+
+- PAGE 4 — /terms (src/app/terms/page.tsx):
+  • SERVER component exporting metadata (title "Terms & Conditions — Opus Solutions").
+  • PageHero: eyebrow "Legal", title "Terms & Conditions" (no gradient), description "The terms governing your use of Opus Solutions' services."
+  • Body = same structure as privacy policy (SectionShell + max-w-3xl + single GlassCard strong+sheel + ambient electric/cyan corner orbs). Header icon = FileText in electric chip. "Last updated: January 2025" caption.
+  • 12 sections rendered from SECTIONS array: Acceptance of Terms, Description of Services [8 service bullets], Not a Brokerage, Client Responsibilities [4 bullets], Outreach & Compliance, Payment Terms (mentions all 6 plans: Custom / Trial $450 / Silver $900 / Gold $1800 / Platinum $2500 / Sapphire $4000), Referral Fees [6 bullets: Custom 20% / Trial 20% / Silver 15% / Gold 10% / Platinum 8% / Sapphire 5%], Cancellation, Intellectual Property, Limitation of Liability, Governing Law, Contact [email + phone bullets].
+  • Footer contact strip: Mail icon → info@opussolutions.com mailto link, Phone icon → (320) 331-0910 tel link (tnum).
+  • Closing: `<CTABanner title="Ready to get started?" subtitle="Review our plans and choose the one that fits your business." />`
+
+- PAGE 5 — /refund-policy (src/app/refund-policy/page.tsx):
+  • SERVER component exporting metadata (title "Refund Policy — Opus Solutions").
+  • PageHero: eyebrow "Legal", title "Refund Policy" (no gradient), description "Our policy on refunds, cancellations, and billing."
+  • Body = same structure as privacy/terms. Header icon = Receipt in electric chip. Ambient electric (top-right) + gold (bottom-left) blur-3xl corner orbs (subtle visual differentiation from the other two legal pages while staying on-brand). "Last updated: January 2025" caption.
+  • 9 sections rendered from SECTIONS array: Overview, Setup Fees (non-refundable once work begins), Cancellation (written notice + billing stops at end of cycle), Referral Fees (only on successful closings), Pro-Rata Refunds (no pro-rata refund of setup fee; no future billing), Service Discontinuation (campaign + reporting close at end of cycle; documentation provided to client), Dispute Resolution (14-day window), Compliance (PCI-compliant processor; no cardholder data stored), Contact [email + phone + address bullets].
+  • Footer: Mail icon → info@opussolutions.com mailto link, Phone icon → (320) 331-0910 tel link (tnum). Second row below border-top: MapPin icon → "418 Broadway, Ste. R, Albany, NY 12207, United States" address (spec asked for all 3 contact methods).
+  • Closing: `<CTABanner title="Questions about billing?" subtitle="Our team is happy to clarify any policy details." />`
+
+- Brand/voice check: ripgrepped all 5 new files (and the ContactFormSection.tsx) for `\b(AI|Ai)\b|LeadSphere|Sphere` → 0 matches. All user-visible text uses "Opus Solutions" / "Opus" contextually. No "AI" or "LeadSphere" anywhere.
+- File names, component function names, import paths, CSS class names, and shared-component APIs all preserved/unchanged. Only new files created — no existing files modified.
+
+- Verification:
+  • `cd /home/z/my-project && bun run lint 2>&1 | tail -8` → output was just `$ eslint .` (exit 0, zero errors/warnings). Clean.
+  • `curl -s -o /dev/null -w "%{http_code}"` for all 5 routes:
+    - GET /contact → 200 (compile 2.7s, render 784ms on first hit; subsequent ~125ms)
+    - GET /faqs → 200 (compile 1076ms, render 299ms; subsequent ~170ms)
+    - GET /privacy-policy → 200 (compile 933ms, render 302ms; subsequent ~100ms)
+    - GET /terms → 200 (compile 777ms, render 341ms; subsequent ~160ms)
+    - GET /refund-policy → 200 (compile 720ms, render 173ms; subsequent ~160ms)
+  • curl-grep of metadata titles confirmed all 5 render correctly: `<title>Contact — Opus Solutions</title>`, `<title>FAQs — Opus Solutions</title>`, `<title>Privacy Policy — Opus Solutions</title>`, `<title>Terms &amp; Conditions — Opus Solutions</title>`, `<title>Refund Policy — Opus Solutions</title>`.
+  • curl-grep of page bodies confirmed all required content renders server-side:
+    - /contact: "great work" gradient span, "Send us a message", "info@opussolutions.com", "Albany, NY" map label.
+    - /faqs: "Frequently asked" gradient span, "Everything you need to know", 14 unique `faq-0`..`faq-13` accordion items, "Still have questions?" CTA.
+    - /privacy-policy: "Last updated: January 2025", all 10 section headings (Introduction through Changes to This Policy), "Questions about privacy?" CTA.
+    - /terms: "Last updated: January 2025", all 12 section headings (Acceptance of Terms through Governing Law + Contact), "Ready to get started?" CTA.
+    - /refund-policy: "Last updated: January 2025", all 9 section headings (Overview through Compliance + Contact), "Questions about billing?" CTA.
+  • dev.log shows clean compiles for all 5 routes, no runtime errors, no warnings.
+
+Stage Summary:
+- 5 new page routes delivered (6 files total): /contact (page.tsx + ContactFormSection.tsx), /faqs (page.tsx), /privacy-policy (page.tsx), /terms (page.tsx), /refund-policy (page.tsx).
+- All 5 pages are Server Components that export typed `metadata` (Next.js 16 compatible — metadata export is forbidden from "use client" files, so interactive bits isolated into a separate client component only on /contact; /faqs uses shadcn Accordion (itself a "use client" component) directly from the server page; the 3 legal pages are pure server components with no client interactivity needed).
+- All pages wrapped in `<SiteChrome>`, lead with `<PageHero>`, close with `<CTABanner />` per the brief.
+- Premium dark glassmorphism preserved throughout: glass-strong cards with sheen, electric/violet/cyan/gold accent palette, ambient blur orbs, glowing electric dot bullets, gradient text spans (where spec'd), Reveal scroll-ins stagger, framer-motion success-state animation on the contact form, animated pinging green status dot on the stylized map, custom ChevronDown rotate-on-open accordion trigger.
+- The contact page features a fully-interactive form (Name / Email / Phone / Company-Team / Service-of-Interest shadcn Select dropdown with all 8 services / Message textarea) with preventDefault submit → success state, plus 4 color-coded info cards (real email + 3 phone numbers + 3-line address + office hours) and a pure-CSS/SVG stylized map with a glowing centered Albany pin and dual pulse rings.
+- The faqs page features all 14 required Q&As in a single-collapsible accordion with a rotating chevron pill, wrapped in Reveal stagger.
+- The 3 legal pages share a consistent layout (single wide glass-strong card, header row with icon+title+last-updated caption, structured prose sections with optional electric-dot bullet lists, footer contact strip) for visual cohesion, with subtle accent-color differentiation in the corner orbs (privacy = electric+violet, terms = electric+cyan, refund = electric+gold).
+- Lint clean (exit 0). All 5 routes return HTTP 200 with all required copy rendering server-side. No "LeadSphere" or user-visible "AI" text anywhere. No file names, component names, or existing import paths changed. Ready for preview.
