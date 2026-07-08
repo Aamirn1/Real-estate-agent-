@@ -5,11 +5,9 @@ import { Hero } from "@/components/leadsphere/Hero";
 import TrustStatsFeatures from "@/components/leadsphere/sections/TrustStatsFeatures";
 import { AboutMission, VirtualAssistantServices, OurWorkflow } from "@/components/leadsphere/sections/AboutVaWorkflow";
 import { WhyChooseUs, FeaturedProfessionals } from "@/components/leadsphere/sections/WhyChooseFeatured";
-import InteractiveDemo from "@/components/leadsphere/sections/InteractiveDemo";
 import { BeforeAfter } from "@/components/leadsphere/sections/BeforeAfter";
 import AiProcessMap from "@/components/leadsphere/sections/AiProcessMap";
 import CrmIntegrationsTestimonials from "@/components/leadsphere/sections/CrmIntegrationsTestimonials";
-import { RoiCalculator } from "@/components/leadsphere/sections/RoiCalculator";
 import PricingFaqCtaFooter from "@/components/leadsphere/sections/PricingFaqCtaFooter";
 import { AiAssistantWidget } from "@/components/leadsphere/AiAssistantWidget";
 import { ScrollToTop } from "@/components/leadsphere/ScrollToTop";
@@ -31,31 +29,25 @@ export default function Home() {
       {/* 4. Why Choose Us — 8 reasons */}
       <WhyChooseUs />
 
-      {/* 5. Interactive Demo */}
-      <InteractiveDemo />
-
-      {/* 6. Process — 7 steps (Discovery → ... → Business Growth) */}
+      {/* 5. Process — 7 steps (Discovery → ... → Business Growth) */}
       <AiProcessMap />
 
-      {/* 7. Virtual Assistant Services */}
+      {/* 6. Virtual Assistant Services */}
       <VirtualAssistantServices />
 
-      {/* 8. Our Workflow — Intro Call → Meet VA → Discuss Tasks → Work Started */}
+      {/* 7. Our Workflow — Intro Call → Meet VA → Discuss Tasks → Work Started */}
       <OurWorkflow />
 
-      {/* 9. Comparison — Traditional vs Professional workflow support */}
+      {/* 8. Comparison — Traditional vs Professional workflow support */}
       <BeforeAfter />
 
-      {/* 10. Featured Professionals — agent cards + success stories */}
+      {/* 9. Featured Professionals — agent cards + success stories */}
       <FeaturedProfessionals />
 
-      {/* 11. ROI Calculator */}
-      <RoiCalculator />
-
-      {/* 12. CRM Kanban + Integrations + Testimonials */}
+      {/* 10. Testimonials */}
       <CrmIntegrationsTestimonials />
 
-      {/* 13. Pricing + FAQ + CTA banner + Footer */}
+      {/* 11. Pricing + FAQ + CTA banner + Footer */}
       <PricingFaqCtaFooter />
 
       <ScrollToTop />

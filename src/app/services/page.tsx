@@ -6,13 +6,12 @@ import AiProcessMap from "@/components/leadsphere/sections/AiProcessMap";
 import {
   VirtualAssistantServices,
 } from "@/components/leadsphere/sections/AboutVaWorkflow";
-import InteractiveDemo from "@/components/leadsphere/sections/InteractiveDemo";
-import { RoiCalculator } from "@/components/leadsphere/sections/RoiCalculator";
+import { WhyChooseUs } from "@/components/leadsphere/sections/WhyChooseFeatured";
 
 export const metadata: Metadata = {
   title: "Services — Opus Solutions",
   description:
-    "Lead discovery, outreach, CRM, virtual assistant services, and digital advertising for real estate professionals.",
+    "Marketing consulting, CRM support, workflow automation, virtual assistance, outreach support, and digital marketing for real estate professionals.",
 };
 
 export default function ServicesPage() {
@@ -22,33 +21,30 @@ export default function ServicesPage() {
         eyebrow="Services"
         title={
           <>
-            Get Started With Online{" "}
-            <span className="text-gradient-electric">Lead Generation</span>{" "}
+            Get Started With{" "}
+            <span className="text-gradient-electric">Professional Support</span>{" "}
             Services
           </>
         }
-        description="Unlock your potential for success with our expert online lead generation services tailored for real estate professionals. We connect you with qualified leads and grow your business."
+        description="Unlock your potential for success with our expert marketing consulting, outreach support, and CRM solutions tailored for licensed real estate professionals."
       />
 
       {/* 1. Trust + Stats + Services overview grid (id="services") */}
       <TrustStatsFeatures />
 
-      {/* 2. Smart Assistant + Real Estate Process timeline + Interactive Map */}
+      {/* 2. Process timeline — 7 steps */}
       <AiProcessMap />
 
       {/* 3. Virtual Assistant Services — 6 service cards */}
       <VirtualAssistantServices />
 
-      {/* 4. Live platform preview — tabbed dashboard demo */}
-      <InteractiveDemo />
+      {/* 4. Why Choose Us — 8 reasons */}
+      <WhyChooseUs />
 
-      {/* 5. ROI calculator — projected listings & revenue */}
-      <RoiCalculator />
-
-      {/* 6. Closing CTA */}
+      {/* 5. Closing CTA */}
       <CTABanner
         title="Ready to fill your pipeline?"
-        subtitle="From lead discovery to closing — Opus Solutions handles the heavy lifting so you can focus on clients."
+        subtitle="From outreach to CRM — Opus Solutions handles the heavy lifting so you can focus on clients."
       />
     </SiteChrome>
   );

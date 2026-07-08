@@ -747,46 +747,13 @@ function TestimonialsCarousel() {
 export default function CrmIntegrationsTestimonials() {
   return (
     <>
-      {/* 1. CRM KANBAN */}
-      <SectionShell id="crm">
-        <Reveal className="mb-10">
-          <SectionHeading
-            eyebrow="Smart CRM"
-            title="Drag, drop, and close"
-            description="Every lead organized in a pipeline that flows."
-          />
-        </Reveal>
-
-        <Reveal delay={0.1}>
-          <div className="rounded-3xl border border-white/[0.07] bg-gradient-to-b from-white/[0.04] to-transparent p-3 sm:p-5">
-            <CrmKanban />
-          </div>
-        </Reveal>
-
-        <p className="mt-5 text-center text-xs text-white/40">
-          Try it — drag a lead card between columns. Live interactive demo.
-        </p>
-      </SectionShell>
-
-      {/* 2. INTEGRATIONS */}
-      <SectionShell id="integrations" className="pt-0">
-        <Reveal className="mb-10">
-          <SectionHeading
-            eyebrow="Integrations"
-            title="Connects with your favorite tools"
-            description="200+ integrations. Sync everything in one click."
-          />
-        </Reveal>
-        <IntegrationsGrid />
-      </SectionShell>
-
-      {/* 3. TESTIMONIALS */}
-      <SectionShell id="testimonials" className="pt-0">
+      {/* TESTIMONIALS */}
+      <SectionShell id="testimonials">
         <Reveal className="mb-10">
           <SectionHeading
             eyebrow="Testimonials"
-            title="Loved by top-producing agents"
-            description="Real results from real estate teams across North America."
+            title="Clients tell the story"
+            description="Real results from real estate professionals who trust Opus Solutions."
           />
         </Reveal>
         <TestimonialsCarousel />

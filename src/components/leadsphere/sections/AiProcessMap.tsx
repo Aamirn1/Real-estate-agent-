@@ -857,9 +857,7 @@ function InteractiveMapSection() {
 export default function AiProcessMap() {
   return (
     <>
-      <AiAssistantSection />
       <ProcessTimelineSection />
-      <InteractiveMapSection />
     </>
   );
 }

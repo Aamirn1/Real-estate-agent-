@@ -67,16 +67,16 @@ export function Navbar() {
         {/* Desktop CTAs */}
         <div className="hidden items-center gap-2 md:flex">
           <a
-            href="#demo"
+            href="/signin"
             className="rounded-xl px-3.5 py-2 text-sm font-medium text-white/70 transition-colors hover:text-white"
           >
             Sign in
           </a>
           <a
-            href="#pricing"
+            href="/signup"
             className="group relative overflow-hidden rounded-xl bg-gradient-to-r from-electric to-violet px-4 py-2 text-sm font-semibold text-white shadow-[0_0_24px_-6px_rgba(59,130,246,0.7)] transition-all hover:shadow-[0_0_30px_-4px_rgba(139,92,246,0.8)]"
           >
-            <span className="relative z-10">Start Free Trial</span>
+            <span className="relative z-10">Get Started</span>
             <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/25 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
           </a>
         </div>
@@ -115,18 +115,18 @@ export function Navbar() {
               ))}
               <div className="mt-2 grid grid-cols-2 gap-2 border-t border-white/10 pt-3">
                 <a
-                  href="/pricing"
+                  href="/signin"
                   onClick={() => setOpen(false)}
                   className="rounded-xl border border-white/10 px-4 py-2.5 text-center text-sm font-medium text-white/80"
                 >
                   Sign in
                 </a>
                 <a
-                  href="/pricing"
+                  href="/signup"
                   onClick={() => setOpen(false)}
                   className="rounded-xl bg-gradient-to-r from-electric to-violet px-4 py-2.5 text-center text-sm font-semibold text-white"
                 >
-                  Free Trial
+                  Get Started
                 </a>
               </div>
             </div>

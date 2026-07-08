@@ -48,11 +48,11 @@ export function Hero() {
             initial={{ opacity: 0, y: 24, filter: "blur(10px)" }}
             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-6 font-heading text-[2.75rem] font-semibold leading-[1.02] tracking-tight text-white sm:text-6xl lg:text-[4.25rem]"
+            className="mt-6 font-heading text-[2.25rem] font-semibold leading-[1.05] tracking-tight text-white sm:text-4xl lg:text-[3.5rem]"
           >
-            Scale Your Real Estate Business
+            Scale Your Real Estate
             <br />
-            <span className="text-gradient-electric text-glow">with Professional Support.</span>
+            <span className="text-gradient-electric text-glow">Business with Professional Support.</span>
           </motion.h1>
 
           <motion.p
@@ -74,7 +74,7 @@ export function Hero() {
           >
             <MagneticButton>
               <a
-                href="/pricing"
+                href="/signup"
                 className="group relative inline-flex items-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-electric to-violet px-6 py-3.5 text-sm font-semibold text-white shadow-[0_0_30px_-6px_rgba(59,130,246,0.7)] transition-all hover:shadow-[0_0_40px_-4px_rgba(139,92,246,0.85)]"
               >
                 <span className="relative z-10">Get Started</span>
@@ -114,12 +114,12 @@ export function Hero() {
           </motion.div>
         </div>
 
-        {/* ---------- RIGHT: Floating Dashboard ---------- */}
+        {/* ---------- RIGHT: Hero Image ---------- */}
         <div
-          className="relative h-[460px] sm:h-[540px] lg:h-[600px]"
+          className="relative h-[360px] sm:h-[480px] lg:h-[560px]"
           style={{ perspective: "1200px" }}
         >
-          <FloatingDashboard mx={m.x} my={m.y} />
+          <HeroImage mx={m.x} my={m.y} />
         </div>
       </div>
 
@@ -144,7 +144,85 @@ export function Hero() {
 }
 
 /* ============================================================ */
-/* Floating Dashboard                                           */
+/* Hero Image (with parallax float + glass frame)               */
+/* ============================================================ */
+
+function HeroImage({ mx, my }: { mx: number; my: number }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.94, y: 30 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
+      transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+      style={{
+        x: mx * 18,
+        y: my * 18,
+      }}
+      className="relative h-full w-full"
+    >
+      {/* Glow behind image */}
+      <div className="absolute -inset-4 rounded-[2rem] bg-gradient-to-br from-electric/30 via-violet/20 to-cyan/20 blur-3xl" />
+
+      {/* Main image in glass frame */}
+      <div className="relative h-full w-full overflow-hidden rounded-3xl border border-white/10 glass-strong glass-sheen shadow-[0_30px_80px_-20px_rgba(0,0,0,0.8)]">
+        <img
+          src="/hero-image.png"
+          alt="Opus Solutions team — professional real estate marketing and outreach support"
+          className="h-full w-full object-cover"
+          loading="eager"
+        />
+        {/* Gradient overlay for text legibility + brand cohesion */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/20 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-br from-electric/10 via-transparent to-violet/10" />
+
+        {/* Floating badge — top left */}
+        <motion.div
+          animate={{ y: [0, -8, 0] }}
+          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute left-4 top-4 flex items-center gap-2 rounded-full border border-white/15 bg-[#050505]/70 px-3 py-1.5 backdrop-blur-md"
+        >
+          <span className="relative flex h-2 w-2">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-70" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
+          </span>
+          <span className="text-[11px] font-medium text-white/85">Team available now</span>
+        </motion.div>
+
+        {/* Floating stat card — bottom left */}
+        <motion.div
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+          className="absolute bottom-4 left-4 flex items-center gap-3 rounded-2xl border border-white/15 bg-[#050505]/75 p-3 backdrop-blur-md"
+        >
+          <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-400 to-electric">
+            <TrendingUp className="h-4 w-4 text-white" />
+          </span>
+          <div>
+            <div className="font-heading text-sm font-bold text-white tnum">98% Satisfaction</div>
+            <div className="text-[10px] text-white/55">Across 4+ agent teams</div>
+          </div>
+        </motion.div>
+
+        {/* Floating intro card — bottom right */}
+        <motion.div
+          animate={{ y: [0, -10, 0] }}
+          transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+          className="absolute bottom-4 right-4 flex items-center gap-2.5 rounded-2xl border border-white/15 bg-[#050505]/75 p-3 backdrop-blur-md"
+        >
+          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-electric to-violet">
+            <Bell className="h-3.5 w-3.5 text-white" />
+          </span>
+          <div>
+            <div className="text-[11px] font-semibold text-white">New verified intro</div>
+            <div className="text-[9px] text-white/55">142 Maple Ave · 2m ago</div>
+          </div>
+        </motion.div>
+      </div>
+    </motion.div>
+  );
+}
+
+/* ============================================================ */
+/* Floating Dashboard (kept for fallback — not rendered)        */
 /* ============================================================ */
 
 function FloatingDashboard({ mx, my }: { mx: number; my: number }) {
