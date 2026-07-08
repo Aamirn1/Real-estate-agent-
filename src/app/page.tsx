@@ -12,6 +12,7 @@ import CrmIntegrationsTestimonials from "@/components/leadsphere/sections/CrmInt
 import { RoiCalculator } from "@/components/leadsphere/sections/RoiCalculator";
 import PricingFaqCtaFooter from "@/components/leadsphere/sections/PricingFaqCtaFooter";
 import { AiAssistantWidget } from "@/components/leadsphere/AiAssistantWidget";
+import { ScrollToTop } from "@/components/leadsphere/ScrollToTop";
 
 export default function Home() {
   return (
@@ -29,6 +30,7 @@ export default function Home() {
       <RoiCalculator />
       <PricingFaqCtaFooter />
 
+      <ScrollToTop />
       <AiAssistantWidget />
     </main>
   );
