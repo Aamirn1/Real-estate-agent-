@@ -28,7 +28,10 @@ export const metadata: Metadata = {
     "seller leads",
   ],
   authors: [{ name: "LeadSphere AI" }],
-  metadataBase: new URL("https://leadsphere.ai"),
+  // Publicly-accessible base so OG/Twitter image URLs resolve as absolute.
+  // Uses the GitHub raw URL so link previews work even before you deploy.
+  // After deploying to Vercel, you can change this to your production URL.
+  metadataBase: new URL("https://raw.githubusercontent.com/Aamirn1/Real-estate-agent-/main/public"),
   icons: {
     icon: [
       { url: "/favicon-32.png", sizes: "32x32", type: "image/png" },
@@ -48,7 +51,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     images: [
       {
-        url: "/og-image.png",
+        url: "https://raw.githubusercontent.com/Aamirn1/Real-estate-agent-/main/public/og-image.png",
         width: 1344,
         height: 768,
         alt: "LeadSphere AI — More Listings. Powered by AI.",
@@ -60,7 +63,7 @@ export const metadata: Metadata = {
     title: "LeadSphere AI — More Listings. Powered by AI.",
     description:
       "The AI-powered real estate lead generation platform for modern agents and teams.",
-    images: ["/og-image.png"],
+    images: ["https://raw.githubusercontent.com/Aamirn1/Real-estate-agent-/main/public/og-image.png"],
   },
 };
 
