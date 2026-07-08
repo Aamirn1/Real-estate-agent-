@@ -1,0 +1,403 @@
+"use client";
+
+import { motion } from "framer-motion";
+import {
+  Sparkles,
+  ArrowRight,
+  PlayCircle,
+  TrendingUp,
+  MapPin,
+  Phone,
+  Mail,
+  Bell,
+  Bot,
+  CheckCircle2,
+  DollarSign,
+  Users,
+  Activity,
+} from "lucide-react";
+import { AnimatedBackground } from "@/components/leadsphere/AnimatedBackground";
+import { MagneticButton } from "@/components/leadsphere/MagneticButton";
+import { useMouseParallax } from "@/lib/leadsphere/hooks";
+
+export function Hero() {
+  const m = useMouseParallax(1);
+
+  return (
+    <section className="relative min-h-screen w-full overflow-hidden pt-28 pb-16 sm:pt-32">
+      <AnimatedBackground variant="hero" />
+
+      <div className="relative z-10 mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-10 px-5 sm:px-8 lg:grid-cols-2 lg:gap-8">
+        {/* ---------- LEFT ---------- */}
+        <div className="flex flex-col items-start">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-medium text-white/70 backdrop-blur"
+          >
+            <span className="relative flex h-1.5 w-1.5">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-electric opacity-70" />
+              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-electric" />
+            </span>
+            Now with AI Lead Discovery 2.0
+            <Sparkles className="h-3 w-3 text-violet" />
+          </motion.div>
+
+          <motion.h1
+            initial={{ opacity: 0, y: 24, filter: "blur(10px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+            className="mt-6 font-heading text-[2.75rem] font-semibold leading-[1.02] tracking-tight text-white sm:text-6xl lg:text-[4.25rem]"
+          >
+            More Listings.
+            <br />
+            <span className="text-gradient-electric text-glow">Powered by AI.</span>
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.3 }}
+            className="mt-6 max-w-xl text-base leading-relaxed text-white/60 sm:text-lg"
+          >
+            Generate high-quality seller leads, automate prospecting, and close
+            more deals with one intelligent platform built for modern real
+            estate teams.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.42 }}
+            className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center"
+          >
+            <MagneticButton>
+              <a
+                href="#pricing"
+                className="group relative inline-flex items-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-electric to-violet px-6 py-3.5 text-sm font-semibold text-white shadow-[0_0_30px_-6px_rgba(59,130,246,0.7)] transition-all hover:shadow-[0_0_40px_-4px_rgba(139,92,246,0.85)]"
+              >
+                <span className="relative z-10">Start Free Trial</span>
+                <ArrowRight className="relative z-10 h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/30 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
+              </a>
+            </MagneticButton>
+            <MagneticButton strength={0.3}>
+              <a
+                href="#demo"
+                className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-6 py-3.5 text-sm font-semibold text-white backdrop-blur transition-all hover:border-white/25 hover:bg-white/10"
+              >
+                <PlayCircle className="h-4.5 w-4.5 text-cyan" />
+                Book Demo
+              </a>
+            </MagneticButton>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.7, delay: 0.6 }}
+            className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 text-xs text-white/45"
+          >
+            <span className="inline-flex items-center gap-1.5">
+              <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400" /> No credit card
+            </span>
+            <span className="inline-flex items-center gap-1.5">
+              <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400" /> 14-day trial
+            </span>
+            <span className="inline-flex items-center gap-1.5">
+              <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400" /> Cancel anytime
+            </span>
+          </motion.div>
+        </div>
+
+        {/* ---------- RIGHT: Floating Dashboard ---------- */}
+        <div
+          className="relative h-[460px] sm:h-[540px] lg:h-[600px]"
+          style={{ perspective: "1200px" }}
+        >
+          <FloatingDashboard mx={m.x} my={m.y} />
+        </div>
+      </div>
+
+      {/* scroll cue */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.1, duration: 0.8 }}
+        className="absolute bottom-6 left-1/2 z-10 hidden -translate-x-1/2 flex-col items-center gap-2 text-white/40 sm:flex"
+      >
+        <span className="text-[10px] uppercase tracking-[0.2em]">Scroll</span>
+        <span className="flex h-9 w-5 items-start justify-center rounded-full border border-white/20 p-1.5">
+          <motion.span
+            animate={{ y: [0, 8, 0] }}
+            transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+            className="h-1.5 w-1 rounded-full bg-white/60"
+          />
+        </span>
+      </motion.div>
+    </section>
+  );
+}
+
+/* ============================================================ */
+/* Floating Dashboard                                           */
+/* ============================================================ */
+
+function FloatingDashboard({ mx, my }: { mx: number; my: number }) {
+  // depth factors — farther cards move more
+  const layer = (depth: number) => ({
+    x: mx * depth * 40,
+    y: my * depth * 40,
+  });
+
+  return (
+    <div className="absolute inset-0" style={{ transformStyle: "preserve-3d" }}>
+      {/* Main dashboard card */}
+      <Floaty style={layer(0.5)} className="absolute left-1/2 top-1/2 w-[88%] -translate-x-1/2 -translate-y-1/2 sm:w-[78%]">
+        <MainPanel />
+      </Floaty>
+
+      {/* Live lead notification - top left */}
+      <Floaty style={layer(1.4)} className="absolute left-0 top-4 w-[62%] sm:w-[52%] animate-float-y [animation-delay:-1s]">
+        <LeadNotification />
+      </Floaty>
+
+      {/* Mini analytics - top right */}
+      <Floaty style={layer(1.7)} className="absolute right-0 top-0 w-[46%] sm:w-[42%] animate-float-y-slow">
+        <MiniAnalytics />
+      </Floaty>
+
+      {/* AI assistant - bottom left */}
+      <Floaty style={layer(1.6)} className="absolute bottom-6 left-2 w-[58%] sm:w-[50%] animate-float-y [animation-delay:-3s]">
+        <AiAssistant />
+      </Floaty>
+
+      {/* Activity timeline - bottom right */}
+      <Floaty style={layer(1.3)} className="absolute bottom-2 right-0 w-[44%] sm:w-[40%] animate-float-y-slow [animation-delay:-2s]">
+        <ActivityCard />
+      </Floaty>
+
+      {/* Property pin floating */}
+      <Floaty style={layer(2.0)} className="absolute right-6 top-1/3 hidden sm:block">
+        <PropertyPin />
+      </Floaty>
+    </div>
+  );
+}
+
+function Floaty({
+  children,
+  className,
+  style,
+}: {
+  children: React.ReactNode;
+  className?: string;
+  style?: React.CSSProperties;
+}) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.9, y: 30 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
+      transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+      style={style}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+/* ----- Main Panel: pipeline + chart ----- */
+function MainPanel() {
+  return (
+    <div className="glass-strong glass-sheen relative overflow-hidden rounded-2xl p-4 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.7)]">
+      {/* top bar */}
+      <div className="mb-3 flex items-center justify-between">
+        <div className="flex items-center gap-1.5">
+          <span className="h-2 w-2 rounded-full bg-red-400/80" />
+          <span className="h-2 w-2 rounded-full bg-yellow-400/80" />
+          <span className="h-2 w-2 rounded-full bg-emerald-400/80" />
+        </div>
+        <span className="text-[10px] font-medium text-white/40">app.leadsphere.ai</span>
+        <div className="h-5 w-5 rounded-full bg-gradient-to-br from-electric to-violet" />
+      </div>
+
+      {/* KPI row */}
+      <div className="mb-3 grid grid-cols-3 gap-2">
+        {[
+          { label: "Leads", val: "12,840", icon: Users, c: "text-electric" },
+          { label: "Conv.", val: "92%", icon: TrendingUp, c: "text-emerald-400" },
+          { label: "Revenue", val: "$4.2M", icon: DollarSign, c: "text-gold" },
+        ].map((k) => (
+          <div key={k.label} className="rounded-xl border border-white/8 bg-white/[0.03] p-2.5">
+            <div className="flex items-center gap-1.5">
+              <k.icon className={`h-3 w-3 ${k.c}`} />
+              <span className="text-[9px] uppercase tracking-wide text-white/40">{k.label}</span>
+            </div>
+            <div className="mt-1 font-heading text-base font-semibold text-white tnum">{k.val}</div>
+          </div>
+        ))}
+      </div>
+
+      {/* Chart */}
+      <div className="rounded-xl border border-white/8 bg-white/[0.02] p-3">
+        <div className="mb-2 flex items-center justify-between">
+          <span className="text-[10px] font-medium text-white/50">Lead Flow · 7d</span>
+          <span className="rounded-full bg-emerald-400/10 px-1.5 py-0.5 text-[9px] font-semibold text-emerald-400">+24%</span>
+        </div>
+        <div className="flex h-16 items-end gap-1.5">
+          {[40, 65, 48, 80, 58, 92, 72].map((h, i) => (
+            <motion.div
+              key={i}
+              initial={{ height: 0 }}
+              animate={{ height: `${h}%` }}
+              transition={{ duration: 0.8, delay: 0.6 + i * 0.08, ease: "easeOut" }}
+              className="flex-1 rounded-t-sm bg-gradient-to-t from-electric/40 to-violet"
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* Pipeline strip */}
+      <div className="mt-3 flex gap-1.5">
+        {[
+          { n: "New", c: "bg-cyan/20 text-cyan" },
+          { n: "Contact", c: "bg-electric/20 text-electric" },
+          { n: "Appt", c: "bg-violet/20 text-violet" },
+          { n: "Close", c: "bg-gold/20 text-gold" },
+        ].map((s) => (
+          <div key={s.n} className={`flex-1 rounded-lg px-2 py-1.5 text-center text-[9px] font-semibold ${s.c}`}>
+            {s.n}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ----- Lead Notification ----- */
+function LeadNotification() {
+  return (
+    <div className="glass-strong relative overflow-hidden rounded-2xl p-3.5 shadow-[0_20px_50px_-15px_rgba(0,0,0,0.6)]">
+      <div className="flex items-center gap-2">
+        <span className="relative flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-emerald-400 to-electric">
+          <Bell className="h-3.5 w-3.5 text-white" />
+          <span className="absolute -right-0.5 -top-0.5 h-2.5 w-2.5 rounded-full bg-emerald-400 ring-2 ring-[#0d0d10]" />
+        </span>
+        <div className="min-w-0">
+          <div className="text-[10px] font-semibold text-white">New motivated seller</div>
+          <div className="truncate text-[9px] text-white/50">142 Maple Ave · 2m ago</div>
+        </div>
+      </div>
+      <div className="mt-2.5 flex items-center justify-between">
+        <span className="rounded-full bg-emerald-400/15 px-2 py-0.5 text-[9px] font-semibold text-emerald-400">Score 94 · Hot</span>
+        <span className="font-heading text-sm font-semibold text-white tnum">$890K</span>
+      </div>
+    </div>
+  );
+}
+
+/* ----- Mini Analytics ----- */
+function MiniAnalytics() {
+  return (
+    <div className="glass-strong relative overflow-hidden rounded-2xl p-3 shadow-[0_20px_50px_-15px_rgba(0,0,0,0.6)]">
+      <div className="mb-2 flex items-center gap-1.5">
+        <Activity className="h-3 w-3 text-violet" />
+        <span className="text-[9px] font-medium text-white/60">Conversion</span>
+      </div>
+      {/* Donut */}
+      <div className="relative mx-auto h-16 w-16">
+        <svg viewBox="0 0 36 36" className="h-full w-full -rotate-90">
+          <circle cx="18" cy="18" r="15.5" fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="3.5" />
+          <motion.circle
+            cx="18" cy="18" r="15.5" fill="none" stroke="url(#dg)" strokeWidth="3.5" strokeLinecap="round"
+            strokeDasharray="97.4"
+            initial={{ strokeDashoffset: 97.4 }}
+            animate={{ strokeDashoffset: 97.4 * (1 - 0.92) }}
+            transition={{ duration: 1.4, delay: 0.8, ease: "easeOut" }}
+          />
+          <defs>
+            <linearGradient id="dg" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stopColor="#3b82f6" />
+              <stop offset="100%" stopColor="#8b5cf6" />
+            </linearGradient>
+          </defs>
+        </svg>
+        <div className="absolute inset-0 flex flex-col items-center justify-center">
+          <span className="font-heading text-sm font-bold text-white tnum">92%</span>
+        </div>
+      </div>
+      <div className="mt-1 text-center text-[8px] text-white/40">vs 48% industry</div>
+    </div>
+  );
+}
+
+/* ----- AI Assistant ----- */
+function AiAssistant() {
+  return (
+    <div className="glass-strong relative overflow-hidden rounded-2xl p-3.5 shadow-[0_20px_50px_-15px_rgba(0,0,0,0.6)]">
+      <div className="flex items-center gap-2">
+        <span className="relative flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-violet to-electric">
+          <Bot className="h-4 w-4 text-white" />
+          <span className="absolute inset-0 animate-pulse-ring rounded-full bg-violet/40" />
+        </span>
+        <div>
+          <div className="text-[10px] font-semibold text-white">AI Assistant</div>
+          <div className="flex items-center gap-1 text-[8px] text-emerald-400">
+            <span className="h-1 w-1 rounded-full bg-emerald-400" /> Online
+          </div>
+        </div>
+      </div>
+      <div className="mt-2.5 rounded-xl rounded-tl-sm bg-white/[0.05] p-2.5">
+        <p className="text-[9.5px] leading-relaxed text-white/75">
+          Sarah from Maple Ave is <span className="text-electric font-medium">94% likely to list</span>. Best call time: today 4–6pm.
+        </p>
+      </div>
+      <div className="mt-2 flex gap-1.5">
+        <span className="flex-1 rounded-lg bg-electric/15 py-1 text-center text-[8.5px] font-medium text-electric">Call now</span>
+        <span className="flex-1 rounded-lg bg-white/8 py-1 text-center text-[8.5px] font-medium text-white/60">Draft email</span>
+      </div>
+    </div>
+  );
+}
+
+/* ----- Activity Timeline ----- */
+function ActivityCard() {
+  const items = [
+    { i: Phone, c: "text-electric", t: "Call · J. Reynolds", s: "3m" },
+    { i: Mail, c: "text-violet", t: "Email · S. Mitchell", s: "12m" },
+    { i: CheckCircle2, c: "text-emerald-400", t: "Closed · $1.2M", s: "1h" },
+  ];
+  return (
+    <div className="glass-strong relative overflow-hidden rounded-2xl p-3 shadow-[0_20px_50px_-15px_rgba(0,0,0,0.6)]">
+      <div className="mb-2 text-[9px] font-semibold uppercase tracking-wide text-white/45">Activity</div>
+      <div className="space-y-2">
+        {items.map((it, idx) => (
+          <div key={idx} className="flex items-center gap-2">
+            <span className="flex h-5 w-5 items-center justify-center rounded-md bg-white/5">
+              <it.i className={`h-3 w-3 ${it.c}`} />
+            </span>
+            <span className="flex-1 truncate text-[9px] text-white/70">{it.t}</span>
+            <span className="text-[8px] text-white/35">{it.s}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ----- Floating Property Pin ----- */
+function PropertyPin() {
+  return (
+    <div className="relative">
+      <div className="absolute left-1/2 top-1/2 h-10 w-10 -translate-x-1/2 -translate-y-1/2">
+        <span className="absolute inset-0 animate-pulse-ring rounded-full bg-electric/40" />
+      </div>
+      <div className="glass-strong flex items-center gap-2 rounded-full px-3 py-1.5 shadow-[0_10px_30px_-8px_rgba(59,130,246,0.5)]">
+        <MapPin className="h-3.5 w-3.5 text-electric" />
+        <span className="text-[9px] font-semibold text-white tnum">$1.45M</span>
+      </div>
+    </div>
+  );
+}
