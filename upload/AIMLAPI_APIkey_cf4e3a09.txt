@@ -1,0 +1,8 @@
+
+Use this key to access https://aimlapi.com
+
+Name: SwiftRocket-249
+
+API key: cf4e3a09a0387c4b5ad44441eac557df
+
+How to start: https://docs.aimlapi.com/quickstart/setting-up
