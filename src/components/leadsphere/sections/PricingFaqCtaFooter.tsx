@@ -60,24 +60,6 @@ type Plan = {
 
 const PLANS: Plan[] = [
   {
-    name: "Custom Plan",
-    price: "Per Lead",
-    period: "Flexible",
-    tagline: "Start pay-as-you-go",
-    cta: "Get Started",
-    ctaVariant: "outline",
-    features: [
-      "One County",
-      "10 hr/day Support",
-      "No Hidden Charges",
-      "Appointment Scheduling",
-      "Call/lead recording (where permitted)",
-      "Dedicated Account Manager",
-      "Warm live transfer",
-      "Digital advertising",
-    ],
-  },
-  {
     name: "Trial Plan",
     price: "$450",
     period: "One-Time · 30 Days",
@@ -139,8 +121,10 @@ const PLANS: Plan[] = [
     price: "$2500",
     period: "One-Time · 30 Days",
     tagline: "High-volume prospecting",
-    cta: "Get Started",
+    cta: "Book a Demo",
     ctaVariant: "outline",
+    highlight: "premium",
+    badge: "For Premium Realtors",
     features: [
       "8% referral fee (on successful closings)",
       "54 qualified pre-screened introductions",
@@ -149,27 +133,6 @@ const PLANS: Plan[] = [
       "Priority Appointment Scheduling",
       "Senior Dedicated Account Manager",
       "Exclusive warm live transfer",
-    ],
-  },
-  {
-    name: "Sapphire Plan",
-    price: "$4000",
-    period: "One-Time · 365 Days",
-    tagline: "Maximum volume & priority",
-    cta: "Book a Demo",
-    ctaVariant: "outline",
-    highlight: "premium",
-    badge: "For Premium Realtors",
-    features: [
-      "5% Referral Fee",
-      "Unlimited qualified pre-screened introductions (subject to geography capacity)",
-      "Unlimited counties (subject to availability)",
-      "Up to 3 listing & closing support slots",
-      "10 hr/day Support",
-      "Priority Appointment Scheduling",
-      "Senior Dedicated Account Manager",
-      "Real-time Live Transfer",
-      "SMS/WhatsApp Support",
     ],
   },
 ];
@@ -296,15 +259,6 @@ const CONTACT_INFO = {
 ============================================================ */
 
 function PlanPrice({ plan }: { plan: Plan }) {
-  if (plan.price === "Per Lead") {
-    return (
-      <div className="flex items-baseline gap-1">
-        <span className="font-heading text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-          Per Lead
-        </span>
-      </div>
-    );
-  }
   const num = parseInt(plan.price.replace(/[^0-9]/g, ""), 10);
   return (
     <div className="flex items-baseline gap-1">
