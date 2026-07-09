@@ -52,10 +52,11 @@ export const metadata: Metadata = {
     locale: "en_US",
     images: [
       {
-        url: "https://raw.githubusercontent.com/Aamirn1/Real-estate-agent-/main/public/og-image.png",
+        url: "https://raw.githubusercontent.com/Aamirn1/Real-estate-agent-/main/public/og-image.jpg",
         width: 1344,
         height: 768,
         alt: "Opus Solutions — Workflow Automation for Realtors",
+        type: "image/jpeg",
       },
     ],
   },
@@ -64,7 +65,7 @@ export const metadata: Metadata = {
     title: "Opus Solutions — Workflow Automation for Realtors",
     description:
       "Your trusted partner for marketing consulting, outreach support, and CRM solutions for licensed real estate professionals.",
-    images: ["https://raw.githubusercontent.com/Aamirn1/Real-estate-agent-/main/public/og-image.png"],
+    images: ["https://raw.githubusercontent.com/Aamirn1/Real-estate-agent-/main/public/og-image.jpg"],
   },
 };
 
