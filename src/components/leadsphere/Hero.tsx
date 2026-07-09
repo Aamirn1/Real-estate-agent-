@@ -18,18 +18,28 @@ import {
 } from "lucide-react";
 import { AnimatedBackground } from "@/components/leadsphere/AnimatedBackground";
 import { MagneticButton } from "@/components/leadsphere/MagneticButton";
-import { useMouseParallax } from "@/lib/leadsphere/hooks";
 
 export function Hero() {
-  const m = useMouseParallax(1);
-
   return (
-    <section className="relative min-h-screen w-full overflow-hidden pt-28 pb-16 sm:pt-32">
-      <AnimatedBackground variant="hero" />
+    <section className="relative flex min-h-screen w-full items-center overflow-hidden">
+      {/* Full-bleed background image — mobile portrait on small screens, desktop landscape on md+ */}
+      <picture className="absolute inset-0 z-0">
+        <source media="(min-width: 768px)" srcSet="/hero-bg-desktop.png" />
+        <img
+          src="/hero-bg-mobile.png"
+          alt=""
+          aria-hidden
+          className="h-full w-full object-cover"
+        />
+      </picture>
+      {/* Dark gradient overlays for text legibility + brand cohesion */}
+      <div className="absolute inset-0 z-0 bg-gradient-to-t from-[#050505] via-[#050505]/70 to-[#050505]/40 md:bg-gradient-to-r md:from-[#050505] md:via-[#050505]/60 md:to-[#050505]/20" />
+      <div className="absolute inset-0 z-0 bg-gradient-to-br from-electric/10 via-transparent to-violet/10" />
+      {/* Subtle animated particles on top of image for life */}
+      <AnimatedBackground variant="hero" className="opacity-40" />
 
-      <div className="relative z-10 mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-10 px-5 sm:px-8 lg:grid-cols-2 lg:gap-8">
-        {/* ---------- LEFT ---------- */}
-        <div className="flex flex-col items-start">
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-5 py-32 sm:px-8 sm:py-40">
+        <div className="flex max-w-2xl flex-col items-start">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
@@ -112,14 +122,6 @@ export function Hero() {
               <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400" /> Compliance-first
             </span>
           </motion.div>
-        </div>
-
-        {/* ---------- RIGHT: Hero Image ---------- */}
-        <div
-          className="relative h-[360px] sm:h-[480px] lg:h-[560px]"
-          style={{ perspective: "1200px" }}
-        >
-          <HeroImage mx={m.x} my={m.y} />
         </div>
       </div>
 

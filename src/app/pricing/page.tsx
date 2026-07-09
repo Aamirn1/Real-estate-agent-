@@ -48,24 +48,6 @@ type Plan = {
 
 const PLANS: Plan[] = [
   {
-    name: "Custom Plan",
-    price: "Per Lead",
-    period: "One-Time · Flexible",
-    tagline: "Start pay-as-you-go",
-    features: [
-      "One County",
-      "10 hr/day Support",
-      "No Hidden Charges",
-      "Appointment Scheduling",
-      "Call/lead recording (where permitted)",
-      "Dedicated Account Manager",
-      "Warm live transfer",
-      "Digital advertising",
-    ],
-    cta: "Get Started",
-    ctaVariant: "outline",
-  },
-  {
     name: "Trial Plan",
     price: "$450",
     period: "One-Time · 30 Days",
@@ -136,25 +118,6 @@ const PLANS: Plan[] = [
       "Senior Dedicated Account Manager",
       "Exclusive warm live transfer",
     ],
-    cta: "Get Started",
-    ctaVariant: "outline",
-  },
-  {
-    name: "Sapphire Plan",
-    price: "$4000",
-    period: "One-Time · 365 Days",
-    tagline: "Maximum volume & priority",
-    features: [
-      "5% Referral Fee",
-      "Unlimited qualified pre-screened introductions",
-      "Unlimited counties",
-      "Up to 3 listing & closing support slots",
-      "10 hr/day Support",
-      "Priority Appointment Scheduling",
-      "Senior Dedicated Account Manager",
-      "Real-time Live Transfer",
-      "SMS/WhatsApp Support",
-    ],
     cta: "Book a Demo",
     ctaVariant: "outline",
     highlight: "premium",
@@ -222,15 +185,6 @@ const FAQS: { q: string; a: string }[] = [
    ========================================================================== */
 
 function PlanPrice({ plan }: { plan: Plan }) {
-  if (plan.price === "Per Lead") {
-    return (
-      <div className="flex items-baseline gap-1">
-        <span className="font-heading text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-          Per Lead
-        </span>
-      </div>
-    );
-  }
   const num = parseInt(plan.price.replace(/[^0-9]/g, ""), 10);
   return (
     <div className="flex items-baseline gap-1">

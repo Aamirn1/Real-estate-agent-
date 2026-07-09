@@ -13,11 +13,8 @@ import {
   Lightbulb,
   Search,
   ClipboardList,
-  Rocket,
   PhoneCall,
-  Table2,
   BarChart3,
-  TrendingUp,
   MapPin,
   Layers,
   Crosshair,
@@ -283,45 +280,27 @@ function AiAssistantSection() {
 const STEPS = [
   {
     n: 1,
-    title: "Discovery",
-    desc: "We learn your goals, market, and the support you need most.",
+    title: "Research & Identification",
+    desc: "We analyze data and market trends to help identify potential contacts that align with your target audience.",
     icon: Search,
   },
   {
     n: 2,
-    title: "Planning",
-    desc: "We build a documented strategy and workflow tailored to your business.",
+    title: "Qualification & Verification",
+    desc: "Our team verifies interest levels through professional conversations and standardized intake methods, ensuring contacts are relevant before they reach your CRM.",
     icon: ClipboardList,
   },
   {
     n: 3,
-    title: "Campaign Setup",
-    desc: "CRM, campaigns, and outreach sequences are configured and documented.",
-    icon: Rocket,
-  },
-  {
-    n: 4,
-    title: "Outreach Support",
-    desc: "Human-only, verified outreach with documented follow-up processes.",
+    title: "Scheduling & Handoff",
+    desc: "Verified contacts are documented and either scheduled into your calendar or added into your CRM for your direct follow-up. All interactions respect compliance rules (DNC, TCPA, opt-out).",
     icon: PhoneCall,
   },
   {
-    n: 5,
-    title: "CRM Organization",
-    desc: "Leads organized, pipeline optimized, and tasks automated in your CRM.",
-    icon: Table2,
-  },
-  {
-    n: 6,
-    title: "Performance Reporting",
-    desc: "Monthly milestone reports and analytics keep everything transparent.",
+    n: 4,
+    title: "Ongoing Reporting & Support",
+    desc: "We provide clear, monthly milestone reports and continuous administrative support, giving your team the freedom to focus on relationship-building and successful client outcomes.",
     icon: BarChart3,
-  },
-  {
-    n: 7,
-    title: "Business Growth",
-    desc: "Scalable workflows and ongoing support drive lasting results.",
-    icon: TrendingUp,
   },
 ];
 
@@ -346,8 +325,7 @@ function ProcessTimelineSection() {
           eyebrow="Our Process"
           title={
             <>
-              How we drive results in{" "}
-              <span className="text-gradient-electric">7 steps</span>
+              How we <span className="text-gradient-electric">work</span>
             </>
           }
         />
@@ -377,7 +355,7 @@ function ProcessTimelineSection() {
           </motion.div>
 
           {/* Steps */}
-          <div className="relative grid grid-cols-7 gap-3">
+          <div className="relative grid grid-cols-4 gap-4">
             {STEPS.map((s, i) => (
               <Reveal
                 key={s.n}
