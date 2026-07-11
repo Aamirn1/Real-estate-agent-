@@ -73,7 +73,7 @@ export function Navbar() {
         {/* Mobile toggle */}
         <button
           onClick={() => setOpen((v) => !v)}
-          className="flex h-9 w-9 items-center justify-center rounded-lg text-[#1a1a1a]/80 transition-colors hover:bg-black/5 md:hidden"
+          className="flex h-9 w-9 items-center justify-center rounded-lg text-white transition-colors hover:bg-white/10 md:hidden"
           aria-label="Toggle menu"
         >
           {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}

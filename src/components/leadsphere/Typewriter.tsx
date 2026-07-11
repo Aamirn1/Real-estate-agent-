@@ -56,7 +56,7 @@ export function Typewriter({
 
   return (
     <span className={className}>
-      {prefix && <span className="text-[#1a1a1a]/85">{prefix}</span>}
+      {prefix && <span className="text-white/90">{prefix}</span>}
       {display.text}
       <span
         className="ml-0.5 inline-block w-[2px] animate-pulse bg-current align-middle"
