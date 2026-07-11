@@ -33,7 +33,7 @@ const MORE_STORIES: ClientStory[] = [
     name: "Amanda Reeves",
     location: "Arizona",
     initials: "AR",
-    avatar: "from-electric to-violet",
+    avatar: "from-[#2563EB] to-[#38BDF8]",
   },
   {
     quote:
@@ -49,7 +49,7 @@ const MORE_STORIES: ClientStory[] = [
     name: "Marcus Bryant",
     location: "Georgia",
     initials: "MB",
-    avatar: "from-violet to-fuchsia-500",
+    avatar: "from-[#38BDF8] to-fuchsia-500",
   },
   {
     quote:
@@ -109,7 +109,7 @@ export default function TestimonialsPage() {
               <GlassCard
                 strong
                 sheen
-                className="group relative flex h-full flex-col overflow-hidden p-6 transition-all duration-300 hover:-translate-y-1 hover:border-black/20 hover:shadow-[0_20px_60px_-20px_rgba(139,92,246,0.35)] sm:p-7"
+                className="group relative flex h-full flex-col overflow-hidden p-6 transition-all duration-300 hover:-translate-y-1 hover:border-black/20 hover:shadow-[0_20px_60px_-20px_rgba(56,189,248,0.35)] sm:p-7"
               >
                 {/* soft accent glow */}
                 <div
@@ -137,7 +137,7 @@ export default function TestimonialsPage() {
                 {/* avatar + name + location + verified badge */}
                 <div className="relative flex items-center gap-3">
                   <div
-                    className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gradient-to-br ${s.avatar} text-sm font-semibold text-[#1a1a1a] shadow-[0_4px_18px_-4px_rgba(59,130,246,0.5)]`}
+                    className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gradient-to-br ${s.avatar} text-sm font-semibold text-[#1a1a1a] shadow-[0_4px_18px_-4px_rgba(37,99,235,0.5)]`}
                   >
                     {s.initials}
                   </div>
@@ -146,7 +146,7 @@ export default function TestimonialsPage() {
                       <span className="text-sm font-semibold text-[#1a1a1a]">
                         {s.name}
                       </span>
-                      <BadgeCheck className="h-4 w-4 text-electric drop-shadow-[0_0_6px_rgba(59,130,246,0.55)]" />
+                      <BadgeCheck className="h-4 w-4 text-electric drop-shadow-[0_0_6px_rgba(37,99,235,0.55)]" />
                     </div>
                     <span className="text-xs text-[#1a1a1a]/50">{s.location}</span>
                   </div>

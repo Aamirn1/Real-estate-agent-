@@ -121,7 +121,7 @@ export default function RefundPolicyPage() {
                             key={bullet}
                             className="flex items-start gap-3 text-sm leading-relaxed text-[#1a1a1a]/60"
                           >
-                            <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-electric/70 shadow-[0_0_8px_#3b82f6]" />
+                            <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-electric/70 shadow-[0_0_8px_#2563EB]" />
                             <span>{bullet}</span>
                           </li>
                         ))}

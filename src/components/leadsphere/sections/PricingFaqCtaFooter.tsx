@@ -285,7 +285,7 @@ function CtaButton({
       <motion.button
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
-        className="group relative inline-flex w-full items-center justify-center gap-2 overflow-hidden rounded-full bg-[linear-gradient(120deg,#3b82f6,#8b5cf6,#06b6d4)] px-6 py-3 text-sm font-semibold text-[#1a1a1a] shadow-[0_0_30px_-6px_rgba(59,130,246,0.7)] transition-shadow hover:shadow-[0_0_45px_-4px_rgba(139,92,246,0.85)]"
+        className="group relative inline-flex w-full items-center justify-center gap-2 overflow-hidden rounded-full bg-[linear-gradient(120deg,#2563EB,#38BDF8,#14B8A6)] px-6 py-3 text-sm font-semibold text-[#1a1a1a] shadow-[0_0_30px_-6px_rgba(37,99,235,0.7)] transition-shadow hover:shadow-[0_0_45px_-4px_rgba(56,189,248,0.85)]"
       >
         <span className="absolute inset-0 -translate-x-full bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.25),transparent)] transition-transform duration-700 group-hover:translate-x-full" />
         <Rocket className="h-4 w-4" />
@@ -373,7 +373,7 @@ function PricingCard({ plan, delay }: { plan: Plan; delay: number }) {
           {/* ambient glow */}
           <div className="absolute -inset-3 rounded-[1.75rem] bg-electric/20 blur-2xl opacity-70" />
           {/* animated gradient border */}
-          <div className="absolute -inset-px rounded-2xl bg-[linear-gradient(120deg,#3b82f6,#8b5cf6,#06b6d4,#3b82f6)] animate-gradient-x opacity-95" />
+          <div className="absolute -inset-px rounded-2xl bg-[linear-gradient(120deg,#2563EB,#38BDF8,#14B8A6,#2563EB)] animate-gradient-x opacity-95" />
           {/* card body */}
           <GlassCard
             strong
@@ -426,7 +426,7 @@ function PricingCard({ plan, delay }: { plan: Plan; delay: number }) {
     <Reveal delay={delay} className="h-full">
       <GlassCard
         strong
-        className="group relative flex h-full flex-col rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 hover:border-black/20 hover:shadow-[0_20px_60px_-20px_rgba(59,130,246,0.35)] md:p-8"
+        className="group relative flex h-full flex-col rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 hover:border-black/20 hover:shadow-[0_20px_60px_-20px_rgba(37,99,235,0.35)] md:p-8"
       >
         <div className="flex flex-1 flex-col gap-6">
           {header}
@@ -533,7 +533,7 @@ function StylizedMap() {
         className="absolute inset-0 opacity-50"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(59,130,246,0.22) 1px, transparent 1px), linear-gradient(90deg, rgba(59,130,246,0.22) 1px, transparent 1px)",
+            "linear-gradient(rgba(37,99,235,0.22) 1px, transparent 1px), linear-gradient(90deg, rgba(37,99,235,0.22) 1px, transparent 1px)",
           backgroundSize: "32px 32px",
           maskImage:
             "radial-gradient(ellipse 80% 70% at 50% 50%, #000 30%, transparent 85%)",
@@ -546,7 +546,7 @@ function StylizedMap() {
         className="absolute inset-0 opacity-25"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(139,92,246,0.18) 1px, transparent 1px), linear-gradient(90deg, rgba(139,92,246,0.18) 1px, transparent 1px)",
+            "linear-gradient(rgba(56,189,248,0.18) 1px, transparent 1px), linear-gradient(90deg, rgba(56,189,248,0.18) 1px, transparent 1px)",
           backgroundSize: "128px 128px",
           maskImage:
             "radial-gradient(ellipse 80% 70% at 50% 50%, #000 30%, transparent 85%)",
@@ -555,7 +555,7 @@ function StylizedMap() {
         }}
       />
       {/* central radial glow */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.25),transparent_60%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(37,99,235,0.25),transparent_60%)]" />
 
       {/* glowing pin at center */}
       <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
@@ -566,8 +566,8 @@ function StylizedMap() {
           {/* pin */}
           <div className="relative flex h-9 w-9 items-center justify-center">
             <MapPin
-              className="h-9 w-9 text-electric drop-shadow-[0_0_14px_rgba(59,130,246,0.95)]"
-              fill="rgba(59,130,246,0.45)"
+              className="h-9 w-9 text-electric drop-shadow-[0_0_14px_rgba(37,99,235,0.95)]"
+              fill="rgba(37,99,235,0.45)"
             />
           </div>
           {/* label */}
@@ -681,7 +681,7 @@ function ContactSection() {
                 </div>
                 <Button
                   type="submit"
-                  className="group relative h-11 w-full items-center justify-center gap-2 overflow-hidden rounded-full bg-[linear-gradient(120deg,#3b82f6,#8b5cf6,#06b6d4)] px-6 text-sm font-semibold text-[#1a1a1a] shadow-[0_0_30px_-6px_rgba(59,130,246,0.7)] transition-shadow hover:shadow-[0_0_45px_-4px_rgba(139,92,246,0.85)]"
+                  className="group relative h-11 w-full items-center justify-center gap-2 overflow-hidden rounded-full bg-[linear-gradient(120deg,#2563EB,#38BDF8,#14B8A6)] px-6 text-sm font-semibold text-[#1a1a1a] shadow-[0_0_30px_-6px_rgba(37,99,235,0.7)] transition-shadow hover:shadow-[0_0_45px_-4px_rgba(56,189,248,0.85)]"
                 >
                   <span className="absolute inset-0 -translate-x-full bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.25),transparent)] transition-transform duration-700 group-hover:translate-x-full" />
                   <Send className="relative h-4 w-4" />
@@ -756,7 +756,7 @@ function CtaBanner() {
     <section className="relative w-full px-5 py-12 sm:px-8 md:py-16">
       <div className="relative mx-auto w-full max-w-7xl overflow-hidden rounded-3xl border border-black/10">
         {/* animated gradient background */}
-        <div className="absolute inset-0 bg-[linear-gradient(120deg,#3b82f6_0%,#8b5cf6_45%,#06b6d4_100%,#3b82f6_150%)] animate-gradient-x" />
+        <div className="absolute inset-0 bg-[linear-gradient(120deg,#2563EB_0%,#38BDF8_45%,#14B8A6_100%,#2563EB_150%)] animate-gradient-x" />
         {/* moving grid overlay */}
         <div
           className="absolute inset-0 opacity-20"
@@ -864,7 +864,7 @@ function Footer() {
   return (
     <footer className="relative w-full bg-[#f8f9fa]">
       {/* gradient divider at top */}
-      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-electric via-violet to-cyan" />
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-[#2563EB] via-[#38BDF8] to-[#14B8A6]" />
       {/* faint top glow */}
       <div className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-electric/5 to-transparent" />
 
@@ -918,7 +918,7 @@ function Footer() {
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
                 type="submit"
-                className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-[linear-gradient(120deg,#3b82f6,#8b5cf6)] px-5 py-3 text-sm font-semibold text-[#1a1a1a] shadow-[0_0_25px_-8px_rgba(59,130,246,0.8)] transition-shadow hover:shadow-[0_0_35px_-6px_rgba(139,92,246,0.85)]"
+                className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-[linear-gradient(120deg,#2563EB,#38BDF8)] px-5 py-3 text-sm font-semibold text-[#1a1a1a] shadow-[0_0_25px_-8px_rgba(37,99,235,0.8)] transition-shadow hover:shadow-[0_0_35px_-6px_rgba(56,189,248,0.85)]"
               >
                 <Send className="h-4 w-4" />
                 Subscribe

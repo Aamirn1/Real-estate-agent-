@@ -81,7 +81,7 @@ export function AuthForm({ mode }: AuthFormProps) {
       <div className="relative">
         {/* Header */}
         <div className="mb-7 flex flex-col items-center text-center">
-          <span className="relative mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-electric via-violet to-cyan shadow-[0_0_24px_-6px_rgba(59,130,246,0.7)]">
+          <span className="relative mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-[#2563EB] via-[#38BDF8] to-[#14B8A6] shadow-[0_0_24px_-6px_rgba(37,99,235,0.7)]">
             <Sparkles className="h-6 w-6 text-[#1E293B]" strokeWidth={2.2} />
           </span>
           <h1 className="font-heading text-2xl font-semibold text-[#1E293B]">
@@ -225,7 +225,7 @@ export function AuthForm({ mode }: AuthFormProps) {
           {/* Submit */}
           <button
             type="submit"
-            className="group relative flex w-full items-center justify-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-electric to-violet py-3.5 text-sm font-semibold text-[#1E293B] shadow-[0_0_24px_-6px_rgba(59,130,246,0.7)] transition-all hover:shadow-[0_0_32px_-4px_rgba(139,92,246,0.85)]"
+            className="group relative flex w-full items-center justify-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-[#2563EB] to-[#38BDF8] py-3.5 text-sm font-semibold text-[#1E293B] shadow-[0_0_24px_-6px_rgba(37,99,235,0.7)] transition-all hover:shadow-[0_0_32px_-4px_rgba(56,189,248,0.85)]"
           >
             <span className="relative z-10">
               {isSignup ? "Create Account" : "Sign In"}

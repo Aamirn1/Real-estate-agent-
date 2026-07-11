@@ -110,7 +110,7 @@ export function RoiCalculator() {
 
             <div className="relative">
               <div className="mb-6 flex items-center gap-2.5">
-                <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-electric to-violet">
+                <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-[#2563EB] to-[#38BDF8]">
                   <TrendingUp className="h-4.5 w-4.5 text-[#1a1a1a]" />
                 </span>
                 <h3 className="font-heading text-lg font-semibold text-[#1a1a1a]">
@@ -149,7 +149,7 @@ export function RoiCalculator() {
                 />
               </div>
 
-              <div className="mt-5 rounded-2xl border border-electric/25 bg-gradient-to-br from-electric/10 to-violet/10 p-5">
+              <div className="mt-5 rounded-2xl border border-electric/25 bg-gradient-to-br from-electric/10 to-[#38BDF8]/10 p-5">
                 <div className="flex items-center justify-between">
                   <span className="text-sm text-[#1a1a1a]/65">Return on investment</span>
                   <span className="rounded-full bg-emerald-400/15 px-2.5 py-0.5 text-xs font-semibold text-emerald-400">
@@ -170,7 +170,7 @@ export function RoiCalculator() {
 
               <a
                 href="#pricing"
-                className="group mt-5 flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-electric to-violet px-5 py-3.5 text-sm font-semibold text-[#1a1a1a] shadow-[0_0_24px_-6px_rgba(59,130,246,0.6)] transition-all hover:shadow-[0_0_32px_-4px_rgba(139,92,246,0.8)]"
+                className="group mt-5 flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#2563EB] to-[#38BDF8] px-5 py-3.5 text-sm font-semibold text-white shadow-[0_0_24px_-6px_rgba(37,99,235,0.6)] transition-all hover:shadow-[0_0_32px_-4px_rgba(56,189,248,0.8)]"
               >
                 Start your free trial
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
@@ -206,9 +206,9 @@ function Slider({
 }) {
   const pct = ((value - min) / (max - min)) * 100;
   const colorMap = {
-    electric: "#3b82f6",
-    violet: "#8b5cf6",
-    cyan: "#06b6d4",
+    electric: "#2563EB",
+    violet: "#38BDF8",
+    cyan: "#14B8A6",
   };
   return (
     <div className="mb-6">

@@ -41,13 +41,13 @@ const STAT_THEME: Record<
   electric: {
     iconWrap: "bg-electric/15",
     icon: "text-electric",
-    glow: "shadow-[0_0_40px_-10px_rgba(59,130,246,0.55)]",
+    glow: "shadow-[0_0_40px_-10px_rgba(37,99,235,0.55)]",
     value: "text-[#1a1a1a]",
   },
   violet: {
     iconWrap: "bg-violet/15",
     icon: "text-violet",
-    glow: "shadow-[0_0_40px_-10px_rgba(139,92,246,0.55)]",
+    glow: "shadow-[0_0_40px_-10px_rgba(56,189,248,0.55)]",
     value: "text-[#1a1a1a]",
   },
   cyan: {

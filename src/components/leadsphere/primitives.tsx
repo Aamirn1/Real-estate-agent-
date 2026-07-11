@@ -96,7 +96,7 @@ export function SectionHeading({
           transition={{ duration: 0.5 }}
           className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-black/5 px-3 py-1 text-xs font-medium tracking-wide text-[#1a1a1a]/70 backdrop-blur"
         >
-          <span className="h-1.5 w-1.5 rounded-full bg-electric shadow-[0_0_8px_#3b82f6]" />
+          <span className="h-1.5 w-1.5 rounded-full bg-electric shadow-[0_0_8px_#2563EB]" />
           {eyebrow}
         </motion.span>
       )}

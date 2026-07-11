@@ -190,7 +190,7 @@ export function ContactFormSection() {
 
       <Button
         type="submit"
-        className="group mt-1 h-11 w-full gap-2 rounded-xl bg-gradient-to-r from-electric to-violet font-semibold text-[#1a1a1a] shadow-[0_0_30px_-8px_rgba(59,130,246,0.7)] transition-all hover:shadow-[0_0_40px_-6px_rgba(59,130,246,0.9)]"
+        className="group mt-1 h-11 w-full gap-2 rounded-xl bg-gradient-to-r from-[#2563EB] to-[#38BDF8] font-semibold text-white shadow-[0_0_30px_-8px_rgba(37,99,235,0.7)] transition-all hover:shadow-[0_0_40px_-6px_rgba(37,99,235,0.9)]"
       >
         Send Message
         <Send className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />

@@ -80,7 +80,7 @@ const TONE_BAR: Record<string, string> = {
   emerald: "from-emerald-500 to-teal-400",
   cyan: "from-cyan-500 to-sky-400",
   gold: "from-gold to-amber-400",
-  violet: "from-violet-500 to-fuchsia-400",
+  violet: "from-[#38BDF8]-500 to-fuchsia-400",
   electric: "from-electric to-cyan-400",
 };
 
@@ -98,7 +98,7 @@ const PIPELINE_COLUMNS = [
   {
     key: "Contacted",
     accent: "bg-electric",
-    glow: "shadow-[0_0_18px_-2px_rgba(59,130,246,0.6)]",
+    glow: "shadow-[0_0_18px_-2px_rgba(37,99,235,0.6)]",
     cards: [
       { name: "Thomas Reed", value: "$880K", initials: "TR", color: "bg-electric/20 text-electric" },
       { name: "Nora Bailey", value: "$1.4M", initials: "NB", color: "bg-gold/20 text-gold" },
@@ -107,7 +107,7 @@ const PIPELINE_COLUMNS = [
   {
     key: "Appointment",
     accent: "bg-violet",
-    glow: "shadow-[0_0_18px_-2px_rgba(139,92,246,0.6)]",
+    glow: "shadow-[0_0_18px_-2px_rgba(56,189,248,0.6)]",
     cards: [
       { name: "Elena Cruz", value: "$2.2M", initials: "EC", color: "bg-violet/20 text-violet-300" },
       { name: "Henry Adams", value: "$675K", initials: "HA", color: "bg-emerald-500/20 text-emerald-300" },
@@ -126,18 +126,18 @@ const PIPELINE_COLUMNS = [
 ];
 
 const MAP_PINS = [
-  { x: "18%", y: "32%", color: "#3b82f6", label: "$890K" },
-  { x: "32%", y: "58%", color: "#8b5cf6", label: "$1.2M" },
-  { x: "44%", y: "22%", color: "#06b6d4", label: "$540K" },
+  { x: "18%", y: "32%", color: "#2563EB", label: "$890K" },
+  { x: "32%", y: "58%", color: "#38BDF8", label: "$1.2M" },
+  { x: "44%", y: "22%", color: "#14B8A6", label: "$540K" },
   { x: "58%", y: "44%", color: "#d4af37", label: "$2.1M" },
   { x: "66%", y: "68%", color: "#ec4899", label: "$990K" },
-  { x: "74%", y: "28%", color: "#3b82f6", label: "$1.4M" },
-  { x: "82%", y: "54%", color: "#06b6d4", label: "$720K" },
-  { x: "26%", y: "76%", color: "#8b5cf6", label: "$650K" },
+  { x: "74%", y: "28%", color: "#2563EB", label: "$1.4M" },
+  { x: "82%", y: "54%", color: "#14B8A6", label: "$720K" },
+  { x: "26%", y: "76%", color: "#38BDF8", label: "$650K" },
 ];
 const MAP_CLUSTERS = [
-  { x: "40%", y: "38%", count: 12, color: "rgba(59,130,246,0.85)" },
-  { x: "70%", y: "48%", count: 7, color: "rgba(139,92,246,0.85)" },
+  { x: "40%", y: "38%", count: 12, color: "rgba(37,99,235,0.85)" },
+  { x: "70%", y: "48%", count: 7, color: "rgba(56,189,248,0.85)" },
 ];
 
 const LEADS_AREA_DATA = [
@@ -231,7 +231,7 @@ function SidebarIcon({
       aria-label={label}
       className={`group relative flex h-10 w-10 items-center justify-center rounded-xl transition-all ${
         active
-          ? "bg-electric text-[#1E293B] shadow-[0_0_18px_-2px_rgba(59,130,246,0.7)]"
+          ? "bg-electric text-[#1E293B] shadow-[0_0_18px_-2px_rgba(37,99,235,0.7)]"
           : "text-[#1E293B]/45 hover:bg-[#1E293B]/5 hover:text-[#1E293B]"
       }`}
     >
@@ -424,7 +424,7 @@ function LeadMapPanel() {
       <div className="relative h-full min-h-[280px] overflow-hidden rounded-xl border border-[#E2E8F0] bg-white">
         {/* Grid background */}
         <div className="absolute inset-0 bg-grid opacity-60" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.08),transparent_70%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(37,99,235,0.08),transparent_70%)]" />
 
         {/* Heatmap blobs */}
         {heatmap && (
@@ -553,13 +553,13 @@ function AnalyticsPanel() {
               <AreaChart data={LEADS_AREA_DATA} margin={{ top: 5, right: 5, left: -20, bottom: 0 }}>
                 <defs>
                   <linearGradient id="leadFill" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#3b82f6" stopOpacity={0.55} />
-                    <stop offset="50%" stopColor="#8b5cf6" stopOpacity={0.3} />
-                    <stop offset="100%" stopColor="#3b82f6" stopOpacity={0} />
+                    <stop offset="0%" stopColor="#2563EB" stopOpacity={0.55} />
+                    <stop offset="50%" stopColor="#38BDF8" stopOpacity={0.3} />
+                    <stop offset="100%" stopColor="#2563EB" stopOpacity={0} />
                   </linearGradient>
                   <linearGradient id="leadStroke" x1="0" y1="0" x2="1" y2="0">
-                    <stop offset="0%" stopColor="#3b82f6" />
-                    <stop offset="100%" stopColor="#8b5cf6" />
+                    <stop offset="0%" stopColor="#2563EB" />
+                    <stop offset="100%" stopColor="#38BDF8" />
                   </linearGradient>
                 </defs>
                 <CartesianGrid stroke="rgba(255,255,255,0.06)" vertical={false} />
@@ -591,7 +591,7 @@ function AnalyticsPanel() {
                   stroke="url(#leadStroke)"
                   strokeWidth={2.5}
                   fill="url(#leadFill)"
-                  activeDot={{ r: 4, fill: "#8b5cf6", stroke: "#fff", strokeWidth: 2 }}
+                  activeDot={{ r: 4, fill: "#38BDF8", stroke: "#fff", strokeWidth: 2 }}
                 />
               </AreaChart>
             </ResponsiveContainer>
@@ -608,8 +608,8 @@ function AnalyticsPanel() {
               <BarChart data={SOURCE_BAR_DATA} margin={{ top: 5, right: 5, left: -20, bottom: 0 }}>
                 <defs>
                   <linearGradient id="barFill" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#8b5cf6" />
-                    <stop offset="100%" stopColor="#3b82f6" stopOpacity={0.5} />
+                    <stop offset="0%" stopColor="#38BDF8" />
+                    <stop offset="100%" stopColor="#2563EB" stopOpacity={0.5} />
                   </linearGradient>
                 </defs>
                 <CartesianGrid stroke="rgba(255,255,255,0.06)" vertical={false} />
@@ -744,7 +744,7 @@ function MarketingPanel() {
             <p className="mt-3 text-[#1E293B]/45">— The Opus Team</p>
           </div>
 
-          <button className="mt-4 inline-flex items-center justify-center gap-2 rounded-lg bg-electric px-4 py-2.5 text-sm font-semibold text-[#1E293B] shadow-[0_0_24px_-6px_rgba(59,130,246,0.8)] transition-all hover:bg-electric/90 hover:shadow-[0_0_30px_-4px_rgba(59,130,246,0.9)]">
+          <button className="mt-4 inline-flex items-center justify-center gap-2 rounded-lg bg-electric px-4 py-2.5 text-sm font-semibold text-[#1E293B] shadow-[0_0_24px_-6px_rgba(37,99,235,0.8)] transition-all hover:bg-electric/90 hover:shadow-[0_0_30px_-4px_rgba(37,99,235,0.9)]">
             <Send className="h-4 w-4" /> Send Campaign
           </button>
         </GlassCard>
@@ -856,7 +856,7 @@ function DialerPanel() {
           ))}
         </div>
 
-        <div className="mt-auto rounded-xl border border-[#E2E8F0] bg-gradient-to-r from-electric/10 to-violet/10 p-3">
+        <div className="mt-auto rounded-xl border border-[#E2E8F0] bg-gradient-to-r from-electric/10 to-[#38BDF8]/10 p-3">
           <div className="flex items-center justify-between">
             <div>
               <div className="text-xs font-semibold text-[#1E293B]">Next in queue</div>
@@ -896,7 +896,7 @@ export default function InteractiveDemo() {
         <GlassCard
           strong
           sheen
-          className="overflow-hidden rounded-3xl p-0 shadow-[0_30px_120px_-30px_rgba(59,130,246,0.35)]"
+          className="overflow-hidden rounded-3xl p-0 shadow-[0_30px_120px_-30px_rgba(37,99,235,0.35)]"
         >
           {/* Browser / app top bar */}
           <div className="flex items-center gap-3 border-b border-[#E2E8F0] bg-white/[0.02] px-4 py-3">
@@ -910,7 +910,7 @@ export default function InteractiveDemo() {
               <span className="tnum">app.opussolutions.com/dashboard</span>
             </div>
             <Avatar className="h-7 w-7 border border-[#E2E8F0]">
-              <AvatarFallback className="bg-gradient-to-br from-electric to-violet text-[10px] font-semibold text-[#1E293B]">
+              <AvatarFallback className="bg-gradient-to-br from-[#2563EB] to-[#38BDF8] text-[10px] font-semibold text-[#1E293B]">
                 AK
               </AvatarFallback>
             </Avatar>
@@ -943,37 +943,37 @@ export default function InteractiveDemo() {
                   <TabsList className="h-9 w-full justify-start gap-1 rounded-lg border border-[#E2E8F0] bg-graphite/50 p-1 sm:w-auto">
                     <TabsTrigger
                       value="crm"
-                      className="data-[state=active]:bg-electric data-[state=active]:text-[#1E293B] data-[state=active]:shadow-[0_0_16px_-4px_rgba(59,130,246,0.8)] text-[#1E293B]/55"
+                      className="data-[state=active]:bg-electric data-[state=active]:text-[#1E293B] data-[state=active]:shadow-[0_0_16px_-4px_rgba(37,99,235,0.8)] text-[#1E293B]/55"
                     >
                       CRM
                     </TabsTrigger>
                     <TabsTrigger
                       value="pipeline"
-                      className="data-[state=active]:bg-electric data-[state=active]:text-[#1E293B] data-[state=active]:shadow-[0_0_16px_-4px_rgba(59,130,246,0.8)] text-[#1E293B]/55"
+                      className="data-[state=active]:bg-electric data-[state=active]:text-[#1E293B] data-[state=active]:shadow-[0_0_16px_-4px_rgba(37,99,235,0.8)] text-[#1E293B]/55"
                     >
                       Pipeline
                     </TabsTrigger>
                     <TabsTrigger
                       value="map"
-                      className="data-[state=active]:bg-electric data-[state=active]:text-[#1E293B] data-[state=active]:shadow-[0_0_16px_-4px_rgba(59,130,246,0.8)] text-[#1E293B]/55"
+                      className="data-[state=active]:bg-electric data-[state=active]:text-[#1E293B] data-[state=active]:shadow-[0_0_16px_-4px_rgba(37,99,235,0.8)] text-[#1E293B]/55"
                     >
                       Lead Map
                     </TabsTrigger>
                     <TabsTrigger
                       value="analytics"
-                      className="data-[state=active]:bg-electric data-[state=active]:text-[#1E293B] data-[state=active]:shadow-[0_0_16px_-4px_rgba(59,130,246,0.8)] text-[#1E293B]/55"
+                      className="data-[state=active]:bg-electric data-[state=active]:text-[#1E293B] data-[state=active]:shadow-[0_0_16px_-4px_rgba(37,99,235,0.8)] text-[#1E293B]/55"
                     >
                       Analytics
                     </TabsTrigger>
                     <TabsTrigger
                       value="marketing"
-                      className="data-[state=active]:bg-electric data-[state=active]:text-[#1E293B] data-[state=active]:shadow-[0_0_16px_-4px_rgba(59,130,246,0.8)] text-[#1E293B]/55"
+                      className="data-[state=active]:bg-electric data-[state=active]:text-[#1E293B] data-[state=active]:shadow-[0_0_16px_-4px_rgba(37,99,235,0.8)] text-[#1E293B]/55"
                     >
                       Marketing
                     </TabsTrigger>
                     <TabsTrigger
                       value="dialer"
-                      className="data-[state=active]:bg-electric data-[state=active]:text-[#1E293B] data-[state=active]:shadow-[0_0_16px_-4px_rgba(59,130,246,0.8)] text-[#1E293B]/55"
+                      className="data-[state=active]:bg-electric data-[state=active]:text-[#1E293B] data-[state=active]:shadow-[0_0_16px_-4px_rgba(37,99,235,0.8)] text-[#1E293B]/55"
                     >
                       Dialer
                     </TabsTrigger>

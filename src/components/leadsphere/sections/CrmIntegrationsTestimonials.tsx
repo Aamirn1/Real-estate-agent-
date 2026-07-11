@@ -75,7 +75,7 @@ const INITIAL_COLUMNS: Column[] = [
   {
     id: "new",
     name: "New Lead",
-    color: "#06b6d4",
+    color: "#14B8A6",
     leads: [
       {
         id: "l-1",
@@ -93,14 +93,14 @@ const INITIAL_COLUMNS: Column[] = [
         value: "$1.2M",
         score: 84,
         tag: "Motivated",
-        avatar: "from-electric to-violet",
+        avatar: "from-[#2563EB] to-[#38BDF8]",
       },
     ],
   },
   {
     id: "contacted",
     name: "Contacted",
-    color: "#3b82f6",
+    color: "#2563EB",
     leads: [
       {
         id: "l-3",
@@ -109,7 +109,7 @@ const INITIAL_COLUMNS: Column[] = [
         value: "$675K",
         score: 78,
         tag: "Callback",
-        avatar: "from-violet to-fuchsia-500",
+        avatar: "from-[#38BDF8] to-fuchsia-500",
       },
       {
         id: "l-4",
@@ -125,7 +125,7 @@ const INITIAL_COLUMNS: Column[] = [
   {
     id: "appointment",
     name: "Appointment",
-    color: "#8b5cf6",
+    color: "#38BDF8",
     leads: [
       {
         id: "l-5",
@@ -134,7 +134,7 @@ const INITIAL_COLUMNS: Column[] = [
         value: "$2.1M",
         score: 95,
         tag: "Hot",
-        avatar: "from-violet to-electric",
+        avatar: "from-[#38BDF8] to-electric",
       },
       {
         id: "l-6",
@@ -493,14 +493,14 @@ const INTEGRATIONS: Integration[] = [
   { name: "Google", icon: Chrome, color: "#ea4335" },
   { name: "Microsoft", icon: WindowIcon, color: "#2b8fff" },
   { name: "Zapier", icon: Zap, color: "#ff6a00" },
-  { name: "Slack", icon: Slack, color: "#8b5cf6" },
+  { name: "Slack", icon: Slack, color: "#38BDF8" },
   { name: "Zoom", icon: Video, color: "#2d8cff" },
-  { name: "Calendly", icon: Calendar, color: "#06b6d4" },
+  { name: "Calendly", icon: Calendar, color: "#14B8A6" },
   { name: "HubSpot", icon: Hexagon, color: "#ff7a59" },
   { name: "Salesforce", icon: Cloud, color: "#00a1e0" },
-  { name: "MLS", icon: Building2, color: "#3b82f6" },
+  { name: "MLS", icon: Building2, color: "#2563EB" },
   { name: "Twilio", icon: Phone, color: "#f22f46" },
-  { name: "Stripe", icon: CreditCard, color: "#8b5cf6" },
+  { name: "Stripe", icon: CreditCard, color: "#38BDF8" },
   { name: "Mailchimp", icon: Mail, color: "#d4af37" },
 ];
 
@@ -564,7 +564,7 @@ const TESTIMONIALS: Testimonial[] = [
     name: "Amanda Reeves",
     role: "Realtor, Arizona",
     initials: "AR",
-    avatar: "from-electric to-violet",
+    avatar: "from-[#2563EB] to-[#38BDF8]",
   },
   {
     quote:
@@ -580,7 +580,7 @@ const TESTIMONIALS: Testimonial[] = [
     name: "Stephanie Park",
     role: "Realtor, Washington",
     initials: "SP",
-    avatar: "from-violet to-fuchsia-500",
+    avatar: "from-[#38BDF8] to-fuchsia-500",
   },
   {
     quote:
@@ -608,7 +608,7 @@ function TestimonialCard({ t }: { t: Testimonial }) {
         className="pointer-events-none absolute -right-20 -top-20 h-56 w-56 rounded-full opacity-20 blur-3xl"
         style={{
           background:
-            "radial-gradient(circle, rgba(139,92,246,0.55) 0%, rgba(59,130,246,0.25) 60%, transparent 100%)",
+            "radial-gradient(circle, rgba(56,189,248,0.55) 0%, rgba(37,99,235,0.25) 60%, transparent 100%)",
         }}
       />
 
@@ -729,9 +729,9 @@ function TestimonialsCarousel() {
             style={{
               width: i === current ? 26 : 8,
               backgroundColor:
-                i === current ? "#3b82f6" : "rgba(255,255,255,0.2)",
+                i === current ? "#2563EB" : "rgba(255,255,255,0.2)",
               boxShadow:
-                i === current ? "0 0 12px rgba(59,130,246,0.6)" : "none",
+                i === current ? "0 0 12px rgba(37,99,235,0.6)" : "none",
             }}
           />
         ))}

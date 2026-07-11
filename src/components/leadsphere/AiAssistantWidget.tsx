@@ -97,9 +97,9 @@ export function AiAssistantWidget() {
           setUnread(false);
         }}
         aria-label="Open assistant"
-        className="fixed bottom-5 right-5 z-[70] flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-electric via-violet to-cyan shadow-[0_10px_40px_-8px_rgba(59,130,246,0.7)] transition-transform hover:scale-105 sm:bottom-6 sm:right-6"
+        className="fixed bottom-5 right-5 z-[70] flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-[#2563EB] via-[#38BDF8] to-[#14B8A6] shadow-[0_10px_40px_-8px_rgba(37,99,235,0.7)] transition-transform hover:scale-105 sm:bottom-6 sm:right-6"
       >
-        <span className="absolute inset-0 rounded-full bg-gradient-to-br from-electric to-violet opacity-60 blur-md" />
+        <span className="absolute inset-0 rounded-full bg-gradient-to-br from-[#2563EB] to-[#38BDF8] opacity-60 blur-md" />
         <AnimatePresence mode="wait">
           {open ? (
             <motion.span
@@ -141,8 +141,8 @@ export function AiAssistantWidget() {
             className="fixed bottom-24 right-4 z-[70] flex h-[520px] w-[calc(100vw-2rem)] max-w-[380px] flex-col overflow-hidden rounded-3xl border border-black/10 bg-white/95 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.8)] backdrop-blur-2xl sm:right-6"
           >
             {/* Header */}
-            <div className="flex items-center gap-3 border-b border-black/8 bg-gradient-to-r from-electric/10 to-violet/10 p-4">
-              <span className="relative flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-electric to-violet">
+            <div className="flex items-center gap-3 border-b border-black/8 bg-gradient-to-r from-electric/10 to-[#38BDF8]/10 p-4">
+              <span className="relative flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-[#2563EB] to-[#38BDF8]">
                 <Headset className="h-5 w-5 text-[#1a1a1a]" />
                 <span className="absolute inset-0 animate-pulse-ring rounded-full bg-electric/30" />
               </span>
@@ -167,7 +167,7 @@ export function AiAssistantWidget() {
               ))}
               {loading && (
                 <div className="flex items-center gap-2 text-xs text-[#1a1a1a]/50">
-                  <span className="flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-br from-electric to-violet">
+                  <span className="flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-br from-[#2563EB] to-[#38BDF8]">
                     <Loader2 className="h-3.5 w-3.5 animate-spin text-[#1a1a1a]" />
                   </span>
                   <span className="flex gap-1">
@@ -211,7 +211,7 @@ export function AiAssistantWidget() {
               <button
                 type="submit"
                 disabled={loading || !input.trim()}
-                className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-electric to-violet text-[#1a1a1a] transition-all hover:shadow-[0_0_20px_-4px_rgba(59,130,246,0.7)] disabled:opacity-40"
+                className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-[#2563EB] to-[#38BDF8] text-white transition-all hover:shadow-[0_0_20px_-4px_rgba(37,99,235,0.7)] disabled:opacity-40"
               >
                 <Send className="h-4 w-4" />
               </button>
@@ -235,7 +235,7 @@ function MessageBubble({ msg }: { msg: Msg }) {
       <div
         className={`max-w-[82%] rounded-2xl px-3.5 py-2.5 text-[13px] leading-relaxed ${
           isUser
-            ? "rounded-br-md bg-gradient-to-br from-electric to-violet text-[#1a1a1a]"
+            ? "rounded-br-md bg-gradient-to-br from-[#2563EB] to-[#38BDF8] text-white"
             : "rounded-bl-md border border-black/8 bg-white/[0.04] text-[#1a1a1a]/85"
         }`}
       >

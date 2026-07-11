@@ -85,7 +85,7 @@ function LogoMark() {
 export function SiteFooter() {
   return (
     <footer className="relative w-full bg-[#f8f9fa]">
-      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-electric via-violet to-cyan" />
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-[#2563EB] via-[#38BDF8] to-[#14B8A6]" />
       <div className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-electric/5 to-transparent" />
 
       <div className="relative mx-auto w-full max-w-7xl px-5 py-16 sm:px-8 md:py-20">
@@ -136,7 +136,7 @@ export function SiteFooter() {
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
                 type="submit"
-                className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-[linear-gradient(120deg,#3b82f6,#8b5cf6)] px-5 py-3 text-sm font-semibold text-[#1a1a1a] shadow-[0_0_25px_-8px_rgba(59,130,246,0.8)] transition-shadow hover:shadow-[0_0_35px_-6px_rgba(139,92,246,0.85)]"
+                className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-[linear-gradient(120deg,#2563EB,#38BDF8)] px-5 py-3 text-sm font-semibold text-[#1a1a1a] shadow-[0_0_25px_-8px_rgba(37,99,235,0.8)] transition-shadow hover:shadow-[0_0_35px_-6px_rgba(56,189,248,0.85)]"
               >
                 <Send className="h-4 w-4" />
                 Subscribe

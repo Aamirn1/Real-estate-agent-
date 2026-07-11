@@ -58,9 +58,9 @@
   /* White base */
   --ink: #ffffff;
   --graphite: #f8f9fa;
-  --electric: #3b82f6;
-  --violet: #8b5cf6;
-  --cyan: #06b6d4;
+  --electric: #2563EB;
+  --violet: #38BDF8;
+  --cyan: #14B8A6;
   --gold: #d4af37;
 
   --background: #ffffff;
@@ -190,13 +190,13 @@
 
 /* ============ Glow effects ============ */
 .glow-electric {
-  box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.3), 0 0 40px -8px rgba(59, 130, 246, 0.5);
+  box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.3), 0 0 40px -8px rgba(37, 99, 235, 0.5);
 }
 .glow-violet {
-  box-shadow: 0 0 0 1px rgba(139, 92, 246, 0.3), 0 0 40px -8px rgba(139, 92, 246, 0.5);
+  box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.3), 0 0 40px -8px rgba(56, 189, 248, 0.5);
 }
 .glow-soft {
-  box-shadow: 0 8px 40px -12px rgba(59, 130, 246, 0.35);
+  box-shadow: 0 8px 40px -12px rgba(37, 99, 235, 0.35);
 }
 .text-glow {
   text-shadow: 0 0 30px rgba(96, 165, 250, 0.5);

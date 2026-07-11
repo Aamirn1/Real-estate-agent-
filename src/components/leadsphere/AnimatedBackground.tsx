@@ -36,19 +36,19 @@ export function AnimatedBackground({
       {/* Aurora blobs */}
       {variant === "hero" && (
         <>
-          <div className="absolute -top-40 -left-20 h-[520px] w-[520px] rounded-full bg-[#3b82f6]/25 blur-[120px] animate-aurora" />
-          <div className="absolute top-10 right-0 h-[480px] w-[480px] rounded-full bg-[#8b5cf6]/22 blur-[120px] animate-aurora [animation-delay:-6s]" />
-          <div className="absolute bottom-0 left-1/3 h-[420px] w-[420px] rounded-full bg-[#06b6d4]/18 blur-[120px] animate-aurora [animation-delay:-12s]" />
+          <div className="absolute -top-40 -left-20 h-[520px] w-[520px] rounded-full bg-[#2563EB]/25 blur-[120px] animate-aurora" />
+          <div className="absolute top-10 right-0 h-[480px] w-[480px] rounded-full bg-[#38BDF8]/22 blur-[120px] animate-aurora [animation-delay:-6s]" />
+          <div className="absolute bottom-0 left-1/3 h-[420px] w-[420px] rounded-full bg-[#14B8A6]/18 blur-[120px] animate-aurora [animation-delay:-12s]" />
         </>
       )}
       {variant === "ai" && (
         <>
-          <div className="absolute top-1/2 left-1/4 h-[600px] w-[600px] -translate-y-1/2 rounded-full bg-[#8b5cf6]/20 blur-[140px] animate-aurora" />
-          <div className="absolute top-1/3 right-1/4 h-[500px] w-[500px] rounded-full bg-[#3b82f6]/16 blur-[140px] animate-aurora [animation-delay:-8s]" />
+          <div className="absolute top-1/2 left-1/4 h-[600px] w-[600px] -translate-y-1/2 rounded-full bg-[#38BDF8]/20 blur-[140px] animate-aurora" />
+          <div className="absolute top-1/3 right-1/4 h-[500px] w-[500px] rounded-full bg-[#2563EB]/16 blur-[140px] animate-aurora [animation-delay:-8s]" />
         </>
       )}
       {variant === "section" && (
-        <div className="absolute top-0 left-1/2 h-[400px] w-[700px] -translate-x-1/2 rounded-full bg-[#3b82f6]/12 blur-[140px] animate-aurora" />
+        <div className="absolute top-0 left-1/2 h-[400px] w-[700px] -translate-x-1/2 rounded-full bg-[#2563EB]/12 blur-[140px] animate-aurora" />
       )}
 
       {/* Moving grid */}
@@ -60,7 +60,7 @@ export function AnimatedBackground({
           className="absolute inset-0 opacity-40"
           style={{
             background:
-              "conic-gradient(from 180deg at 50% 0%, transparent 0deg, rgba(59,130,246,0.08) 60deg, transparent 120deg, rgba(139,92,246,0.08) 200deg, transparent 280deg)",
+              "conic-gradient(from 180deg at 50% 0%, transparent 0deg, rgba(37,99,235,0.08) 60deg, transparent 120deg, rgba(56,189,248,0.08) 200deg, transparent 280deg)",
           }}
         />
       )}

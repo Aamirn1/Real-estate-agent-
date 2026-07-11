@@ -37,21 +37,21 @@ export function LoadingScreen() {
               transition={{ duration: 2.2, repeat: Infinity, ease: "linear" }}
               className="absolute inset-0 -m-10"
             >
-              <div className="absolute left-1/2 top-0 h-2 w-2 -translate-x-1/2 rounded-full bg-cyan shadow-[0_0_12px_#06b6d4]" />
+              <div className="absolute left-1/2 top-0 h-2 w-2 -translate-x-1/2 rounded-full bg-cyan shadow-[0_0_12px_#14B8A6]" />
             </motion.div>
             <motion.div
               animate={{ rotate: -360 }}
               transition={{ duration: 3.2, repeat: Infinity, ease: "linear" }}
               className="absolute inset-0 -m-16"
             >
-              <div className="absolute left-0 top-1/2 h-1.5 w-1.5 -translate-y-1/2 rounded-full bg-violet shadow-[0_0_12px_#8b5cf6]" />
+              <div className="absolute left-0 top-1/2 h-1.5 w-1.5 -translate-y-1/2 rounded-full bg-violet shadow-[0_0_12px_#38BDF8]" />
             </motion.div>
 
             {/* Core orb */}
             <motion.div
               animate={{ scale: [1, 1.08, 1] }}
               transition={{ duration: 1.4, repeat: Infinity, ease: "easeInOut" }}
-              className="relative flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-br from-electric via-violet to-cyan shadow-[0_0_50px_-8px_rgba(59,130,246,0.8)]"
+              className="relative flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-br from-[#2563EB] via-[#38BDF8] to-[#14B8A6] shadow-[0_0_50px_-8px_rgba(37,99,235,0.8)]"
             >
               <Sparkles className="h-9 w-9 text-[#1E293B]" strokeWidth={2.2} />
             </motion.div>
@@ -81,7 +81,7 @@ export function LoadingScreen() {
               initial={{ x: "-100%" }}
               animate={{ x: "0%" }}
               transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-              className="h-full w-full rounded-full bg-gradient-to-r from-electric via-violet to-cyan"
+              className="h-full w-full rounded-full bg-gradient-to-r from-[#2563EB] via-[#38BDF8] to-[#14B8A6]"
             />
           </motion.div>
         </motion.div>

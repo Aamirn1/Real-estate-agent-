@@ -19,7 +19,7 @@ export function CTABanner({
         <Reveal>
           <div className="relative overflow-hidden rounded-3xl">
             {/* animated gradient bg */}
-            <div className="absolute inset-0 animate-gradient-x bg-[linear-gradient(120deg,#3b82f6,#8b5cf6,#06b6d4,#3b82f6)] bg-[length:200%_200%]" />
+            <div className="absolute inset-0 animate-gradient-x bg-[linear-gradient(120deg,#2563EB,#38BDF8,#14B8A6,#2563EB)] bg-[length:200%_200%]" />
             {/* grid overlay */}
             <div
               className="absolute inset-0 opacity-20"

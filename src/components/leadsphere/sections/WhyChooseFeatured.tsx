@@ -140,7 +140,7 @@ const PROFESSIONALS = [
     name: "Amanda Reeves",
     location: "Realtor · Arizona",
     initials: "AR",
-    avatar: "from-electric to-violet",
+    avatar: "from-[#2563EB] to-[#38BDF8]",
     specialty: "Residential Listings",
     metric: "11 deals / quarter",
     story:
@@ -160,7 +160,7 @@ const PROFESSIONALS = [
     name: "Stephanie Park",
     location: "Realtor · Washington",
     initials: "SP",
-    avatar: "from-violet to-fuchsia-500",
+    avatar: "from-[#38BDF8] to-fuchsia-500",
     specialty: "Client Relations",
     metric: "15 hrs saved / week",
     story:

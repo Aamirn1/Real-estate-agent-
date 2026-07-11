@@ -52,7 +52,7 @@ export function PageHero({
           transition={{ duration: 0.5 }}
           className="inline-flex items-center gap-2 rounded-full border border-[#E2E8F0] bg-[#1E293B]/5 px-3 py-1.5 text-xs font-medium tracking-wide text-[#1E293B]/70 backdrop-blur"
         >
-          <span className="h-1.5 w-1.5 rounded-full bg-electric shadow-[0_0_8px_#3b82f6]" />
+          <span className="h-1.5 w-1.5 rounded-full bg-electric shadow-[0_0_8px_#2563EB]" />
           {eyebrow}
         </motion.span>
         <motion.h1

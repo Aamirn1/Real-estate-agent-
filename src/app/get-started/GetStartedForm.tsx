@@ -84,7 +84,7 @@ export function GetStartedForm() {
         </p>
         <a
           href="/"
-          className="relative mt-6 flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-electric to-violet py-3 text-sm font-semibold text-[#1a1a1a] shadow-[0_0_24px_-6px_rgba(37,99,235,0.3)] transition-all hover:shadow-[0_0_32px_-4px_rgba(56,189,248,0.4)]"
+          className="relative mt-6 flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#2563EB] to-[#38BDF8] py-3 text-sm font-semibold text-white shadow-[0_0_24px_-6px_rgba(37,99,235,0.3)] transition-all hover:shadow-[0_0_32px_-4px_rgba(56,189,248,0.4)]"
         >
           Back to Home
           <ArrowRight className="h-4 w-4" />
@@ -257,7 +257,7 @@ export function GetStartedForm() {
 
           <button
             type="submit"
-            className="group relative flex w-full items-center justify-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-electric to-violet py-3.5 text-sm font-semibold text-[#1a1a1a] shadow-[0_0_24px_-6px_rgba(37,99,235,0.3)] transition-all hover:shadow-[0_0_32px_-4px_rgba(56,189,248,0.4)]"
+            className="group relative flex w-full items-center justify-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-[#2563EB] to-[#38BDF8] py-3.5 text-sm font-semibold text-white shadow-[0_0_24px_-6px_rgba(37,99,235,0.3)] transition-all hover:shadow-[0_0_32px_-4px_rgba(56,189,248,0.4)]"
           >
             <span className="relative z-10">Submit Request</span>
             <ArrowRight className="relative z-10 h-4 w-4 transition-transform group-hover:translate-x-0.5" />

@@ -146,24 +146,24 @@ const COLOR_STYLES: Record<
   electric: {
     gradient: "from-electric to-[#1e3a8a]",
     pill: "bg-electric/15 text-electric border-electric/30",
-    iconTile: "bg-electric/20 text-electric shadow-[0_0_28px_-6px_rgba(59,130,246,0.7)]",
+    iconTile: "bg-electric/20 text-electric shadow-[0_0_28px_-6px_rgba(37,99,235,0.7)]",
     ring: "ring-electric/30",
     orb: "bg-electric/30",
-    hoverBorder: "group-hover:border-electric/40 group-hover:shadow-[0_24px_60px_-20px_rgba(59,130,246,0.45)]",
+    hoverBorder: "group-hover:border-electric/40 group-hover:shadow-[0_24px_60px_-20px_rgba(37,99,235,0.45)]",
     hoverTitle: "group-hover:text-electric",
     hoverArrow: "group-hover:text-electric",
-    accentDot: "bg-electric shadow-[0_0_8px_#3b82f6]",
+    accentDot: "bg-electric shadow-[0_0_8px_#2563EB]",
   },
   violet: {
-    gradient: "from-violet to-[#4c1d95]",
+    gradient: "from-[#38BDF8] to-[#4c1d95]",
     pill: "bg-violet/15 text-violet border-violet/30",
-    iconTile: "bg-violet/20 text-violet shadow-[0_0_28px_-6px_rgba(139,92,246,0.7)]",
+    iconTile: "bg-violet/20 text-violet shadow-[0_0_28px_-6px_rgba(56,189,248,0.7)]",
     ring: "ring-violet/30",
     orb: "bg-violet/30",
-    hoverBorder: "group-hover:border-violet/40 group-hover:shadow-[0_24px_60px_-20px_rgba(139,92,246,0.45)]",
+    hoverBorder: "group-hover:border-violet/40 group-hover:shadow-[0_24px_60px_-20px_rgba(56,189,248,0.45)]",
     hoverTitle: "group-hover:text-violet",
     hoverArrow: "group-hover:text-violet",
-    accentDot: "bg-violet shadow-[0_0_8px_#8b5cf6]",
+    accentDot: "bg-violet shadow-[0_0_8px_#38BDF8]",
   },
   cyan: {
     gradient: "from-cyan to-[#0e7490]",
@@ -174,7 +174,7 @@ const COLOR_STYLES: Record<
     hoverBorder: "group-hover:border-cyan/40 group-hover:shadow-[0_24px_60px_-20px_rgba(6,182,212,0.45)]",
     hoverTitle: "group-hover:text-cyan",
     hoverArrow: "group-hover:text-cyan",
-    accentDot: "bg-cyan shadow-[0_0_8px_#06b6d4]",
+    accentDot: "bg-cyan shadow-[0_0_8px_#14B8A6]",
   },
   gold: {
     gradient: "from-gold to-[#7a5a16]",
@@ -318,7 +318,7 @@ export default function BlogPage() {
             whileHover={{ y: -2 }}
             whileTap={{ scale: 0.98 }}
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            className="group inline-flex items-center gap-2 rounded-xl border border-black/15 bg-black/5 px-7 py-3.5 text-sm font-semibold text-[#1a1a1a]/80 backdrop-blur transition-colors hover:border-electric/40 hover:text-[#1a1a1a] hover:shadow-[0_0_32px_-8px_rgba(59,130,246,0.55)]"
+            className="group inline-flex items-center gap-2 rounded-xl border border-black/15 bg-black/5 px-7 py-3.5 text-sm font-semibold text-[#1a1a1a]/80 backdrop-blur transition-colors hover:border-electric/40 hover:text-[#1a1a1a] hover:shadow-[0_0_32px_-8px_rgba(37,99,235,0.55)]"
           >
             Load More Articles
             <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />

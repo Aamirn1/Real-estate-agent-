@@ -25,7 +25,7 @@ export function LogoIcon({ className = "h-9 w-9" }: { className?: string }) {
       {/* Left building (shorter, wider, dark blue) */}
       <rect x="21" y="26" width="9" height="20" rx="1.5" fill="#1e3a8a" />
       {/* Right building (taller, narrower, bright blue) */}
-      <rect x="33" y="20" width="9" height="26" rx="1.5" fill="#3b82f6" />
+      <rect x="33" y="20" width="9" height="26" rx="1.5" fill="#2563EB" />
       {/* Wave base connecting ring ends */}
       <path
         d="M 14 50 Q 24 47 32 50 T 50 50"

@@ -117,7 +117,7 @@ export function AboutMission() {
                 records. Our documented workflows make follow-ups faster and
                 more consistent, so you can focus on clients, not data entry.
               </p>
-              <div className="mt-6 h-0.5 w-24 rounded-full bg-gradient-to-r from-electric via-violet to-cyan" />
+              <div className="mt-6 h-0.5 w-24 rounded-full bg-gradient-to-r from-[#2563EB] via-[#38BDF8] to-[#14B8A6]" />
             </div>
 
             {/* RIGHT column, checklist of 4 benefits */}
@@ -148,7 +148,7 @@ export function AboutMission() {
                   transition={{ duration: 0.45, delay: 0.05 * i, ease: [0.22, 1, 0.36, 1] }}
                   className="group flex items-start gap-3 rounded-xl border border-black/8 bg-white/[0.02] p-4 transition-all duration-300 hover:border-electric/30 hover:bg-electric/[0.04]"
                 >
-                  <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-electric drop-shadow-[0_0_8px_rgba(59,130,246,0.5)] transition-transform duration-300 group-hover:scale-110" />
+                  <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-electric drop-shadow-[0_0_8px_rgba(37,99,235,0.5)] transition-transform duration-300 group-hover:scale-110" />
                   <div>
                     <p className="font-heading text-sm font-semibold text-[#1a1a1a]">
                       {item.title}
@@ -379,9 +379,9 @@ export function OurWorkflow() {
             <Reveal key={step.title} delay={i * 0.12}>
               <div className="relative flex flex-col items-center text-center md:items-start md:text-left">
                 {/* numbered node */}
-                <div className="relative z-10 flex h-14 w-14 items-center justify-center rounded-2xl border border-black/10 bg-[#f8f9fa] shadow-[0_0_24px_-8px_rgba(59,130,246,0.5)]">
+                <div className="relative z-10 flex h-14 w-14 items-center justify-center rounded-2xl border border-black/10 bg-[#f8f9fa] shadow-[0_0_24px_-8px_rgba(37,99,235,0.5)]">
                   <step.icon className={`h-6 w-6 text-${step.color}`} />
-                  <span className="absolute -right-1.5 -top-1.5 flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-br from-electric to-violet font-heading text-xs font-bold text-[#1a1a1a] shadow-lg">
+                  <span className="absolute -right-1.5 -top-1.5 flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-br from-[#2563EB] to-[#38BDF8] font-heading text-xs font-bold text-white shadow-lg">
                     {i + 1}
                   </span>
                 </div>

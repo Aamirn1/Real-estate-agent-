@@ -25,12 +25,12 @@ const INFO_THEME: Record<
   electric: {
     iconWrap: "bg-electric/15 ring-1 ring-electric/30",
     icon: "text-electric",
-    glow: "shadow-[0_0_40px_-12px_rgba(59,130,246,0.55)]",
+    glow: "shadow-[0_0_40px_-12px_rgba(37,99,235,0.55)]",
   },
   violet: {
     iconWrap: "bg-violet/15 ring-1 ring-violet/30",
     icon: "text-violet",
-    glow: "shadow-[0_0_40px_-12px_rgba(139,92,246,0.55)]",
+    glow: "shadow-[0_0_40px_-12px_rgba(56,189,248,0.55)]",
   },
   cyan: {
     iconWrap: "bg-cyan/15 ring-1 ring-cyan/30",
@@ -192,7 +192,7 @@ function StylizedMap() {
         className="absolute inset-0 opacity-40"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(59,130,246,0.18) 1px,transparent 1px),linear-gradient(90deg,rgba(59,130,246,0.18) 1px,transparent 1px)",
+            "linear-gradient(rgba(37,99,235,0.18) 1px,transparent 1px),linear-gradient(90deg,rgba(37,99,235,0.18) 1px,transparent 1px)",
           backgroundSize: "32px 32px",
           maskImage:
             "radial-gradient(ellipse 70% 70% at 50% 50%,#000 30%,transparent 75%)",
@@ -204,7 +204,7 @@ function StylizedMap() {
         className="absolute inset-0 opacity-30"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(139,92,246,0.16) 1px,transparent 1px),linear-gradient(90deg,rgba(139,92,246,0.16) 1px,transparent 1px)",
+            "linear-gradient(rgba(56,189,248,0.16) 1px,transparent 1px),linear-gradient(90deg,rgba(56,189,248,0.16) 1px,transparent 1px)",
           backgroundSize: "128px 128px",
           maskImage:
             "radial-gradient(ellipse 60% 60% at 50% 50%,#000 20%,transparent 70%)",
@@ -218,7 +218,7 @@ function StylizedMap() {
         className="pointer-events-none absolute left-1/2 top-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full opacity-60 blur-3xl"
         style={{
           background:
-            "radial-gradient(circle,rgba(59,130,246,0.45) 0%,rgba(139,92,246,0.25) 35%,transparent 70%)",
+            "radial-gradient(circle,rgba(37,99,235,0.45) 0%,rgba(56,189,248,0.25) 35%,transparent 70%)",
         }}
       />
 
@@ -246,7 +246,7 @@ function StylizedMap() {
             <MapPin
               className="h-12 w-12 text-electric"
               style={{
-                filter: "drop-shadow(0 0 14px rgba(59,130,246,0.95))",
+                filter: "drop-shadow(0 0 14px rgba(37,99,235,0.95))",
               }}
               strokeWidth={2}
             />

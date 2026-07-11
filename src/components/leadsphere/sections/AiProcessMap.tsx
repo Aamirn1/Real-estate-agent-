@@ -93,9 +93,9 @@ function NeuralNetwork() {
       >
         <defs>
           <linearGradient id="nn-grad" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stopColor="#3b82f6" />
-            <stop offset="50%" stopColor="#8b5cf6" />
-            <stop offset="100%" stopColor="#06b6d4" />
+            <stop offset="0%" stopColor="#2563EB" />
+            <stop offset="50%" stopColor="#38BDF8" />
+            <stop offset="100%" stopColor="#14B8A6" />
           </linearGradient>
         </defs>
         {NEURAL_EDGES.map(([a, b], i) => {
@@ -182,9 +182,9 @@ function AiOrb() {
           className="animate-orb-breathe relative flex h-[180px] w-[180px] items-center justify-center rounded-full"
           style={{
             background:
-              "radial-gradient(circle at 35% 28%, #bfdbfe 0%, #3b82f6 24%, #8b5cf6 58%, #06b6d4 100%)",
+              "radial-gradient(circle at 35% 28%, #bfdbfe 0%, #2563EB 24%, #38BDF8 58%, #14B8A6 100%)",
             boxShadow:
-              "0 0 60px -8px rgba(59,130,246,0.6), 0 0 140px -24px rgba(139,92,246,0.55), inset 0 0 50px rgba(255,255,255,0.18)",
+              "0 0 60px -8px rgba(37,99,235,0.6), 0 0 140px -24px rgba(56,189,248,0.55), inset 0 0 50px rgba(255,255,255,0.18)",
           }}
         >
           {/* Specular highlight */}
@@ -256,9 +256,9 @@ function AiAssistantSection() {
             <Reveal key={f.label} delay={i * 0.05} className="h-full">
               <GlassCard
                 sheen
-                className="group flex h-full items-center gap-3 p-3 transition-all duration-300 hover:border-black/20 hover:shadow-[0_0_34px_-10px_rgba(59,130,246,0.55)] sm:p-4"
+                className="group flex h-full items-center gap-3 p-3 transition-all duration-300 hover:border-black/20 hover:shadow-[0_0_34px_-10px_rgba(37,99,235,0.55)] sm:p-4"
               >
-                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-electric/25 to-violet/25 text-cyan transition-transform duration-300 group-hover:scale-110">
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-electric/25 to-[#38BDF8]/25 text-cyan transition-transform duration-300 group-hover:scale-110">
                   <f.icon className="h-4 w-4" />
                 </div>
                 <span className="text-xs font-medium leading-tight text-[#1a1a1a]/80 sm:text-sm">
@@ -307,8 +307,8 @@ const STEPS = [
 function StepNumber({ n }: { n: number }) {
   return (
     <div className="relative flex h-14 w-14 items-center justify-center">
-      <span className="absolute inset-0 rounded-full bg-gradient-to-br from-electric via-violet to-cyan opacity-60 blur-md" />
-      <span className="relative flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-electric via-violet to-cyan font-heading text-lg font-semibold text-[#1a1a1a] shadow-[0_0_30px_-6px_rgba(139,92,246,0.75)]">
+      <span className="absolute inset-0 rounded-full bg-gradient-to-br from-[#2563EB] via-[#38BDF8] to-[#14B8A6] opacity-60 blur-md" />
+      <span className="relative flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-[#2563EB] via-[#38BDF8] to-[#14B8A6] font-heading text-lg font-semibold text-[#1a1a1a] shadow-[0_0_30px_-6px_rgba(56,189,248,0.75)]">
         {n}
       </span>
     </div>
@@ -333,7 +333,7 @@ function ProcessTimelineSection() {
         {/* Desktop — horizontal timeline */}
         <div className="relative hidden md:block">
           {/* Base gradient line */}
-          <div className="absolute left-0 right-0 top-7 h-[2px] rounded-full bg-gradient-to-r from-electric via-violet to-cyan opacity-40" />
+          <div className="absolute left-0 right-0 top-7 h-[2px] rounded-full bg-gradient-to-r from-[#2563EB] via-[#38BDF8] to-[#14B8A6] opacity-40" />
           {/* Animated shimmer comet */}
           <motion.div
             className="absolute left-0 right-0 top-7 h-[2px] overflow-hidden rounded-full"
@@ -379,7 +379,7 @@ function ProcessTimelineSection() {
 
         {/* Mobile — vertical timeline */}
         <div className="relative md:hidden">
-          <div className="absolute bottom-2 left-6 top-2 w-[2px] rounded-full bg-gradient-to-b from-electric via-violet to-cyan opacity-40" />
+          <div className="absolute bottom-2 left-6 top-2 w-[2px] rounded-full bg-gradient-to-b from-[#2563EB] via-[#38BDF8] to-[#14B8A6] opacity-40" />
           <motion.div
             className="absolute bottom-2 left-6 top-2 w-[2px] overflow-hidden"
             initial={{ opacity: 0 }}
@@ -436,9 +436,9 @@ function ProcessTimelineSection() {
 type PinType = "motivated" | "expired" | "fsbo" | "highValue";
 
 const PIN_COLORS: Record<PinType, string> = {
-  motivated: "#3b82f6",
-  expired: "#8b5cf6",
-  fsbo: "#06b6d4",
+  motivated: "#2563EB",
+  expired: "#38BDF8",
+  fsbo: "#14B8A6",
   highValue: "#d4af37",
 };
 
@@ -471,9 +471,9 @@ const PINS: Array<{
 ];
 
 const CLUSTERS: Array<{ x: number; y: number; count: number; color: string }> = [
-  { x: 33, y: 30, count: 248, color: "#3b82f6" },
-  { x: 58, y: 40, count: 156, color: "#8b5cf6" },
-  { x: 80, y: 48, count: 92, color: "#06b6d4" },
+  { x: 33, y: 30, count: 248, color: "#2563EB" },
+  { x: 58, y: 40, count: 156, color: "#38BDF8" },
+  { x: 80, y: 48, count: 92, color: "#14B8A6" },
 ];
 
 const FILTERS: Array<{ id: "all" | PinType; label: string; count: number }> = [
@@ -557,7 +557,7 @@ function InteractiveMapSection() {
                         className={[
                           "group flex items-center justify-between rounded-lg px-3 py-2 text-left text-xs transition-all duration-200",
                           isActive
-                            ? "bg-gradient-to-r from-electric/25 to-violet/20 text-[#1a1a1a] shadow-[0_0_24px_-10px_rgba(59,130,246,0.7)] ring-1 ring-inset ring-white/15"
+                            ? "bg-gradient-to-r from-electric/25 to-[#38BDF8]/20 text-[#1a1a1a] shadow-[0_0_24px_-10px_rgba(37,99,235,0.7)] ring-1 ring-inset ring-white/15"
                             : "text-[#1a1a1a]/60 hover:bg-black/5 hover:text-[#1a1a1a]/85",
                         ].join(" ")}
                       >
@@ -620,13 +620,13 @@ function InteractiveMapSection() {
                   >
                     <defs>
                       <linearGradient id="land-grad" x1="0" y1="0" x2="1" y2="1">
-                        <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.18" />
-                        <stop offset="55%" stopColor="#8b5cf6" stopOpacity="0.14" />
-                        <stop offset="100%" stopColor="#06b6d4" stopOpacity="0.10" />
+                        <stop offset="0%" stopColor="#2563EB" stopOpacity="0.18" />
+                        <stop offset="55%" stopColor="#38BDF8" stopOpacity="0.14" />
+                        <stop offset="100%" stopColor="#14B8A6" stopOpacity="0.10" />
                       </linearGradient>
                       <linearGradient id="land-stroke" x1="0" y1="0" x2="1" y2="1">
-                        <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.5" />
-                        <stop offset="100%" stopColor="#06b6d4" stopOpacity="0.35" />
+                        <stop offset="0%" stopColor="#2563EB" stopOpacity="0.5" />
+                        <stop offset="100%" stopColor="#14B8A6" stopOpacity="0.35" />
                       </linearGradient>
                     </defs>
                     <path
@@ -645,7 +645,7 @@ function InteractiveMapSection() {
                       left: "22%",
                       top: "22%",
                       background:
-                        "radial-gradient(circle, rgba(59,130,246,0.55) 0%, rgba(59,130,246,0) 70%)",
+                        "radial-gradient(circle, rgba(37,99,235,0.55) 0%, rgba(37,99,235,0) 70%)",
                     }}
                   />
                   <div
@@ -654,7 +654,7 @@ function InteractiveMapSection() {
                       left: "48%",
                       top: "30%",
                       background:
-                        "radial-gradient(circle, rgba(139,92,246,0.5) 0%, rgba(139,92,246,0) 70%)",
+                        "radial-gradient(circle, rgba(56,189,248,0.5) 0%, rgba(56,189,248,0) 70%)",
                     }}
                   />
                   <div

@@ -63,7 +63,7 @@ export function Navbar() {
         <div className="hidden items-center gap-2 md:flex">
           <a
             href="/get-started"
-            className="group relative overflow-hidden rounded-xl bg-gradient-to-r from-electric to-violet px-4 py-2 text-sm font-semibold text-[#1a1a1a] shadow-[0_0_24px_-6px_rgba(59,130,246,0.7)] transition-all hover:shadow-[0_0_30px_-4px_rgba(139,92,246,0.8)]"
+            className="group relative overflow-hidden rounded-xl bg-gradient-to-r from-[#2563EB] to-[#38BDF8] px-4 py-2 text-sm font-semibold text-white shadow-[0_0_24px_-6px_rgba(37,99,235,0.7)] transition-all hover:shadow-[0_0_30px_-4px_rgba(56,189,248,0.8)]"
           >
             <span className="relative z-10">Get Started</span>
             <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/25 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
@@ -106,7 +106,7 @@ export function Navbar() {
                 <a
                   href="/get-started"
                   onClick={() => setOpen(false)}
-                  className="block rounded-xl bg-gradient-to-r from-electric to-violet px-4 py-2.5 text-center text-sm font-semibold text-[#1a1a1a]"
+                  className="block rounded-xl bg-gradient-to-r from-[#2563EB] to-[#38BDF8] px-4 py-2.5 text-center text-sm font-semibold text-white"
                 >
                   Get Started
                 </a>
