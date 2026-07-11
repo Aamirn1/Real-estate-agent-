@@ -223,10 +223,10 @@ function Logo({ name, index }: { name: string; index: number }) {
     <div className="group/logo flex items-center gap-2.5 whitespace-nowrap px-3 transition-all duration-300 sm:px-4">
       <Mark
         variant={index}
-        className={`h-4 w-4 text-[#1E293B]/40 transition-colors duration-300 ${accent}`}
+        className={`h-4 w-4 text-white/40 transition-colors duration-300 ${accent}`}
       />
       <span
-        className={`font-heading text-base font-semibold tracking-tight text-[#1E293B]/40 transition-colors duration-300 group-hover/logo:text-[#1E293B] sm:text-[1.05rem] ${accent}`}
+        className={`font-heading text-base font-semibold tracking-tight text-white/40 transition-colors duration-300 group-hover/logo:text-white sm:text-[1.05rem] ${accent}`}
       >
         {name}
       </span>
@@ -238,7 +238,7 @@ function TrustSection() {
   return (
     <SectionShell className="py-14 md:py-16">
       <Reveal className="flex flex-col items-center gap-8">
-        <span className="inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.22em] text-[#1E293B]/45">
+        <span className="inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.22em] text-white/45">
           <span className="h-px w-6 bg-gradient-to-r from-transparent to-white/30" />
           Trusted by 50,000+ real estate professionals
           <span className="h-px w-6 bg-gradient-to-l from-transparent to-white/30" />
@@ -275,8 +275,8 @@ const STATS: {
   label: string;
 }[] = [
   { icon: Handshake, color: "electric", value: 12, suffix: "K+", label: "Warm Introductions" },
-  { icon: Users, color: "violet", value: 4, suffix: "+", label: "Agent Teams Supported" },
-  { icon: Network, color: "cyan", value: 850, suffix: "+", label: "Campaigns Managed" },
+  { icon: Users, color: "violet", value: 100, suffix: "+", label: "Agent Teams Supported" },
+  { icon: Network, color: "cyan", value: 500, suffix: "+", label: "Campaigns Managed" },
   { icon: TrendingUp, color: "electric", value: 98, suffix: "%", label: "Satisfaction Rate" },
 ];
 
@@ -305,7 +305,7 @@ function StatsSection() {
               >
                 <GlassCard
                   sheen
-                  className={`h-full border border-[#E2E8F0] p-6 transition-all duration-300 ${t.cardBorder} ${t.cardGlow}`}
+                  className={`h-full border border-white/10 p-6 transition-all duration-300 ${t.cardBorder} ${t.cardGlow}`}
                 >
                   {/* Icon */}
                   <div
@@ -315,17 +315,17 @@ function StatsSection() {
                   </div>
 
                   {/* Number */}
-                  <div className="font-heading text-4xl font-semibold leading-none tracking-tight text-[#1E293B] sm:text-[2.75rem]">
+                  <div className="font-heading text-4xl font-semibold leading-none tracking-tight text-white sm:text-[2.75rem]">
                     <CountUp value={stat.value} suffix={stat.suffix} />
                   </div>
 
                   {/* Label */}
-                  <p className="mt-2.5 text-sm font-medium text-[#1E293B]/55">
+                  <p className="mt-2.5 text-sm font-medium text-white/55">
                     {stat.label}
                   </p>
 
                   {/* Accent bar */}
-                  <div className="mt-5 h-px w-full bg-[#1E293B]/5">
+                  <div className="mt-5 h-px w-full bg-white/5">
                     <div
                       className={`h-px w-1/3 ${t.bar} opacity-70 transition-all duration-500`}
                     />
@@ -414,7 +414,7 @@ function FeaturesSection() {
       <SectionHeading
         eyebrow="Services"
         title="How we drive growth for real estate professionals"
-        description="Outreach support, digital advertising, CRM management, and virtual assistants — twelve services working together to fill your pipeline."
+        description="Outreach support, digital advertising, CRM management, and virtual assistants, twelve services working together to fill your pipeline."
       />
 
       <div className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -431,7 +431,7 @@ function FeaturesSection() {
               >
                 <GlassCard
                   sheen
-                  className={`group relative h-full overflow-hidden border border-[#E2E8F0] p-6 transition-all duration-300 ${t.cardBorder} ${t.cardGlow}`}
+                  className={`group relative h-full overflow-hidden border border-white/10 p-6 transition-all duration-300 ${t.cardBorder} ${t.cardGlow}`}
                 >
                   {/* corner accent glow on hover */}
                   <div
@@ -446,23 +446,23 @@ function FeaturesSection() {
                     >
                       <Icon className={`h-5 w-5 ${t.text}`} strokeWidth={2} />
                     </div>
-                    <span className="font-heading text-xs font-medium tabular-nums tracking-widest text-[#1E293B]/25">
+                    <span className="font-heading text-xs font-medium tabular-nums tracking-widest text-white/25">
                       {idx}
                     </span>
                   </div>
 
                   {/* title */}
-                  <h3 className="relative mt-5 font-heading text-lg font-semibold tracking-tight text-[#1E293B]">
+                  <h3 className="relative mt-5 font-heading text-lg font-semibold tracking-tight text-white">
                     {f.title}
                   </h3>
 
                   {/* description */}
-                  <p className="relative mt-2 text-sm leading-relaxed text-[#1E293B]/55">
+                  <p className="relative mt-2 text-sm leading-relaxed text-white/55">
                     {f.desc}
                   </p>
 
                   {/* bottom accent line */}
-                  <div className="relative mt-5 h-px w-full bg-[#1E293B]/5">
+                  <div className="relative mt-5 h-px w-full bg-white/5">
                     <div
                       className={`h-px w-0 ${t.bar} transition-all duration-500 group-hover:w-full`}
                     />

@@ -9,11 +9,12 @@ import {
 } from "lucide-react";
 import { AnimatedBackground } from "@/components/leadsphere/AnimatedBackground";
 import { MagneticButton } from "@/components/leadsphere/MagneticButton";
+import { Typewriter } from "@/components/leadsphere/Typewriter";
 
 export function Hero() {
   return (
     <section className="relative flex min-h-screen w-full items-center overflow-hidden">
-      {/* Full-bleed background image — mobile portrait on small screens, desktop landscape on md+ */}
+      {/* Full-bleed background image, mobile portrait on small screens, desktop landscape on md+ */}
       <picture className="absolute inset-0 z-0">
         <source media="(min-width: 768px)" srcSet="/hero-bg-desktop.png" />
         <img
@@ -24,10 +25,10 @@ export function Hero() {
         />
       </picture>
       {/* Dark gradient overlays for text legibility + brand cohesion */}
-      <div className="absolute inset-0 z-0 bg-gradient-to-t from-[#050505] via-[#050505]/70 to-[#050505]/40 md:bg-gradient-to-r md:from-[#050505] md:via-[#050505]/60 md:to-[#050505]/20" />
+      <div className="absolute inset-0 z-0 bg-gradient-to-t from-[#050505] via-[#050505]/50 to-transparent md:bg-gradient-to-r md:from-[#050505]/70 md:via-[#050505]/10 md:to-transparent" />
       <div className="absolute inset-0 z-0 bg-gradient-to-br from-electric/10 via-transparent to-violet/10" />
       {/* Subtle animated particles on top of image for life */}
-      <AnimatedBackground variant="hero" className="opacity-40" />
+      <AnimatedBackground variant="hero" className="opacity-20" />
 
       <div className="relative z-10 mx-auto w-full max-w-7xl px-5 py-32 sm:px-8 sm:py-40">
         <div className="flex max-w-2xl flex-col items-start">
@@ -35,13 +36,20 @@ export function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-medium text-white/70 backdrop-blur"
+            className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-medium text-white/90 backdrop-blur"
           >
             <span className="relative flex h-1.5 w-1.5">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-electric opacity-70" />
               <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-electric" />
             </span>
-            Human-verified outreach · No autodialers
+            <Typewriter
+              prefix="Human-verified outreach · "
+              lines={[
+                "No autodialers",
+                "Verified contacts",
+                "Consent-based",
+              ]}
+            />
             <Sparkles className="h-3 w-3 text-violet" />
           </motion.div>
 
@@ -60,10 +68,10 @@ export function Hero() {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.3 }}
-            className="mt-6 max-w-xl text-base leading-relaxed text-white/60 sm:text-lg"
+            className="mt-6 max-w-xl text-base leading-relaxed text-white/85 sm:text-lg"
           >
             Your trusted partner for marketing consulting, outreach support,
-            CRM assistance, workflow automation, and administrative services —
+            CRM assistance, workflow automation, and administrative services,
             all delivered through verified, human-only outreach.
           </motion.p>
 
@@ -71,12 +79,12 @@ export function Hero() {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.42 }}
-            className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center"
+            className="mt-9 flex flex-row items-center gap-2.5"
           >
             <MagneticButton>
               <a
-                href="/signup"
-                className="group relative inline-flex items-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-electric to-violet px-6 py-3.5 text-sm font-semibold text-white shadow-[0_0_30px_-6px_rgba(59,130,246,0.7)] transition-all hover:shadow-[0_0_40px_-4px_rgba(139,92,246,0.85)]"
+                href="/get-started"
+                className="group relative inline-flex items-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-electric to-violet px-5 py-3 text-sm font-semibold text-white shadow-[0_0_30px_-6px_rgba(59,130,246,0.7)] transition-all hover:shadow-[0_0_40px_-4px_rgba(139,92,246,0.85)]"
               >
                 <span className="relative z-10">Get Started</span>
                 <ArrowRight className="relative z-10 h-4 w-4 transition-transform group-hover:translate-x-0.5" />
@@ -86,10 +94,11 @@ export function Hero() {
             <MagneticButton strength={0.3}>
               <a
                 href="/contact"
-                className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-6 py-3.5 text-sm font-semibold text-white backdrop-blur transition-all hover:border-white/25 hover:bg-white/10"
+                className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-5 py-3 text-sm font-semibold text-white backdrop-blur transition-all hover:border-white/25 hover:bg-white/10"
               >
-                <PlayCircle className="h-4.5 w-4.5 text-cyan" />
-                Book a Consultation
+                <PlayCircle className="h-4 w-4 text-cyan" />
+                <span className="hidden xs:inline sm:inline">Book a Consultation</span>
+                <span className="xs:hidden sm:hidden">Book Demo</span>
               </a>
             </MagneticButton>
           </motion.div>
@@ -98,7 +107,7 @@ export function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.7, delay: 0.6 }}
-            className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 text-xs text-white/45"
+            className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 text-xs text-white/80"
           >
             <span className="inline-flex items-center gap-1.5">
               <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400" /> Not a brokerage

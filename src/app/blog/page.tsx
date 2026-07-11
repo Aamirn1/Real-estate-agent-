@@ -42,7 +42,7 @@ const POSTS: BlogPost[] = [
     title:
       "How a Dedicated VA Team Keeps Your Business Running While You Sleep",
     excerpt:
-      "In the modern global marketplace, the traditional 9-to-5 workday is no longer a standard — it's a limitation. A dedicated virtual assistant team keeps your outreach, scheduling, and follow-ups running around the clock.",
+      "In the modern global marketplace, the traditional 9-to-5 workday is no longer a standard | it's a limitation. A dedicated virtual assistant team keeps your outreach, scheduling, and follow-ups running around the clock.",
     category: "Virtual Assistants",
     readTime: "6 min read",
     date: "Mar 12, 2025",
@@ -53,7 +53,7 @@ const POSTS: BlogPost[] = [
     title:
       "Why Targeting the Right Prospects Is the Secret to a 60% Sales Increase",
     excerpt:
-      "In the digital economy, many business owners chase volume. But quality over quantity is the real secret — targeting the right prospects can drive a 60% sales increase.",
+      "In the digital economy, many business owners chase volume. But quality over quantity is the real secret | targeting the right prospects can drive a 60% sales increase.",
     category: "Prospecting",
     readTime: "8 min read",
     date: "Mar 5, 2025",
@@ -72,7 +72,7 @@ const POSTS: BlogPost[] = [
     color: "cyan",
   },
   {
-    title: "5 Anniversary Celebration of Opus Solutions",
+    title: "5 Anniversary Celebration of Opus Global Solution",
     excerpt:
       "Five years of helping real estate professionals grow. We look back at the milestones, the partnerships, and the lessons that shaped our journey.",
     category: "Company",
@@ -94,7 +94,7 @@ const POSTS: BlogPost[] = [
   {
     title: "How Top Realtors Are Finding Off-Market Deals",
     excerpt:
-      "A great realtor will tell you the best deals are the ones no one else knows about. Pocket listings don't pop up on Zillow or the MLS — here's how top realtors find them.",
+      "A great realtor will tell you the best deals are the ones no one else knows about. Pocket listings don't pop up on Zillow or the MLS | here's how top realtors find them.",
     category: "Lead Generation",
     readTime: "7 min read",
     date: "Feb 2, 2025",
@@ -201,7 +201,7 @@ export default function BlogPage() {
             <span className="text-gradient-electric">Latest News</span>
           </>
         }
-        description="Stay updated with the latest trends, tips, and insights in real estate lead generation. At Opus Solutions, we share strategies that help agents and brokerages grow stronger businesses."
+        description="Stay updated with the latest trends, tips, and insights in real estate lead generation. At Opus Global Solution, we share strategies that help agents and brokerages grow stronger businesses."
       />
 
       <SectionShell id="blog" className="pt-10 md:pt-12">
@@ -224,7 +224,7 @@ export default function BlogPage() {
                 >
                   <GlassCard
                     sheen
-                    className={`flex h-full flex-col overflow-hidden border border-[#E2E8F0] transition-colors duration-300 ${c.hoverBorder}`}
+                    className={`flex h-full flex-col overflow-hidden border border-white/8 transition-colors duration-300 ${c.hoverBorder}`}
                   >
                     {/* ---------------- Thumbnail ---------------- */}
                     <div
@@ -257,9 +257,9 @@ export default function BlogPage() {
                           initial={false}
                           whileHover={{ scale: 1.08 }}
                           transition={{ type: "spring", stiffness: 300, damping: 18 }}
-                          className={`grid h-16 w-16 place-items-center rounded-2xl border border-[#CBD5E1] bg-[#1E293B]/8 backdrop-blur-md ${c.ring} ring-1`}
+                          className={`grid h-16 w-16 place-items-center rounded-2xl border border-white/25 bg-white/10 backdrop-blur-md ${c.ring} ring-1`}
                         >
-                          <Icon className="h-8 w-8 text-[#1E293B] drop-shadow-[0_0_10px_rgba(255,255,255,0.45)]" />
+                          <Icon className="h-8 w-8 text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.45)]" />
                         </motion.div>
                       </div>
 
@@ -279,25 +279,25 @@ export default function BlogPage() {
                     {/* ---------------- Body ---------------- */}
                     <div className="flex flex-1 flex-col p-5 sm:p-6">
                       <h3
-                        className={`font-heading text-lg font-semibold leading-snug text-[#1E293B] transition-colors duration-300 ${c.hoverTitle}`}
+                        className={`font-heading text-lg font-semibold leading-snug text-white transition-colors duration-300 ${c.hoverTitle}`}
                       >
                         {post.title}
                       </h3>
-                      <p className="mt-3 text-sm leading-relaxed text-[#1E293B]/55 line-clamp-3">
+                      <p className="mt-3 text-sm leading-relaxed text-white/55 line-clamp-3">
                         {post.excerpt}
                       </p>
 
                       {/* footer row */}
-                      <div className="mt-5 flex items-center justify-between border-t border-[#E2E8F0] pt-4">
-                        <div className="flex items-center gap-2 text-xs text-[#1E293B]/45">
+                      <div className="mt-5 flex items-center justify-between border-t border-white/8 pt-4">
+                        <div className="flex items-center gap-2 text-xs text-white/45">
                           <Calendar className="h-3.5 w-3.5" />
                           <span className="tnum">{post.date}</span>
-                          <span className="text-[#1E293B]/20">·</span>
+                          <span className="text-white/20">·</span>
                           <Clock className="h-3.5 w-3.5" />
                           <span>{post.readTime}</span>
                         </div>
                         <span
-                          className={`inline-flex items-center gap-1 text-xs font-semibold text-[#1E293B]/70 transition-colors duration-300 ${c.hoverArrow}`}
+                          className={`inline-flex items-center gap-1 text-xs font-semibold text-white/70 transition-colors duration-300 ${c.hoverArrow}`}
                         >
                           Read more
                           <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
@@ -318,14 +318,14 @@ export default function BlogPage() {
             whileHover={{ y: -2 }}
             whileTap={{ scale: 0.98 }}
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            className="group inline-flex items-center gap-2 rounded-xl border border-[#E2E8F0] bg-[#1E293B]/5 px-7 py-3.5 text-sm font-semibold text-[#1E293B]/80 backdrop-blur transition-colors hover:border-electric/40 hover:text-[#1E293B] hover:shadow-[0_0_32px_-8px_rgba(59,130,246,0.55)]"
+            className="group inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-7 py-3.5 text-sm font-semibold text-white/80 backdrop-blur transition-colors hover:border-electric/40 hover:text-white hover:shadow-[0_0_32px_-8px_rgba(59,130,246,0.55)]"
           >
             Load More Articles
             <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
           </motion.button>
 
-          <p className="max-w-2xl text-center text-xs leading-relaxed text-[#1E293B]/35">
-            Opus Solutions is a marketing consulting and support company. We do
+          <p className="max-w-2xl text-center text-xs leading-relaxed text-white/35">
+            Opus Global Solution is a marketing consulting and support company. We do
             not act as a brokerage, list or sell property, or resell leads.
           </p>
         </div>
@@ -333,7 +333,7 @@ export default function BlogPage() {
 
       <CTABanner
         title="Ready to put these insights to work?"
-        subtitle="Join thousands of agents who trust Opus Solutions to fill their pipeline."
+        subtitle="Join thousands of agents who trust Opus Global Solution to fill their pipeline."
       />
     </SiteChrome>
   );

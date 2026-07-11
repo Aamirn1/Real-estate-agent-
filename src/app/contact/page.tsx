@@ -10,9 +10,9 @@ import { ContactFormSection } from "./ContactFormSection";
 import { Mail, Phone, MapPin, Clock } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Contact — Opus Solutions",
+  title: "Contact | Opus Global Solution",
   description:
-    "Let's do great work together. Connect with Opus Solutions for marketing consulting, outreach support, and CRM solutions for real estate professionals.",
+    "Let's do great work together. Connect with Opus Global Solution for marketing consulting, outreach support, and CRM solutions for real estate professionals.",
 };
 
 /* ----------------------------- Contact info data ----------------------------- */
@@ -102,7 +102,7 @@ export default function ContactPage() {
 
       <SectionShell id="contact" className="pt-6 md:pt-8">
         <div className="grid gap-6 lg:grid-cols-2">
-          {/* LEFT — Contact form */}
+          {/* LEFT | Contact form */}
           <Reveal>
             <GlassCard strong sheen className="relative h-full overflow-hidden p-0">
               {/* Ambient orbs */}
@@ -114,7 +114,7 @@ export default function ContactPage() {
             </GlassCard>
           </Reveal>
 
-          {/* RIGHT — Info cards + stylized map */}
+          {/* RIGHT | Info cards + stylized map */}
           <Reveal delay={0.08}>
             <div className="flex h-full flex-col gap-5">
               {/* 2×2 info card grid */}
@@ -136,7 +136,7 @@ export default function ContactPage() {
                       >
                         <Icon className={`h-5 w-5 ${theme.icon}`} />
                       </span>
-                      <p className="relative mt-4 text-xs font-medium uppercase tracking-wider text-[#1E293B]/45">
+                      <p className="relative mt-4 text-xs font-medium uppercase tracking-wider text-white/45">
                         {card.label}
                       </p>
                       <div className="relative mt-2 flex flex-col gap-1">
@@ -145,14 +145,14 @@ export default function ContactPage() {
                             <a
                               key={line.text}
                               href={line.href}
-                              className="text-sm leading-relaxed text-[#1E293B]/85 transition-colors hover:text-[#1E293B]"
+                              className="text-sm leading-relaxed text-white/85 transition-colors hover:text-white"
                             >
                               {line.text}
                             </a>
                           ) : (
                             <span
                               key={line.text}
-                              className="text-sm leading-relaxed text-[#1E293B]/85"
+                              className="text-sm leading-relaxed text-white/85"
                             >
                               {line.text}
                             </span>
@@ -174,7 +174,7 @@ export default function ContactPage() {
       {/* Closing CTA */}
       <CTABanner
         title="Ready to get started?"
-        subtitle="Book a free consultation and discover how Opus Solutions can help your business grow."
+        subtitle="Book a free consultation and discover how Opus Global Solution can help your business grow."
       />
     </SiteChrome>
   );
@@ -223,14 +223,14 @@ function StylizedMap() {
       />
 
       {/* Corner badges */}
-      <div className="absolute left-4 top-4 z-20 flex items-center gap-2 rounded-full border border-[#E2E8F0] bg-[#1E293B]/5 px-3 py-1.5 text-xs text-[#1E293B]/70 backdrop-blur">
+      <div className="absolute left-4 top-4 z-20 flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs text-white/70 backdrop-blur">
         <span className="relative flex h-2 w-2">
           <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
           <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
         </span>
         HQ · Albany
       </div>
-      <div className="absolute bottom-4 right-4 z-20 rounded-full border border-[#E2E8F0] bg-[#1E293B]/5 px-3 py-1.5 text-[11px] text-[#1E293B]/50 backdrop-blur tnum">
+      <div className="absolute bottom-4 right-4 z-20 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-[11px] text-white/50 backdrop-blur tnum">
         42.6526° N, 73.7562° W
       </div>
 
@@ -253,7 +253,7 @@ function StylizedMap() {
             <span className="absolute left-1/2 top-1/2 h-2 w-2 -translate-x-1/2 -translate-y-[60%] rounded-full bg-white shadow-[0_0_10px_rgba(255,255,255,0.95)]" />
           </div>
           {/* Label */}
-          <div className="mt-3 rounded-full border border-electric/30 bg-[#0d0d12]/80 px-3 py-1 text-xs font-medium text-[#1E293B] backdrop-blur">
+          <div className="mt-3 rounded-full border border-electric/30 bg-[#0d0d12]/80 px-3 py-1 text-xs font-medium text-white backdrop-blur">
             Albany, NY
           </div>
         </div>

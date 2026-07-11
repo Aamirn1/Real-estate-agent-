@@ -15,15 +15,15 @@ import {
 import { ChevronDown } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "FAQs — Opus Solutions",
+  title: "FAQs | Opus Global Solution",
   description:
-    "Find answers to commonly asked questions about Opus Solutions' services, CRM support, marketing, scheduling, pricing, and compliance.",
+    "Find answers to commonly asked questions about Opus Global Solution' services, CRM support, marketing, scheduling, pricing, and compliance.",
 };
 
 /* ----------------------------- 14 FAQs ----------------------------- */
 const FAQS: { q: string; a: string }[] = [
   {
-    q: "What services does Opus Solutions offer?",
+    q: "What services does Opus Global Solution offer?",
     a: "We provide eight core services for licensed real estate professionals: Marketing Consulting, CRM Support, Workflow Automation, Virtual Assistance, Outreach Support, Digital Marketing, Appointment Coordination, and Reporting & Analytics.",
   },
   {
@@ -36,7 +36,7 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     q: "How does your outreach work?",
-    a: "All outreach is human-only — no autodialers or robocalls. Every engagement is consent-based, documented, and reported back to you with full transparency.",
+    a: "All outreach is human-only | no autodialers or robocalls. Every engagement is consent-based, documented, and reported back to you with full transparency.",
   },
   {
     q: "Can you set up my CRM?",
@@ -68,7 +68,7 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     q: "Do you offer digital marketing services?",
-    a: "Yes. We provide social campaigns, email marketing, landing pages, and lead funnels — all designed to complement your outreach and fill your pipeline.",
+    a: "Yes. We provide social campaigns, email marketing, landing pages, and lead funnels | all designed to complement your outreach and fill your pipeline.",
   },
   {
     q: "Can services be cancelled?",
@@ -91,7 +91,7 @@ export default function FaqsPage() {
             questions
           </>
         }
-        description="Find answers to commonly asked questions about Opus Solutions — our services, process, compliance, and how we support licensed real estate professionals."
+        description="Find answers to commonly asked questions about Opus Global Solution | our services, process, compliance, and how we support licensed real estate professionals."
       />
 
       <SectionShell id="faqs">
@@ -116,19 +116,19 @@ export default function FaqsPage() {
               >
                 <AccordionItem
                   value={`faq-${i}`}
-                  className="glass-strong group rounded-2xl border border-[#E2E8F0] px-5 transition-colors duration-300 data-[state=open]:border-electric/30 sm:px-6"
+                  className="glass-strong group rounded-2xl border border-white/10 px-5 transition-colors duration-300 data-[state=open]:border-electric/30 sm:px-6"
                 >
                   <AccordionTrigger
-                    className="group/trigger hover:no-underline py-5 text-left text-base font-medium text-[#1E293B]/90 [&>svg:last-child]:hidden"
+                    className="group/trigger hover:no-underline py-5 text-left text-base font-medium text-white/90 [&>svg:last-child]:hidden"
                   >
-                    <span className="flex-1 pr-4 font-heading text-[15px] font-semibold leading-snug text-[#1E293B] sm:text-base">
+                    <span className="flex-1 pr-4 font-heading text-[15px] font-semibold leading-snug text-white sm:text-base">
                       {faq.q}
                     </span>
-                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#E2E8F0] bg-[#1E293B]/5 transition-all duration-300 group-data-[state=open]:border-electric/40 group-data-[state=open]:bg-electric/10">
-                      <ChevronDown className="h-4 w-4 text-[#1E293B]/60 transition-all duration-300 group-data-[state=open]:rotate-180 group-data-[state=open]:text-electric" />
+                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/5 transition-all duration-300 group-data-[state=open]:border-electric/40 group-data-[state=open]:bg-electric/10">
+                      <ChevronDown className="h-4 w-4 text-white/60 transition-all duration-300 group-data-[state=open]:rotate-180 group-data-[state=open]:text-electric" />
                     </span>
                   </AccordionTrigger>
-                  <AccordionContent className="text-sm leading-relaxed text-[#1E293B]/55 sm:text-[15px]">
+                  <AccordionContent className="text-sm leading-relaxed text-white/55 sm:text-[15px]">
                     <span className="block pr-12 pb-5">{faq.a}</span>
                   </AccordionContent>
                 </AccordionItem>

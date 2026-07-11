@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { LogoImage } from "@/components/leadsphere/LogoIcon";
 
 const NAV_LINKS = [
   { label: "Home", href: "/" },
@@ -36,16 +37,13 @@ export function Navbar() {
         className={cn(
           "flex w-full max-w-6xl items-center justify-between rounded-2xl px-4 py-2.5 transition-all duration-500 sm:px-5",
           scrolled
-            ? "glass-strong shadow-[0_8px_40px_-12px_rgba(30,41,59,0.15)]"
-            : "glass border-[#E2E8F0]/50"
+            ? "glass-strong shadow-[0_8px_40px_-12px_rgba(0,0,0,0.6)]"
+            : "border border-transparent bg-transparent"
         )}
       >
-        {/* Logo — favicon SVG without background */}
-        <a href="#" className="group flex items-center gap-2">
-          <img src="/logo.svg" alt="Opus Global Solution" className="h-8 w-8 transition-transform group-hover:scale-105" />
-          <span className="font-heading text-base font-semibold tracking-tight text-[#1E293B]">
-            Opus<span className="text-electric"> Global Solution</span>
-          </span>
+        {/* Logo */}
+        <a href="#" className="group flex items-center transition-transform group-hover:scale-[1.02]">
+          <LogoImage className="h-10 sm:h-12" />
         </a>
 
         {/* Desktop links */}
@@ -54,7 +52,7 @@ export function Navbar() {
             <a
               key={link.href}
               href={link.href}
-              className="rounded-lg px-3.5 py-2 text-sm font-medium text-[#1E293B]/65 transition-colors hover:text-[#1E293B]"
+              className="rounded-lg px-3.5 py-2 text-sm font-medium text-white/90 transition-colors hover:text-white"
             >
               {link.label}
             </a>
@@ -64,14 +62,8 @@ export function Navbar() {
         {/* Desktop CTAs */}
         <div className="hidden items-center gap-2 md:flex">
           <a
-            href="/signin"
-            className="rounded-xl px-3.5 py-2 text-sm font-medium text-[#1E293B]/70 transition-colors hover:text-[#1E293B]"
-          >
-            Sign in
-          </a>
-          <a
-            href="/signup"
-            className="group relative overflow-hidden rounded-xl bg-gradient-to-r from-electric to-violet px-4 py-2 text-sm font-semibold text-[#1E293B] shadow-[0_0_24px_-6px_rgba(59,130,246,0.7)] transition-all hover:shadow-[0_0_30px_-4px_rgba(139,92,246,0.8)]"
+            href="/get-started"
+            className="group relative overflow-hidden rounded-xl bg-gradient-to-r from-electric to-violet px-4 py-2 text-sm font-semibold text-white shadow-[0_0_24px_-6px_rgba(59,130,246,0.7)] transition-all hover:shadow-[0_0_30px_-4px_rgba(139,92,246,0.8)]"
           >
             <span className="relative z-10">Get Started</span>
             <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/25 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
@@ -81,7 +73,7 @@ export function Navbar() {
         {/* Mobile toggle */}
         <button
           onClick={() => setOpen((v) => !v)}
-          className="flex h-9 w-9 items-center justify-center rounded-lg text-[#1E293B]/80 transition-colors hover:bg-[#1E293B]/5 md:hidden"
+          className="flex h-9 w-9 items-center justify-center rounded-lg text-white/80 transition-colors hover:bg-white/5 md:hidden"
           aria-label="Toggle menu"
         >
           {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -98,30 +90,23 @@ export function Navbar() {
             transition={{ duration: 0.2 }}
             className="absolute inset-x-4 top-[68px] z-50 md:hidden"
           >
-            <div className="rounded-2xl border border-[#E2E8F0] bg-white p-3 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.8)]">
+            <div className="rounded-2xl border border-white/10 bg-[#0a0a0d] p-3 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.8)]">
               {NAV_LINKS.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
                   onClick={() => setOpen(false)}
-                  className="flex items-center justify-between rounded-xl px-4 py-3 text-sm font-medium text-[#1E293B]/75 transition-colors hover:bg-[#1E293B]/5 hover:text-[#1E293B]"
+                  className="flex items-center justify-between rounded-xl px-4 py-3 text-sm font-medium text-white/90 transition-colors hover:bg-white/5 hover:text-white"
                 >
                   {link.label}
-                  <ChevronDown className="h-4 w-4 -rotate-90 text-[#1E293B]/30" />
+                  <ChevronDown className="h-4 w-4 -rotate-90 text-white/30" />
                 </a>
               ))}
-              <div className="mt-2 grid grid-cols-2 gap-2 border-t border-[#E2E8F0] pt-3">
+              <div className="mt-2 border-t border-white/10 pt-3">
                 <a
-                  href="/signin"
+                  href="/get-started"
                   onClick={() => setOpen(false)}
-                  className="rounded-xl border border-[#E2E8F0] px-4 py-2.5 text-center text-sm font-medium text-[#1E293B]/80"
-                >
-                  Sign in
-                </a>
-                <a
-                  href="/signup"
-                  onClick={() => setOpen(false)}
-                  className="rounded-xl bg-gradient-to-r from-electric to-violet px-4 py-2.5 text-center text-sm font-semibold text-[#1E293B]"
+                  className="block rounded-xl bg-gradient-to-r from-electric to-violet px-4 py-2.5 text-center text-sm font-semibold text-white"
                 >
                   Get Started
                 </a>

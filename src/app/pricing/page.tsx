@@ -22,24 +22,26 @@ import {
   Calendar,
   Rocket,
   ArrowRight,
+  X,
 } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: "Pricing — Opus Solutions",
+  title: "Pricing | Opus Global Solution",
   description:
     "Flexible lead generation pricing for real estate agents. Choose from trial to premium plans with referrals, lead transfers, and dedicated support.",
 };
 
 /* ============================================================================
-   PRICING DATA — 6 real plans
+   PRICING DATA | 6 real plans
    ========================================================================== */
 
 type Plan = {
   name: string;
-  price: string; // "Per Lead" or "$450"
+  price: string;
   period: string;
   tagline: string;
-  features: string[];
+  features: { text: string; included: boolean }[];
   cta: string;
   ctaVariant: "outline" | "solid";
   highlight?: "top-selling" | "premium";
@@ -48,38 +50,47 @@ type Plan = {
 
 const PLANS: Plan[] = [
   {
-    name: "Trial Plan",
-    price: "$450",
-    period: "One-Time · 30 Days",
+    name: "Trial",
+    price: "$300",
+    period: "One-Time · 90 Days Setup",
     tagline: "Test the waters",
     features: [
-      "20% Referral Fee",
-      "9 Pre-screened introductions",
-      "Up to 3 Counties",
-      "10 hr/day Support",
-      "No Hidden Charges",
-      "Pipeline Tracking",
-      "Appointment Scheduling",
-      "Call/lead recording",
-      "Dedicated Account Manager",
-      "Real-time Live Transfer",
+      { text: "20% Referral Fee", included: true },
+      { text: "6 Qualified, Pre-screened Introductions", included: true },
+      { text: "Up to 5 Counties", included: true },
+      { text: "10 hr/day Support", included: true },
+      { text: "Spreadsheet", included: true },
+      { text: "Pipeline Tracking", included: true },
+      { text: "No Hidden Charges", included: true },
+      { text: "Exclusive Warm Live Transfer", included: false },
+      { text: "SMS/WhatsApp Support", included: false },
+      { text: "Monthly Activity Summary", included: false },
+      { text: "Dedicated Account Manager", included: false },
+      { text: "Digital Marketing Services", included: false },
     ],
     cta: "Get Started",
     ctaVariant: "outline",
   },
   {
-    name: "Silver Plan",
-    price: "$900",
-    period: "One-Time · 30 Days",
+    name: "Gold",
+    price: "$600",
+    period: "One-Time · 180 Days Setup",
     tagline: "Most popular choice",
     features: [
-      "15% referral fee",
-      "18 qualified pre-screened introductions",
-      "Up to 5 Counties",
-      "10 hr/day Support",
-      "Appointment Scheduling",
-      "Call/lead recording",
-      "No Hidden Charges",
+      { text: "15% Referral Fee", included: true },
+      { text: "12 Qualified, Pre-screened Introductions", included: true },
+      { text: "Up to 5 Counties", included: true },
+      { text: "10 hr/day Support", included: true },
+      { text: "Spreadsheet", included: true },
+      { text: "Priority-based Appointment Scheduling", included: true },
+      { text: "Call/lead recording (where permitted and with notice)", included: true },
+      { text: "Pipeline Tracking", included: true },
+      { text: "No Hidden Charges", included: true },
+      { text: "Exclusive Warm Live Transfer", included: false },
+      { text: "SMS/WhatsApp Support", included: false },
+      { text: "Monthly Activity Summary", included: false },
+      { text: "Dedicated Account Manager", included: false },
+      { text: "Digital Marketing Services", included: false },
     ],
     cta: "Get Started",
     ctaVariant: "solid",
@@ -87,38 +98,26 @@ const PLANS: Plan[] = [
     badge: "Top Selling",
   },
   {
-    name: "Gold Plan",
-    price: "$1800",
-    period: "One-Time · 30 Days",
-    tagline: "For growing teams",
-    features: [
-      "10% referral fee",
-      "27 qualified pre-screened introductions",
-      "Up to 10 Counties",
-      "10 hr/day Support",
-      "Appointment Scheduling",
-      "Dedicated Account Manager",
-      "Warm live transfer",
-      "Pipeline tracking",
-    ],
-    cta: "Get Started",
-    ctaVariant: "outline",
-  },
-  {
-    name: "Platinum Plan",
-    price: "$2500",
-    period: "One-Time · 30 Days",
+    name: "Platinum",
+    price: "$1200",
+    period: "One-Time · 365 Days Setup",
     tagline: "High-volume prospecting",
     features: [
-      "8% referral fee",
-      "54 qualified pre-screened introductions",
-      "Up to 10 Counties",
-      "10 hr/day Support",
-      "Priority Appointment Scheduling",
-      "Senior Dedicated Account Manager",
-      "Exclusive warm live transfer",
+      { text: "10% Referral Fee", included: true },
+      { text: "18 Qualified, Pre-screened Introductions", included: true },
+      { text: "Up to 10 Counties", included: true },
+      { text: "10 hr/day Support", included: true },
+      { text: "Priority-based Appointment Scheduling", included: true },
+      { text: "Call/lead recording (where permitted and with notice)", included: true },
+      { text: "Advanced Pipeline Tracking", included: true },
+      { text: "No Hidden Charges", included: true },
+      { text: "Exclusive Warm Live Transfer", included: true },
+      { text: "SMS/WhatsApp Support", included: true },
+      { text: "Monthly Reporting", included: true },
+      { text: "Dedicated Account Manager", included: true },
+      { text: "Digital Marketing Services", included: true },
     ],
-    cta: "Book a Demo",
+    cta: "Get Started",
     ctaVariant: "outline",
     highlight: "premium",
     badge: "For Premium Realtors",
@@ -126,12 +125,12 @@ const PLANS: Plan[] = [
 ];
 
 /* ============================================================================
-   FAQ DATA — 12 real Q&As
+   FAQ DATA | 12 real Q&As
    ========================================================================== */
 
 const FAQS: { q: string; a: string }[] = [
   {
-    q: "What does Opus Solutions do?",
+    q: "What does Opus Global Solution do?",
     a: "We provide marketing consulting, CRM support, account management, and virtual assistance for licensed real estate professionals. Our services reduce administrative workload by managing outreach, reporting, scheduling, and digital marketing.",
   },
   {
@@ -144,7 +143,7 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     q: "How does our outreach work?",
-    a: "We use human-only outreach methods — never autodialers or robocalls. All engagement is consent-based, documented, and reported.",
+    a: "We use human-only outreach methods | never autodialers or robocalls. All engagement is consent-based, documented, and reported.",
   },
   {
     q: "Is there a setup fee?",
@@ -188,14 +187,14 @@ function PlanPrice({ plan }: { plan: Plan }) {
   const num = parseInt(plan.price.replace(/[^0-9]/g, ""), 10);
   return (
     <div className="flex items-baseline gap-1">
-      <span className="font-heading text-2xl font-semibold text-[#1E293B]/70">
+      <span className="font-heading text-2xl font-semibold text-white/70">
         $
       </span>
       <CountUp
         key={plan.price}
         value={num}
         duration={1400}
-        className="font-heading text-5xl font-semibold tracking-tight text-[#1E293B] tnum"
+        className="font-heading text-5xl font-semibold tracking-tight text-white tnum"
       />
     </div>
   );
@@ -212,7 +211,7 @@ function CtaButton({
     return (
       <button
         type="button"
-        className="group relative inline-flex w-full items-center justify-center gap-2 overflow-hidden rounded-full bg-[linear-gradient(120deg,#3b82f6,#8b5cf6,#06b6d4)] px-6 py-3 text-sm font-semibold text-[#1E293B] shadow-[0_0_30px_-6px_rgba(59,130,246,0.7)] transition-shadow duration-300 hover:shadow-[0_0_45px_-4px_rgba(139,92,246,0.85)]"
+        className="group relative inline-flex w-full items-center justify-center gap-2 overflow-hidden rounded-full bg-[linear-gradient(120deg,#3b82f6,#8b5cf6,#06b6d4)] px-6 py-3 text-sm font-semibold text-white shadow-[0_0_30px_-6px_rgba(59,130,246,0.7)] transition-shadow duration-300 hover:shadow-[0_0_45px_-4px_rgba(139,92,246,0.85)]"
       >
         <span className="absolute inset-0 -translate-x-full bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.25),transparent)] transition-transform duration-700 group-hover:translate-x-full" />
         <Rocket className="relative h-4 w-4" />
@@ -223,7 +222,7 @@ function CtaButton({
   return (
     <button
       type="button"
-      className="group inline-flex w-full items-center justify-center gap-2 rounded-full border border-[#E2E8F0] bg-[#1E293B]/5 px-6 py-3 text-sm font-semibold text-[#1E293B] backdrop-blur transition-colors duration-300 hover:border-[#CBD5E1] hover:bg-[#1E293B]/8"
+      className="group inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-white backdrop-blur transition-colors duration-300 hover:border-white/30 hover:bg-white/10"
     >
       <span>{children}</span>
       <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
@@ -233,13 +232,32 @@ function CtaButton({
 
 function PricingCard({ plan, delay }: { plan: Plan; delay: number }) {
   const features = (
-    <ul className="custom-scroll flex flex-col gap-3.5 overflow-y-auto pr-1 max-h-72">
-      {plan.features.map((f) => (
-        <li key={f} className="flex items-start gap-3 text-sm text-[#1E293B]/70">
-          <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-electric/15 ring-1 ring-electric/30">
-            <Check className="h-3 w-3 text-electric" />
+    <ul className="custom-scroll flex flex-col gap-2.5 overflow-y-auto pr-1 max-h-72">
+      {plan.features.map((f, i) => (
+        <li
+          key={i}
+          className={cn(
+            "flex items-start gap-3 text-sm",
+            f.included ? "text-white/70" : "text-white/25"
+          )}
+        >
+          <span
+            className={cn(
+              "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full ring-1",
+              f.included
+                ? "bg-emerald-400/15 ring-emerald-400/30"
+                : "bg-white/5 ring-white/10"
+            )}
+          >
+            {f.included ? (
+              <Check className="h-3 w-3 text-emerald-400" />
+            ) : (
+              <X className="h-3 w-3 text-white/30" />
+            )}
           </span>
-          <span className="leading-relaxed">{f}</span>
+          <span className={cn("leading-relaxed", !f.included && "line-through")}>
+            {f.text}
+          </span>
         </li>
       ))}
     </ul>
@@ -247,17 +265,17 @@ function PricingCard({ plan, delay }: { plan: Plan; delay: number }) {
 
   const header = (
     <div className="flex flex-col gap-2">
-      <h3 className="font-heading text-xl font-semibold text-[#1E293B]">
+      <h3 className="font-heading text-xl font-semibold text-white">
         {plan.name}
       </h3>
-      <p className="text-sm leading-relaxed text-[#1E293B]/50">{plan.tagline}</p>
+      <p className="text-sm leading-relaxed text-white/50">{plan.tagline}</p>
     </div>
   );
 
   const priceBlock = (
     <div className="flex flex-col gap-1">
       <PlanPrice plan={plan} />
-      <span className="text-xs font-medium text-[#1E293B]/40">{plan.period}</span>
+      <span className="text-xs font-medium text-white/40">{plan.period}</span>
     </div>
   );
 
@@ -272,7 +290,7 @@ function PricingCard({ plan, delay }: { plan: Plan; delay: number }) {
     </div>
   ) : null;
 
-  /* Silver Plan — Top Selling (electric gradient border + scale + solid CTA) */
+  /* Silver Plan | Top Selling (electric gradient border + scale + solid CTA) */
   if (plan.highlight === "top-selling") {
     return (
       <Reveal delay={delay} className="h-full">
@@ -300,7 +318,7 @@ function PricingCard({ plan, delay }: { plan: Plan; delay: number }) {
     );
   }
 
-  /* Sapphire Plan — Premium (gold gradient border + outline CTA) */
+  /* Sapphire Plan | Premium (gold gradient border + outline CTA) */
   if (plan.highlight === "premium") {
     return (
       <Reveal delay={delay} className="h-full">
@@ -333,7 +351,7 @@ function PricingCard({ plan, delay }: { plan: Plan; delay: number }) {
     <Reveal delay={delay} className="h-full">
       <GlassCard
         strong
-        className="group relative flex h-full flex-col rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#E2E8F0] hover:shadow-[0_20px_60px_-20px_rgba(59,130,246,0.35)] md:p-8"
+        className="group relative flex h-full flex-col rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 hover:border-white/20 hover:shadow-[0_20px_60px_-20px_rgba(59,130,246,0.35)] md:p-8"
       >
         <div className="flex flex-1 flex-col gap-6">
           {header}
@@ -380,7 +398,7 @@ export default function PricingPage() {
 
         {/* billing note */}
         <div className="mt-6 flex justify-center">
-          <div className="inline-flex items-center gap-2 rounded-full border border-[#E2E8F0] bg-[#1E293B]/5 px-4 py-2 text-xs text-[#1E293B]/60 backdrop-blur">
+          <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs text-white/60 backdrop-blur">
             <Calendar className="h-3.5 w-3.5 text-electric" />
             One-time setup · 30-day or 365-day plans
           </div>
@@ -394,8 +412,8 @@ export default function PricingPage() {
         </div>
 
         {/* disclaimer */}
-        <p className="mx-auto mt-10 max-w-3xl text-center text-xs leading-relaxed text-[#1E293B]/40">
-          Opus Solutions is a marketing consulting and support company. We do
+        <p className="mx-auto mt-10 max-w-3xl text-center text-xs leading-relaxed text-white/40">
+          Opus Global Solution is a marketing consulting and support company. We do
           not act as a brokerage, list or sell property, or resell leads.
           Referral fees apply on successful closings.
         </p>
@@ -409,7 +427,7 @@ export default function PricingPage() {
         <SectionHeading
           eyebrow="FAQ"
           title="Frequently asked questions"
-          description="Find answers to commonly asked questions about Opus Solutions."
+          description="Find answers to commonly asked questions about Opus Global Solution."
         />
 
         <div className="mx-auto mt-12 max-w-3xl">
@@ -427,19 +445,19 @@ export default function PricingPage() {
               >
                 <AccordionItem
                   value={`faq-${i}`}
-                  className="glass-strong group rounded-2xl border border-[#E2E8F0] px-5 transition-colors duration-300 data-[state=open]:border-electric/30 sm:px-6"
+                  className="glass-strong group rounded-2xl border border-white/10 px-5 transition-colors duration-300 data-[state=open]:border-electric/30 sm:px-6"
                 >
                   <AccordionTrigger
-                    className="group/trigger hover:no-underline py-5 text-left text-base font-medium text-[#1E293B]/90 [&>svg:last-child]:hidden"
+                    className="group/trigger hover:no-underline py-5 text-left text-base font-medium text-white/90 [&>svg:last-child]:hidden"
                   >
-                    <span className="flex-1 pr-4 font-heading text-[15px] font-semibold leading-snug text-[#1E293B] sm:text-base">
+                    <span className="flex-1 pr-4 font-heading text-[15px] font-semibold leading-snug text-white sm:text-base">
                       {faq.q}
                     </span>
-                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#E2E8F0] bg-[#1E293B]/5 transition-all duration-300 group-data-[state=open]:border-electric/40 group-data-[state=open]:bg-electric/10">
-                      <ChevronDown className="h-4 w-4 text-[#1E293B]/60 transition-all duration-300 group-data-[state=open]:rotate-180 group-data-[state=open]:text-electric" />
+                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/5 transition-all duration-300 group-data-[state=open]:border-electric/40 group-data-[state=open]:bg-electric/10">
+                      <ChevronDown className="h-4 w-4 text-white/60 transition-all duration-300 group-data-[state=open]:rotate-180 group-data-[state=open]:text-electric" />
                     </span>
                   </AccordionTrigger>
-                  <AccordionContent className="text-sm leading-relaxed text-[#1E293B]/55 sm:text-[15px]">
+                  <AccordionContent className="text-sm leading-relaxed text-white/55 sm:text-[15px]">
                     <span className="block pr-12 pb-5">{faq.a}</span>
                   </AccordionContent>
                 </AccordionItem>

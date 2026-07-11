@@ -23,25 +23,25 @@ export default function Home() {
       {/* 2. Trust + Stats + Services */}
       <TrustStatsFeatures />
 
-      {/* 3. About — Mission, Vision, Benefits, Why Different, Achievements */}
+      {/* 3. About | Mission, Vision, Benefits, Why Different, Achievements */}
       <AboutMission />
 
-      {/* 4. Why Choose Us — 8 reasons */}
+      {/* 4. Why Choose Us | 8 reasons */}
       <WhyChooseUs />
 
-      {/* 5. Process — 7 steps (Discovery → ... → Business Growth) */}
+      {/* 5. Process | 7 steps (Discovery → ... → Business Growth) */}
       <AiProcessMap />
 
       {/* 6. Virtual Assistant Services */}
       <VirtualAssistantServices />
 
-      {/* 7. Our Workflow — Intro Call → Meet VA → Discuss Tasks → Work Started */}
+      {/* 7. Our Workflow | Intro Call → Meet VA → Discuss Tasks → Work Started */}
       <OurWorkflow />
 
-      {/* 8. Comparison — Traditional vs Professional workflow support */}
+      {/* 8. Comparison | Traditional vs Professional workflow support */}
       <BeforeAfter />
 
-      {/* 9. Featured Professionals — agent cards + success stories */}
+      {/* 9. Featured Professionals | agent cards + success stories */}
       <FeaturedProfessionals />
 
       {/* 10. Testimonials */}

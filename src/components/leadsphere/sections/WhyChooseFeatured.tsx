@@ -23,13 +23,13 @@ import {
 import { Reveal } from "@/components/leadsphere/Reveal";
 
 /* ============================================================
-   WHY CHOOSE US — 8 large animated cards
+   WHY CHOOSE US, 8 large animated cards
    ============================================================ */
 const REASONS = [
   {
     icon: ShieldCheck,
     title: "Verified Workflows",
-    desc: "Every process is documented, standardized, and repeatable — so nothing slips through the cracks.",
+    desc: "Every process is documented, standardized, and repeatable, so nothing slips through the cracks.",
     color: "electric",
   },
   {
@@ -65,13 +65,13 @@ const REASONS = [
   {
     icon: Handshake,
     title: "Long-Term Partnership",
-    desc: "We're more than a service provider — we're a trusted ally invested in your success.",
+    desc: "We're more than a service provider, we're a trusted ally invested in your success.",
     color: "electric",
   },
   {
     icon: Scale,
     title: "Compliance-Focused",
-    desc: "TCPA, DNC, CAN-SPAM, CCPA/CPRA, and Fair Housing Act compliant — consent-based always.",
+    desc: "TCPA, DNC, CAN-SPAM, CCPA/CPRA, and Fair Housing Act compliant, consent-based always.",
     color: "violet",
   },
 ];
@@ -97,7 +97,7 @@ export function WhyChooseUs() {
             <span className="text-gradient-electric">built to last</span>
           </>
         }
-        description="Choosing Opus Solutions means choosing a partner that understands the unique challenges of real estate professionals."
+        description="Choosing Opus Global Solution means choosing a partner that understands the unique challenges of real estate professionals."
       />
 
       <div className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
@@ -108,16 +108,16 @@ export function WhyChooseUs() {
               transition={{ duration: 0.25 }}
               className="group h-full"
             >
-              <GlassCard className="h-full p-6 transition-all duration-300 hover:border-[#E2E8F0]">
+              <GlassCard className="h-full p-6 transition-all duration-300 hover:border-white/20">
                 <div
                   className={`mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-${r.color}/15 transition-transform duration-300 group-hover:scale-110`}
                 >
                   <r.icon className={`h-6 w-6 text-${r.color}`} strokeWidth={2} />
                 </div>
-                <h3 className="font-heading text-base font-semibold text-[#1E293B]">
+                <h3 className="font-heading text-base font-semibold text-white">
                   {r.title}
                 </h3>
-                <p className="mt-2.5 text-sm leading-relaxed text-[#1E293B]/55">
+                <p className="mt-2.5 text-sm leading-relaxed text-white/55">
                   {r.desc}
                 </p>
                 <div
@@ -133,68 +133,68 @@ export function WhyChooseUs() {
 }
 
 /* ============================================================
-   FEATURED PROFESSIONALS — agent cards + success stories
+   FEATURED PROFESSIONALS, agent cards + success stories
    ============================================================ */
 const PROFESSIONALS = [
   {
-    name: "Charisse Mathews",
-    location: "Realtor · Florida",
-    initials: "CM",
+    name: "Amanda Reeves",
+    location: "Realtor · Arizona",
+    initials: "AR",
     avatar: "from-electric to-violet",
     specialty: "Residential Listings",
-    metric: "14 deals / quarter",
+    metric: "11 deals / quarter",
     story:
-      "With verified introductions and dedicated outreach support, Charisse scaled from 4 to 14 closings per quarter without cold-calling.",
+      "With CRM support and verified outreach, Amanda scaled from 3 to 11 closings per quarter without cold-calling.",
   },
   {
-    name: "Thuan Nguyen",
-    location: "Realtor · Texas",
-    initials: "TN",
+    name: "Marcus Bryant",
+    location: "Broker · Georgia",
+    initials: "MB",
     avatar: "from-cyan to-electric",
-    specialty: "Investment Properties",
-    metric: "47% lower cost-per-lead",
-    story:
-      "Human-verified outreach and CRM organization cut Thuan's cost-per-introduction nearly in half in the first month.",
-  },
-  {
-    name: "Jennifer Bianchi",
-    location: "Broker · Texas",
-    initials: "JB",
-    avatar: "from-violet to-fuchsia-500",
     specialty: "Team Brokerage",
-    metric: "12 hrs saved / week",
+    metric: "9% conversion rate",
     story:
-      "Workflow automation and a dedicated VA freed Jennifer's team from admin work — 12 hours back every week to focus on clients.",
+      "A dedicated virtual assistant and workflow automation boosted Marcus's team conversion from 3% to 9% in two months.",
   },
   {
-    name: "Kira Asinas",
-    location: "Investor · AL/GA/FL",
-    initials: "KA",
+    name: "Stephanie Park",
+    location: "Realtor · Washington",
+    initials: "SP",
+    avatar: "from-violet to-fuchsia-500",
+    specialty: "Client Relations",
+    metric: "15 hrs saved / week",
+    story:
+      "Human-only outreach and appointment coordination gave Stephanie 15 hours back every week to focus on closing deals.",
+  },
+  {
+    name: "David Whitmore",
+    location: "Investor · Nevada",
+    initials: "DW",
     avatar: "from-gold to-amber-500",
     specialty: "Off-Market Deals",
-    metric: "3 deals / month",
+    metric: "4 deals / month",
     story:
-      "Documented outreach surfaces off-market opportunities before they hit the MLS — Kira closed three deals nobody else knew existed.",
+      "Verified introductions surface off-market opportunities fast, David closed 4 deals last month that nobody else knew about.",
   },
   {
-    name: "Carlos Banuelos",
-    location: "Realtor · California",
-    initials: "CB",
+    name: "Rachel Donovan",
+    location: "Realtor · Colorado",
+    initials: "RD",
     avatar: "from-emerald-400 to-cyan",
     specialty: "Luxury Markets",
-    metric: "41-day close time",
+    metric: "38-day close time",
     story:
-      "Appointment coordination and client reminders dropped Carlos's listing-to-close time from 90 days to just 41.",
+      "CRM organization and client reminders dropped Rachel's listing-to-close time from 75 days to just 38.",
   },
   {
-    name: "Victoria Hyatt",
-    location: "Realtor · California",
-    initials: "VH",
+    name: "Kevin Torres",
+    location: "Realtor · Oregon",
+    initials: "KT",
     avatar: "from-electric to-cyan",
     specialty: "High-Volume Teams",
     metric: "3x pipeline growth",
     story:
-      "CRM setup, pipeline optimization, and monthly reporting helped Victoria's team triple their active pipeline in one quarter.",
+      "Pipeline tracking and monthly reporting helped Kevin's team triple their active pipeline in one quarter.",
   },
 ];
 
@@ -209,7 +209,7 @@ export function FeaturedProfessionals() {
             <span className="text-gradient-electric">we support</span>
           </>
         }
-        description="Meet the agents, brokers, and investors who grow their businesses with Opus Solutions."
+        description="Meet the agents, brokers, and investors who grow their businesses with Opus Global Solution."
       />
 
       <div className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -225,22 +225,22 @@ export function FeaturedProfessionals() {
                 {/* header: avatar + name */}
                 <div className="relative flex items-center gap-3.5">
                   <div
-                    className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-gradient-to-br ${p.avatar} font-heading text-sm font-bold text-[#1E293B] shadow-lg`}
+                    className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-gradient-to-br ${p.avatar} font-heading text-sm font-bold text-white shadow-lg`}
                   >
                     {p.initials}
                   </div>
                   <div className="min-w-0">
-                    <h3 className="font-heading text-base font-semibold text-[#1E293B]">
+                    <h3 className="font-heading text-base font-semibold text-white">
                       {p.name}
                     </h3>
-                    <p className="text-xs text-[#1E293B]/50">{p.location}</p>
+                    <p className="text-xs text-white/50">{p.location}</p>
                   </div>
                   <BadgeCheck className="ml-auto h-5 w-5 shrink-0 text-electric" />
                 </div>
 
                 {/* specialty + metric */}
                 <div className="relative mt-5 flex items-center justify-between">
-                  <span className="rounded-full border border-[#E2E8F0] bg-[#1E293B]/5 px-2.5 py-1 text-[11px] font-medium text-[#1E293B]/65">
+                  <span className="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[11px] font-medium text-white/65">
                     {p.specialty}
                   </span>
                   <span className="inline-flex items-center gap-1 text-xs font-semibold text-emerald-400">
@@ -252,7 +252,7 @@ export function FeaturedProfessionals() {
                 {/* story */}
                 <div className="relative mt-4 flex gap-2.5">
                   <Quote className="h-4 w-4 shrink-0 text-electric/50" />
-                  <p className="text-sm leading-relaxed text-[#1E293B]/60">
+                  <p className="text-sm leading-relaxed text-white/60">
                     {p.story}
                   </p>
                 </div>

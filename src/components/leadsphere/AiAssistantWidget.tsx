@@ -10,16 +10,16 @@ interface Msg {
 }
 
 const QUICK_PROMPTS = [
-  "How does Smart Lead Discovery work?",
+  "What services do you offer?",
   "What does it cost?",
-  "Can it find expired listings?",
-  "How accurate is skip tracing?",
+  "How does your outreach work?",
+  "Can you set up my CRM?",
 ];
 
 const WELCOME: Msg = {
   role: "assistant",
   content:
-    "Hi! I'm the Opus Assistant. I can show you how Opus Solutions finds motivated sellers, automates outreach, and fills your pipeline. What would you like to know?",
+    "Hi! I'm the Opus Assistant. I can help you learn about our marketing consulting, outreach support, CRM services, and virtual assistance for real estate professionals. What would you like to know?",
 };
 
 export function AiAssistantWidget() {
@@ -28,6 +28,7 @@ export function AiAssistantWidget() {
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [suggestions, setSuggestions] = useState<string[]>(QUICK_PROMPTS);
+  const [hasChatted, setHasChatted] = useState(false);
   const [unread, setUnread] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -50,6 +51,7 @@ export function AiAssistantWidget() {
     setLoading(true);
     setUnread(false);
     setSuggestions([]);
+    setHasChatted(true);
     const next = [...messages, { role: "user" as const, content }];
     setMessages(next);
     try {
@@ -68,9 +70,7 @@ export function AiAssistantWidget() {
         data.error ||
         "Sorry, I couldn't respond right now. Please try again.";
       setMessages((m) => [...m, { role: "assistant", content: reply }]);
-      if (Array.isArray(data.suggestions) && data.suggestions.length) {
-        setSuggestions(data.suggestions);
-      }
+      // Don't show post-response suggestions — keeps the AI reply fully visible
     } catch {
       setMessages((m) => [
         ...m,
@@ -179,8 +179,8 @@ export function AiAssistantWidget() {
               )}
             </div>
 
-            {/* Suggestions */}
-            {suggestions.length > 0 && !loading && (
+            {/* Suggestions — only on the welcome screen (hidden once chatting starts) */}
+            {suggestions.length > 0 && !loading && !hasChatted && (
               <div className="flex flex-wrap gap-1.5 px-3 pb-2">
                 {suggestions.slice(0, 3).map((s) => (
                   <button

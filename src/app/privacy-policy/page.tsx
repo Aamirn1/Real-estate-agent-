@@ -9,9 +9,9 @@ import { Reveal } from "@/components/leadsphere/Reveal";
 import { ShieldCheck, Mail, MapPin } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy — Opus Solutions",
+  title: "Privacy Policy | Opus Global Solution",
   description:
-    "How Opus Solutions collects, uses, and protects your information when you use our marketing consulting and outreach services.",
+    "How Opus Global Solution collects, uses, and protects your information when you use our marketing consulting and outreach services.",
 };
 
 /* ----------------------------- Policy sections ----------------------------- */
@@ -24,7 +24,7 @@ type PolicySection = {
 const SECTIONS: PolicySection[] = [
   {
     heading: "1. Introduction",
-    body: "Opus Solutions (\"we\", \"us\", \"our\") is a marketing consulting and support company. This Privacy Policy explains how we collect, use, and protect information when you use our services. By engaging with us, you acknowledge and accept the practices described in this policy.",
+    body: "Opus Global Solution (\"we\", \"us\", \"our\") is a marketing consulting and support company. This Privacy Policy explains how we collect, use, and protect information when you use our services. By engaging with us, you acknowledge and accept the practices described in this policy.",
   },
   {
     heading: "2. Information We Collect",
@@ -88,7 +88,7 @@ export default function PrivacyPolicyPage() {
       <PageHero
         eyebrow="Legal"
         title="Privacy Policy"
-        description="How Opus Solutions collects, uses, and protects your information."
+        description="How Opus Global Solution collects, uses, and protects your information."
       />
 
       <SectionShell id="privacy-policy" className="pt-6 md:pt-8">
@@ -100,21 +100,21 @@ export default function PrivacyPolicyPage() {
               <div className="pointer-events-none absolute -bottom-16 -left-16 h-48 w-48 rounded-full bg-violet/15 blur-3xl" />
 
               {/* Header row */}
-              <div className="relative flex flex-col gap-5 border-b border-[#E2E8F0] pb-7">
+              <div className="relative flex flex-col gap-5 border-b border-white/10 pb-7">
                 <div className="flex items-center gap-3">
                   <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-electric/15 ring-1 ring-electric/30">
                     <ShieldCheck className="h-5 w-5 text-electric" />
                   </span>
                   <div className="flex flex-col">
-                    <span className="text-xs font-medium uppercase tracking-wider text-[#1E293B]/45">
+                    <span className="text-xs font-medium uppercase tracking-wider text-white/45">
                       Legal
                     </span>
-                    <span className="font-heading text-xl font-semibold text-[#1E293B]">
+                    <span className="font-heading text-xl font-semibold text-white">
                       Privacy Policy
                     </span>
                   </div>
                 </div>
-                <p className="text-xs font-medium uppercase tracking-wider text-[#1E293B]/45">
+                <p className="text-xs font-medium uppercase tracking-wider text-white/45">
                   Last updated: January 2025
                 </p>
               </div>
@@ -123,11 +123,11 @@ export default function PrivacyPolicyPage() {
               <div className="relative flex flex-col gap-8 pt-8">
                 {SECTIONS.map((section) => (
                   <section key={section.heading} className="flex flex-col gap-3">
-                    <h2 className="font-heading text-lg font-semibold text-[#1E293B]">
+                    <h2 className="font-heading text-lg font-semibold text-white">
                       {section.heading}
                     </h2>
                     {section.body && (
-                      <p className="text-sm leading-relaxed text-[#1E293B]/60">
+                      <p className="text-sm leading-relaxed text-white/60">
                         {section.body}
                       </p>
                     )}
@@ -136,7 +136,7 @@ export default function PrivacyPolicyPage() {
                         {section.bullets.map((bullet) => (
                           <li
                             key={bullet}
-                            className="flex items-start gap-3 text-sm leading-relaxed text-[#1E293B]/60"
+                            className="flex items-start gap-3 text-sm leading-relaxed text-white/60"
                           >
                             <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-electric/70 shadow-[0_0_8px_#3b82f6]" />
                             <span>{bullet}</span>
@@ -149,19 +149,19 @@ export default function PrivacyPolicyPage() {
               </div>
 
               {/* Contact strip */}
-              <div className="relative mt-9 flex flex-col gap-3 border-t border-[#E2E8F0] pt-7 sm:flex-row sm:items-center sm:justify-between">
+              <div className="relative mt-9 flex flex-col gap-3 border-t border-white/10 pt-7 sm:flex-row sm:items-center sm:justify-between">
                 <div className="flex items-center gap-3">
                   <Mail className="h-4 w-4 text-electric" />
                   <a
                     href="mailto:info@opussolutions.com"
-                    className="text-sm text-[#1E293B]/70 transition-colors hover:text-[#1E293B]"
+                    className="text-sm text-white/70 transition-colors hover:text-white"
                   >
                     info@opussolutions.com
                   </a>
                 </div>
                 <div className="flex items-center gap-3">
                   <MapPin className="h-4 w-4 text-violet" />
-                  <span className="text-sm text-[#1E293B]/70">
+                  <span className="text-sm text-white/70">
                     418 Broadway, Ste. R, Albany, NY 12207
                   </span>
                 </div>

@@ -53,14 +53,14 @@ export function BeforeAfter() {
           <GlassCard className="h-full p-6 sm:p-8">
             <div className="mb-6 flex items-center justify-between">
               <div className="flex items-center gap-2.5">
-                <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#1E293B]/5">
-                  <Clock className="h-4.5 w-4.5 text-[#1E293B]/50" />
+                <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/5">
+                  <Clock className="h-4.5 w-4.5 text-white/50" />
                 </span>
-                <h3 className="font-heading text-lg font-semibold text-[#1E293B]/70">
+                <h3 className="font-heading text-lg font-semibold text-white/70">
                   The old way
                 </h3>
               </div>
-              <span className="rounded-full border border-[#E2E8F0] px-2.5 py-1 text-[10px] font-medium uppercase tracking-wide text-[#1E293B]/40">
+              <span className="rounded-full border border-white/10 px-2.5 py-1 text-[10px] font-medium uppercase tracking-wide text-white/40">
                 Manual
               </span>
             </div>
@@ -73,20 +73,20 @@ export function BeforeAfter() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.08, duration: 0.5 }}
-                  className="flex items-center gap-3 rounded-xl border border-[#E2E8F0] bg-white/[0.02] p-3.5"
+                  className="flex items-center gap-3 rounded-xl border border-white/8 bg-white/[0.02] p-3.5"
                 >
                   <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-red-500/10">
                     <item.icon className="h-4 w-4 text-red-400/80" />
                   </span>
-                  <span className="flex-1 text-sm text-[#1E293B]/60">{item.text}</span>
-                  <span className="text-[11px] font-medium text-[#1E293B]/35">{item.time}</span>
+                  <span className="flex-1 text-sm text-white/60">{item.text}</span>
+                  <span className="text-[11px] font-medium text-white/35">{item.time}</span>
                 </motion.div>
               ))}
             </div>
 
             <div className="mt-6 rounded-xl bg-red-500/5 p-4 text-center">
-              <div className="text-xs uppercase tracking-wide text-[#1E293B]/35">Avg result</div>
-              <div className="mt-1 font-heading text-2xl font-bold text-[#1E293B]/50 tnum">
+              <div className="text-xs uppercase tracking-wide text-white/35">Avg result</div>
+              <div className="mt-1 font-heading text-2xl font-bold text-white/50 tnum">
                 2 listings / mo
               </div>
             </div>
@@ -102,7 +102,7 @@ export function BeforeAfter() {
             transition={{ type: "spring", stiffness: 200, damping: 14, delay: 0.2 }}
             className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-electric to-violet shadow-[0_0_30px_-4px_rgba(59,130,246,0.7)] lg:h-14 lg:w-14"
           >
-            <ArrowRight className="h-5 w-5 text-[#1E293B] lg:rotate-0" />
+            <ArrowRight className="h-5 w-5 text-white lg:rotate-0" />
           </motion.div>
         </div>
 
@@ -114,9 +114,9 @@ export function BeforeAfter() {
               <div className="mb-6 flex items-center justify-between">
                 <div className="flex items-center gap-2.5">
                   <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-electric to-violet">
-                    <Zap className="h-4.5 w-4.5 text-[#1E293B]" />
+                    <Zap className="h-4.5 w-4.5 text-white" />
                   </span>
-                  <h3 className="font-heading text-lg font-semibold text-[#1E293B]">
+                  <h3 className="font-heading text-lg font-semibold text-white">
                     The Opus way
                   </h3>
                 </div>
@@ -138,19 +138,19 @@ export function BeforeAfter() {
                     <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-emerald-400/10">
                       <item.icon className="h-4 w-4 text-emerald-400" />
                     </span>
-                    <span className="flex-1 text-sm text-[#1E293B]/85">{item.text}</span>
+                    <span className="flex-1 text-sm text-white/85">{item.text}</span>
                     <span className="text-[11px] font-medium text-electric">{item.time}</span>
                   </motion.div>
                 ))}
               </div>
 
               <div className="mt-6 rounded-xl bg-gradient-to-br from-electric/15 to-violet/15 p-4 text-center">
-                <div className="text-xs uppercase tracking-wide text-[#1E293B]/55">Avg result</div>
-                <div className="mt-1 font-heading text-2xl font-bold text-[#1E293B] tnum">
-                  8 listings / mo
+                <div className="text-xs uppercase tracking-wide text-white/55">Avg result</div>
+                <div className="mt-1 font-heading text-2xl font-bold text-white tnum">
+                  6 listings / mo
                 </div>
                 <div className="mt-0.5 text-[11px] font-medium text-emerald-400">
-                  +300% more listings
+                  +200% more listings
                 </div>
               </div>
             </div>

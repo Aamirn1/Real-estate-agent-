@@ -12,9 +12,9 @@ import { Reveal } from "@/components/leadsphere/Reveal";
 import { Star, BadgeCheck } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Testimonials — Opus Solutions",
+  title: "Testimonials | Opus Global Solution",
   description:
-    "Hear directly from real estate professionals who have enhanced their efficiency and grown their businesses with Opus Solutions.",
+    "Hear directly from real estate professionals who have enhanced their efficiency and grown their businesses with Opus Global Solution.",
 };
 
 /* ---- Inline "More Client Stories" data ---- */
@@ -29,50 +29,50 @@ type ClientStory = {
 const MORE_STORIES: ClientStory[] = [
   {
     quote:
-      "Opus delivers the highest-quality leads I've ever worked with. Every introduction is pre-screened and ready to talk — my close rate across Alabama, Georgia, and Florida has never been higher.",
-    name: "Kira Asinas",
-    location: "AL/GA/FL",
-    initials: "KA",
+      "Opus delivers the highest-quality introductions I've ever worked with. Every contact is pre-screened and ready to talk. My close rate across Arizona has never been higher.",
+    name: "Amanda Reeves",
+    location: "Arizona",
+    initials: "AR",
     avatar: "from-electric to-violet",
   },
   {
     quote:
-      "I used to spend every evening cold-calling and chasing dead ends. Opus took that off my plate completely — I now spend that time actually closing deals with my family beside me.",
-    name: "John Donahue",
-    location: "PA",
-    initials: "JD",
+      "I used to spend every evening cold-calling and chasing dead ends. Opus took that off my plate completely. I now spend that time actually closing deals with my family beside me.",
+    name: "Thomas Hale",
+    location: "Michigan",
+    initials: "TH",
     avatar: "from-cyan to-electric",
   },
   {
     quote:
-      "My conversion rate jumped from 2% to over 9% in a single quarter. The pre-screened introductions mean I'm only talking to sellers who are genuinely ready to move.",
-    name: "Jennifer Bianchi",
-    location: "TX",
-    initials: "JB",
+      "My conversion rate jumped from 3% to over 9% in a single quarter. The verified introductions mean I'm only talking to sellers who are genuinely ready to move.",
+    name: "Marcus Bryant",
+    location: "Georgia",
+    initials: "MB",
     avatar: "from-violet to-fuchsia-500",
   },
   {
     quote:
       "Their human-only outreach team handles every touchpoint with care. I've never had a single compliance worry, and my pipeline stays full without me lifting a finger.",
-    name: "JC Johnson",
-    location: "NV",
-    initials: "JJ",
+    name: "Lisa Chang",
+    location: "Oregon",
+    initials: "LC",
     avatar: "from-gold to-amber-500",
   },
   {
     quote:
-      "For every dollar I invest in Opus, I see twelve back in commissions. The ROI is undeniable — it's the single best line item in my business budget every month.",
-    name: "Carlos Banuelos",
-    location: "CA",
-    initials: "CB",
+      "For every dollar I invest in Opus, I see twelve back in commissions. The ROI is undeniable. It's the single best line item in my business budget every month.",
+    name: "Robert Kincaid",
+    location: "North Carolina",
+    initials: "RK",
     avatar: "from-emerald-400 to-cyan",
   },
   {
     quote:
       "Having a dedicated account manager and virtual assistant changed everything. They know my business inside out and anticipate what I need before I even ask.",
-    name: "Silvana Piadade",
-    location: "TN",
-    initials: "SP",
+    name: "Patricia Vega",
+    location: "Illinois",
+    initials: "PV",
     avatar: "from-electric to-cyan",
   },
 ];
@@ -87,7 +87,7 @@ export default function TestimonialsPage() {
             Clients tell <span className="text-gradient-electric">the story</span>
           </>
         }
-        description="At Opus Solutions, our clients' success is our greatest achievement. Hear directly from real estate professionals who have enhanced their efficiency and grown their businesses with our support."
+        description="At Opus Global Solution, our clients' success is our greatest achievement. Hear directly from real estate professionals who have enhanced their efficiency and grown their businesses with our support."
       />
 
       {/* 1. Trust + Stats + Features grid (social proof: 250M+ leads, 92% conversion, 50K+ agents, 100+ MLS) */}
@@ -96,7 +96,7 @@ export default function TestimonialsPage() {
       {/* 2. CRM Kanban + Integrations + Testimonials carousel (id="testimonials") */}
       <CrmIntegrationsTestimonials />
 
-      {/* 3. NEW — More Client Stories (6 verified testimonial cards) */}
+      {/* 3. NEW | More Client Stories (6 verified testimonial cards) */}
       <SectionShell id="more-stories">
         <SectionHeading
           eyebrow="Client Stories"
@@ -109,7 +109,7 @@ export default function TestimonialsPage() {
               <GlassCard
                 strong
                 sheen
-                className="group relative flex h-full flex-col overflow-hidden p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#E2E8F0] hover:shadow-[0_20px_60px_-20px_rgba(139,92,246,0.35)] sm:p-7"
+                className="group relative flex h-full flex-col overflow-hidden p-6 transition-all duration-300 hover:-translate-y-1 hover:border-white/20 hover:shadow-[0_20px_60px_-20px_rgba(139,92,246,0.35)] sm:p-7"
               >
                 {/* soft accent glow */}
                 <div
@@ -127,7 +127,7 @@ export default function TestimonialsPage() {
                 </div>
 
                 {/* quote */}
-                <p className="relative mt-4 flex-1 text-[15px] leading-relaxed text-[#1E293B]/75">
+                <p className="relative mt-4 flex-1 text-[15px] leading-relaxed text-white/75">
                   &ldquo;{s.quote}&rdquo;
                 </p>
 
@@ -137,18 +137,18 @@ export default function TestimonialsPage() {
                 {/* avatar + name + location + verified badge */}
                 <div className="relative flex items-center gap-3">
                   <div
-                    className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gradient-to-br ${s.avatar} text-sm font-semibold text-[#1E293B] shadow-[0_4px_18px_-4px_rgba(59,130,246,0.5)]`}
+                    className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gradient-to-br ${s.avatar} text-sm font-semibold text-white shadow-[0_4px_18px_-4px_rgba(59,130,246,0.5)]`}
                   >
                     {s.initials}
                   </div>
                   <div className="flex flex-col gap-0.5">
                     <div className="flex items-center gap-1.5">
-                      <span className="text-sm font-semibold text-[#1E293B]">
+                      <span className="text-sm font-semibold text-white">
                         {s.name}
                       </span>
                       <BadgeCheck className="h-4 w-4 text-electric drop-shadow-[0_0_6px_rgba(59,130,246,0.55)]" />
                     </div>
-                    <span className="text-xs text-[#1E293B]/50">{s.location}</span>
+                    <span className="text-xs text-white/50">{s.location}</span>
                   </div>
                 </div>
               </GlassCard>
@@ -160,7 +160,7 @@ export default function TestimonialsPage() {
       {/* 4. Closing CTA */}
       <CTABanner
         title="Join 50,000+ agents growing with Opus"
-        subtitle="See why top-producing realtors trust Opus Solutions to fill their pipeline."
+        subtitle="See why top-producing realtors trust Opus Global Solution to fill their pipeline."
       />
     </SiteChrome>
   );

@@ -43,7 +43,7 @@ export function AboutMission() {
             Workflow automation <span className="text-gradient-electric">for realtors</span>
           </>
         }
-        description="Opus Solutions provides professional marketing and administrative support for real estate professionals. Our mission is to help licensed agents and brokerages stay organized, save time, and grow stronger businesses."
+        description="Opus Global Solution provides professional marketing and administrative support for real estate professionals. Our mission is to help licensed agents and brokerages stay organized, save time, and grow stronger businesses."
       />
 
       <div className="mt-12 grid gap-5 md:grid-cols-3">
@@ -52,8 +52,8 @@ export function AboutMission() {
             <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-electric/15">
               <Target className="h-5.5 w-5.5 text-electric" />
             </span>
-            <h3 className="mt-5 font-heading text-xl font-semibold text-[#1E293B]">Our Mission</h3>
-            <p className="mt-3 text-sm leading-relaxed text-[#1E293B]/60">
+            <h3 className="mt-5 font-heading text-xl font-semibold text-white">Our Mission</h3>
+            <p className="mt-3 text-sm leading-relaxed text-white/60">
               To help licensed real estate professionals grow their businesses by
               providing marketing support, outreach assistance, CRM solutions, and
               administrative services. We strive to deliver verified, exclusive
@@ -67,12 +67,12 @@ export function AboutMission() {
             <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-violet/15">
               <Eye className="h-5.5 w-5.5 text-violet" />
             </span>
-            <h3 className="mt-5 font-heading text-xl font-semibold text-[#1E293B]">Our Vision</h3>
-            <p className="mt-3 text-sm leading-relaxed text-[#1E293B]/60">
+            <h3 className="mt-5 font-heading text-xl font-semibold text-white">Our Vision</h3>
+            <p className="mt-3 text-sm leading-relaxed text-white/60">
               To empower real estate professionals nationwide to reach their full
               potential. By leveraging modern digital platforms, scalable support
               solutions, and continuous improvement, we help agents focus on what
-              matters most — closing deals.
+              matters most, closing deals.
             </p>
           </GlassCard>
         </Reveal>
@@ -83,8 +83,8 @@ export function AboutMission() {
             <span className="relative flex h-11 w-11 items-center justify-center rounded-xl bg-cyan/15">
               <Users className="h-5.5 w-5.5 text-cyan" />
             </span>
-            <h3 className="relative mt-5 font-heading text-xl font-semibold text-[#1E293B]">Who We Serve</h3>
-            <p className="relative mt-3 text-sm leading-relaxed text-[#1E293B]/60">
+            <h3 className="relative mt-5 font-heading text-xl font-semibold text-white">Who We Serve</h3>
+            <p className="relative mt-3 text-sm leading-relaxed text-white/60">
               Agents, teams, brokerages, and investors across the USA. From solo
               realtors to large brokerages, our documented workflows and
               human-verified outreach adapt to every stage of your growth.
@@ -101,26 +101,26 @@ export function AboutMission() {
           <div className="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full bg-violet/10 blur-3xl" />
 
           <div className="relative grid gap-10 p-8 sm:p-10 lg:grid-cols-2 lg:gap-14">
-            {/* LEFT column — heading + paragraph */}
+            {/* LEFT column, heading + paragraph */}
             <div className="flex flex-col justify-center">
               <span className="inline-flex w-fit items-center gap-2 rounded-full border border-electric/30 bg-electric/10 px-3 py-1 text-xs font-medium tracking-wide text-electric">
                 <CheckCircle2 className="h-3.5 w-3.5" />
                 Benefits
               </span>
-              <h3 className="mt-5 font-heading text-2xl font-semibold leading-tight text-[#1E293B] sm:text-3xl">
+              <h3 className="mt-5 font-heading text-2xl font-semibold leading-tight text-white sm:text-3xl">
                 Benefits of{" "}
                 <span className="text-gradient-electric">Professional Outreach Support</span>
               </h3>
-              <p className="mt-4 max-w-lg text-sm leading-relaxed text-[#1E293B]/60 sm:text-base">
-                Outsourcing your outreach support with Opus Solutions saves
+              <p className="mt-4 max-w-lg text-sm leading-relaxed text-white/60 sm:text-base">
+                Outsourcing your outreach support with Opus Global Solution saves
                 valuable time by providing verified and standardized contact
                 records. Our documented workflows make follow-ups faster and
-                more consistent — so you can focus on clients, not data entry.
+                more consistent, so you can focus on clients, not data entry.
               </p>
               <div className="mt-6 h-0.5 w-24 rounded-full bg-gradient-to-r from-electric via-violet to-cyan" />
             </div>
 
-            {/* RIGHT column — checklist of 4 benefits */}
+            {/* RIGHT column, checklist of 4 benefits */}
             <ul className="flex flex-col gap-4">
               {[
                 {
@@ -146,14 +146,14 @@ export function AboutMission() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, margin: "-10% 0px" }}
                   transition={{ duration: 0.45, delay: 0.05 * i, ease: [0.22, 1, 0.36, 1] }}
-                  className="group flex items-start gap-3 rounded-xl border border-[#E2E8F0] bg-white/[0.02] p-4 transition-all duration-300 hover:border-electric/30 hover:bg-electric/[0.04]"
+                  className="group flex items-start gap-3 rounded-xl border border-white/8 bg-white/[0.02] p-4 transition-all duration-300 hover:border-electric/30 hover:bg-electric/[0.04]"
                 >
                   <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-electric drop-shadow-[0_0_8px_rgba(59,130,246,0.5)] transition-transform duration-300 group-hover:scale-110" />
                   <div>
-                    <p className="font-heading text-sm font-semibold text-[#1E293B]">
+                    <p className="font-heading text-sm font-semibold text-white">
                       {item.title}
                     </p>
-                    <p className="mt-1 text-xs leading-relaxed text-[#1E293B]/55">
+                    <p className="mt-1 text-xs leading-relaxed text-white/55">
                       {item.desc}
                     </p>
                   </div>
@@ -168,16 +168,12 @@ export function AboutMission() {
       <div className="mt-8">
         <Reveal>
           <div className="mx-auto mb-10 flex max-w-2xl flex-col items-center text-center">
-            <span className="inline-flex items-center gap-2 rounded-full border border-[#E2E8F0] bg-[#1E293B]/5 px-3 py-1 text-xs font-medium tracking-wide text-[#1E293B]/70 backdrop-blur">
-              <span className="h-1.5 w-1.5 rounded-full bg-violet shadow-[0_0_8px_#8b5cf6]" />
-              Why We Are Different
-            </span>
-            <h3 className="mt-4 font-heading text-2xl font-semibold leading-tight text-[#1E293B] sm:text-3xl md:text-4xl">
-              Built different, built to{" "}
-              <span className="text-gradient-electric">last</span>
+            <h3 className="font-heading text-2xl font-semibold leading-tight text-white sm:text-3xl md:text-4xl">
+              Why We Are{" "}
+              <span className="text-gradient-electric">Different</span>
             </h3>
-            <p className="mt-3 max-w-xl text-sm leading-relaxed text-[#1E293B]/55 sm:text-base">
-              Three reasons teams choose Opus Solutions as their long-term
+            <p className="mt-3 max-w-xl text-sm leading-relaxed text-white/55 sm:text-base">
+              Three reasons teams choose Opus Global Solution as their long-term
               outreach partner.
             </p>
           </div>
@@ -188,19 +184,19 @@ export function AboutMission() {
             {
               icon: ShieldCheck,
               title: "Verified & Documented Outreach",
-              desc: "We engage only through consent-based channels and provide standardized, verified contact records matched to your target areas. Humans conduct all outreach — no autodialers or robocalls.",
+              desc: "We engage only through consent-based channels and provide standardized, verified contact records matched to your target areas. Humans conduct all outreach, no autodialers or robocalls.",
               color: "electric",
             },
             {
               icon: PiggyBank,
               title: "Cost-Effective Support Packages",
-              desc: "Opus Solutions offers affordable outreach and marketing support packages that reduce administrative overhead and free up your team's time to focus on client relationships.",
+              desc: "Opus Global Solution offers affordable outreach and marketing support packages that reduce administrative overhead and free up your team's time to focus on client relationships.",
               color: "violet",
             },
             {
               icon: Handshake,
               title: "Long-Term Partnership",
-              desc: "We're more than a service provider — we're a long-term ally. Expect ongoing reporting, workflow playbooks, and strategic guidance that scale with your goals.",
+              desc: "We're more than a service provider, we're a long-term ally. Expect ongoing reporting, workflow playbooks, and strategic guidance that scale with your goals.",
               color: "cyan",
             },
           ].map((card, i) => (
@@ -219,10 +215,10 @@ export function AboutMission() {
                   >
                     <card.icon className={`h-6 w-6 text-${card.color}`} />
                   </span>
-                  <h4 className="relative mt-5 font-heading text-lg font-semibold text-[#1E293B]">
+                  <h4 className="relative mt-5 font-heading text-lg font-semibold text-white">
                     {card.title}
                   </h4>
-                  <p className="relative mt-3 text-sm leading-relaxed text-[#1E293B]/60">
+                  <p className="relative mt-3 text-sm leading-relaxed text-white/60">
                     {card.desc}
                   </p>
                   <div
@@ -276,7 +272,7 @@ const VA_SERVICES = [
   {
     icon: Globe,
     title: "Website Management",
-    desc: "Listing updates, landing pages, and performance tweaks handled — so your web presence always converts.",
+    desc: "Listing updates, landing pages, and performance tweaks handled, so your web presence always converts.",
     color: "cyan",
   },
 ];
@@ -303,21 +299,21 @@ export function VirtualAssistantServices() {
               transition={{ duration: 0.25 }}
               className="group h-full"
             >
-              <GlassCard className="h-full p-6 transition-all duration-300 hover:border-[#E2E8F0]">
+              <GlassCard className="h-full p-6 transition-all duration-300 hover:border-white/20">
                 <div className="flex items-start justify-between">
                   <span
                     className={`flex h-12 w-12 items-center justify-center rounded-xl bg-${s.color}/15 transition-transform duration-300 group-hover:scale-110`}
                   >
                     <s.icon className={`h-6 w-6 text-${s.color}`} />
                   </span>
-                  <span className="font-heading text-3xl font-bold text-[#1E293B]/15 tnum">
+                  <span className="font-heading text-3xl font-bold text-white/8 tnum">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                 </div>
-                <h3 className="mt-5 font-heading text-lg font-semibold text-[#1E293B]">
+                <h3 className="mt-5 font-heading text-lg font-semibold text-white">
                   {s.title}
                 </h3>
-                <p className="mt-2.5 text-sm leading-relaxed text-[#1E293B]/55">
+                <p className="mt-2.5 text-sm leading-relaxed text-white/55">
                   {s.desc}
                 </p>
                 <div className={`mt-4 h-0.5 w-10 rounded-full bg-${s.color}/50 transition-all duration-300 group-hover:w-20`} />
@@ -356,7 +352,7 @@ const WORKFLOW_STEPS = [
   {
     icon: Rocket,
     title: "Work Gets Started",
-    desc: "Your assistant takes on the operational load — you focus on closing.",
+    desc: "Your assistant takes on the operational load, you focus on closing.",
     color: "electric",
   },
 ];
@@ -383,16 +379,16 @@ export function OurWorkflow() {
             <Reveal key={step.title} delay={i * 0.12}>
               <div className="relative flex flex-col items-center text-center md:items-start md:text-left">
                 {/* numbered node */}
-                <div className="relative z-10 flex h-14 w-14 items-center justify-center rounded-2xl border border-[#E2E8F0] bg-white shadow-[0_0_24px_-8px_rgba(59,130,246,0.5)]">
+                <div className="relative z-10 flex h-14 w-14 items-center justify-center rounded-2xl border border-white/10 bg-[#0d0d10] shadow-[0_0_24px_-8px_rgba(59,130,246,0.5)]">
                   <step.icon className={`h-6 w-6 text-${step.color}`} />
-                  <span className="absolute -right-1.5 -top-1.5 flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-br from-electric to-violet font-heading text-xs font-bold text-[#1E293B] shadow-lg">
+                  <span className="absolute -right-1.5 -top-1.5 flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-br from-electric to-violet font-heading text-xs font-bold text-white shadow-lg">
                     {i + 1}
                   </span>
                 </div>
-                <h3 className="mt-5 font-heading text-base font-semibold text-[#1E293B]">
+                <h3 className="mt-5 font-heading text-base font-semibold text-white">
                   {step.title}
                 </h3>
-                <p className="mt-2 text-sm leading-relaxed text-[#1E293B]/55">
+                <p className="mt-2 text-sm leading-relaxed text-white/55">
                   {step.desc}
                 </p>
               </div>

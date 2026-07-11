@@ -28,7 +28,7 @@ const SERVICES = [
 
 /**
  * Contact form with a service-of-interest dropdown and submit-success state.
- * Client component — manages local form state and handles the submit event.
+ * Client component | manages local form state and handles the submit event.
  */
 export function ContactFormSection() {
   const [submitted, setSubmitted] = useState(false);
@@ -50,11 +50,11 @@ export function ContactFormSection() {
         <span className="flex h-16 w-16 items-center justify-center rounded-2xl bg-electric/15 ring-1 ring-electric/30">
           <CheckCircle2 className="h-8 w-8 text-electric" />
         </span>
-        <h3 className="font-heading text-2xl font-semibold text-[#1E293B]">
+        <h3 className="font-heading text-2xl font-semibold text-white">
           Message received
         </h3>
-        <p className="max-w-sm text-sm leading-relaxed text-[#1E293B]/60">
-          Thanks for reaching out to Opus Solutions. A member of our team will
+        <p className="max-w-sm text-sm leading-relaxed text-white/60">
+          Thanks for reaching out to Opus Global Solution. A member of our team will
           get back to you within one business day.
         </p>
         <Button
@@ -63,7 +63,7 @@ export function ContactFormSection() {
             setSubmitted(false);
             setService("");
           }}
-          className="mt-2 border-[#E2E8F0] bg-[#1E293B]/5 text-[#1E293B] hover:bg-[#1E293B]/8 hover:text-[#1E293B]"
+          className="mt-2 border-white/15 bg-white/5 text-white hover:bg-white/10 hover:text-white"
         >
           Send another message
         </Button>
@@ -82,10 +82,10 @@ export function ContactFormSection() {
           <MessageSquare className="h-5 w-5 text-electric" />
         </span>
         <div className="flex flex-col">
-          <span className="font-heading text-lg font-semibold text-[#1E293B]">
+          <span className="font-heading text-lg font-semibold text-white">
             Send us a message
           </span>
-          <span className="text-xs text-[#1E293B]/45">
+          <span className="text-xs text-white/45">
             We reply within one business day.
           </span>
         </div>
@@ -94,7 +94,7 @@ export function ContactFormSection() {
       {/* Name + Email */}
       <div className="grid gap-5 sm:grid-cols-2">
         <div className="flex flex-col gap-2">
-          <Label htmlFor="cf-name" className="text-[#1E293B]/70">
+          <Label htmlFor="cf-name" className="text-white/70">
             Name
           </Label>
           <Input
@@ -102,11 +102,11 @@ export function ContactFormSection() {
             name="name"
             placeholder="Jane Cooper"
             required
-            className="border-[#E2E8F0] bg-[#1E293B]/5 text-[#1E293B] placeholder:text-[#1E293B]/35 focus-visible:border-electric/60"
+            className="border-white/10 bg-white/5 text-white placeholder:text-white/35 focus-visible:border-electric/60"
           />
         </div>
         <div className="flex flex-col gap-2">
-          <Label htmlFor="cf-email" className="text-[#1E293B]/70">
+          <Label htmlFor="cf-email" className="text-white/70">
             Email
           </Label>
           <Input
@@ -115,7 +115,7 @@ export function ContactFormSection() {
             type="email"
             placeholder="jane@brokerage.com"
             required
-            className="border-[#E2E8F0] bg-[#1E293B]/5 text-[#1E293B] placeholder:text-[#1E293B]/35 focus-visible:border-electric/60"
+            className="border-white/10 bg-white/5 text-white placeholder:text-white/35 focus-visible:border-electric/60"
           />
         </div>
       </div>
@@ -123,7 +123,7 @@ export function ContactFormSection() {
       {/* Phone + Company/Team */}
       <div className="grid gap-5 sm:grid-cols-2">
         <div className="flex flex-col gap-2">
-          <Label htmlFor="cf-phone" className="text-[#1E293B]/70">
+          <Label htmlFor="cf-phone" className="text-white/70">
             Phone
           </Label>
           <Input
@@ -131,40 +131,40 @@ export function ContactFormSection() {
             name="phone"
             type="tel"
             placeholder="(320) 331-0910"
-            className="border-[#E2E8F0] bg-[#1E293B]/5 text-[#1E293B] placeholder:text-[#1E293B]/35 focus-visible:border-electric/60"
+            className="border-white/10 bg-white/5 text-white placeholder:text-white/35 focus-visible:border-electric/60"
           />
         </div>
         <div className="flex flex-col gap-2">
-          <Label htmlFor="cf-company" className="text-[#1E293B]/70">
+          <Label htmlFor="cf-company" className="text-white/70">
             Company / Team
           </Label>
           <Input
             id="cf-company"
             name="company"
             placeholder="Cooper Realty Group"
-            className="border-[#E2E8F0] bg-[#1E293B]/5 text-[#1E293B] placeholder:text-[#1E293B]/35 focus-visible:border-electric/60"
+            className="border-white/10 bg-white/5 text-white placeholder:text-white/35 focus-visible:border-electric/60"
           />
         </div>
       </div>
 
       {/* Service of Interest */}
       <div className="flex flex-col gap-2">
-        <Label htmlFor="cf-service" className="text-[#1E293B]/70">
+        <Label htmlFor="cf-service" className="text-white/70">
           Service of Interest
         </Label>
         <Select value={service} onValueChange={setService}>
           <SelectTrigger
             id="cf-service"
-            className="w-full border-[#E2E8F0] bg-[#1E293B]/5 text-[#1E293B] data-[placeholder]:text-[#1E293B]/35 focus-visible:border-electric/60 [&_svg]:text-[#1E293B]/50"
+            className="w-full border-white/10 bg-white/5 text-white data-[placeholder]:text-white/35 focus-visible:border-electric/60 [&_svg]:text-white/50"
           >
             <SelectValue placeholder="Select a service" />
           </SelectTrigger>
-          <SelectContent className="border-[#E2E8F0] bg-[#0d0d12] text-[#1E293B]">
+          <SelectContent className="border-white/10 bg-[#0d0d12] text-white">
             {SERVICES.map((s) => (
               <SelectItem
                 key={s}
                 value={s}
-                className="focus:bg-electric/15 focus:text-[#1E293B]"
+                className="focus:bg-electric/15 focus:text-white"
               >
                 {s}
               </SelectItem>
@@ -175,7 +175,7 @@ export function ContactFormSection() {
 
       {/* Message */}
       <div className="flex flex-1 flex-col gap-2">
-        <Label htmlFor="cf-message" className="text-[#1E293B]/70">
+        <Label htmlFor="cf-message" className="text-white/70">
           Message
         </Label>
         <Textarea
@@ -184,13 +184,13 @@ export function ContactFormSection() {
           placeholder="Tell us about your goals and how we can help…"
           required
           rows={5}
-          className="min-h-[140px] resize-none border-[#E2E8F0] bg-[#1E293B]/5 text-[#1E293B] placeholder:text-[#1E293B]/35 focus-visible:border-electric/60"
+          className="min-h-[140px] resize-none border-white/10 bg-white/5 text-white placeholder:text-white/35 focus-visible:border-electric/60"
         />
       </div>
 
       <Button
         type="submit"
-        className="group mt-1 h-11 w-full gap-2 rounded-xl bg-gradient-to-r from-electric to-violet font-semibold text-[#1E293B] shadow-[0_0_30px_-8px_rgba(59,130,246,0.7)] transition-all hover:shadow-[0_0_40px_-6px_rgba(59,130,246,0.9)]"
+        className="group mt-1 h-11 w-full gap-2 rounded-xl bg-gradient-to-r from-electric to-violet font-semibold text-white shadow-[0_0_30px_-8px_rgba(59,130,246,0.7)] transition-all hover:shadow-[0_0_40px_-6px_rgba(59,130,246,0.9)]"
       >
         Send Message
         <Send className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />

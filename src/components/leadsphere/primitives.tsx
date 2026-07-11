@@ -94,7 +94,7 @@ export function SectionHeading({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="inline-flex items-center gap-2 rounded-full border border-[#E2E8F0] bg-[#1E293B]/5 px-3 py-1 text-xs font-medium tracking-wide text-[#1E293B]/70 backdrop-blur"
+          className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium tracking-wide text-white/70 backdrop-blur"
         >
           <span className="h-1.5 w-1.5 rounded-full bg-electric shadow-[0_0_8px_#3b82f6]" />
           {eyebrow}
@@ -115,7 +115,7 @@ export function SectionHeading({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="max-w-xl text-base leading-relaxed text-[#1E293B]/55 sm:text-lg"
+          className="max-w-xl text-base leading-relaxed text-white/55 sm:text-lg"
         >
           {description}
         </motion.p>

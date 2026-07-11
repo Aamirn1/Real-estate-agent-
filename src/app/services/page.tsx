@@ -9,7 +9,7 @@ import {
 import { WhyChooseUs } from "@/components/leadsphere/sections/WhyChooseFeatured";
 
 export const metadata: Metadata = {
-  title: "Services — Opus Solutions",
+  title: "Services | Opus Global Solution",
   description:
     "Marketing consulting, CRM support, workflow automation, virtual assistance, outreach support, and digital marketing for real estate professionals.",
 };
@@ -32,19 +32,19 @@ export default function ServicesPage() {
       {/* 1. Trust + Stats + Services overview grid (id="services") */}
       <TrustStatsFeatures />
 
-      {/* 2. Process timeline — 7 steps */}
+      {/* 2. Process timeline | 7 steps */}
       <AiProcessMap />
 
-      {/* 3. Virtual Assistant Services — 6 service cards */}
+      {/* 3. Virtual Assistant Services | 6 service cards */}
       <VirtualAssistantServices />
 
-      {/* 4. Why Choose Us — 8 reasons */}
+      {/* 4. Why Choose Us | 8 reasons */}
       <WhyChooseUs />
 
       {/* 5. Closing CTA */}
       <CTABanner
         title="Ready to fill your pipeline?"
-        subtitle="From outreach to CRM — Opus Solutions handles the heavy lifting so you can focus on clients."
+        subtitle="From outreach to CRM | Opus Global Solution handles the heavy lifting so you can focus on clients."
       />
     </SiteChrome>
   );

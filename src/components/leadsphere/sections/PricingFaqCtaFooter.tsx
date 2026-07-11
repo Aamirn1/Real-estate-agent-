@@ -39,7 +39,9 @@ import {
   MapPin,
   Clock,
   MessageSquare,
+  X,
 } from "lucide-react";
+import { LogoImage } from "@/components/leadsphere/LogoIcon";
 
 /* ============================================================
    DATA
@@ -47,10 +49,10 @@ import {
 
 type Plan = {
   name: string;
-  price: string; // "Per Lead" or "$450"
-  period: string; // "Flexible" or "One-Time · 30 Days"
+  price: string;
+  period: string;
   tagline: string;
-  features: string[];
+  features: { text: string; included: boolean }[];
   cta: string;
   ctaVariant: "outline" | "solid";
   highlight?: "top-selling" | "premium";
@@ -59,86 +61,83 @@ type Plan = {
 
 const PLANS: Plan[] = [
   {
-    name: "Trial Plan",
-    price: "$450",
-    period: "One-Time · 30 Days",
+    name: "Trial",
+    price: "$300",
+    period: "One-Time · 90 Days Setup",
     tagline: "Test the waters",
     cta: "Get Started",
     ctaVariant: "outline",
     features: [
-      "20% Referral Fee",
-      "9 Pre-screened introductions",
-      "Up to 3 Counties",
-      "10 hr/day Support",
-      "No Hidden Charges",
-      "Pipeline Tracking",
-      "Appointment Scheduling",
-      "Call/lead recording (where permitted)",
-      "Dedicated Account Manager",
-      "Real-time Live Transfer",
+      { text: "20% Referral Fee", included: true },
+      { text: "6 Qualified, Pre-screened Introductions", included: true },
+      { text: "Up to 5 Counties", included: true },
+      { text: "10 hr/day Support", included: true },
+      { text: "Spreadsheet", included: true },
+      { text: "Pipeline Tracking", included: true },
+      { text: "No Hidden Charges", included: true },
+      { text: "Exclusive Warm Live Transfer", included: false },
+      { text: "SMS/WhatsApp Support", included: false },
+      { text: "Monthly Activity Summary", included: false },
+      { text: "Dedicated Account Manager", included: false },
+      { text: "Digital Marketing Services", included: false },
     ],
   },
   {
-    name: "Silver Plan",
-    price: "$900",
-    period: "One-Time · 30 Days",
+    name: "Gold",
+    price: "$600",
+    period: "One-Time · 180 Days Setup",
     tagline: "Most popular choice",
     cta: "Get Started",
     ctaVariant: "solid",
     highlight: "top-selling",
     badge: "Top Selling",
     features: [
-      "15% referral fee (on successful closings)",
-      "18 qualified pre-screened introductions",
-      "Up to 5 Counties",
-      "10 hr/day Support",
-      "Appointment Scheduling",
-      "Call/lead recording (where permitted)",
-      "No Hidden Charges",
+      { text: "15% Referral Fee", included: true },
+      { text: "12 Qualified, Pre-screened Introductions", included: true },
+      { text: "Up to 5 Counties", included: true },
+      { text: "10 hr/day Support", included: true },
+      { text: "Spreadsheet", included: true },
+      { text: "Priority-based Appointment Scheduling", included: true },
+      { text: "Call/lead recording (where permitted and with notice)", included: true },
+      { text: "Pipeline Tracking", included: true },
+      { text: "No Hidden Charges", included: true },
+      { text: "Exclusive Warm Live Transfer", included: false },
+      { text: "SMS/WhatsApp Support", included: false },
+      { text: "Monthly Activity Summary", included: false },
+      { text: "Dedicated Account Manager", included: false },
+      { text: "Digital Marketing Services", included: false },
     ],
   },
   {
-    name: "Gold Plan",
-    price: "$1800",
-    period: "One-Time · 30 Days",
-    tagline: "For growing teams",
-    cta: "Get Started",
-    ctaVariant: "outline",
-    features: [
-      "10% referral fee (on successful closings)",
-      "27 qualified pre-screened introductions",
-      "Up to 10 Counties",
-      "10 hr/day Support",
-      "Appointment Scheduling",
-      "Dedicated Account Manager",
-      "Warm live transfer",
-      "Pipeline tracking",
-    ],
-  },
-  {
-    name: "Platinum Plan",
-    price: "$2500",
-    period: "One-Time · 30 Days",
+    name: "Platinum",
+    price: "$1200",
+    period: "One-Time · 365 Days Setup",
     tagline: "High-volume prospecting",
-    cta: "Book a Demo",
+    cta: "Get Started",
     ctaVariant: "outline",
     highlight: "premium",
     badge: "For Premium Realtors",
     features: [
-      "8% referral fee (on successful closings)",
-      "54 qualified pre-screened introductions",
-      "Up to 10 Counties",
-      "10 hr/day Support",
-      "Priority Appointment Scheduling",
-      "Senior Dedicated Account Manager",
-      "Exclusive warm live transfer",
+      { text: "10% Referral Fee", included: true },
+      { text: "18 Qualified, Pre-screened Introductions", included: true },
+      { text: "Up to 10 Counties", included: true },
+      { text: "10 hr/day Support", included: true },
+      { text: "Priority-based Appointment Scheduling", included: true },
+      { text: "Call/lead recording (where permitted and with notice)", included: true },
+      { text: "Advanced Pipeline Tracking", included: true },
+      { text: "No Hidden Charges", included: true },
+      { text: "Exclusive Warm Live Transfer", included: true },
+      { text: "SMS/WhatsApp Support", included: true },
+      { text: "Monthly Reporting", included: true },
+      { text: "Dedicated Account Manager", included: true },
+      { text: "Digital Marketing Services", included: true },
     ],
   },
 ];
 
 const FAQS: { q: string; a: string }[] = [
   {
-    q: "What does Opus Solutions do?",
+    q: "What does Opus Global Solution do?",
     a: "We provide marketing consulting, CRM support, account management, and virtual assistance for licensed real estate professionals. Our services reduce administrative workload by managing outreach, reporting, scheduling, and digital marketing, allowing professionals to focus on building client relationships and closing deals.",
   },
   {
@@ -151,7 +150,7 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     q: "How does our outreach work?",
-    a: "We use human-only outreach methods — never autodialers or robocalls. All engagement is consent-based, documented, and reported, giving full transparency into our work and ensuring compliance with applicable regulations.",
+    a: "We use human-only outreach methods, never autodialers or robocalls. All engagement is consent-based, documented, and reported, giving full transparency into our work and ensuring compliance with applicable regulations.",
   },
   {
     q: "How many professionals do we work with in the same area?",
@@ -261,14 +260,14 @@ function PlanPrice({ plan }: { plan: Plan }) {
   const num = parseInt(plan.price.replace(/[^0-9]/g, ""), 10);
   return (
     <div className="flex items-baseline gap-1">
-      <span className="font-heading text-2xl font-semibold text-[#1E293B]/70">
+      <span className="font-heading text-2xl font-semibold text-white/70">
         $
       </span>
       <CountUp
         key={plan.price}
         value={num}
         duration={1400}
-        className="font-heading text-5xl font-semibold tracking-tight text-[#1E293B]"
+        className="font-heading text-5xl font-semibold tracking-tight text-white"
       />
     </div>
   );
@@ -286,7 +285,7 @@ function CtaButton({
       <motion.button
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
-        className="group relative inline-flex w-full items-center justify-center gap-2 overflow-hidden rounded-full bg-[linear-gradient(120deg,#3b82f6,#8b5cf6,#06b6d4)] px-6 py-3 text-sm font-semibold text-[#1E293B] shadow-[0_0_30px_-6px_rgba(59,130,246,0.7)] transition-shadow hover:shadow-[0_0_45px_-4px_rgba(139,92,246,0.85)]"
+        className="group relative inline-flex w-full items-center justify-center gap-2 overflow-hidden rounded-full bg-[linear-gradient(120deg,#3b82f6,#8b5cf6,#06b6d4)] px-6 py-3 text-sm font-semibold text-white shadow-[0_0_30px_-6px_rgba(59,130,246,0.7)] transition-shadow hover:shadow-[0_0_45px_-4px_rgba(139,92,246,0.85)]"
       >
         <span className="absolute inset-0 -translate-x-full bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.25),transparent)] transition-transform duration-700 group-hover:translate-x-full" />
         <Rocket className="h-4 w-4" />
@@ -298,7 +297,7 @@ function CtaButton({
     <motion.button
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
-      className="group inline-flex w-full items-center justify-center gap-2 rounded-full border border-[#E2E8F0] bg-[#1E293B]/5 px-6 py-3 text-sm font-semibold text-[#1E293B] backdrop-blur transition-colors hover:border-[#CBD5E1] hover:bg-[#1E293B]/8"
+      className="group inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-white backdrop-blur transition-colors hover:border-white/30 hover:bg-white/10"
     >
       <span>{children}</span>
       <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
@@ -308,13 +307,32 @@ function CtaButton({
 
 function PricingCard({ plan, delay }: { plan: Plan; delay: number }) {
   const features = (
-    <ul className="custom-scroll flex flex-col gap-3.5 overflow-y-auto pr-1 max-h-72">
-      {plan.features.map((f) => (
-        <li key={f} className="flex items-start gap-3 text-sm text-[#1E293B]/70">
-          <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-electric/15 ring-1 ring-electric/30">
-            <Check className="h-3 w-3 text-electric" />
+    <ul className="custom-scroll flex flex-col gap-2.5 overflow-y-auto pr-1 max-h-72">
+      {plan.features.map((f, i) => (
+        <li
+          key={i}
+          className={cn(
+            "flex items-start gap-3 text-sm",
+            f.included ? "text-white/70" : "text-white/25"
+          )}
+        >
+          <span
+            className={cn(
+              "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full ring-1",
+              f.included
+                ? "bg-emerald-400/15 ring-emerald-400/30"
+                : "bg-white/5 ring-white/10"
+            )}
+          >
+            {f.included ? (
+              <Check className="h-3 w-3 text-emerald-400" />
+            ) : (
+              <X className="h-3 w-3 text-white/30" />
+            )}
           </span>
-          <span className="leading-relaxed">{f}</span>
+          <span className={cn("leading-relaxed", !f.included && "line-through")}>
+            {f.text}
+          </span>
         </li>
       ))}
     </ul>
@@ -322,17 +340,17 @@ function PricingCard({ plan, delay }: { plan: Plan; delay: number }) {
 
   const header = (
     <div className="flex flex-col gap-2">
-      <h3 className="font-heading text-xl font-semibold text-[#1E293B]">
+      <h3 className="font-heading text-xl font-semibold text-white">
         {plan.name}
       </h3>
-      <p className="text-sm leading-relaxed text-[#1E293B]/50">{plan.tagline}</p>
+      <p className="text-sm leading-relaxed text-white/50">{plan.tagline}</p>
     </div>
   );
 
   const priceBlock = (
     <div className="flex flex-col gap-1">
       <PlanPrice plan={plan} />
-      <span className="text-xs font-medium text-[#1E293B]/40">{plan.period}</span>
+      <span className="text-xs font-medium text-white/40">{plan.period}</span>
     </div>
   );
 
@@ -347,7 +365,7 @@ function PricingCard({ plan, delay }: { plan: Plan; delay: number }) {
     </div>
   ) : null;
 
-  /* Silver Plan — Top Selling (electric gradient border + scale + solid CTA) */
+  /* Silver Plan, Top Selling (electric gradient border + scale + solid CTA) */
   if (plan.highlight === "top-selling") {
     return (
       <Reveal delay={delay} className="h-full">
@@ -375,7 +393,7 @@ function PricingCard({ plan, delay }: { plan: Plan; delay: number }) {
     );
   }
 
-  /* Sapphire Plan — Premium (gold gradient border + outline CTA) */
+  /* Sapphire Plan, Premium (gold gradient border + outline CTA) */
   if (plan.highlight === "premium") {
     return (
       <Reveal delay={delay} className="h-full">
@@ -408,7 +426,7 @@ function PricingCard({ plan, delay }: { plan: Plan; delay: number }) {
     <Reveal delay={delay} className="h-full">
       <GlassCard
         strong
-        className="group relative flex h-full flex-col rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#E2E8F0] hover:shadow-[0_20px_60px_-20px_rgba(59,130,246,0.35)] md:p-8"
+        className="group relative flex h-full flex-col rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 hover:border-white/20 hover:shadow-[0_20px_60px_-20px_rgba(59,130,246,0.35)] md:p-8"
       >
         <div className="flex flex-1 flex-col gap-6">
           {header}
@@ -438,19 +456,19 @@ function FaqList() {
         <Reveal key={faq.q} delay={Math.min(i * 0.04, 0.36)} className="block">
           <AccordionItem
             value={`faq-${i}`}
-            className="glass-strong group rounded-2xl border border-[#E2E8F0] px-5 transition-colors duration-300 data-[state=open]:border-electric/30 sm:px-6"
+            className="glass-strong group rounded-2xl border border-white/10 px-5 transition-colors duration-300 data-[state=open]:border-electric/30 sm:px-6"
           >
             <AccordionTrigger
-              className="group/trigger hover:no-underline py-5 text-left text-base font-medium text-[#1E293B]/90 [&>svg:last-child]:hidden"
+              className="group/trigger hover:no-underline py-5 text-left text-base font-medium text-white/90 [&>svg:last-child]:hidden"
             >
-              <span className="flex-1 pr-4 font-heading text-[15px] font-semibold leading-snug text-[#1E293B] sm:text-base">
+              <span className="flex-1 pr-4 font-heading text-[15px] font-semibold leading-snug text-white sm:text-base">
                 {faq.q}
               </span>
-              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#E2E8F0] bg-[#1E293B]/5 transition-all duration-300 group-data-[state=open]:border-electric/40 group-data-[state=open]:bg-electric/10">
-                <ChevronDown className="h-4 w-4 text-[#1E293B]/60 transition-all duration-300 group-data-[state=open]:rotate-180 group-data-[state=open]:text-electric" />
+              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/5 transition-all duration-300 group-data-[state=open]:border-electric/40 group-data-[state=open]:bg-electric/10">
+                <ChevronDown className="h-4 w-4 text-white/60 transition-all duration-300 group-data-[state=open]:rotate-180 group-data-[state=open]:text-electric" />
               </span>
             </AccordionTrigger>
-            <AccordionContent className="text-sm leading-relaxed text-[#1E293B]/55 sm:text-[15px]">
+            <AccordionContent className="text-sm leading-relaxed text-white/55 sm:text-[15px]">
               <span className="block pr-12 pb-5">{faq.a}</span>
             </AccordionContent>
           </AccordionItem>
@@ -478,22 +496,22 @@ function InfoCard({
   return (
     <GlassCard
       strong
-      className="group rounded-2xl p-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-[#E2E8F0]"
+      className="group rounded-2xl p-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-white/20"
     >
       <div className="flex flex-col gap-3">
         <div
           className={cn(
-            "flex h-9 w-9 items-center justify-center rounded-lg bg-[#1E293B]/5 ring-1 ring-white/10 transition-colors",
+            "flex h-9 w-9 items-center justify-center rounded-lg bg-white/5 ring-1 ring-white/10 transition-colors",
             iconTint
           )}
         >
           <Icon className="h-4 w-4" />
         </div>
         <div>
-          <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[#1E293B]/40">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-white/40">
             {label}
           </p>
-          <div className="mt-1 text-sm font-medium text-[#1E293B] leading-relaxed">
+          <div className="mt-1 text-sm font-medium text-white leading-relaxed">
             {children}
           </div>
         </div>
@@ -553,8 +571,8 @@ function StylizedMap() {
             />
           </div>
           {/* label */}
-          <div className="mt-2 rounded-full border border-electric/40 bg-white/85 px-3 py-1 backdrop-blur">
-            <span className="text-xs font-semibold tracking-wide text-[#1E293B]">
+          <div className="mt-2 rounded-full border border-electric/40 bg-black/70 px-3 py-1 backdrop-blur">
+            <span className="text-xs font-semibold tracking-wide text-white">
               Albany, NY
             </span>
           </div>
@@ -562,15 +580,15 @@ function StylizedMap() {
       </div>
 
       {/* corner badges */}
-      <div className="absolute left-4 top-4 flex items-center gap-1.5 rounded-full border border-[#E2E8F0] bg-white/80 px-3 py-1 backdrop-blur">
+      <div className="absolute left-4 top-4 flex items-center gap-1.5 rounded-full border border-white/10 bg-black/60 px-3 py-1 backdrop-blur">
         <span className="relative flex h-2 w-2">
           <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-60" />
           <span className="relative inline-flex h-2 w-2 rounded-full bg-green-400" />
         </span>
-        <span className="text-[11px] font-medium text-[#1E293B]/80">HQ · Albany</span>
+        <span className="text-[11px] font-medium text-white/80">HQ · Albany</span>
       </div>
-      <div className="absolute bottom-4 right-4 rounded-full border border-[#E2E8F0] bg-white/80 px-3 py-1 backdrop-blur">
-        <span className="text-[11px] font-medium text-[#1E293B]/60 tnum">
+      <div className="absolute bottom-4 right-4 rounded-full border border-white/10 bg-black/60 px-3 py-1 backdrop-blur">
+        <span className="text-[11px] font-medium text-white/60 tnum">
           42.6526° N, 73.7562° W
         </span>
       </div>
@@ -604,10 +622,10 @@ function ContactSection() {
                   <MessageSquare className="h-5 w-5 text-electric" />
                 </div>
                 <div>
-                  <h3 className="font-heading text-lg font-semibold text-[#1E293B]">
+                  <h3 className="font-heading text-lg font-semibold text-white">
                     Send us a message
                   </h3>
-                  <p className="text-sm text-[#1E293B]/50">
+                  <p className="text-sm text-white/50">
                     We&apos;ll get back to you within 24 hours.
                   </p>
                 </div>
@@ -619,51 +637,51 @@ function ContactSection() {
               >
                 <div className="grid gap-4 sm:grid-cols-2">
                   <div className="flex flex-col gap-1.5">
-                    <Label htmlFor="name" className="text-[#1E293B]/70">
+                    <Label htmlFor="name" className="text-white/70">
                       Name
                     </Label>
                     <Input
                       id="name"
                       placeholder="Jane Cooper"
-                      className="h-11 rounded-lg border-[#E2E8F0] bg-[#1E293B]/5 text-[#1E293B] placeholder:text-[#1E293B]/40 focus-visible:border-electric/50 focus-visible:ring-electric/20"
+                      className="h-11 rounded-lg border-white/10 bg-white/5 text-white placeholder:text-white/40 focus-visible:border-electric/50 focus-visible:ring-electric/20"
                     />
                   </div>
                   <div className="flex flex-col gap-1.5">
-                    <Label htmlFor="email" className="text-[#1E293B]/70">
+                    <Label htmlFor="email" className="text-white/70">
                       Email
                     </Label>
                     <Input
                       id="email"
                       type="email"
                       placeholder="jane@brokerage.com"
-                      className="h-11 rounded-lg border-[#E2E8F0] bg-[#1E293B]/5 text-[#1E293B] placeholder:text-[#1E293B]/40 focus-visible:border-electric/50 focus-visible:ring-electric/20"
+                      className="h-11 rounded-lg border-white/10 bg-white/5 text-white placeholder:text-white/40 focus-visible:border-electric/50 focus-visible:ring-electric/20"
                     />
                   </div>
                 </div>
                 <div className="flex flex-col gap-1.5">
-                  <Label htmlFor="phone" className="text-[#1E293B]/70">
+                  <Label htmlFor="phone" className="text-white/70">
                     Phone
                   </Label>
                   <Input
                     id="phone"
                     type="tel"
                     placeholder="(320) 331-0910"
-                    className="h-11 rounded-lg border-[#E2E8F0] bg-[#1E293B]/5 text-[#1E293B] placeholder:text-[#1E293B]/40 focus-visible:border-electric/50 focus-visible:ring-electric/20"
+                    className="h-11 rounded-lg border-white/10 bg-white/5 text-white placeholder:text-white/40 focus-visible:border-electric/50 focus-visible:ring-electric/20"
                   />
                 </div>
                 <div className="flex flex-1 flex-col gap-1.5">
-                  <Label htmlFor="message" className="text-[#1E293B]/70">
+                  <Label htmlFor="message" className="text-white/70">
                     Message
                   </Label>
                   <Textarea
                     id="message"
                     placeholder="Tell us about your goals and the counties you cover..."
-                    className="min-h-32 flex-1 resize-none rounded-lg border-[#E2E8F0] bg-[#1E293B]/5 text-[#1E293B] placeholder:text-[#1E293B]/40 focus-visible:border-electric/50 focus-visible:ring-electric/20"
+                    className="min-h-32 flex-1 resize-none rounded-lg border-white/10 bg-white/5 text-white placeholder:text-white/40 focus-visible:border-electric/50 focus-visible:ring-electric/20"
                   />
                 </div>
                 <Button
                   type="submit"
-                  className="group relative h-11 w-full items-center justify-center gap-2 overflow-hidden rounded-full bg-[linear-gradient(120deg,#3b82f6,#8b5cf6,#06b6d4)] px-6 text-sm font-semibold text-[#1E293B] shadow-[0_0_30px_-6px_rgba(59,130,246,0.7)] transition-shadow hover:shadow-[0_0_45px_-4px_rgba(139,92,246,0.85)]"
+                  className="group relative h-11 w-full items-center justify-center gap-2 overflow-hidden rounded-full bg-[linear-gradient(120deg,#3b82f6,#8b5cf6,#06b6d4)] px-6 text-sm font-semibold text-white shadow-[0_0_30px_-6px_rgba(59,130,246,0.7)] transition-shadow hover:shadow-[0_0_45px_-4px_rgba(139,92,246,0.85)]"
                 >
                   <span className="absolute inset-0 -translate-x-full bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.25),transparent)] transition-transform duration-700 group-hover:translate-x-full" />
                   <Send className="relative h-4 w-4" />
@@ -736,7 +754,7 @@ function ContactSection() {
 function CtaBanner() {
   return (
     <section className="relative w-full px-5 py-12 sm:px-8 md:py-16">
-      <div className="relative mx-auto w-full max-w-7xl overflow-hidden rounded-3xl border border-[#E2E8F0]">
+      <div className="relative mx-auto w-full max-w-7xl overflow-hidden rounded-3xl border border-white/10">
         {/* animated gradient background */}
         <div className="absolute inset-0 bg-[linear-gradient(120deg,#3b82f6_0%,#8b5cf6_45%,#06b6d4_100%,#3b82f6_150%)] animate-gradient-x" />
         {/* moving grid overlay */}
@@ -753,7 +771,7 @@ function CtaBanner() {
           }}
         />
         {/* dark scrim for contrast */}
-        <div className="absolute inset-0 bg-[#1E293B]/10" />
+        <div className="absolute inset-0 bg-black/30" />
         {/* top glow */}
         <div className="pointer-events-none absolute -top-28 left-1/2 h-64 w-[75%] -translate-x-1/2 rounded-full bg-white/25 blur-3xl" />
         {/* floating orbs */}
@@ -767,7 +785,7 @@ function CtaBanner() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 rounded-full border border-[#CBD5E1] bg-[#1E293B]/8 px-4 py-1.5 text-xs font-medium tracking-wide text-[#1E293B] backdrop-blur"
+            className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-1.5 text-xs font-medium tracking-wide text-white backdrop-blur"
           >
             <Sparkles className="h-3.5 w-3.5" />
             Ready to scale?
@@ -778,7 +796,7 @@ function CtaBanner() {
             whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             viewport={{ once: true, margin: "-10% 0px" }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="font-heading text-4xl font-semibold leading-[1.05] tracking-tight text-[#1E293B] text-glow sm:text-5xl md:text-6xl"
+            className="font-heading text-4xl font-semibold leading-[1.05] tracking-tight text-white text-glow sm:text-5xl md:text-6xl"
           >
             Ready to grow your business?
           </motion.h2>
@@ -788,9 +806,9 @@ function CtaBanner() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="max-w-xl text-base leading-relaxed text-[#1E293B]/85 sm:text-lg"
+            className="max-w-xl text-base leading-relaxed text-white/85 sm:text-lg"
           >
-            Join thousands of real estate professionals who trust Opus Solutions for verified outreach, dedicated VAs, and documented workflows.
+            Join thousands of real estate professionals who trust Opus Global Solution for verified outreach, dedicated VAs, and documented workflows.
           </motion.p>
 
           <motion.div
@@ -800,20 +818,20 @@ function CtaBanner() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="mt-2 flex flex-col items-center gap-3 sm:flex-row"
           >
-            {/* Book Demo — white / outline */}
+            {/* Book Demo, white / outline */}
             <motion.button
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.97 }}
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-white/50 bg-[#1E293B]/8 px-7 py-3.5 text-sm font-semibold text-[#1E293B] backdrop-blur transition-all hover:bg-white/20 hover:shadow-[0_0_35px_-6px_rgba(255,255,255,0.6)]"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-white/50 bg-white/10 px-7 py-3.5 text-sm font-semibold text-white backdrop-blur transition-all hover:bg-white/20 hover:shadow-[0_0_35px_-6px_rgba(255,255,255,0.6)]"
             >
               <Calendar className="h-4 w-4" />
               Book Demo
             </motion.button>
-            {/* Start Free Trial — dark solid with glow */}
+            {/* Start Free Trial, dark solid with glow */}
             <motion.button
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.97 }}
-              className="group inline-flex items-center justify-center gap-2 rounded-full bg-[#F8FAFC] px-7 py-3.5 text-sm font-semibold text-[#1E293B] shadow-[0_0_35px_-6px_rgba(0,0,0,0.8)] ring-1 ring-white/10 transition-all hover:shadow-[0_0_50px_-4px_rgba(255,255,255,0.5)]"
+              className="group inline-flex items-center justify-center gap-2 rounded-full bg-[#050505] px-7 py-3.5 text-sm font-semibold text-white shadow-[0_0_35px_-6px_rgba(0,0,0,0.8)] ring-1 ring-white/10 transition-all hover:shadow-[0_0_50px_-4px_rgba(255,255,255,0.5)]"
             >
               <Rocket className="h-4 w-4 text-electric" />
               Start Free Trial
@@ -821,7 +839,7 @@ function CtaBanner() {
             </motion.button>
           </motion.div>
 
-          <p className="text-xs text-[#1E293B]/60">
+          <p className="text-xs text-white/60">
             14-day free trial · No credit card required · Cancel anytime
           </p>
         </div>
@@ -836,18 +854,15 @@ function CtaBanner() {
 
 function LogoMark() {
   return (
-    <div className="flex items-center gap-2">
-      <img src="/logo.svg" alt="Opus Global Solution" className="h-9 w-9" />
-      <span className="font-heading text-lg font-semibold tracking-tight text-[#1E293B]">
-        Opus<span className="text-electric"> Global Solution</span>
-      </span>
+    <div className="flex items-center">
+      <LogoImage className="h-11 sm:h-12" />
     </div>
   );
 }
 
 function Footer() {
   return (
-    <footer className="relative w-full bg-white">
+    <footer className="relative w-full bg-[#070709]">
       {/* gradient divider at top */}
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-electric via-violet to-cyan" />
       {/* faint top glow */}
@@ -859,7 +874,7 @@ function Footer() {
           {/* left: logo + tagline + socials */}
           <div className="flex flex-col gap-6">
             <LogoMark />
-            <p className="max-w-sm text-sm leading-relaxed text-[#1E293B]/55">
+            <p className="max-w-sm text-sm leading-relaxed text-white/55">
               Your trusted partner for marketing consulting, outreach
               support, and CRM solutions. Human-verified outreach, dedicated
               virtual assistants, and documented workflows for licensed real
@@ -871,7 +886,7 @@ function Footer() {
                   key={label}
                   href={href}
                   aria-label={label}
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-[#E2E8F0] bg-[#1E293B]/5 text-[#1E293B]/60 transition-all hover:-translate-y-0.5 hover:border-electric/40 hover:bg-electric/10 hover:text-[#1E293B]"
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/60 transition-all hover:-translate-y-0.5 hover:border-electric/40 hover:bg-electric/10 hover:text-white"
                 >
                   <Icon className="h-4 w-4" />
                 </a>
@@ -882,10 +897,10 @@ function Footer() {
           {/* right: newsletter */}
           <div className="flex flex-col gap-4 lg:items-end lg:text-right">
             <div className="lg:max-w-sm">
-              <h3 className="font-heading text-lg font-semibold text-[#1E293B]">
+              <h3 className="font-heading text-lg font-semibold text-white">
                 Stay ahead of the market
               </h3>
-              <p className="mt-1.5 text-sm text-[#1E293B]/50">
+              <p className="mt-1.5 text-sm text-white/50">
                 Weekly insights on outreach and prospecting.
               </p>
             </div>
@@ -897,32 +912,32 @@ function Footer() {
                 type="email"
                 placeholder="you@brokerage.com"
                 aria-label="Email address"
-                className="w-full flex-1 rounded-full border border-[#E2E8F0] bg-[#1E293B]/5 px-5 py-3 text-sm text-[#1E293B] placeholder:text-[#1E293B]/40 outline-none transition-colors focus:border-electric/50 focus:bg-[#1E293B]/8"
+                className="w-full flex-1 rounded-full border border-white/10 bg-white/5 px-5 py-3 text-sm text-white placeholder:text-white/40 outline-none transition-colors focus:border-electric/50 focus:bg-white/10"
               />
               <motion.button
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
                 type="submit"
-                className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-[linear-gradient(120deg,#3b82f6,#8b5cf6)] px-5 py-3 text-sm font-semibold text-[#1E293B] shadow-[0_0_25px_-8px_rgba(59,130,246,0.8)] transition-shadow hover:shadow-[0_0_35px_-6px_rgba(139,92,246,0.85)]"
+                className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-[linear-gradient(120deg,#3b82f6,#8b5cf6)] px-5 py-3 text-sm font-semibold text-white shadow-[0_0_25px_-8px_rgba(59,130,246,0.8)] transition-shadow hover:shadow-[0_0_35px_-6px_rgba(139,92,246,0.85)]"
               >
                 <Send className="h-4 w-4" />
                 Subscribe
               </motion.button>
             </form>
-            <p className="text-xs text-[#1E293B]/35 lg:max-w-sm lg:text-right">
+            <p className="text-xs text-white/35 lg:max-w-sm lg:text-right">
               We respect your inbox. Unsubscribe with one click.
             </p>
           </div>
         </div>
 
         {/* ---------- divider ---------- */}
-        <div className="my-12 h-px w-full bg-[#1E293B]/5 md:my-14" />
+        <div className="my-12 h-px w-full bg-white/8 md:my-14" />
 
         {/* ---------- link columns ---------- */}
         <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 md:grid-cols-5">
           {FOOTER_COLUMNS.map((col) => (
             <div key={col.title} className="flex flex-col gap-3.5">
-              <h4 className="font-heading text-sm font-semibold tracking-wide text-[#1E293B]">
+              <h4 className="font-heading text-sm font-semibold tracking-wide text-white">
                 {col.title}
               </h4>
               <ul className="flex flex-col gap-2.5">
@@ -930,7 +945,7 @@ function Footer() {
                   <li key={link.label}>
                     <a
                       href={link.href}
-                      className="text-sm text-[#1E293B]/55 transition-colors hover:text-[#1E293B]"
+                      className="text-sm text-white/55 transition-colors hover:text-white"
                     >
                       {link.label}
                     </a>
@@ -942,16 +957,16 @@ function Footer() {
         </div>
 
         {/* ---------- bottom bar ---------- */}
-        <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-[#E2E8F0] pt-8 md:flex-row">
-          <p className="text-xs text-[#1E293B]/45">
-            © 2025 Opus Solutions. All rights reserved.
+        <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-white/8 pt-8 md:flex-row">
+          <p className="text-xs text-white/45">
+            © 2025 Opus Global Solution. All rights reserved.
           </p>
           <div className="flex flex-col items-center gap-4 sm:flex-row sm:gap-6">
-            <span className="inline-flex items-center gap-1.5 text-xs text-[#1E293B]/45">
+            <span className="inline-flex items-center gap-1.5 text-xs text-white/45">
               <ShieldCheck className="h-3.5 w-3.5 text-electric/70" />
               Made with care
             </span>
-            <span className="inline-flex items-center gap-2 rounded-full border border-[#E2E8F0] bg-[#1E293B]/5 px-3 py-1 text-xs text-[#1E293B]/60">
+            <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/60">
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-60" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-green-400" />
@@ -983,20 +998,20 @@ export default function PricingFaqCtaFooter() {
         {/* plan-cadence note (replaces monthly/annual toggle) */}
         <Reveal delay={0.1}>
           <div className="mt-10 flex justify-center">
-            <div className="inline-flex items-center gap-2 rounded-full border border-[#E2E8F0] bg-[#1E293B]/5 px-4 py-2 backdrop-blur">
+            <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 backdrop-blur">
               <Calendar className="h-3.5 w-3.5 text-electric" />
-              <span className="text-sm font-medium text-[#1E293B]/70">
+              <span className="text-sm font-medium text-white/70">
                 One-time setup
               </span>
-              <span className="text-[#1E293B]/20">·</span>
-              <span className="text-sm font-medium text-[#1E293B]">
+              <span className="text-white/20">·</span>
+              <span className="text-sm font-medium text-white">
                 30-day or 365-day plans
               </span>
             </div>
           </div>
         </Reveal>
 
-        {/* pricing cards — 6 plans, 3-col grid (2 rows of 3) */}
+        {/* pricing cards, 6 plans, 3-col grid (2 rows of 3) */}
         <div className="mt-12 grid items-stretch gap-6 lg:mt-14 lg:grid-cols-3 lg:gap-6 lg:pt-6">
           {PLANS.map((plan, i) => (
             <PricingCard
@@ -1009,8 +1024,8 @@ export default function PricingFaqCtaFooter() {
 
         {/* disclaimer */}
         <Reveal delay={0.3}>
-          <p className="mx-auto mt-10 max-w-3xl text-center text-xs leading-relaxed text-[#1E293B]/40">
-            Opus Solutions is a marketing consulting and support company. We do
+          <p className="mx-auto mt-10 max-w-3xl text-center text-xs leading-relaxed text-white/40">
+            Opus Global Solution is a marketing consulting and support company. We do
             not act as a brokerage, list or sell property, or resell leads.
             Referral fees apply on successful closings.
           </p>
@@ -1022,7 +1037,7 @@ export default function PricingFaqCtaFooter() {
         <SectionHeading
           eyebrow="FAQ"
           title="Frequently asked questions"
-          description="Find answers to commonly asked questions about Opus Solutions."
+          description="Find answers to commonly asked questions about Opus Global Solution."
           align="center"
         />
         <Reveal delay={0.1}>
@@ -1033,18 +1048,18 @@ export default function PricingFaqCtaFooter() {
 
         {/* contact prompt */}
         <Reveal delay={0.2}>
-          <div className="mx-auto mt-10 flex max-w-3xl flex-col items-center gap-3 rounded-2xl border border-[#E2E8F0] bg-white/[0.02] px-6 py-6 text-center sm:flex-row sm:justify-between sm:text-left">
+          <div className="mx-auto mt-10 flex max-w-3xl flex-col items-center gap-3 rounded-2xl border border-white/8 bg-white/[0.02] px-6 py-6 text-center sm:flex-row sm:justify-between sm:text-left">
             <div>
-              <p className="font-heading text-base font-semibold text-[#1E293B]">
+              <p className="font-heading text-base font-semibold text-white">
                 Still have questions?
               </p>
-              <p className="text-sm text-[#1E293B]/50">
+              <p className="text-sm text-white/50">
                 Our team replies within a few hours, 7 days a week.
               </p>
             </div>
             <a
               href="#contact"
-              className="inline-flex shrink-0 items-center gap-2 rounded-full border border-[#E2E8F0] bg-[#1E293B]/5 px-5 py-2.5 text-sm font-semibold text-[#1E293B] transition-colors hover:border-[#CBD5E1] hover:bg-[#1E293B]/8"
+              className="inline-flex shrink-0 items-center gap-2 rounded-full border border-white/15 bg-white/5 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:border-white/30 hover:bg-white/10"
             >
               Contact support
               <ArrowRight className="h-4 w-4" />
