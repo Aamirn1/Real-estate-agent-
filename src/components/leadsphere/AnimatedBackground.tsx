@@ -30,8 +30,8 @@ export function AnimatedBackground({
       aria-hidden
       className={`pointer-events-none absolute inset-0 overflow-hidden ${className}`}
     >
-      {/* Base gradient */}
-      <div className="absolute inset-0 bg-white" />
+      {/* Base gradient — transparent for hero (image shows through), white for sections */}
+      <div className={`absolute inset-0 ${variant === "hero" ? "bg-transparent" : "bg-white"}`} />
 
       {/* Aurora blobs */}
       {variant === "hero" && (
@@ -92,8 +92,8 @@ export function AnimatedBackground({
         }}
       />
 
-      {/* Bottom fade */}
-      <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-white to-transparent" />
+      {/* Bottom fade — dark for hero, white for sections */}
+      <div className={`absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t ${variant === "hero" ? "from-[#050505]" : "from-white"} to-transparent`} />
     </div>
   );
 }
