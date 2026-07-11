@@ -260,14 +260,14 @@ function PlanPrice({ plan }: { plan: Plan }) {
   const num = parseInt(plan.price.replace(/[^0-9]/g, ""), 10);
   return (
     <div className="flex items-baseline gap-1">
-      <span className="font-heading text-2xl font-semibold text-white/70">
+      <span className="font-heading text-2xl font-semibold text-[#1a1a1a]/70">
         $
       </span>
       <CountUp
         key={plan.price}
         value={num}
         duration={1400}
-        className="font-heading text-5xl font-semibold tracking-tight text-white"
+        className="font-heading text-5xl font-semibold tracking-tight text-[#1a1a1a]"
       />
     </div>
   );
@@ -285,7 +285,7 @@ function CtaButton({
       <motion.button
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
-        className="group relative inline-flex w-full items-center justify-center gap-2 overflow-hidden rounded-full bg-[linear-gradient(120deg,#3b82f6,#8b5cf6,#06b6d4)] px-6 py-3 text-sm font-semibold text-white shadow-[0_0_30px_-6px_rgba(59,130,246,0.7)] transition-shadow hover:shadow-[0_0_45px_-4px_rgba(139,92,246,0.85)]"
+        className="group relative inline-flex w-full items-center justify-center gap-2 overflow-hidden rounded-full bg-[linear-gradient(120deg,#3b82f6,#8b5cf6,#06b6d4)] px-6 py-3 text-sm font-semibold text-[#1a1a1a] shadow-[0_0_30px_-6px_rgba(59,130,246,0.7)] transition-shadow hover:shadow-[0_0_45px_-4px_rgba(139,92,246,0.85)]"
       >
         <span className="absolute inset-0 -translate-x-full bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.25),transparent)] transition-transform duration-700 group-hover:translate-x-full" />
         <Rocket className="h-4 w-4" />
@@ -297,7 +297,7 @@ function CtaButton({
     <motion.button
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
-      className="group inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-white backdrop-blur transition-colors hover:border-white/30 hover:bg-white/10"
+      className="group inline-flex w-full items-center justify-center gap-2 rounded-full border border-black/15 bg-black/5 px-6 py-3 text-sm font-semibold text-[#1a1a1a] backdrop-blur transition-colors hover:border-black/30 hover:bg-black/10"
     >
       <span>{children}</span>
       <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
@@ -313,7 +313,7 @@ function PricingCard({ plan, delay }: { plan: Plan; delay: number }) {
           key={i}
           className={cn(
             "flex items-start gap-3 text-sm",
-            f.included ? "text-white/70" : "text-white/25"
+            f.included ? "text-[#1a1a1a]/70" : "text-[#1a1a1a]/25"
           )}
         >
           <span
@@ -321,13 +321,13 @@ function PricingCard({ plan, delay }: { plan: Plan; delay: number }) {
               "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full ring-1",
               f.included
                 ? "bg-emerald-400/15 ring-emerald-400/30"
-                : "bg-white/5 ring-white/10"
+                : "bg-black/5 ring-white/10"
             )}
           >
             {f.included ? (
               <Check className="h-3 w-3 text-emerald-400" />
             ) : (
-              <X className="h-3 w-3 text-white/30" />
+              <X className="h-3 w-3 text-[#1a1a1a]/30" />
             )}
           </span>
           <span className={cn("leading-relaxed", !f.included && "line-through")}>
@@ -340,17 +340,17 @@ function PricingCard({ plan, delay }: { plan: Plan; delay: number }) {
 
   const header = (
     <div className="flex flex-col gap-2">
-      <h3 className="font-heading text-xl font-semibold text-white">
+      <h3 className="font-heading text-xl font-semibold text-[#1a1a1a]">
         {plan.name}
       </h3>
-      <p className="text-sm leading-relaxed text-white/50">{plan.tagline}</p>
+      <p className="text-sm leading-relaxed text-[#1a1a1a]/50">{plan.tagline}</p>
     </div>
   );
 
   const priceBlock = (
     <div className="flex flex-col gap-1">
       <PlanPrice plan={plan} />
-      <span className="text-xs font-medium text-white/40">{plan.period}</span>
+      <span className="text-xs font-medium text-[#1a1a1a]/40">{plan.period}</span>
     </div>
   );
 
@@ -426,7 +426,7 @@ function PricingCard({ plan, delay }: { plan: Plan; delay: number }) {
     <Reveal delay={delay} className="h-full">
       <GlassCard
         strong
-        className="group relative flex h-full flex-col rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 hover:border-white/20 hover:shadow-[0_20px_60px_-20px_rgba(59,130,246,0.35)] md:p-8"
+        className="group relative flex h-full flex-col rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 hover:border-black/20 hover:shadow-[0_20px_60px_-20px_rgba(59,130,246,0.35)] md:p-8"
       >
         <div className="flex flex-1 flex-col gap-6">
           {header}
@@ -456,19 +456,19 @@ function FaqList() {
         <Reveal key={faq.q} delay={Math.min(i * 0.04, 0.36)} className="block">
           <AccordionItem
             value={`faq-${i}`}
-            className="glass-strong group rounded-2xl border border-white/10 px-5 transition-colors duration-300 data-[state=open]:border-electric/30 sm:px-6"
+            className="glass-strong group rounded-2xl border border-black/10 px-5 transition-colors duration-300 data-[state=open]:border-electric/30 sm:px-6"
           >
             <AccordionTrigger
-              className="group/trigger hover:no-underline py-5 text-left text-base font-medium text-white/90 [&>svg:last-child]:hidden"
+              className="group/trigger hover:no-underline py-5 text-left text-base font-medium text-[#1a1a1a]/90 [&>svg:last-child]:hidden"
             >
-              <span className="flex-1 pr-4 font-heading text-[15px] font-semibold leading-snug text-white sm:text-base">
+              <span className="flex-1 pr-4 font-heading text-[15px] font-semibold leading-snug text-[#1a1a1a] sm:text-base">
                 {faq.q}
               </span>
-              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/5 transition-all duration-300 group-data-[state=open]:border-electric/40 group-data-[state=open]:bg-electric/10">
-                <ChevronDown className="h-4 w-4 text-white/60 transition-all duration-300 group-data-[state=open]:rotate-180 group-data-[state=open]:text-electric" />
+              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-black/10 bg-black/5 transition-all duration-300 group-data-[state=open]:border-electric/40 group-data-[state=open]:bg-electric/10">
+                <ChevronDown className="h-4 w-4 text-[#1a1a1a]/60 transition-all duration-300 group-data-[state=open]:rotate-180 group-data-[state=open]:text-electric" />
               </span>
             </AccordionTrigger>
-            <AccordionContent className="text-sm leading-relaxed text-white/55 sm:text-[15px]">
+            <AccordionContent className="text-sm leading-relaxed text-[#1a1a1a]/55 sm:text-[15px]">
               <span className="block pr-12 pb-5">{faq.a}</span>
             </AccordionContent>
           </AccordionItem>
@@ -496,22 +496,22 @@ function InfoCard({
   return (
     <GlassCard
       strong
-      className="group rounded-2xl p-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-white/20"
+      className="group rounded-2xl p-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-black/20"
     >
       <div className="flex flex-col gap-3">
         <div
           className={cn(
-            "flex h-9 w-9 items-center justify-center rounded-lg bg-white/5 ring-1 ring-white/10 transition-colors",
+            "flex h-9 w-9 items-center justify-center rounded-lg bg-black/5 ring-1 ring-white/10 transition-colors",
             iconTint
           )}
         >
           <Icon className="h-4 w-4" />
         </div>
         <div>
-          <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-white/40">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[#1a1a1a]/40">
             {label}
           </p>
-          <div className="mt-1 text-sm font-medium text-white leading-relaxed">
+          <div className="mt-1 text-sm font-medium text-[#1a1a1a] leading-relaxed">
             {children}
           </div>
         </div>
@@ -572,7 +572,7 @@ function StylizedMap() {
           </div>
           {/* label */}
           <div className="mt-2 rounded-full border border-electric/40 bg-black/70 px-3 py-1 backdrop-blur">
-            <span className="text-xs font-semibold tracking-wide text-white">
+            <span className="text-xs font-semibold tracking-wide text-[#1a1a1a]">
               Albany, NY
             </span>
           </div>
@@ -580,15 +580,15 @@ function StylizedMap() {
       </div>
 
       {/* corner badges */}
-      <div className="absolute left-4 top-4 flex items-center gap-1.5 rounded-full border border-white/10 bg-black/60 px-3 py-1 backdrop-blur">
+      <div className="absolute left-4 top-4 flex items-center gap-1.5 rounded-full border border-black/10 bg-black/60 px-3 py-1 backdrop-blur">
         <span className="relative flex h-2 w-2">
           <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-60" />
           <span className="relative inline-flex h-2 w-2 rounded-full bg-green-400" />
         </span>
-        <span className="text-[11px] font-medium text-white/80">HQ · Albany</span>
+        <span className="text-[11px] font-medium text-[#1a1a1a]/80">HQ · Albany</span>
       </div>
-      <div className="absolute bottom-4 right-4 rounded-full border border-white/10 bg-black/60 px-3 py-1 backdrop-blur">
-        <span className="text-[11px] font-medium text-white/60 tnum">
+      <div className="absolute bottom-4 right-4 rounded-full border border-black/10 bg-black/60 px-3 py-1 backdrop-blur">
+        <span className="text-[11px] font-medium text-[#1a1a1a]/60 tnum">
           42.6526° N, 73.7562° W
         </span>
       </div>
@@ -622,10 +622,10 @@ function ContactSection() {
                   <MessageSquare className="h-5 w-5 text-electric" />
                 </div>
                 <div>
-                  <h3 className="font-heading text-lg font-semibold text-white">
+                  <h3 className="font-heading text-lg font-semibold text-[#1a1a1a]">
                     Send us a message
                   </h3>
-                  <p className="text-sm text-white/50">
+                  <p className="text-sm text-[#1a1a1a]/50">
                     We&apos;ll get back to you within 24 hours.
                   </p>
                 </div>
@@ -637,51 +637,51 @@ function ContactSection() {
               >
                 <div className="grid gap-4 sm:grid-cols-2">
                   <div className="flex flex-col gap-1.5">
-                    <Label htmlFor="name" className="text-white/70">
+                    <Label htmlFor="name" className="text-[#1a1a1a]/70">
                       Name
                     </Label>
                     <Input
                       id="name"
                       placeholder="Jane Cooper"
-                      className="h-11 rounded-lg border-white/10 bg-white/5 text-white placeholder:text-white/40 focus-visible:border-electric/50 focus-visible:ring-electric/20"
+                      className="h-11 rounded-lg border-black/10 bg-black/5 text-[#1a1a1a] placeholder:text-[#1a1a1a]/40 focus-visible:border-electric/50 focus-visible:ring-electric/20"
                     />
                   </div>
                   <div className="flex flex-col gap-1.5">
-                    <Label htmlFor="email" className="text-white/70">
+                    <Label htmlFor="email" className="text-[#1a1a1a]/70">
                       Email
                     </Label>
                     <Input
                       id="email"
                       type="email"
                       placeholder="jane@brokerage.com"
-                      className="h-11 rounded-lg border-white/10 bg-white/5 text-white placeholder:text-white/40 focus-visible:border-electric/50 focus-visible:ring-electric/20"
+                      className="h-11 rounded-lg border-black/10 bg-black/5 text-[#1a1a1a] placeholder:text-[#1a1a1a]/40 focus-visible:border-electric/50 focus-visible:ring-electric/20"
                     />
                   </div>
                 </div>
                 <div className="flex flex-col gap-1.5">
-                  <Label htmlFor="phone" className="text-white/70">
+                  <Label htmlFor="phone" className="text-[#1a1a1a]/70">
                     Phone
                   </Label>
                   <Input
                     id="phone"
                     type="tel"
                     placeholder="(320) 331-0910"
-                    className="h-11 rounded-lg border-white/10 bg-white/5 text-white placeholder:text-white/40 focus-visible:border-electric/50 focus-visible:ring-electric/20"
+                    className="h-11 rounded-lg border-black/10 bg-black/5 text-[#1a1a1a] placeholder:text-[#1a1a1a]/40 focus-visible:border-electric/50 focus-visible:ring-electric/20"
                   />
                 </div>
                 <div className="flex flex-1 flex-col gap-1.5">
-                  <Label htmlFor="message" className="text-white/70">
+                  <Label htmlFor="message" className="text-[#1a1a1a]/70">
                     Message
                   </Label>
                   <Textarea
                     id="message"
                     placeholder="Tell us about your goals and the counties you cover..."
-                    className="min-h-32 flex-1 resize-none rounded-lg border-white/10 bg-white/5 text-white placeholder:text-white/40 focus-visible:border-electric/50 focus-visible:ring-electric/20"
+                    className="min-h-32 flex-1 resize-none rounded-lg border-black/10 bg-black/5 text-[#1a1a1a] placeholder:text-[#1a1a1a]/40 focus-visible:border-electric/50 focus-visible:ring-electric/20"
                   />
                 </div>
                 <Button
                   type="submit"
-                  className="group relative h-11 w-full items-center justify-center gap-2 overflow-hidden rounded-full bg-[linear-gradient(120deg,#3b82f6,#8b5cf6,#06b6d4)] px-6 text-sm font-semibold text-white shadow-[0_0_30px_-6px_rgba(59,130,246,0.7)] transition-shadow hover:shadow-[0_0_45px_-4px_rgba(139,92,246,0.85)]"
+                  className="group relative h-11 w-full items-center justify-center gap-2 overflow-hidden rounded-full bg-[linear-gradient(120deg,#3b82f6,#8b5cf6,#06b6d4)] px-6 text-sm font-semibold text-[#1a1a1a] shadow-[0_0_30px_-6px_rgba(59,130,246,0.7)] transition-shadow hover:shadow-[0_0_45px_-4px_rgba(139,92,246,0.85)]"
                 >
                   <span className="absolute inset-0 -translate-x-full bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.25),transparent)] transition-transform duration-700 group-hover:translate-x-full" />
                   <Send className="relative h-4 w-4" />
@@ -754,7 +754,7 @@ function ContactSection() {
 function CtaBanner() {
   return (
     <section className="relative w-full px-5 py-12 sm:px-8 md:py-16">
-      <div className="relative mx-auto w-full max-w-7xl overflow-hidden rounded-3xl border border-white/10">
+      <div className="relative mx-auto w-full max-w-7xl overflow-hidden rounded-3xl border border-black/10">
         {/* animated gradient background */}
         <div className="absolute inset-0 bg-[linear-gradient(120deg,#3b82f6_0%,#8b5cf6_45%,#06b6d4_100%,#3b82f6_150%)] animate-gradient-x" />
         {/* moving grid overlay */}
@@ -785,7 +785,7 @@ function CtaBanner() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-1.5 text-xs font-medium tracking-wide text-white backdrop-blur"
+            className="inline-flex items-center gap-2 rounded-full border border-black/25 bg-black/10 px-4 py-1.5 text-xs font-medium tracking-wide text-[#1a1a1a] backdrop-blur"
           >
             <Sparkles className="h-3.5 w-3.5" />
             Ready to scale?
@@ -796,7 +796,7 @@ function CtaBanner() {
             whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             viewport={{ once: true, margin: "-10% 0px" }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="font-heading text-4xl font-semibold leading-[1.05] tracking-tight text-white text-glow sm:text-5xl md:text-6xl"
+            className="font-heading text-4xl font-semibold leading-[1.05] tracking-tight text-[#1a1a1a] text-glow sm:text-5xl md:text-6xl"
           >
             Ready to grow your business?
           </motion.h2>
@@ -806,7 +806,7 @@ function CtaBanner() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="max-w-xl text-base leading-relaxed text-white/85 sm:text-lg"
+            className="max-w-xl text-base leading-relaxed text-[#1a1a1a]/85 sm:text-lg"
           >
             Join thousands of real estate professionals who trust Opus Global Solution for verified outreach, dedicated VAs, and documented workflows.
           </motion.p>
@@ -822,7 +822,7 @@ function CtaBanner() {
             <motion.button
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.97 }}
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-white/50 bg-white/10 px-7 py-3.5 text-sm font-semibold text-white backdrop-blur transition-all hover:bg-white/20 hover:shadow-[0_0_35px_-6px_rgba(255,255,255,0.6)]"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-white/50 bg-black/10 px-7 py-3.5 text-sm font-semibold text-[#1a1a1a] backdrop-blur transition-all hover:bg-white/20 hover:shadow-[0_0_35px_-6px_rgba(255,255,255,0.6)]"
             >
               <Calendar className="h-4 w-4" />
               Book Demo
@@ -831,7 +831,7 @@ function CtaBanner() {
             <motion.button
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.97 }}
-              className="group inline-flex items-center justify-center gap-2 rounded-full bg-[#050505] px-7 py-3.5 text-sm font-semibold text-white shadow-[0_0_35px_-6px_rgba(0,0,0,0.8)] ring-1 ring-white/10 transition-all hover:shadow-[0_0_50px_-4px_rgba(255,255,255,0.5)]"
+              className="group inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-semibold text-[#1a1a1a] shadow-[0_0_35px_-6px_rgba(0,0,0,0.8)] ring-1 ring-white/10 transition-all hover:shadow-[0_0_50px_-4px_rgba(255,255,255,0.5)]"
             >
               <Rocket className="h-4 w-4 text-electric" />
               Start Free Trial
@@ -839,7 +839,7 @@ function CtaBanner() {
             </motion.button>
           </motion.div>
 
-          <p className="text-xs text-white/60">
+          <p className="text-xs text-[#1a1a1a]/60">
             14-day free trial · No credit card required · Cancel anytime
           </p>
         </div>
@@ -862,7 +862,7 @@ function LogoMark() {
 
 function Footer() {
   return (
-    <footer className="relative w-full bg-[#070709]">
+    <footer className="relative w-full bg-[#f8f9fa]">
       {/* gradient divider at top */}
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-electric via-violet to-cyan" />
       {/* faint top glow */}
@@ -874,7 +874,7 @@ function Footer() {
           {/* left: logo + tagline + socials */}
           <div className="flex flex-col gap-6">
             <LogoMark />
-            <p className="max-w-sm text-sm leading-relaxed text-white/55">
+            <p className="max-w-sm text-sm leading-relaxed text-[#1a1a1a]/55">
               Your trusted partner for marketing consulting, outreach
               support, and CRM solutions. Human-verified outreach, dedicated
               virtual assistants, and documented workflows for licensed real
@@ -886,7 +886,7 @@ function Footer() {
                   key={label}
                   href={href}
                   aria-label={label}
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/60 transition-all hover:-translate-y-0.5 hover:border-electric/40 hover:bg-electric/10 hover:text-white"
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-black/10 bg-black/5 text-[#1a1a1a]/60 transition-all hover:-translate-y-0.5 hover:border-electric/40 hover:bg-electric/10 hover:text-[#1a1a1a]"
                 >
                   <Icon className="h-4 w-4" />
                 </a>
@@ -897,10 +897,10 @@ function Footer() {
           {/* right: newsletter */}
           <div className="flex flex-col gap-4 lg:items-end lg:text-right">
             <div className="lg:max-w-sm">
-              <h3 className="font-heading text-lg font-semibold text-white">
+              <h3 className="font-heading text-lg font-semibold text-[#1a1a1a]">
                 Stay ahead of the market
               </h3>
-              <p className="mt-1.5 text-sm text-white/50">
+              <p className="mt-1.5 text-sm text-[#1a1a1a]/50">
                 Weekly insights on outreach and prospecting.
               </p>
             </div>
@@ -912,32 +912,32 @@ function Footer() {
                 type="email"
                 placeholder="you@brokerage.com"
                 aria-label="Email address"
-                className="w-full flex-1 rounded-full border border-white/10 bg-white/5 px-5 py-3 text-sm text-white placeholder:text-white/40 outline-none transition-colors focus:border-electric/50 focus:bg-white/10"
+                className="w-full flex-1 rounded-full border border-black/10 bg-black/5 px-5 py-3 text-sm text-[#1a1a1a] placeholder:text-[#1a1a1a]/40 outline-none transition-colors focus:border-electric/50 focus:bg-black/10"
               />
               <motion.button
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
                 type="submit"
-                className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-[linear-gradient(120deg,#3b82f6,#8b5cf6)] px-5 py-3 text-sm font-semibold text-white shadow-[0_0_25px_-8px_rgba(59,130,246,0.8)] transition-shadow hover:shadow-[0_0_35px_-6px_rgba(139,92,246,0.85)]"
+                className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-[linear-gradient(120deg,#3b82f6,#8b5cf6)] px-5 py-3 text-sm font-semibold text-[#1a1a1a] shadow-[0_0_25px_-8px_rgba(59,130,246,0.8)] transition-shadow hover:shadow-[0_0_35px_-6px_rgba(139,92,246,0.85)]"
               >
                 <Send className="h-4 w-4" />
                 Subscribe
               </motion.button>
             </form>
-            <p className="text-xs text-white/35 lg:max-w-sm lg:text-right">
+            <p className="text-xs text-[#1a1a1a]/35 lg:max-w-sm lg:text-right">
               We respect your inbox. Unsubscribe with one click.
             </p>
           </div>
         </div>
 
         {/* ---------- divider ---------- */}
-        <div className="my-12 h-px w-full bg-white/8 md:my-14" />
+        <div className="my-12 h-px w-full bg-black/5 md:my-14" />
 
         {/* ---------- link columns ---------- */}
         <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 md:grid-cols-5">
           {FOOTER_COLUMNS.map((col) => (
             <div key={col.title} className="flex flex-col gap-3.5">
-              <h4 className="font-heading text-sm font-semibold tracking-wide text-white">
+              <h4 className="font-heading text-sm font-semibold tracking-wide text-[#1a1a1a]">
                 {col.title}
               </h4>
               <ul className="flex flex-col gap-2.5">
@@ -945,7 +945,7 @@ function Footer() {
                   <li key={link.label}>
                     <a
                       href={link.href}
-                      className="text-sm text-white/55 transition-colors hover:text-white"
+                      className="text-sm text-[#1a1a1a]/55 transition-colors hover:text-[#1a1a1a]"
                     >
                       {link.label}
                     </a>
@@ -957,16 +957,16 @@ function Footer() {
         </div>
 
         {/* ---------- bottom bar ---------- */}
-        <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-white/8 pt-8 md:flex-row">
-          <p className="text-xs text-white/45">
+        <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-black/8 pt-8 md:flex-row">
+          <p className="text-xs text-[#1a1a1a]/45">
             © 2025 Opus Global Solution. All rights reserved.
           </p>
           <div className="flex flex-col items-center gap-4 sm:flex-row sm:gap-6">
-            <span className="inline-flex items-center gap-1.5 text-xs text-white/45">
+            <span className="inline-flex items-center gap-1.5 text-xs text-[#1a1a1a]/45">
               <ShieldCheck className="h-3.5 w-3.5 text-electric/70" />
               Made with care
             </span>
-            <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/60">
+            <span className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-black/5 px-3 py-1 text-xs text-[#1a1a1a]/60">
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-60" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-green-400" />
@@ -998,13 +998,13 @@ export default function PricingFaqCtaFooter() {
         {/* plan-cadence note (replaces monthly/annual toggle) */}
         <Reveal delay={0.1}>
           <div className="mt-10 flex justify-center">
-            <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 backdrop-blur">
+            <div className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-black/5 px-4 py-2 backdrop-blur">
               <Calendar className="h-3.5 w-3.5 text-electric" />
-              <span className="text-sm font-medium text-white/70">
+              <span className="text-sm font-medium text-[#1a1a1a]/70">
                 One-time setup
               </span>
-              <span className="text-white/20">·</span>
-              <span className="text-sm font-medium text-white">
+              <span className="text-[#1a1a1a]/20">·</span>
+              <span className="text-sm font-medium text-[#1a1a1a]">
                 30-day or 365-day plans
               </span>
             </div>
@@ -1024,7 +1024,7 @@ export default function PricingFaqCtaFooter() {
 
         {/* disclaimer */}
         <Reveal delay={0.3}>
-          <p className="mx-auto mt-10 max-w-3xl text-center text-xs leading-relaxed text-white/40">
+          <p className="mx-auto mt-10 max-w-3xl text-center text-xs leading-relaxed text-[#1a1a1a]/40">
             Opus Global Solution is a marketing consulting and support company. We do
             not act as a brokerage, list or sell property, or resell leads.
             Referral fees apply on successful closings.
@@ -1048,18 +1048,18 @@ export default function PricingFaqCtaFooter() {
 
         {/* contact prompt */}
         <Reveal delay={0.2}>
-          <div className="mx-auto mt-10 flex max-w-3xl flex-col items-center gap-3 rounded-2xl border border-white/8 bg-white/[0.02] px-6 py-6 text-center sm:flex-row sm:justify-between sm:text-left">
+          <div className="mx-auto mt-10 flex max-w-3xl flex-col items-center gap-3 rounded-2xl border border-black/8 bg-white/[0.02] px-6 py-6 text-center sm:flex-row sm:justify-between sm:text-left">
             <div>
-              <p className="font-heading text-base font-semibold text-white">
+              <p className="font-heading text-base font-semibold text-[#1a1a1a]">
                 Still have questions?
               </p>
-              <p className="text-sm text-white/50">
+              <p className="text-sm text-[#1a1a1a]/50">
                 Our team replies within a few hours, 7 days a week.
               </p>
             </div>
             <a
               href="#contact"
-              className="inline-flex shrink-0 items-center gap-2 rounded-full border border-white/15 bg-white/5 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:border-white/30 hover:bg-white/10"
+              className="inline-flex shrink-0 items-center gap-2 rounded-full border border-black/15 bg-black/5 px-5 py-2.5 text-sm font-semibold text-[#1a1a1a] transition-colors hover:border-black/30 hover:bg-black/10"
             >
               Contact support
               <ArrowRight className="h-4 w-4" />

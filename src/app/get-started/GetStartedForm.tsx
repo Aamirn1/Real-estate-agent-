@@ -73,7 +73,7 @@ export function GetStartedForm() {
           transition={{ type: "spring", stiffness: 200, damping: 14 }}
           className="relative mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-emerald-400 to-electric"
         >
-          <CheckCircle2 className="h-8 w-8 text-white" />
+          <CheckCircle2 className="h-8 w-8 text-[#1a1a1a]" />
         </motion.div>
         <h2 className="relative mt-6 text-center font-heading text-2xl font-semibold text-[#1E293B]">
           Thank you!
@@ -84,7 +84,7 @@ export function GetStartedForm() {
         </p>
         <a
           href="/"
-          className="relative mt-6 flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-electric to-violet py-3 text-sm font-semibold text-white shadow-[0_0_24px_-6px_rgba(37,99,235,0.3)] transition-all hover:shadow-[0_0_32px_-4px_rgba(56,189,248,0.4)]"
+          className="relative mt-6 flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-electric to-violet py-3 text-sm font-semibold text-[#1a1a1a] shadow-[0_0_24px_-6px_rgba(37,99,235,0.3)] transition-all hover:shadow-[0_0_32px_-4px_rgba(56,189,248,0.4)]"
         >
           Back to Home
           <ArrowRight className="h-4 w-4" />
@@ -170,7 +170,7 @@ export function GetStartedForm() {
                           }`}
                         >
                           <span className={`flex h-4 w-4 shrink-0 items-center justify-center rounded border ${selected ? "border-electric bg-electric" : "border-[#E2E8F0]"}`}>
-                            {selected && <Check className="h-3 w-3 text-white" />}
+                            {selected && <Check className="h-3 w-3 text-[#1a1a1a]" />}
                           </span>
                           {s}
                         </button>
@@ -230,7 +230,7 @@ export function GetStartedForm() {
                           }`}
                         >
                           <span className={`flex h-4 w-4 shrink-0 items-center justify-center rounded-full border ${selected ? "border-violet bg-violet" : "border-[#E2E8F0]"}`}>
-                            {selected && <Check className="h-3 w-3 text-white" />}
+                            {selected && <Check className="h-3 w-3 text-[#1a1a1a]" />}
                           </span>
                           {p}
                         </button>
@@ -257,7 +257,7 @@ export function GetStartedForm() {
 
           <button
             type="submit"
-            className="group relative flex w-full items-center justify-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-electric to-violet py-3.5 text-sm font-semibold text-white shadow-[0_0_24px_-6px_rgba(37,99,235,0.3)] transition-all hover:shadow-[0_0_32px_-4px_rgba(56,189,248,0.4)]"
+            className="group relative flex w-full items-center justify-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-electric to-violet py-3.5 text-sm font-semibold text-[#1a1a1a] shadow-[0_0_24px_-6px_rgba(37,99,235,0.3)] transition-all hover:shadow-[0_0_32px_-4px_rgba(56,189,248,0.4)]"
           >
             <span className="relative z-10">Submit Request</span>
             <ArrowRight className="relative z-10 h-4 w-4 transition-transform group-hover:translate-x-0.5" />

@@ -76,7 +76,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className="dark">
       <body
-        className={`${spaceGrotesk.variable} ${inter.variable} font-body antialiased bg-ink text-white selection:bg-electric/30 selection:text-white overflow-x-hidden`}
+        className={`${spaceGrotesk.variable} ${inter.variable} font-body antialiased bg-ink text-[#1a1a1a] selection:bg-electric/30 selection:text-[#1a1a1a] overflow-x-hidden`}
       >
         {children}
         <Toaster />

@@ -224,7 +224,7 @@ export default function BlogPage() {
                 >
                   <GlassCard
                     sheen
-                    className={`flex h-full flex-col overflow-hidden border border-white/8 transition-colors duration-300 ${c.hoverBorder}`}
+                    className={`flex h-full flex-col overflow-hidden border border-black/8 transition-colors duration-300 ${c.hoverBorder}`}
                   >
                     {/* ---------------- Thumbnail ---------------- */}
                     <div
@@ -257,9 +257,9 @@ export default function BlogPage() {
                           initial={false}
                           whileHover={{ scale: 1.08 }}
                           transition={{ type: "spring", stiffness: 300, damping: 18 }}
-                          className={`grid h-16 w-16 place-items-center rounded-2xl border border-white/25 bg-white/10 backdrop-blur-md ${c.ring} ring-1`}
+                          className={`grid h-16 w-16 place-items-center rounded-2xl border border-black/25 bg-black/10 backdrop-blur-md ${c.ring} ring-1`}
                         >
-                          <Icon className="h-8 w-8 text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.45)]" />
+                          <Icon className="h-8 w-8 text-[#1a1a1a] drop-shadow-[0_0_10px_rgba(255,255,255,0.45)]" />
                         </motion.div>
                       </div>
 
@@ -279,25 +279,25 @@ export default function BlogPage() {
                     {/* ---------------- Body ---------------- */}
                     <div className="flex flex-1 flex-col p-5 sm:p-6">
                       <h3
-                        className={`font-heading text-lg font-semibold leading-snug text-white transition-colors duration-300 ${c.hoverTitle}`}
+                        className={`font-heading text-lg font-semibold leading-snug text-[#1a1a1a] transition-colors duration-300 ${c.hoverTitle}`}
                       >
                         {post.title}
                       </h3>
-                      <p className="mt-3 text-sm leading-relaxed text-white/55 line-clamp-3">
+                      <p className="mt-3 text-sm leading-relaxed text-[#1a1a1a]/55 line-clamp-3">
                         {post.excerpt}
                       </p>
 
                       {/* footer row */}
-                      <div className="mt-5 flex items-center justify-between border-t border-white/8 pt-4">
-                        <div className="flex items-center gap-2 text-xs text-white/45">
+                      <div className="mt-5 flex items-center justify-between border-t border-black/8 pt-4">
+                        <div className="flex items-center gap-2 text-xs text-[#1a1a1a]/45">
                           <Calendar className="h-3.5 w-3.5" />
                           <span className="tnum">{post.date}</span>
-                          <span className="text-white/20">·</span>
+                          <span className="text-[#1a1a1a]/20">·</span>
                           <Clock className="h-3.5 w-3.5" />
                           <span>{post.readTime}</span>
                         </div>
                         <span
-                          className={`inline-flex items-center gap-1 text-xs font-semibold text-white/70 transition-colors duration-300 ${c.hoverArrow}`}
+                          className={`inline-flex items-center gap-1 text-xs font-semibold text-[#1a1a1a]/70 transition-colors duration-300 ${c.hoverArrow}`}
                         >
                           Read more
                           <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
@@ -318,13 +318,13 @@ export default function BlogPage() {
             whileHover={{ y: -2 }}
             whileTap={{ scale: 0.98 }}
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            className="group inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-7 py-3.5 text-sm font-semibold text-white/80 backdrop-blur transition-colors hover:border-electric/40 hover:text-white hover:shadow-[0_0_32px_-8px_rgba(59,130,246,0.55)]"
+            className="group inline-flex items-center gap-2 rounded-xl border border-black/15 bg-black/5 px-7 py-3.5 text-sm font-semibold text-[#1a1a1a]/80 backdrop-blur transition-colors hover:border-electric/40 hover:text-[#1a1a1a] hover:shadow-[0_0_32px_-8px_rgba(59,130,246,0.55)]"
           >
             Load More Articles
             <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
           </motion.button>
 
-          <p className="max-w-2xl text-center text-xs leading-relaxed text-white/35">
+          <p className="max-w-2xl text-center text-xs leading-relaxed text-[#1a1a1a]/35">
             Opus Global Solution is a marketing consulting and support company. We do
             not act as a brokerage, list or sell property, or resell leads.
           </p>

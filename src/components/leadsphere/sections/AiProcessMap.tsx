@@ -196,10 +196,10 @@ function AiOrb() {
             }}
           />
           {/* Inner rings */}
-          <div className="absolute inset-5 rounded-full border border-white/20" />
-          <div className="absolute inset-10 rounded-full border border-white/10" />
+          <div className="absolute inset-5 rounded-full border border-black/20" />
+          <div className="absolute inset-10 rounded-full border border-black/10" />
           {/* Center sparkle */}
-          <Sparkles className="relative h-7 w-7 text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.8)]" />
+          <Sparkles className="relative h-7 w-7 text-[#1a1a1a] drop-shadow-[0_0_10px_rgba(255,255,255,0.8)]" />
         </div>
 
         {/* Floating "Live" badge */}
@@ -218,7 +218,7 @@ function AiOrb() {
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan opacity-75" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-cyan" />
             </span>
-            <span className="text-[11px] font-medium tracking-wide text-white/70">
+            <span className="text-[11px] font-medium tracking-wide text-[#1a1a1a]/70">
               Live · 1,247 leads
             </span>
           </GlassCard>
@@ -256,12 +256,12 @@ function AiAssistantSection() {
             <Reveal key={f.label} delay={i * 0.05} className="h-full">
               <GlassCard
                 sheen
-                className="group flex h-full items-center gap-3 p-3 transition-all duration-300 hover:border-white/20 hover:shadow-[0_0_34px_-10px_rgba(59,130,246,0.55)] sm:p-4"
+                className="group flex h-full items-center gap-3 p-3 transition-all duration-300 hover:border-black/20 hover:shadow-[0_0_34px_-10px_rgba(59,130,246,0.55)] sm:p-4"
               >
                 <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-electric/25 to-violet/25 text-cyan transition-transform duration-300 group-hover:scale-110">
                   <f.icon className="h-4 w-4" />
                 </div>
-                <span className="text-xs font-medium leading-tight text-white/80 sm:text-sm">
+                <span className="text-xs font-medium leading-tight text-[#1a1a1a]/80 sm:text-sm">
                   {f.label}
                 </span>
               </GlassCard>
@@ -308,7 +308,7 @@ function StepNumber({ n }: { n: number }) {
   return (
     <div className="relative flex h-14 w-14 items-center justify-center">
       <span className="absolute inset-0 rounded-full bg-gradient-to-br from-electric via-violet to-cyan opacity-60 blur-md" />
-      <span className="relative flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-electric via-violet to-cyan font-heading text-lg font-semibold text-white shadow-[0_0_30px_-6px_rgba(139,92,246,0.75)]">
+      <span className="relative flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-electric via-violet to-cyan font-heading text-lg font-semibold text-[#1a1a1a] shadow-[0_0_30px_-6px_rgba(139,92,246,0.75)]">
         {n}
       </span>
     </div>
@@ -368,7 +368,7 @@ function ProcessTimelineSection() {
                   <h3 className="font-heading text-sm font-semibold sm:text-base">
                     {s.title}
                   </h3>
-                  <p className="mt-2 text-xs leading-relaxed text-white/55">
+                  <p className="mt-2 text-xs leading-relaxed text-[#1a1a1a]/55">
                     {s.desc}
                   </p>
                 </GlassCard>
@@ -416,7 +416,7 @@ function ProcessTimelineSection() {
                       {s.title}
                     </h3>
                   </div>
-                  <p className="mt-1.5 text-xs leading-relaxed text-white/55">
+                  <p className="mt-1.5 text-xs leading-relaxed text-[#1a1a1a]/55">
                     {s.desc}
                   </p>
                 </GlassCard>
@@ -522,7 +522,7 @@ function InteractiveMapSection() {
           >
             <div className="flex flex-col md:flex-row">
               {/* ---------- Sidebar ---------- */}
-              <aside className="flex w-full shrink-0 flex-col gap-4 border-b border-white/10 p-4 md:w-60 md:border-b-0 md:border-r">
+              <aside className="flex w-full shrink-0 flex-col gap-4 border-b border-black/10 p-4 md:w-60 md:border-b-0 md:border-r">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <Layers className="h-4 w-4 text-cyan" />
@@ -530,19 +530,19 @@ function InteractiveMapSection() {
                       Filters
                     </span>
                   </div>
-                  <span className="rounded-full bg-white/5 px-2 py-0.5 text-[10px] text-white/55">
+                  <span className="rounded-full bg-black/5 px-2 py-0.5 text-[10px] text-[#1a1a1a]/55">
                     1,247 active
                   </span>
                 </div>
 
                 {/* Search */}
                 <div className="relative">
-                  <Search className="pointer-events-none absolute left-2.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-white/40" />
+                  <Search className="pointer-events-none absolute left-2.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-[#1a1a1a]/40" />
                   <input
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
                     placeholder="Search address…"
-                    className="w-full rounded-lg border border-white/10 bg-white/5 py-2 pl-8 pr-3 text-xs text-white/80 outline-none transition placeholder:text-white/35 focus:border-electric/50 focus:bg-white/8"
+                    className="w-full rounded-lg border border-black/10 bg-black/5 py-2 pl-8 pr-3 text-xs text-[#1a1a1a]/80 outline-none transition placeholder:text-[#1a1a1a]/35 focus:border-electric/50 focus:bg-black/5"
                   />
                 </div>
 
@@ -557,8 +557,8 @@ function InteractiveMapSection() {
                         className={[
                           "group flex items-center justify-between rounded-lg px-3 py-2 text-left text-xs transition-all duration-200",
                           isActive
-                            ? "bg-gradient-to-r from-electric/25 to-violet/20 text-white shadow-[0_0_24px_-10px_rgba(59,130,246,0.7)] ring-1 ring-inset ring-white/15"
-                            : "text-white/60 hover:bg-white/5 hover:text-white/85",
+                            ? "bg-gradient-to-r from-electric/25 to-violet/20 text-[#1a1a1a] shadow-[0_0_24px_-10px_rgba(59,130,246,0.7)] ring-1 ring-inset ring-white/15"
+                            : "text-[#1a1a1a]/60 hover:bg-black/5 hover:text-[#1a1a1a]/85",
                         ].join(" ")}
                       >
                         <span className="flex items-center gap-2">
@@ -575,7 +575,7 @@ function InteractiveMapSection() {
                           />
                           {f.label}
                         </span>
-                        <span className="tnum text-[10px] text-white/45">
+                        <span className="tnum text-[10px] text-[#1a1a1a]/45">
                           {f.count}
                         </span>
                       </button>
@@ -583,8 +583,8 @@ function InteractiveMapSection() {
                   })}
                 </div>
 
-                <div className="mt-auto hidden border-t border-white/8 pt-3 md:block">
-                  <div className="flex items-center gap-2 text-[10px] text-white/40">
+                <div className="mt-auto hidden border-t border-black/8 pt-3 md:block">
+                  <div className="flex items-center gap-2 text-[10px] text-[#1a1a1a]/40">
                     <Crosshair className="h-3 w-3" />
                     Live data · refreshed 2m ago
                   </div>
@@ -727,13 +727,13 @@ function InteractiveMapSection() {
                                       boxShadow: `0 0 6px ${PIN_COLORS[p.type]}`,
                                     }}
                                   />
-                                  <span className="text-[11px] font-medium text-white/90">
+                                  <span className="text-[11px] font-medium text-[#1a1a1a]/90">
                                     {p.address}
                                   </span>
                                 </div>
-                                <div className="mt-0.5 pl-3 text-[10px] text-white/55">
+                                <div className="mt-0.5 pl-3 text-[10px] text-[#1a1a1a]/55">
                                   Est. value{" "}
-                                  <span className="tnum font-medium text-white/80">
+                                  <span className="tnum font-medium text-[#1a1a1a]/80">
                                     {p.value}
                                   </span>{" "}
                                   · {PIN_LABELS[p.type]}
@@ -783,14 +783,14 @@ function InteractiveMapSection() {
                 {/* ---------- Legend (top-right) ---------- */}
                 <div className="absolute right-3 top-3 z-40 sm:right-4 sm:top-4">
                   <GlassCard strong className="px-3 py-2.5">
-                    <div className="mb-1.5 text-[10px] font-medium uppercase tracking-wider text-white/45">
+                    <div className="mb-1.5 text-[10px] font-medium uppercase tracking-wider text-[#1a1a1a]/45">
                       Pin legend
                     </div>
                     <div className="flex flex-col gap-1.5">
                       {(Object.keys(PIN_COLORS) as PinType[]).map((t) => (
                         <div
                           key={t}
-                          className="flex items-center gap-2 text-[11px] text-white/70"
+                          className="flex items-center gap-2 text-[11px] text-[#1a1a1a]/70"
                         >
                           <span
                             className="h-2 w-2 rounded-full"
@@ -813,7 +813,7 @@ function InteractiveMapSection() {
                       <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan opacity-75" />
                       <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-cyan" />
                     </span>
-                    <span className="text-[10px] text-white/60">
+                    <span className="text-[10px] text-[#1a1a1a]/60">
                       {visiblePins.filter((p) => !p.dim).length} of{" "}
                       {PINS.length} pins shown
                     </span>

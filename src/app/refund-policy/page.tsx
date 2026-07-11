@@ -83,21 +83,21 @@ export default function RefundPolicyPage() {
               <div className="pointer-events-none absolute -bottom-16 -left-16 h-48 w-48 rounded-full bg-gold/15 blur-3xl" />
 
               {/* Header row */}
-              <div className="relative flex flex-col gap-5 border-b border-white/10 pb-7">
+              <div className="relative flex flex-col gap-5 border-b border-black/10 pb-7">
                 <div className="flex items-center gap-3">
                   <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-electric/15 ring-1 ring-electric/30">
                     <Receipt className="h-5 w-5 text-electric" />
                   </span>
                   <div className="flex flex-col">
-                    <span className="text-xs font-medium uppercase tracking-wider text-white/45">
+                    <span className="text-xs font-medium uppercase tracking-wider text-[#1a1a1a]/45">
                       Legal
                     </span>
-                    <span className="font-heading text-xl font-semibold text-white">
+                    <span className="font-heading text-xl font-semibold text-[#1a1a1a]">
                       Refund Policy
                     </span>
                   </div>
                 </div>
-                <p className="text-xs font-medium uppercase tracking-wider text-white/45">
+                <p className="text-xs font-medium uppercase tracking-wider text-[#1a1a1a]/45">
                   Last updated: January 2025
                 </p>
               </div>
@@ -106,11 +106,11 @@ export default function RefundPolicyPage() {
               <div className="relative flex flex-col gap-8 pt-8">
                 {SECTIONS.map((section) => (
                   <section key={section.heading} className="flex flex-col gap-3">
-                    <h2 className="font-heading text-lg font-semibold text-white">
+                    <h2 className="font-heading text-lg font-semibold text-[#1a1a1a]">
                       {section.heading}
                     </h2>
                     {section.body && (
-                      <p className="text-sm leading-relaxed text-white/60">
+                      <p className="text-sm leading-relaxed text-[#1a1a1a]/60">
                         {section.body}
                       </p>
                     )}
@@ -119,7 +119,7 @@ export default function RefundPolicyPage() {
                         {section.bullets.map((bullet) => (
                           <li
                             key={bullet}
-                            className="flex items-start gap-3 text-sm leading-relaxed text-white/60"
+                            className="flex items-start gap-3 text-sm leading-relaxed text-[#1a1a1a]/60"
                           >
                             <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-electric/70 shadow-[0_0_8px_#3b82f6]" />
                             <span>{bullet}</span>
@@ -132,12 +132,12 @@ export default function RefundPolicyPage() {
               </div>
 
               {/* Contact strip */}
-              <div className="relative mt-9 flex flex-col gap-3 border-t border-white/10 pt-7 sm:flex-row sm:items-center sm:justify-between">
+              <div className="relative mt-9 flex flex-col gap-3 border-t border-black/10 pt-7 sm:flex-row sm:items-center sm:justify-between">
                 <div className="flex items-center gap-3">
                   <Mail className="h-4 w-4 text-electric" />
                   <a
                     href="mailto:info@opussolutions.com"
-                    className="text-sm text-white/70 transition-colors hover:text-white"
+                    className="text-sm text-[#1a1a1a]/70 transition-colors hover:text-[#1a1a1a]"
                   >
                     info@opussolutions.com
                   </a>
@@ -146,7 +146,7 @@ export default function RefundPolicyPage() {
                   <Phone className="h-4 w-4 text-violet" />
                   <a
                     href="tel:+13203310910"
-                    className="text-sm text-white/70 transition-colors hover:text-white tnum"
+                    className="text-sm text-[#1a1a1a]/70 transition-colors hover:text-[#1a1a1a] tnum"
                   >
                     (320) 331-0910
                   </a>
@@ -156,7 +156,7 @@ export default function RefundPolicyPage() {
               {/* Address row */}
               <div className="relative mt-4 flex items-center gap-3 border-t border-white/5 pt-5">
                 <MapPin className="h-4 w-4 text-cyan" />
-                <span className="text-sm text-white/70">
+                <span className="text-sm text-[#1a1a1a]/70">
                   418 Broadway, Ste. R, Albany, NY 12207, United States
                 </span>
               </div>

@@ -42,25 +42,25 @@ const STAT_THEME: Record<
     iconWrap: "bg-electric/15",
     icon: "text-electric",
     glow: "shadow-[0_0_40px_-10px_rgba(59,130,246,0.55)]",
-    value: "text-white",
+    value: "text-[#1a1a1a]",
   },
   violet: {
     iconWrap: "bg-violet/15",
     icon: "text-violet",
     glow: "shadow-[0_0_40px_-10px_rgba(139,92,246,0.55)]",
-    value: "text-white",
+    value: "text-[#1a1a1a]",
   },
   cyan: {
     iconWrap: "bg-cyan/15",
     icon: "text-cyan",
     glow: "shadow-[0_0_40px_-10px_rgba(6,182,212,0.55)]",
-    value: "text-white",
+    value: "text-[#1a1a1a]",
   },
   gold: {
     iconWrap: "bg-gold/15",
     icon: "text-gold",
     glow: "shadow-[0_0_40px_-10px_rgba(212,175,55,0.55)]",
-    value: "text-white",
+    value: "text-[#1a1a1a]",
   },
 };
 
@@ -158,7 +158,7 @@ export default function AboutPage() {
                       duration={1800}
                     />
                   </div>
-                  <p className="relative mt-2 text-sm font-medium text-white/70">
+                  <p className="relative mt-2 text-sm font-medium text-[#1a1a1a]/70">
                     {stat.label}
                   </p>
                 </GlassCard>
@@ -168,7 +168,7 @@ export default function AboutPage() {
         </div>
 
         <Reveal delay={0.1}>
-          <p className="mx-auto mt-10 max-w-2xl text-center text-base leading-relaxed text-white/55">
+          <p className="mx-auto mt-10 max-w-2xl text-center text-base leading-relaxed text-[#1a1a1a]/55">
             As a fast-growing partner network, our goal is to introduce agents to
             practical tools, workflows, and technology that improve response
             times and win rates.
@@ -188,10 +188,10 @@ export default function AboutPage() {
           {/* LEFT | contact info */}
           <Reveal>
             <GlassCard strong className="flex h-full flex-col p-7 sm:p-8">
-              <h3 className="font-heading text-2xl font-semibold text-white">
+              <h3 className="font-heading text-2xl font-semibold text-[#1a1a1a]">
                 Reach out directly
               </h3>
-              <p className="mt-3 text-sm leading-relaxed text-white/55">
+              <p className="mt-3 text-sm leading-relaxed text-[#1a1a1a]/55">
                 Prefer to skip the form? Use any of the channels below | our team
                 responds within one business day.
               </p>
@@ -201,14 +201,14 @@ export default function AboutPage() {
                   const Icon = row.icon;
                   return (
                     <div key={row.label} className="flex items-start gap-4">
-                      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white/5 ring-1 ring-white/10">
+                      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-black/5 ring-1 ring-white/10">
                         <Icon className="h-5 w-5 text-electric" />
                       </span>
                       <div className="flex flex-col gap-0.5">
-                        <span className="text-xs font-medium uppercase tracking-wider text-white/45">
+                        <span className="text-xs font-medium uppercase tracking-wider text-[#1a1a1a]/45">
                           {row.label}
                         </span>
-                        <span className="text-sm leading-relaxed text-white/85">
+                        <span className="text-sm leading-relaxed text-[#1a1a1a]/85">
                           {row.value}
                         </span>
                       </div>
@@ -218,8 +218,8 @@ export default function AboutPage() {
               </div>
 
               <div className="mt-auto pt-8">
-                <div className="rounded-xl border border-white/10 bg-white/[0.03] p-4">
-                  <p className="text-xs leading-relaxed text-white/45">
+                <div className="rounded-xl border border-black/10 bg-white/[0.03] p-4">
+                  <p className="text-xs leading-relaxed text-[#1a1a1a]/45">
                     Opus Global Solution is a marketing consulting and support company.
                     We do not act as a brokerage, list or sell property, or
                     resell leads.

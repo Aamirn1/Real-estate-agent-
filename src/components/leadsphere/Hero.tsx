@@ -25,7 +25,7 @@ export function Hero() {
         />
       </picture>
       {/* Dark gradient overlays for text legibility + brand cohesion */}
-      <div className="absolute inset-0 z-0 bg-gradient-to-t from-[#050505] via-[#050505]/50 to-transparent md:bg-gradient-to-r md:from-[#050505]/70 md:via-[#050505]/10 md:to-transparent" />
+      <div className="absolute inset-0 z-0 bg-gradient-to-t from-white via-white/50 to-transparent md:bg-gradient-to-r md:from-white/70 md:via-white/10 md:to-transparent" />
       <div className="absolute inset-0 z-0 bg-gradient-to-br from-electric/10 via-transparent to-violet/10" />
       {/* Subtle animated particles on top of image for life */}
       <AnimatedBackground variant="hero" className="opacity-20" />
@@ -36,7 +36,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-medium text-white/90 backdrop-blur"
+            className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-black/5 px-3 py-1.5 text-xs font-medium text-[#1a1a1a]/90 backdrop-blur"
           >
             <span className="relative flex h-1.5 w-1.5">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-electric opacity-70" />
@@ -68,7 +68,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.3 }}
-            className="mt-6 max-w-xl text-base leading-relaxed text-white/85 sm:text-lg"
+            className="mt-6 max-w-xl text-base leading-relaxed text-[#1a1a1a]/85 sm:text-lg"
           >
             Your trusted partner for marketing consulting, outreach support,
             CRM assistance, workflow automation, and administrative services,
@@ -94,7 +94,7 @@ export function Hero() {
             <MagneticButton strength={0.3}>
               <a
                 href="/contact"
-                className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-5 py-3 text-sm font-semibold text-white backdrop-blur transition-all hover:border-white/25 hover:bg-white/10"
+                className="inline-flex items-center gap-2 rounded-xl border border-black/15 bg-black/5 px-5 py-3 text-sm font-semibold text-white backdrop-blur transition-all hover:border-black/25 hover:bg-black/10"
               >
                 <PlayCircle className="h-4 w-4 text-cyan" />
                 <span className="hidden xs:inline sm:inline">Book a Consultation</span>
@@ -107,7 +107,7 @@ export function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.7, delay: 0.6 }}
-            className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 text-xs text-white/80"
+            className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 text-xs text-[#1a1a1a]/80"
           >
             <span className="inline-flex items-center gap-1.5">
               <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400" /> Not a brokerage
@@ -130,10 +130,10 @@ export function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.1, duration: 0.8 }}
-        className="absolute bottom-6 left-1/2 z-10 hidden -translate-x-1/2 flex-col items-center gap-2 text-white/40 sm:flex"
+        className="absolute bottom-6 left-1/2 z-10 hidden -translate-x-1/2 flex-col items-center gap-2 text-[#1a1a1a]/40 sm:flex"
       >
         <span className="text-[10px] uppercase tracking-[0.2em]">Scroll</span>
-        <span className="flex h-9 w-5 items-start justify-center rounded-full border border-white/20 p-1.5">
+        <span className="flex h-9 w-5 items-start justify-center rounded-full border border-black/20 p-1.5">
           <motion.span
             animate={{ y: [0, 8, 0] }}
             transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}

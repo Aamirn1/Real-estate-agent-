@@ -72,7 +72,7 @@ export function LogoWordmark({
         OPUS
       </span>
       <span
-        className={`font-heading font-medium uppercase text-white/45 ${subClassName}`}
+        className={`font-heading font-medium uppercase text-[#1a1a1a]/45 ${subClassName}`}
         style={{ letterSpacing: "0.18em" }}
       >
         Global Solution
