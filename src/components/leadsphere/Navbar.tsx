@@ -52,7 +52,12 @@ export function Navbar() {
             <a
               key={link.href}
               href={link.href}
-              className="rounded-lg px-3.5 py-2 text-sm font-medium text-[#1a1a1a]/90 transition-colors hover:text-[#1a1a1a]"
+              className={cn(
+                "rounded-lg px-3.5 py-2 text-sm font-medium transition-colors",
+                scrolled
+                  ? "text-[#1a1a1a]/90 hover:text-[#1a1a1a]"
+                  : "text-white/90 hover:text-white"
+              )}
             >
               {link.label}
             </a>
