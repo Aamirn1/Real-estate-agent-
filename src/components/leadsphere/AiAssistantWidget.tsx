@@ -109,7 +109,7 @@ export function AiAssistantWidget() {
               exit={{ rotate: 90, opacity: 0 }}
               className="relative"
             >
-              <X className="h-6 w-6 text-[#1E293B]" />
+              <X className="h-6 w-6 text-white" />
             </motion.span>
           ) : (
             <motion.span
@@ -119,12 +119,12 @@ export function AiAssistantWidget() {
               exit={{ rotate: -90, opacity: 0 }}
               className="relative"
             >
-              <Headset className="h-6 w-6 text-[#1E293B]" />
+              <Headset className="h-6 w-6 text-white" />
             </motion.span>
           )}
         </AnimatePresence>
         {unread && !open && (
-          <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-[9px] font-bold text-[#1E293B] ring-2 ring-white">
+          <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-[9px] font-bold text-white ring-2 ring-[#050505]">
             1
           </span>
         )}
@@ -138,16 +138,16 @@ export function AiAssistantWidget() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.96 }}
             transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed bottom-24 right-4 z-[70] flex h-[520px] w-[calc(100vw-2rem)] max-w-[380px] flex-col overflow-hidden rounded-3xl border border-[#E2E8F0] bg-white/95 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.8)] backdrop-blur-2xl sm:right-6"
+            className="fixed bottom-24 right-4 z-[70] flex h-[520px] w-[calc(100vw-2rem)] max-w-[380px] flex-col overflow-hidden rounded-3xl border border-white/10 bg-[#0a0a0d]/95 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.8)] backdrop-blur-2xl sm:right-6"
           >
             {/* Header */}
-            <div className="flex items-center gap-3 border-b border-[#E2E8F0] bg-gradient-to-r from-electric/10 to-violet/10 p-4">
+            <div className="flex items-center gap-3 border-b border-white/8 bg-gradient-to-r from-electric/10 to-violet/10 p-4">
               <span className="relative flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-electric to-violet">
-                <Headset className="h-5 w-5 text-[#1E293B]" />
+                <Headset className="h-5 w-5 text-white" />
                 <span className="absolute inset-0 animate-pulse-ring rounded-full bg-electric/30" />
               </span>
               <div className="flex-1">
-                <div className="flex items-center gap-1.5 font-heading text-sm font-semibold text-[#1E293B]">
+                <div className="flex items-center gap-1.5 font-heading text-sm font-semibold text-white">
                   Opus Assistant
                   <Sparkles className="h-3 w-3 text-violet" />
                 </div>
@@ -166,14 +166,14 @@ export function AiAssistantWidget() {
                 <MessageBubble key={i} msg={msg} />
               ))}
               {loading && (
-                <div className="flex items-center gap-2 text-xs text-[#1E293B]/50">
+                <div className="flex items-center gap-2 text-xs text-white/50">
                   <span className="flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-br from-electric to-violet">
-                    <Loader2 className="h-3.5 w-3.5 animate-spin text-[#1E293B]" />
+                    <Loader2 className="h-3.5 w-3.5 animate-spin text-white" />
                   </span>
                   <span className="flex gap-1">
-                    <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-[#1E293B]/50 [animation-delay:-0.3s]" />
-                    <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-[#1E293B]/50 [animation-delay:-0.15s]" />
-                    <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-[#1E293B]/50" />
+                    <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-white/50 [animation-delay:-0.3s]" />
+                    <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-white/50 [animation-delay:-0.15s]" />
+                    <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-white/50" />
                   </span>
                 </div>
               )}
@@ -186,7 +186,7 @@ export function AiAssistantWidget() {
                   <button
                     key={s}
                     onClick={() => send(s)}
-                    className="rounded-full border border-[#E2E8F0] bg-[#1E293B]/5 px-2.5 py-1 text-[11px] text-[#1E293B]/70 transition-colors hover:border-electric/40 hover:bg-electric/10 hover:text-[#1E293B]"
+                    className="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[11px] text-white/70 transition-colors hover:border-electric/40 hover:bg-electric/10 hover:text-white"
                   >
                     {s}
                   </button>
@@ -200,18 +200,18 @@ export function AiAssistantWidget() {
                 e.preventDefault();
                 send(input);
               }}
-              className="flex items-center gap-2 border-t border-[#E2E8F0] p-3"
+              className="flex items-center gap-2 border-t border-white/8 p-3"
             >
               <input
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="Ask Opus anything…"
-                className="flex-1 rounded-xl border border-[#E2E8F0] bg-[#1E293B]/5 px-3.5 py-2.5 text-sm text-[#1E293B] placeholder:text-[#1E293B]/35 focus:border-electric/50 focus:outline-none focus:ring-1 focus:ring-electric/30"
+                className="flex-1 rounded-xl border border-white/10 bg-white/5 px-3.5 py-2.5 text-sm text-white placeholder:text-white/35 focus:border-electric/50 focus:outline-none focus:ring-1 focus:ring-electric/30"
               />
               <button
                 type="submit"
                 disabled={loading || !input.trim()}
-                className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-electric to-violet text-[#1E293B] transition-all hover:shadow-[0_0_20px_-4px_rgba(59,130,246,0.7)] disabled:opacity-40"
+                className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-electric to-violet text-white transition-all hover:shadow-[0_0_20px_-4px_rgba(59,130,246,0.7)] disabled:opacity-40"
               >
                 <Send className="h-4 w-4" />
               </button>
@@ -235,8 +235,8 @@ function MessageBubble({ msg }: { msg: Msg }) {
       <div
         className={`max-w-[82%] rounded-2xl px-3.5 py-2.5 text-[13px] leading-relaxed ${
           isUser
-            ? "rounded-br-md bg-gradient-to-br from-electric to-violet text-[#1E293B]"
-            : "rounded-bl-md border border-[#E2E8F0] bg-white/[0.04] text-[#1E293B]/85"
+            ? "rounded-br-md bg-gradient-to-br from-electric to-violet text-white"
+            : "rounded-bl-md border border-white/8 bg-white/[0.04] text-white/85"
         }`}
       >
         {msg.content}
