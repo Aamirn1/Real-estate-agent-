@@ -26,7 +26,6 @@ import {
   ArrowRight,
   Rocket,
   Calendar,
-  Orbit,
   Twitter,
   Linkedin,
   Instagram,
@@ -837,13 +836,10 @@ function CtaBanner() {
 
 function LogoMark() {
   return (
-    <div className="flex items-center gap-3">
-      <div className="relative flex h-10 w-10 items-center justify-center rounded-xl bg-[linear-gradient(135deg,#3b82f6,#8b5cf6,#06b6d4)] shadow-[0_0_25px_-6px_rgba(59,130,246,0.7)]">
-        <Orbit className="h-5 w-5 text-[#1E293B]" />
-        <div className="absolute inset-0 rounded-xl ring-1 ring-inset ring-white/20" />
-      </div>
+    <div className="flex items-center gap-2">
+      <img src="/logo.svg" alt="Opus Global Solution" className="h-9 w-9" />
       <span className="font-heading text-lg font-semibold tracking-tight text-[#1E293B]">
-        Opus <span className="text-[#1E293B]/50">Solutions</span>
+        Opus<span className="text-electric"> Global Solution</span>
       </span>
     </div>
   );

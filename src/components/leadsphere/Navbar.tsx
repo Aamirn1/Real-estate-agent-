@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Sparkles, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const NAV_LINKS = [
@@ -36,18 +36,15 @@ export function Navbar() {
         className={cn(
           "flex w-full max-w-6xl items-center justify-between rounded-2xl px-4 py-2.5 transition-all duration-500 sm:px-5",
           scrolled
-            ? "glass-strong shadow-[0_8px_40px_-12px_rgba(0,0,0,0.6)]"
-            : "border border-transparent bg-transparent"
+            ? "glass-strong shadow-[0_8px_40px_-12px_rgba(30,41,59,0.15)]"
+            : "glass border-[#E2E8F0]/50"
         )}
       >
-        {/* Logo */}
-        <a href="#" className="group flex items-center gap-2.5">
-          <span className="relative flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-electric via-violet to-cyan shadow-[0_0_20px_-4px_rgba(59,130,246,0.6)]">
-            <span className="absolute inset-0 rounded-xl bg-gradient-to-br from-electric via-violet to-cyan opacity-60 blur-md transition-opacity group-hover:opacity-90" />
-            <Sparkles className="relative h-4.5 w-4.5 text-[#1E293B]" strokeWidth={2.2} />
-          </span>
+        {/* Logo — favicon SVG without background */}
+        <a href="#" className="group flex items-center gap-2">
+          <img src="/logo.svg" alt="Opus Global Solution" className="h-8 w-8 transition-transform group-hover:scale-105" />
           <span className="font-heading text-base font-semibold tracking-tight text-[#1E293B]">
-            Opus<span className="text-electric"> Solutions</span>
+            Opus<span className="text-electric"> Global Solution</span>
           </span>
         </a>
 

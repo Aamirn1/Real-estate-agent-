@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import {
-  Sparkles,
   Twitter,
   Linkedin,
   Instagram,
@@ -76,13 +75,10 @@ const SOCIALS = [
 
 function LogoMark() {
   return (
-    <Link href="/" className="group flex items-center gap-2.5">
-      <span className="relative flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-electric via-violet to-cyan shadow-[0_0_20px_-4px_rgba(59,130,246,0.6)]">
-        <span className="absolute inset-0 rounded-xl bg-gradient-to-br from-electric via-violet to-cyan opacity-60 blur-md transition-opacity group-hover:opacity-90" />
-        <Sparkles className="relative h-4.5 w-4.5 text-[#1E293B]" strokeWidth={2.2} />
-      </span>
+    <Link href="/" className="group flex items-center gap-2">
+      <img src="/logo.svg" alt="Opus Global Solution" className="h-8 w-8 transition-transform group-hover:scale-105" />
       <span className="font-heading text-base font-semibold tracking-tight text-[#1E293B]">
-        Opus<span className="text-electric"> Solutions</span>
+        Opus<span className="text-electric"> Global Solution</span>
       </span>
     </Link>
   );

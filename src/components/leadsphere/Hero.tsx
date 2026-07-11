@@ -23,11 +23,8 @@ export function Hero() {
           className="h-full w-full object-cover"
         />
       </picture>
-      {/* Dark gradient overlays for text legibility + brand cohesion */}
-      <div className="absolute inset-0 z-0 bg-gradient-to-t from-[#F8FAFC] via-[#F8FAFC]/70 to-[#F8FAFC]/40 md:bg-gradient-to-r md:from-[#F8FAFC] md:via-[#F8FAFC]/60 md:to-[#F8FAFC]/20" />
-      <div className="absolute inset-0 z-0 bg-gradient-to-br from-electric/10 via-transparent to-violet/10" />
       {/* Subtle animated particles on top of image for life */}
-      <AnimatedBackground variant="hero" className="opacity-40" />
+      <AnimatedBackground variant="hero" className="opacity-20" />
 
       <div className="relative z-10 mx-auto w-full max-w-7xl px-5 py-32 sm:px-8 sm:py-40">
         <div className="flex max-w-2xl flex-col items-start">
