@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Bot, Send, X, Sparkles, Loader2 } from "lucide-react";
+import { Headset, Send, X, Sparkles, Loader2 } from "lucide-react";
 
 interface Msg {
   role: "user" | "assistant";
@@ -119,7 +119,7 @@ export function AiAssistantWidget() {
               exit={{ rotate: -90, opacity: 0 }}
               className="relative"
             >
-              <Bot className="h-6 w-6 text-[#1E293B]" />
+              <Headset className="h-6 w-6 text-[#1E293B]" />
             </motion.span>
           )}
         </AnimatePresence>
@@ -143,7 +143,7 @@ export function AiAssistantWidget() {
             {/* Header */}
             <div className="flex items-center gap-3 border-b border-[#E2E8F0] bg-gradient-to-r from-electric/10 to-violet/10 p-4">
               <span className="relative flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-electric to-violet">
-                <Bot className="h-5 w-5 text-[#1E293B]" />
+                <Headset className="h-5 w-5 text-[#1E293B]" />
                 <span className="absolute inset-0 animate-pulse-ring rounded-full bg-electric/30" />
               </span>
               <div className="flex-1">

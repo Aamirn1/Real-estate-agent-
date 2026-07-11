@@ -68,12 +68,12 @@ export function Hero() {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.42 }}
-            className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center"
+            className="mt-9 flex flex-row items-center gap-2.5"
           >
             <MagneticButton>
               <a
-                href="/signup"
-                className="group relative inline-flex items-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-electric to-violet px-6 py-3.5 text-sm font-semibold text-[#1E293B] shadow-[0_0_30px_-6px_rgba(59,130,246,0.7)] transition-all hover:shadow-[0_0_40px_-4px_rgba(139,92,246,0.85)]"
+                href="/get-started"
+                className="group relative inline-flex items-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-electric to-violet px-5 py-3 text-sm font-semibold text-white shadow-[0_0_30px_-6px_rgba(37,99,235,0.3)] transition-all hover:shadow-[0_0_40px_-4px_rgba(56,189,248,0.4)]"
               >
                 <span className="relative z-10">Get Started</span>
                 <ArrowRight className="relative z-10 h-4 w-4 transition-transform group-hover:translate-x-0.5" />
@@ -83,10 +83,11 @@ export function Hero() {
             <MagneticButton strength={0.3}>
               <a
                 href="/contact"
-                className="inline-flex items-center gap-2 rounded-xl border border-[#E2E8F0] bg-[#1E293B]/5 px-6 py-3.5 text-sm font-semibold text-[#1E293B] backdrop-blur transition-all hover:border-[#CBD5E1] hover:bg-[#1E293B]/8"
+                className="inline-flex items-center gap-2 rounded-xl border border-[#E2E8F0] bg-[#1E293B]/5 px-5 py-3 text-sm font-semibold text-[#1E293B] backdrop-blur transition-all hover:border-[#CBD5E1] hover:bg-[#1E293B]/8"
               >
-                <PlayCircle className="h-4.5 w-4.5 text-cyan" />
-                Book a Consultation
+                <PlayCircle className="h-4 w-4 text-cyan" />
+                <span className="hidden xs:inline sm:inline">Book a Consultation</span>
+                <span className="xs:hidden sm:hidden">Book Demo</span>
               </a>
             </MagneticButton>
           </motion.div>
