@@ -34,7 +34,7 @@ export function CTABanner({
               }}
             />
             {/* dark scrim */}
-            <div className="absolute inset-0 bg-black/30" />
+            <div className="absolute inset-0 bg-[#1E293B]/10" />
             {/* top glow */}
             <div className="pointer-events-none absolute -top-24 left-1/2 h-48 w-[600px] -translate-x-1/2 rounded-full bg-white/20 blur-[80px]" />
 
@@ -44,7 +44,7 @@ export function CTABanner({
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
-                className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-3 py-1 text-xs font-medium text-white backdrop-blur"
+                className="inline-flex items-center gap-2 rounded-full border border-[#CBD5E1] bg-[#1E293B]/8 px-3 py-1 text-xs font-medium text-[#1E293B] backdrop-blur"
               >
                 Ready to scale?
               </motion.span>
@@ -53,7 +53,7 @@ export function CTABanner({
                 whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                className="font-heading text-4xl font-semibold leading-[1.05] tracking-tight text-white text-glow sm:text-5xl md:text-6xl"
+                className="font-heading text-4xl font-semibold leading-[1.05] tracking-tight text-[#1E293B] text-glow sm:text-5xl md:text-6xl"
               >
                 {title}
               </motion.h2>
@@ -62,7 +62,7 @@ export function CTABanner({
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.1 }}
-                className="max-w-xl text-base text-white/85 sm:text-lg"
+                className="max-w-xl text-base text-[#1E293B]/85 sm:text-lg"
               >
                 {subtitle}
               </motion.p>
@@ -75,14 +75,14 @@ export function CTABanner({
               >
                 <Link
                   href="/about"
-                  className="group inline-flex items-center gap-2 rounded-xl border border-white/40 bg-white/10 px-6 py-3.5 text-sm font-semibold text-white backdrop-blur transition-all hover:bg-white/20"
+                  className="group inline-flex items-center gap-2 rounded-xl border border-white/40 bg-[#1E293B]/8 px-6 py-3.5 text-sm font-semibold text-[#1E293B] backdrop-blur transition-all hover:bg-white/20"
                 >
                   <PlayCircle className="h-4 w-4" />
                   Book Demo
                 </Link>
                 <Link
                   href="/pricing"
-                  className="group inline-flex items-center gap-2 rounded-xl bg-[#050505] px-6 py-3.5 text-sm font-semibold text-white shadow-[0_0_24px_-6px_rgba(255,255,255,0.5)] transition-all hover:shadow-[0_0_32px_-4px_rgba(255,255,255,0.7)]"
+                  className="group inline-flex items-center gap-2 rounded-xl bg-[#F8FAFC] px-6 py-3.5 text-sm font-semibold text-[#1E293B] shadow-[0_0_24px_-6px_rgba(255,255,255,0.5)] transition-all hover:shadow-[0_0_32px_-4px_rgba(255,255,255,0.7)]"
                 >
                   Start Free Trial
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />

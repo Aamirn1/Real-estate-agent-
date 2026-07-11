@@ -206,10 +206,10 @@ function KpiTile({
         <Icon className="h-5 w-5" />
       </div>
       <div className="min-w-0">
-        <div className="text-[11px] uppercase tracking-wider text-white/45">
+        <div className="text-[11px] uppercase tracking-wider text-[#1E293B]/45">
           {label}
         </div>
-        <div className="font-heading text-xl font-semibold tnum text-white">
+        <div className="font-heading text-xl font-semibold tnum text-[#1E293B]">
           <CountUp value={value} prefix={prefix} suffix={suffix} />
         </div>
       </div>
@@ -231,12 +231,12 @@ function SidebarIcon({
       aria-label={label}
       className={`group relative flex h-10 w-10 items-center justify-center rounded-xl transition-all ${
         active
-          ? "bg-electric text-white shadow-[0_0_18px_-2px_rgba(59,130,246,0.7)]"
-          : "text-white/45 hover:bg-white/5 hover:text-white"
+          ? "bg-electric text-[#1E293B] shadow-[0_0_18px_-2px_rgba(59,130,246,0.7)]"
+          : "text-[#1E293B]/45 hover:bg-[#1E293B]/5 hover:text-[#1E293B]"
       }`}
     >
       <Icon className="h-[18px] w-[18px]" />
-      <span className="pointer-events-none absolute left-12 z-50 hidden whitespace-nowrap rounded-md border border-white/10 bg-graphite/95 px-2 py-1 text-xs text-white shadow-lg group-hover:block">
+      <span className="pointer-events-none absolute left-12 z-50 hidden whitespace-nowrap rounded-md border border-[#E2E8F0] bg-graphite/95 px-2 py-1 text-xs text-[#1E293B] shadow-lg group-hover:block">
         {label}
       </span>
     </button>
@@ -255,49 +255,49 @@ function CrmPanel() {
     <div className="flex h-full flex-col gap-4">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <h3 className="font-heading text-lg font-semibold text-white">
+          <h3 className="font-heading text-lg font-semibold text-[#1E293B]">
             Lead Inbox
           </h3>
-          <p className="text-xs text-white/45">
+          <p className="text-xs text-[#1E293B]/45">
             {filtered.length} leads · sorted by score
           </p>
         </div>
         <div className="relative w-full sm:w-72">
-          <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-white/40" />
+          <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#1E293B]/40" />
           <Input
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search leads..."
-            className="h-9 border-white/10 bg-white/5 pl-9 text-sm text-white placeholder:text-white/40 focus-visible:border-electric/50"
+            className="h-9 border-[#E2E8F0] bg-[#1E293B]/5 pl-9 text-sm text-[#1E293B] placeholder:text-[#1E293B]/40 focus-visible:border-electric/50"
           />
         </div>
       </div>
 
-      <div className="overflow-x-auto scroll-thin rounded-xl border border-white/8">
+      <div className="overflow-x-auto scroll-thin rounded-xl border border-[#E2E8F0]">
         <Table>
           <TableHeader>
-            <TableRow className="border-white/8 hover:bg-transparent">
-              <TableHead className="text-white/45 text-xs uppercase tracking-wider">Name</TableHead>
-              <TableHead className="text-white/45 text-xs uppercase tracking-wider">Status</TableHead>
-              <TableHead className="text-white/45 text-xs uppercase tracking-wider">Score</TableHead>
-              <TableHead className="text-white/45 text-xs uppercase tracking-wider">Last Contact</TableHead>
-              <TableHead className="text-white/45 text-xs uppercase tracking-wider text-right">Value</TableHead>
+            <TableRow className="border-[#E2E8F0] hover:bg-transparent">
+              <TableHead className="text-[#1E293B]/45 text-xs uppercase tracking-wider">Name</TableHead>
+              <TableHead className="text-[#1E293B]/45 text-xs uppercase tracking-wider">Status</TableHead>
+              <TableHead className="text-[#1E293B]/45 text-xs uppercase tracking-wider">Score</TableHead>
+              <TableHead className="text-[#1E293B]/45 text-xs uppercase tracking-wider">Last Contact</TableHead>
+              <TableHead className="text-[#1E293B]/45 text-xs uppercase tracking-wider text-right">Value</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {filtered.map((lead) => (
               <TableRow
                 key={lead.name}
-                className="border-white/8 transition-colors hover:bg-white/[0.03] data-[state=selected]:bg-white/5"
+                className="border-[#E2E8F0] transition-colors hover:bg-white/[0.03] data-[state=selected]:bg-[#1E293B]/5"
               >
                 <TableCell className="py-3">
                   <div className="flex items-center gap-3">
-                    <Avatar className="h-8 w-8 border border-white/10">
-                      <AvatarFallback className="bg-white/5 text-[11px] text-white/70">
+                    <Avatar className="h-8 w-8 border border-[#E2E8F0]">
+                      <AvatarFallback className="bg-[#1E293B]/5 text-[11px] text-[#1E293B]/70">
                         {lead.name.split(" ").map((n) => n[0]).join("")}
                       </AvatarFallback>
                     </Avatar>
-                    <span className="text-sm font-medium text-white">
+                    <span className="text-sm font-medium text-[#1E293B]">
                       {lead.name}
                     </span>
                   </div>
@@ -311,19 +311,19 @@ function CrmPanel() {
                 </TableCell>
                 <TableCell>
                   <div className="flex items-center gap-2">
-                    <div className="h-1.5 w-20 overflow-hidden rounded-full bg-white/10">
+                    <div className="h-1.5 w-20 overflow-hidden rounded-full bg-[#1E293B]/8">
                       <div
                         className={`h-full rounded-full bg-gradient-to-r ${TONE_BAR[lead.tone]}`}
                         style={{ width: `${lead.score}%` }}
                       />
                     </div>
-                    <span className="tnum text-xs font-semibold text-white/80">
+                    <span className="tnum text-xs font-semibold text-[#1E293B]/80">
                       {lead.score}
                     </span>
                   </div>
                 </TableCell>
-                <TableCell className="text-xs text-white/55">{lead.lastContact}</TableCell>
-                <TableCell className="tnum text-right text-sm font-semibold text-white">
+                <TableCell className="text-xs text-[#1E293B]/55">{lead.lastContact}</TableCell>
+                <TableCell className="tnum text-right text-sm font-semibold text-[#1E293B]">
                   {lead.value}
                 </TableCell>
               </TableRow>
@@ -340,12 +340,12 @@ function PipelinePanel() {
     <div className="flex h-full flex-col gap-4">
       <div className="flex items-center justify-between">
         <div>
-          <h3 className="font-heading text-lg font-semibold text-white">
+          <h3 className="font-heading text-lg font-semibold text-[#1E293B]">
             Sales Pipeline
           </h3>
-          <p className="text-xs text-white/45">10 active deals · $19.4M in pipeline</p>
+          <p className="text-xs text-[#1E293B]/45">10 active deals · $19.4M in pipeline</p>
         </div>
-        <button className="inline-flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-medium text-white/80 transition-colors hover:bg-white/10">
+        <button className="inline-flex items-center gap-1.5 rounded-lg border border-[#E2E8F0] bg-[#1E293B]/5 px-3 py-1.5 text-xs font-medium text-[#1E293B]/80 transition-colors hover:bg-[#1E293B]/8">
           <Plus className="h-3.5 w-3.5" /> Add deal
         </button>
       </div>
@@ -354,14 +354,14 @@ function PipelinePanel() {
         {PIPELINE_COLUMNS.map((col) => (
           <div
             key={col.key}
-            className="flex flex-col overflow-hidden rounded-xl border border-white/8 bg-white/[0.02]"
+            className="flex flex-col overflow-hidden rounded-xl border border-[#E2E8F0] bg-white/[0.02]"
           >
             <div className={`h-1 w-full ${col.accent} ${col.glow}`} />
             <div className="flex items-center justify-between px-3 py-2.5">
-              <span className="text-xs font-semibold uppercase tracking-wider text-white/70">
+              <span className="text-xs font-semibold uppercase tracking-wider text-[#1E293B]/70">
                 {col.key}
               </span>
-              <span className="rounded-full bg-white/5 px-2 py-0.5 text-[10px] tnum text-white/55">
+              <span className="rounded-full bg-[#1E293B]/5 px-2 py-0.5 text-[10px] tnum text-[#1E293B]/55">
                 {col.cards.length}
               </span>
             </div>
@@ -370,7 +370,7 @@ function PipelinePanel() {
                 <motion.div
                   key={c.name}
                   whileHover={{ y: -2 }}
-                  className="group cursor-pointer rounded-lg border border-white/8 bg-graphite/60 p-3 transition-colors hover:border-white/20"
+                  className="group cursor-pointer rounded-lg border border-[#E2E8F0] bg-graphite/60 p-3 transition-colors hover:border-[#E2E8F0]"
                 >
                   <div className="mb-2 flex items-center gap-2">
                     <div
@@ -378,15 +378,15 @@ function PipelinePanel() {
                     >
                       {c.initials}
                     </div>
-                    <span className="truncate text-xs font-medium text-white">
+                    <span className="truncate text-xs font-medium text-[#1E293B]">
                       {c.name}
                     </span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="tnum text-sm font-semibold text-white">
+                    <span className="tnum text-sm font-semibold text-[#1E293B]">
                       {c.value}
                     </span>
-                    <MoreHorizontal className="h-3.5 w-3.5 text-white/30 opacity-0 transition-opacity group-hover:opacity-100" />
+                    <MoreHorizontal className="h-3.5 w-3.5 text-[#1E293B]/30 opacity-0 transition-opacity group-hover:opacity-100" />
                   </div>
                 </motion.div>
               ))}
@@ -404,24 +404,24 @@ function LeadMapPanel() {
     <div className="flex h-full flex-col gap-4">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <h3 className="font-heading text-lg font-semibold text-white">
+          <h3 className="font-heading text-lg font-semibold text-[#1E293B]">
             Lead Heat Map
           </h3>
-          <p className="text-xs text-white/45">Bay Area · 8 active properties</p>
+          <p className="text-xs text-[#1E293B]/45">Bay Area · 8 active properties</p>
         </div>
         <button
           onClick={() => setHeatmap((v) => !v)}
           className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-medium transition-all ${
             heatmap
               ? "border-rose-500/40 bg-rose-500/15 text-rose-300"
-              : "border-white/10 bg-white/5 text-white/70"
+              : "border-[#E2E8F0] bg-[#1E293B]/5 text-[#1E293B]/70"
           }`}
         >
           <Thermometer className="h-3.5 w-3.5" /> Heatmap
         </button>
       </div>
 
-      <div className="relative h-full min-h-[280px] overflow-hidden rounded-xl border border-white/8 bg-[#070709]">
+      <div className="relative h-full min-h-[280px] overflow-hidden rounded-xl border border-[#E2E8F0] bg-white">
         {/* Grid background */}
         <div className="absolute inset-0 bg-grid opacity-60" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.08),transparent_70%)]" />
@@ -454,7 +454,7 @@ function LeadMapPanel() {
                 className="relative h-6 w-6 drop-shadow-lg"
                 style={{ color: pin.color, fill: pin.color }}
               />
-              <span className="pointer-events-none absolute left-1/2 top-[-22px] -translate-x-1/2 whitespace-nowrap rounded-md border border-white/10 bg-graphite/95 px-1.5 py-0.5 text-[10px] font-semibold text-white opacity-0 transition-opacity group-hover:opacity-100">
+              <span className="pointer-events-none absolute left-1/2 top-[-22px] -translate-x-1/2 whitespace-nowrap rounded-md border border-[#E2E8F0] bg-graphite/95 px-1.5 py-0.5 text-[10px] font-semibold text-[#1E293B] opacity-0 transition-opacity group-hover:opacity-100">
                 {pin.label}
               </span>
             </div>
@@ -465,7 +465,7 @@ function LeadMapPanel() {
         {MAP_CLUSTERS.map((c, i) => (
           <div
             key={i}
-            className="absolute flex -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full text-[11px] font-bold text-white ring-2 ring-white/20"
+            className="absolute flex -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full text-[11px] font-bold text-[#1E293B] ring-2 ring-white/20"
             style={{
               left: c.x,
               top: c.y,
@@ -480,22 +480,22 @@ function LeadMapPanel() {
         ))}
 
         {/* Legend */}
-        <div className="absolute bottom-3 left-3 flex flex-wrap items-center gap-3 rounded-lg border border-white/10 bg-graphite/80 px-3 py-2 backdrop-blur">
+        <div className="absolute bottom-3 left-3 flex flex-wrap items-center gap-3 rounded-lg border border-[#E2E8F0] bg-graphite/80 px-3 py-2 backdrop-blur">
           <div className="flex items-center gap-1.5">
             <span className="h-2 w-2 rounded-full bg-electric" />
-            <span className="text-[10px] text-white/60">Buyer</span>
+            <span className="text-[10px] text-[#1E293B]/60">Buyer</span>
           </div>
           <div className="flex items-center gap-1.5">
             <span className="h-2 w-2 rounded-full bg-violet" />
-            <span className="text-[10px] text-white/60">Seller</span>
+            <span className="text-[10px] text-[#1E293B]/60">Seller</span>
           </div>
           <div className="flex items-center gap-1.5">
             <span className="h-2 w-2 rounded-full bg-gold" />
-            <span className="text-[10px] text-white/60">High Value</span>
+            <span className="text-[10px] text-[#1E293B]/60">High Value</span>
           </div>
           <div className="flex items-center gap-1.5">
             <span className="h-2 w-2 rounded-full bg-cyan" />
-            <span className="text-[10px] text-white/60">New Lead</span>
+            <span className="text-[10px] text-[#1E293B]/60">New Lead</span>
           </div>
         </div>
       </div>
@@ -507,10 +507,10 @@ function AnalyticsPanel() {
   return (
     <div className="flex h-full flex-col gap-4">
       <div>
-        <h3 className="font-heading text-lg font-semibold text-white">
+        <h3 className="font-heading text-lg font-semibold text-[#1E293B]">
           Performance Analytics
         </h3>
-        <p className="text-xs text-white/45">Last 7 months · updated 3m ago</p>
+        <p className="text-xs text-[#1E293B]/45">Last 7 months · updated 3m ago</p>
       </div>
 
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
@@ -541,8 +541,8 @@ function AnalyticsPanel() {
         <GlassCard className="p-4 lg:col-span-3">
           <div className="mb-3 flex items-center justify-between">
             <div>
-              <h4 className="text-sm font-semibold text-white">Leads Generated</h4>
-              <p className="text-[11px] text-white/45">Monthly trend</p>
+              <h4 className="text-sm font-semibold text-[#1E293B]">Leads Generated</h4>
+              <p className="text-[11px] text-[#1E293B]/45">Monthly trend</p>
             </div>
             <span className="inline-flex items-center gap-1 rounded-full bg-emerald-500/10 px-2 py-0.5 text-[11px] font-medium text-emerald-300">
               <TrendingUp className="h-3 w-3" /> +28%
@@ -600,8 +600,8 @@ function AnalyticsPanel() {
 
         <GlassCard className="p-4 lg:col-span-2">
           <div className="mb-3">
-            <h4 className="text-sm font-semibold text-white">Conversions by Source</h4>
-            <p className="text-[11px] text-white/45">This quarter</p>
+            <h4 className="text-sm font-semibold text-[#1E293B]">Conversions by Source</h4>
+            <p className="text-[11px] text-[#1E293B]/45">This quarter</p>
           </div>
           <div className="h-44 w-full">
             <ResponsiveContainer width="100%" height="100%">
@@ -652,10 +652,10 @@ function MarketingPanel() {
       {/* Left: campaigns */}
       <div className="flex flex-col gap-3">
         <div className="flex items-center justify-between">
-          <h3 className="font-heading text-lg font-semibold text-white">
+          <h3 className="font-heading text-lg font-semibold text-[#1E293B]">
             Active Campaigns
           </h3>
-          <button className="inline-flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-medium text-white/80 transition-colors hover:bg-white/10">
+          <button className="inline-flex items-center gap-1.5 rounded-lg border border-[#E2E8F0] bg-[#1E293B]/5 px-3 py-1.5 text-xs font-medium text-[#1E293B]/80 transition-colors hover:bg-[#1E293B]/8">
             <Plus className="h-3.5 w-3.5" /> New
           </button>
         </div>
@@ -665,11 +665,11 @@ function MarketingPanel() {
             <motion.div
               key={c.name}
               whileHover={{ y: -2 }}
-              className="rounded-xl border border-white/8 bg-white/[0.02] p-4 transition-colors hover:border-white/20"
+              className="rounded-xl border border-[#E2E8F0] bg-white/[0.02] p-4 transition-colors hover:border-[#E2E8F0]"
             >
               <div className="mb-3 flex items-start justify-between gap-2">
                 <div>
-                  <div className="text-sm font-semibold text-white">{c.name}</div>
+                  <div className="text-sm font-semibold text-[#1E293B]">{c.name}</div>
                   <div className="mt-1 flex items-center gap-2">
                     <span
                       className={`inline-flex items-center gap-1 rounded-md border px-1.5 py-0.5 text-[10px] font-medium ${
@@ -681,18 +681,18 @@ function MarketingPanel() {
                       {c.channel === "Email" ? <Mail className="h-2.5 w-2.5" /> : <Phone className="h-2.5 w-2.5" />}
                       {c.channel}
                     </span>
-                    <span className="tnum text-[11px] text-white/45">
+                    <span className="tnum text-[11px] text-[#1E293B]/45">
                       {c.sent.toLocaleString()} sent
                     </span>
                   </div>
                 </div>
-                <span className="tnum text-xs font-semibold text-white/80">
+                <span className="tnum text-xs font-semibold text-[#1E293B]/80">
                   {c.progress}%
                 </span>
               </div>
               <Progress
                 value={c.progress}
-                className="h-1.5 bg-white/10"
+                className="h-1.5 bg-[#1E293B]/8"
               />
             </motion.div>
           ))}
@@ -701,50 +701,50 @@ function MarketingPanel() {
 
       {/* Right: email preview */}
       <div className="flex flex-col gap-3">
-        <h3 className="font-heading text-lg font-semibold text-white">
+        <h3 className="font-heading text-lg font-semibold text-[#1E293B]">
           Email Preview
         </h3>
         <GlassCard strong className="flex flex-1 flex-col p-4">
-          <div className="mb-3 flex items-center gap-2 border-b border-white/8 pb-3">
-            <Avatar className="h-8 w-8 border border-white/10">
+          <div className="mb-3 flex items-center gap-2 border-b border-[#E2E8F0] pb-3">
+            <Avatar className="h-8 w-8 border border-[#E2E8F0]">
               <AvatarFallback className="bg-electric/15 text-[11px] font-semibold text-electric">
                 OS
               </AvatarFallback>
             </Avatar>
             <div className="min-w-0">
-              <div className="text-xs font-semibold text-white">Opus Solutions</div>
-              <div className="truncate text-[11px] text-white/45">noreply@opussolutions.com</div>
+              <div className="text-xs font-semibold text-[#1E293B]">Opus Solutions</div>
+              <div className="truncate text-[11px] text-[#1E293B]/45">noreply@opussolutions.com</div>
             </div>
-            <span className="ml-auto rounded-md bg-white/5 px-2 py-0.5 text-[10px] text-white/45">
+            <span className="ml-auto rounded-md bg-[#1E293B]/5 px-2 py-0.5 text-[10px] text-[#1E293B]/45">
               Draft
             </span>
           </div>
 
           <div className="mb-2">
-            <div className="text-[10px] uppercase tracking-wider text-white/40">
+            <div className="text-[10px] uppercase tracking-wider text-[#1E293B]/40">
               Subject
             </div>
-            <div className="text-sm font-semibold text-white">
+            <div className="text-sm font-semibold text-[#1E293B]">
               Your home valuation is ready, Sarah 🏡
             </div>
           </div>
 
-          <div className="mt-1 flex-1 overflow-y-auto scroll-thin text-[13px] leading-relaxed text-white/65">
+          <div className="mt-1 flex-1 overflow-y-auto scroll-thin text-[13px] leading-relaxed text-[#1E293B]/65">
             <p>Hi Sarah,</p>
             <p className="mt-2">
               Based on recent comparable sales in your neighborhood, your
-              property at <span className="text-white/85">248 Maple Ridge Dr</span> is
-              now estimated at <span className="font-semibold text-white">$890,000</span> —
+              property at <span className="text-[#1E293B]/85">248 Maple Ridge Dr</span> is
+              now estimated at <span className="font-semibold text-[#1E293B]">$890,000</span> —
               up <span className="text-emerald-300">4.2%</span> in the last quarter.
             </p>
             <p className="mt-2">
               Motivated buyers are actively searching in your zone. Want to see
               the full report and schedule a call?
             </p>
-            <p className="mt-3 text-white/45">— The Opus Team</p>
+            <p className="mt-3 text-[#1E293B]/45">— The Opus Team</p>
           </div>
 
-          <button className="mt-4 inline-flex items-center justify-center gap-2 rounded-lg bg-electric px-4 py-2.5 text-sm font-semibold text-white shadow-[0_0_24px_-6px_rgba(59,130,246,0.8)] transition-all hover:bg-electric/90 hover:shadow-[0_0_30px_-4px_rgba(59,130,246,0.9)]">
+          <button className="mt-4 inline-flex items-center justify-center gap-2 rounded-lg bg-electric px-4 py-2.5 text-sm font-semibold text-[#1E293B] shadow-[0_0_24px_-6px_rgba(59,130,246,0.8)] transition-all hover:bg-electric/90 hover:shadow-[0_0_30px_-4px_rgba(59,130,246,0.9)]">
             <Send className="h-4 w-4" /> Send Campaign
           </button>
         </GlassCard>
@@ -759,7 +759,7 @@ function DialerPanel() {
       {/* Center: contact + call */}
       <GlassCard strong className="flex flex-col items-center justify-center gap-5 p-6 lg:col-span-2">
         <div className="text-center">
-          <div className="text-[11px] uppercase tracking-wider text-white/40">
+          <div className="text-[11px] uppercase tracking-wider text-[#1E293B]/40">
             Now dialing
           </div>
         </div>
@@ -776,10 +776,10 @@ function DialerPanel() {
         </div>
 
         <div className="text-center">
-          <div className="font-heading text-xl font-semibold text-white">
+          <div className="font-heading text-xl font-semibold text-[#1E293B]">
             John Reynolds
           </div>
-          <div className="tnum mt-1 text-sm text-white/55">+1 (415) 555-0182</div>
+          <div className="tnum mt-1 text-sm text-[#1E293B]/55">+1 (415) 555-0182</div>
           <div className="mt-3 inline-flex items-center gap-1.5 rounded-full border border-gold/30 bg-gold/10 px-3 py-1 text-xs font-semibold text-gold">
             <Flame className="h-3 w-3" /> Property $1.45M
           </div>
@@ -787,23 +787,23 @@ function DialerPanel() {
 
         <button
           aria-label="Start call"
-          className="relative flex h-16 w-16 items-center justify-center rounded-full bg-emerald-500 text-white shadow-[0_0_36px_-4px_rgba(16,185,129,0.8)] transition-transform hover:scale-105 active:scale-95"
+          className="relative flex h-16 w-16 items-center justify-center rounded-full bg-emerald-500 text-[#1E293B] shadow-[0_0_36px_-4px_rgba(16,185,129,0.8)] transition-transform hover:scale-105 active:scale-95"
         >
           <PhoneCall className="h-7 w-7" />
         </button>
 
-        <div className="grid w-full grid-cols-3 gap-2 border-t border-white/8 pt-4">
+        <div className="grid w-full grid-cols-3 gap-2 border-t border-[#E2E8F0] pt-4">
           <div className="text-center">
-            <div className="tnum font-heading text-lg font-semibold text-white">47</div>
-            <div className="text-[10px] uppercase tracking-wider text-white/40">Calls</div>
+            <div className="tnum font-heading text-lg font-semibold text-[#1E293B]">47</div>
+            <div className="text-[10px] uppercase tracking-wider text-[#1E293B]/40">Calls</div>
           </div>
           <div className="text-center">
             <div className="tnum font-heading text-lg font-semibold text-emerald-300">31</div>
-            <div className="text-[10px] uppercase tracking-wider text-white/40">Connected</div>
+            <div className="text-[10px] uppercase tracking-wider text-[#1E293B]/40">Connected</div>
           </div>
           <div className="text-center">
-            <div className="tnum font-heading text-lg font-semibold text-white">4:22</div>
-            <div className="text-[10px] uppercase tracking-wider text-white/40">Avg</div>
+            <div className="tnum font-heading text-lg font-semibold text-[#1E293B]">4:22</div>
+            <div className="text-[10px] uppercase tracking-wider text-[#1E293B]/40">Avg</div>
           </div>
         </div>
       </GlassCard>
@@ -811,7 +811,7 @@ function DialerPanel() {
       {/* Right: recent calls */}
       <div className="flex flex-col gap-3 lg:col-span-3">
         <div className="flex items-center justify-between">
-          <h3 className="font-heading text-lg font-semibold text-white">
+          <h3 className="font-heading text-lg font-semibold text-[#1E293B]">
             Recent Calls
           </h3>
           <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/10 px-2.5 py-1 text-[11px] font-medium text-emerald-300">
@@ -824,16 +824,16 @@ function DialerPanel() {
             <motion.div
               key={call.name}
               whileHover={{ x: 2 }}
-              className="flex items-center gap-3 rounded-xl border border-white/8 bg-white/[0.02] p-3 transition-colors hover:border-white/20"
+              className="flex items-center gap-3 rounded-xl border border-[#E2E8F0] bg-white/[0.02] p-3 transition-colors hover:border-[#E2E8F0]"
             >
-              <Avatar className="h-9 w-9 border border-white/10">
-                <AvatarFallback className="bg-white/5 text-[11px] text-white/70">
+              <Avatar className="h-9 w-9 border border-[#E2E8F0]">
+                <AvatarFallback className="bg-[#1E293B]/5 text-[11px] text-[#1E293B]/70">
                   {call.name.split(" ").map((n) => n[0]).join("")}
                 </AvatarFallback>
               </Avatar>
               <div className="min-w-0 flex-1">
-                <div className="text-sm font-medium text-white">{call.name}</div>
-                <div className="tnum text-[11px] text-white/45">{call.number}</div>
+                <div className="text-sm font-medium text-[#1E293B]">{call.name}</div>
+                <div className="tnum text-[11px] text-[#1E293B]/45">{call.number}</div>
               </div>
               <div className="flex flex-col items-end gap-1">
                 <span
@@ -848,7 +848,7 @@ function DialerPanel() {
                   {call.tone === "emerald" && <CheckCircle2 className="h-2.5 w-2.5" />}
                   {call.status}
                 </span>
-                <span className="flex items-center gap-1 text-[10px] text-white/40">
+                <span className="flex items-center gap-1 text-[10px] text-[#1E293B]/40">
                   <Clock className="h-2.5 w-2.5" /> {call.time}
                 </span>
               </div>
@@ -856,13 +856,13 @@ function DialerPanel() {
           ))}
         </div>
 
-        <div className="mt-auto rounded-xl border border-white/8 bg-gradient-to-r from-electric/10 to-violet/10 p-3">
+        <div className="mt-auto rounded-xl border border-[#E2E8F0] bg-gradient-to-r from-electric/10 to-violet/10 p-3">
           <div className="flex items-center justify-between">
             <div>
-              <div className="text-xs font-semibold text-white">Next in queue</div>
-              <div className="text-[11px] text-white/55">Diane Foster · motivated seller</div>
+              <div className="text-xs font-semibold text-[#1E293B]">Next in queue</div>
+              <div className="text-[11px] text-[#1E293B]/55">Diane Foster · motivated seller</div>
             </div>
-            <button className="rounded-lg bg-white/10 px-3 py-1.5 text-xs font-medium text-white transition-colors hover:bg-white/20">
+            <button className="rounded-lg bg-[#1E293B]/8 px-3 py-1.5 text-xs font-medium text-[#1E293B] transition-colors hover:bg-white/20">
               Skip
             </button>
           </div>
@@ -899,18 +899,18 @@ export default function InteractiveDemo() {
           className="overflow-hidden rounded-3xl p-0 shadow-[0_30px_120px_-30px_rgba(59,130,246,0.35)]"
         >
           {/* Browser / app top bar */}
-          <div className="flex items-center gap-3 border-b border-white/8 bg-white/[0.02] px-4 py-3">
+          <div className="flex items-center gap-3 border-b border-[#E2E8F0] bg-white/[0.02] px-4 py-3">
             <div className="flex items-center gap-1.5">
               <span className="h-3 w-3 rounded-full bg-[#ff5f57]" />
               <span className="h-3 w-3 rounded-full bg-[#febc2e]" />
               <span className="h-3 w-3 rounded-full bg-[#28c840]" />
             </div>
-            <div className="mx-auto flex items-center gap-2 rounded-lg border border-white/8 bg-graphite/60 px-3 py-1 text-xs text-white/55">
+            <div className="mx-auto flex items-center gap-2 rounded-lg border border-[#E2E8F0] bg-graphite/60 px-3 py-1 text-xs text-[#1E293B]/55">
               <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
               <span className="tnum">app.opussolutions.com/dashboard</span>
             </div>
-            <Avatar className="h-7 w-7 border border-white/10">
-              <AvatarFallback className="bg-gradient-to-br from-electric to-violet text-[10px] font-semibold text-white">
+            <Avatar className="h-7 w-7 border border-[#E2E8F0]">
+              <AvatarFallback className="bg-gradient-to-br from-electric to-violet text-[10px] font-semibold text-[#1E293B]">
                 AK
               </AvatarFallback>
             </Avatar>
@@ -919,7 +919,7 @@ export default function InteractiveDemo() {
           {/* Body: sidebar + content */}
           <div className="flex">
             {/* Sidebar (md+) */}
-            <aside className="hidden md:flex w-16 shrink-0 flex-col items-center gap-1.5 border-r border-white/8 bg-graphite/40 py-4">
+            <aside className="hidden md:flex w-16 shrink-0 flex-col items-center gap-1.5 border-r border-[#E2E8F0] bg-graphite/40 py-4">
               {NAV_ITEMS.map((item) => (
                 <SidebarIcon
                   key={item.label}
@@ -939,41 +939,41 @@ export default function InteractiveDemo() {
                 className="flex flex-1 flex-col gap-0"
               >
                 {/* Horizontal tab bar */}
-                <div className="border-b border-white/8 px-3 py-2 overflow-x-auto no-scrollbar">
-                  <TabsList className="h-9 w-full justify-start gap-1 rounded-lg border border-white/8 bg-graphite/50 p-1 sm:w-auto">
+                <div className="border-b border-[#E2E8F0] px-3 py-2 overflow-x-auto no-scrollbar">
+                  <TabsList className="h-9 w-full justify-start gap-1 rounded-lg border border-[#E2E8F0] bg-graphite/50 p-1 sm:w-auto">
                     <TabsTrigger
                       value="crm"
-                      className="data-[state=active]:bg-electric data-[state=active]:text-white data-[state=active]:shadow-[0_0_16px_-4px_rgba(59,130,246,0.8)] text-white/55"
+                      className="data-[state=active]:bg-electric data-[state=active]:text-[#1E293B] data-[state=active]:shadow-[0_0_16px_-4px_rgba(59,130,246,0.8)] text-[#1E293B]/55"
                     >
                       CRM
                     </TabsTrigger>
                     <TabsTrigger
                       value="pipeline"
-                      className="data-[state=active]:bg-electric data-[state=active]:text-white data-[state=active]:shadow-[0_0_16px_-4px_rgba(59,130,246,0.8)] text-white/55"
+                      className="data-[state=active]:bg-electric data-[state=active]:text-[#1E293B] data-[state=active]:shadow-[0_0_16px_-4px_rgba(59,130,246,0.8)] text-[#1E293B]/55"
                     >
                       Pipeline
                     </TabsTrigger>
                     <TabsTrigger
                       value="map"
-                      className="data-[state=active]:bg-electric data-[state=active]:text-white data-[state=active]:shadow-[0_0_16px_-4px_rgba(59,130,246,0.8)] text-white/55"
+                      className="data-[state=active]:bg-electric data-[state=active]:text-[#1E293B] data-[state=active]:shadow-[0_0_16px_-4px_rgba(59,130,246,0.8)] text-[#1E293B]/55"
                     >
                       Lead Map
                     </TabsTrigger>
                     <TabsTrigger
                       value="analytics"
-                      className="data-[state=active]:bg-electric data-[state=active]:text-white data-[state=active]:shadow-[0_0_16px_-4px_rgba(59,130,246,0.8)] text-white/55"
+                      className="data-[state=active]:bg-electric data-[state=active]:text-[#1E293B] data-[state=active]:shadow-[0_0_16px_-4px_rgba(59,130,246,0.8)] text-[#1E293B]/55"
                     >
                       Analytics
                     </TabsTrigger>
                     <TabsTrigger
                       value="marketing"
-                      className="data-[state=active]:bg-electric data-[state=active]:text-white data-[state=active]:shadow-[0_0_16px_-4px_rgba(59,130,246,0.8)] text-white/55"
+                      className="data-[state=active]:bg-electric data-[state=active]:text-[#1E293B] data-[state=active]:shadow-[0_0_16px_-4px_rgba(59,130,246,0.8)] text-[#1E293B]/55"
                     >
                       Marketing
                     </TabsTrigger>
                     <TabsTrigger
                       value="dialer"
-                      className="data-[state=active]:bg-electric data-[state=active]:text-white data-[state=active]:shadow-[0_0_16px_-4px_rgba(59,130,246,0.8)] text-white/55"
+                      className="data-[state=active]:bg-electric data-[state=active]:text-[#1E293B] data-[state=active]:shadow-[0_0_16px_-4px_rgba(59,130,246,0.8)] text-[#1E293B]/55"
                     >
                       Dialer
                     </TabsTrigger>
@@ -1049,7 +1049,7 @@ export default function InteractiveDemo() {
         </GlassCard>
       </motion.div>
 
-      <p className="mt-6 text-center text-xs text-white/40">
+      <p className="mt-6 text-center text-xs text-[#1E293B]/40">
         Fully interactive — click through every tab. No screenshots, just real components.
       </p>
     </SectionShell>

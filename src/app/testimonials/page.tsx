@@ -109,7 +109,7 @@ export default function TestimonialsPage() {
               <GlassCard
                 strong
                 sheen
-                className="group relative flex h-full flex-col overflow-hidden p-6 transition-all duration-300 hover:-translate-y-1 hover:border-white/20 hover:shadow-[0_20px_60px_-20px_rgba(139,92,246,0.35)] sm:p-7"
+                className="group relative flex h-full flex-col overflow-hidden p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#E2E8F0] hover:shadow-[0_20px_60px_-20px_rgba(139,92,246,0.35)] sm:p-7"
               >
                 {/* soft accent glow */}
                 <div
@@ -127,7 +127,7 @@ export default function TestimonialsPage() {
                 </div>
 
                 {/* quote */}
-                <p className="relative mt-4 flex-1 text-[15px] leading-relaxed text-white/75">
+                <p className="relative mt-4 flex-1 text-[15px] leading-relaxed text-[#1E293B]/75">
                   &ldquo;{s.quote}&rdquo;
                 </p>
 
@@ -137,18 +137,18 @@ export default function TestimonialsPage() {
                 {/* avatar + name + location + verified badge */}
                 <div className="relative flex items-center gap-3">
                   <div
-                    className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gradient-to-br ${s.avatar} text-sm font-semibold text-white shadow-[0_4px_18px_-4px_rgba(59,130,246,0.5)]`}
+                    className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gradient-to-br ${s.avatar} text-sm font-semibold text-[#1E293B] shadow-[0_4px_18px_-4px_rgba(59,130,246,0.5)]`}
                   >
                     {s.initials}
                   </div>
                   <div className="flex flex-col gap-0.5">
                     <div className="flex items-center gap-1.5">
-                      <span className="text-sm font-semibold text-white">
+                      <span className="text-sm font-semibold text-[#1E293B]">
                         {s.name}
                       </span>
                       <BadgeCheck className="h-4 w-4 text-electric drop-shadow-[0_0_6px_rgba(59,130,246,0.55)]" />
                     </div>
-                    <span className="text-xs text-white/50">{s.location}</span>
+                    <span className="text-xs text-[#1E293B]/50">{s.location}</span>
                   </div>
                 </div>
               </GlassCard>

@@ -79,9 +79,9 @@ function LogoMark() {
     <Link href="/" className="group flex items-center gap-2.5">
       <span className="relative flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-electric via-violet to-cyan shadow-[0_0_20px_-4px_rgba(59,130,246,0.6)]">
         <span className="absolute inset-0 rounded-xl bg-gradient-to-br from-electric via-violet to-cyan opacity-60 blur-md transition-opacity group-hover:opacity-90" />
-        <Sparkles className="relative h-4.5 w-4.5 text-white" strokeWidth={2.2} />
+        <Sparkles className="relative h-4.5 w-4.5 text-[#1E293B]" strokeWidth={2.2} />
       </span>
-      <span className="font-heading text-base font-semibold tracking-tight text-white">
+      <span className="font-heading text-base font-semibold tracking-tight text-[#1E293B]">
         Opus<span className="text-electric"> Solutions</span>
       </span>
     </Link>
@@ -90,7 +90,7 @@ function LogoMark() {
 
 export function SiteFooter() {
   return (
-    <footer className="relative w-full bg-[#070709]">
+    <footer className="relative w-full bg-white">
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-electric via-violet to-cyan" />
       <div className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-electric/5 to-transparent" />
 
@@ -99,7 +99,7 @@ export function SiteFooter() {
         <div className="grid gap-10 lg:grid-cols-2 lg:gap-16">
           <div className="flex flex-col gap-6">
             <LogoMark />
-            <p className="max-w-sm text-sm leading-relaxed text-white/55">
+            <p className="max-w-sm text-sm leading-relaxed text-[#1E293B]/55">
               Your trusted partner for marketing consulting, outreach
               support, and CRM solutions. Human-verified outreach, dedicated
               virtual assistants, and documented workflows for licensed real
@@ -111,7 +111,7 @@ export function SiteFooter() {
                   key={label}
                   href={href}
                   aria-label={label}
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/60 transition-all hover:-translate-y-0.5 hover:border-electric/40 hover:bg-electric/10 hover:text-white"
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-[#E2E8F0] bg-[#1E293B]/5 text-[#1E293B]/60 transition-all hover:-translate-y-0.5 hover:border-electric/40 hover:bg-electric/10 hover:text-[#1E293B]"
                 >
                   <Icon className="h-4 w-4" />
                 </a>
@@ -121,10 +121,10 @@ export function SiteFooter() {
 
           <div className="flex flex-col gap-4 lg:items-end lg:text-right">
             <div className="lg:max-w-sm">
-              <h3 className="font-heading text-lg font-semibold text-white">
+              <h3 className="font-heading text-lg font-semibold text-[#1E293B]">
                 Stay ahead of the market
               </h3>
-              <p className="mt-1.5 text-sm text-white/50">
+              <p className="mt-1.5 text-sm text-[#1E293B]/50">
                 Weekly insights on outreach and prospecting.
               </p>
             </div>
@@ -136,31 +136,31 @@ export function SiteFooter() {
                 type="email"
                 placeholder="you@brokerage.com"
                 aria-label="Email address"
-                className="w-full flex-1 rounded-full border border-white/10 bg-white/5 px-5 py-3 text-sm text-white placeholder:text-white/40 outline-none transition-colors focus:border-electric/50 focus:bg-white/10"
+                className="w-full flex-1 rounded-full border border-[#E2E8F0] bg-[#1E293B]/5 px-5 py-3 text-sm text-[#1E293B] placeholder:text-[#1E293B]/40 outline-none transition-colors focus:border-electric/50 focus:bg-[#1E293B]/8"
               />
               <motion.button
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
                 type="submit"
-                className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-[linear-gradient(120deg,#3b82f6,#8b5cf6)] px-5 py-3 text-sm font-semibold text-white shadow-[0_0_25px_-8px_rgba(59,130,246,0.8)] transition-shadow hover:shadow-[0_0_35px_-6px_rgba(139,92,246,0.85)]"
+                className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-[linear-gradient(120deg,#3b82f6,#8b5cf6)] px-5 py-3 text-sm font-semibold text-[#1E293B] shadow-[0_0_25px_-8px_rgba(59,130,246,0.8)] transition-shadow hover:shadow-[0_0_35px_-6px_rgba(139,92,246,0.85)]"
               >
                 <Send className="h-4 w-4" />
                 Subscribe
               </motion.button>
             </form>
-            <p className="text-xs text-white/35 lg:max-w-sm lg:text-right">
+            <p className="text-xs text-[#1E293B]/35 lg:max-w-sm lg:text-right">
               We respect your inbox. Unsubscribe with one click.
             </p>
           </div>
         </div>
 
-        <div className="my-12 h-px w-full bg-white/8 md:my-14" />
+        <div className="my-12 h-px w-full bg-[#1E293B]/5 md:my-14" />
 
         {/* link columns */}
         <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 md:grid-cols-5">
           {FOOTER_COLUMNS.map((col) => (
             <div key={col.title} className="flex flex-col gap-3.5">
-              <h4 className="font-heading text-sm font-semibold tracking-wide text-white">
+              <h4 className="font-heading text-sm font-semibold tracking-wide text-[#1E293B]">
                 {col.title}
               </h4>
               <ul className="flex flex-col gap-2.5">
@@ -168,7 +168,7 @@ export function SiteFooter() {
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="text-sm text-white/55 transition-colors hover:text-white"
+                      className="text-sm text-[#1E293B]/55 transition-colors hover:text-[#1E293B]"
                     >
                       {link.label}
                     </Link>
@@ -180,16 +180,16 @@ export function SiteFooter() {
         </div>
 
         {/* bottom bar */}
-        <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-white/8 pt-8 md:flex-row">
-          <p className="text-xs text-white/45">
+        <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-[#E2E8F0] pt-8 md:flex-row">
+          <p className="text-xs text-[#1E293B]/45">
             © 2025 Opus Solutions. All rights reserved.
           </p>
           <div className="flex flex-col items-center gap-4 sm:flex-row sm:gap-6">
-            <span className="inline-flex items-center gap-1.5 text-xs text-white/45">
+            <span className="inline-flex items-center gap-1.5 text-xs text-[#1E293B]/45">
               <ShieldCheck className="h-3.5 w-3.5 text-electric/70" />
               Made with care
             </span>
-            <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/60">
+            <span className="inline-flex items-center gap-2 rounded-full border border-[#E2E8F0] bg-[#1E293B]/5 px-3 py-1 text-xs text-[#1E293B]/60">
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-60" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-green-400" />

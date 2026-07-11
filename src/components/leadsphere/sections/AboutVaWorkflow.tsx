@@ -52,8 +52,8 @@ export function AboutMission() {
             <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-electric/15">
               <Target className="h-5.5 w-5.5 text-electric" />
             </span>
-            <h3 className="mt-5 font-heading text-xl font-semibold text-white">Our Mission</h3>
-            <p className="mt-3 text-sm leading-relaxed text-white/60">
+            <h3 className="mt-5 font-heading text-xl font-semibold text-[#1E293B]">Our Mission</h3>
+            <p className="mt-3 text-sm leading-relaxed text-[#1E293B]/60">
               To help licensed real estate professionals grow their businesses by
               providing marketing support, outreach assistance, CRM solutions, and
               administrative services. We strive to deliver verified, exclusive
@@ -67,8 +67,8 @@ export function AboutMission() {
             <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-violet/15">
               <Eye className="h-5.5 w-5.5 text-violet" />
             </span>
-            <h3 className="mt-5 font-heading text-xl font-semibold text-white">Our Vision</h3>
-            <p className="mt-3 text-sm leading-relaxed text-white/60">
+            <h3 className="mt-5 font-heading text-xl font-semibold text-[#1E293B]">Our Vision</h3>
+            <p className="mt-3 text-sm leading-relaxed text-[#1E293B]/60">
               To empower real estate professionals nationwide to reach their full
               potential. By leveraging modern digital platforms, scalable support
               solutions, and continuous improvement, we help agents focus on what
@@ -83,8 +83,8 @@ export function AboutMission() {
             <span className="relative flex h-11 w-11 items-center justify-center rounded-xl bg-cyan/15">
               <Users className="h-5.5 w-5.5 text-cyan" />
             </span>
-            <h3 className="relative mt-5 font-heading text-xl font-semibold text-white">Who We Serve</h3>
-            <p className="relative mt-3 text-sm leading-relaxed text-white/60">
+            <h3 className="relative mt-5 font-heading text-xl font-semibold text-[#1E293B]">Who We Serve</h3>
+            <p className="relative mt-3 text-sm leading-relaxed text-[#1E293B]/60">
               Agents, teams, brokerages, and investors across the USA. From solo
               realtors to large brokerages, our documented workflows and
               human-verified outreach adapt to every stage of your growth.
@@ -107,11 +107,11 @@ export function AboutMission() {
                 <CheckCircle2 className="h-3.5 w-3.5" />
                 Benefits
               </span>
-              <h3 className="mt-5 font-heading text-2xl font-semibold leading-tight text-white sm:text-3xl">
+              <h3 className="mt-5 font-heading text-2xl font-semibold leading-tight text-[#1E293B] sm:text-3xl">
                 Benefits of{" "}
                 <span className="text-gradient-electric">Professional Outreach Support</span>
               </h3>
-              <p className="mt-4 max-w-lg text-sm leading-relaxed text-white/60 sm:text-base">
+              <p className="mt-4 max-w-lg text-sm leading-relaxed text-[#1E293B]/60 sm:text-base">
                 Outsourcing your outreach support with Opus Solutions saves
                 valuable time by providing verified and standardized contact
                 records. Our documented workflows make follow-ups faster and
@@ -146,14 +146,14 @@ export function AboutMission() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, margin: "-10% 0px" }}
                   transition={{ duration: 0.45, delay: 0.05 * i, ease: [0.22, 1, 0.36, 1] }}
-                  className="group flex items-start gap-3 rounded-xl border border-white/8 bg-white/[0.02] p-4 transition-all duration-300 hover:border-electric/30 hover:bg-electric/[0.04]"
+                  className="group flex items-start gap-3 rounded-xl border border-[#E2E8F0] bg-white/[0.02] p-4 transition-all duration-300 hover:border-electric/30 hover:bg-electric/[0.04]"
                 >
                   <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-electric drop-shadow-[0_0_8px_rgba(59,130,246,0.5)] transition-transform duration-300 group-hover:scale-110" />
                   <div>
-                    <p className="font-heading text-sm font-semibold text-white">
+                    <p className="font-heading text-sm font-semibold text-[#1E293B]">
                       {item.title}
                     </p>
-                    <p className="mt-1 text-xs leading-relaxed text-white/55">
+                    <p className="mt-1 text-xs leading-relaxed text-[#1E293B]/55">
                       {item.desc}
                     </p>
                   </div>
@@ -168,15 +168,15 @@ export function AboutMission() {
       <div className="mt-8">
         <Reveal>
           <div className="mx-auto mb-10 flex max-w-2xl flex-col items-center text-center">
-            <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium tracking-wide text-white/70 backdrop-blur">
+            <span className="inline-flex items-center gap-2 rounded-full border border-[#E2E8F0] bg-[#1E293B]/5 px-3 py-1 text-xs font-medium tracking-wide text-[#1E293B]/70 backdrop-blur">
               <span className="h-1.5 w-1.5 rounded-full bg-violet shadow-[0_0_8px_#8b5cf6]" />
               Why We Are Different
             </span>
-            <h3 className="mt-4 font-heading text-2xl font-semibold leading-tight text-white sm:text-3xl md:text-4xl">
+            <h3 className="mt-4 font-heading text-2xl font-semibold leading-tight text-[#1E293B] sm:text-3xl md:text-4xl">
               Built different, built to{" "}
               <span className="text-gradient-electric">last</span>
             </h3>
-            <p className="mt-3 max-w-xl text-sm leading-relaxed text-white/55 sm:text-base">
+            <p className="mt-3 max-w-xl text-sm leading-relaxed text-[#1E293B]/55 sm:text-base">
               Three reasons teams choose Opus Solutions as their long-term
               outreach partner.
             </p>
@@ -219,10 +219,10 @@ export function AboutMission() {
                   >
                     <card.icon className={`h-6 w-6 text-${card.color}`} />
                   </span>
-                  <h4 className="relative mt-5 font-heading text-lg font-semibold text-white">
+                  <h4 className="relative mt-5 font-heading text-lg font-semibold text-[#1E293B]">
                     {card.title}
                   </h4>
-                  <p className="relative mt-3 text-sm leading-relaxed text-white/60">
+                  <p className="relative mt-3 text-sm leading-relaxed text-[#1E293B]/60">
                     {card.desc}
                   </p>
                   <div
@@ -303,21 +303,21 @@ export function VirtualAssistantServices() {
               transition={{ duration: 0.25 }}
               className="group h-full"
             >
-              <GlassCard className="h-full p-6 transition-all duration-300 hover:border-white/20">
+              <GlassCard className="h-full p-6 transition-all duration-300 hover:border-[#E2E8F0]">
                 <div className="flex items-start justify-between">
                   <span
                     className={`flex h-12 w-12 items-center justify-center rounded-xl bg-${s.color}/15 transition-transform duration-300 group-hover:scale-110`}
                   >
                     <s.icon className={`h-6 w-6 text-${s.color}`} />
                   </span>
-                  <span className="font-heading text-3xl font-bold text-white/8 tnum">
+                  <span className="font-heading text-3xl font-bold text-[#1E293B]/15 tnum">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                 </div>
-                <h3 className="mt-5 font-heading text-lg font-semibold text-white">
+                <h3 className="mt-5 font-heading text-lg font-semibold text-[#1E293B]">
                   {s.title}
                 </h3>
-                <p className="mt-2.5 text-sm leading-relaxed text-white/55">
+                <p className="mt-2.5 text-sm leading-relaxed text-[#1E293B]/55">
                   {s.desc}
                 </p>
                 <div className={`mt-4 h-0.5 w-10 rounded-full bg-${s.color}/50 transition-all duration-300 group-hover:w-20`} />
@@ -383,16 +383,16 @@ export function OurWorkflow() {
             <Reveal key={step.title} delay={i * 0.12}>
               <div className="relative flex flex-col items-center text-center md:items-start md:text-left">
                 {/* numbered node */}
-                <div className="relative z-10 flex h-14 w-14 items-center justify-center rounded-2xl border border-white/10 bg-[#0d0d10] shadow-[0_0_24px_-8px_rgba(59,130,246,0.5)]">
+                <div className="relative z-10 flex h-14 w-14 items-center justify-center rounded-2xl border border-[#E2E8F0] bg-white shadow-[0_0_24px_-8px_rgba(59,130,246,0.5)]">
                   <step.icon className={`h-6 w-6 text-${step.color}`} />
-                  <span className="absolute -right-1.5 -top-1.5 flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-br from-electric to-violet font-heading text-xs font-bold text-white shadow-lg">
+                  <span className="absolute -right-1.5 -top-1.5 flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-br from-electric to-violet font-heading text-xs font-bold text-[#1E293B] shadow-lg">
                     {i + 1}
                   </span>
                 </div>
-                <h3 className="mt-5 font-heading text-base font-semibold text-white">
+                <h3 className="mt-5 font-heading text-base font-semibold text-[#1E293B]">
                   {step.title}
                 </h3>
-                <p className="mt-2 text-sm leading-relaxed text-white/55">
+                <p className="mt-2 text-sm leading-relaxed text-[#1E293B]/55">
                   {step.desc}
                 </p>
               </div>

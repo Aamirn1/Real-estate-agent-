@@ -50,7 +50,7 @@ export function PageHero({
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-medium tracking-wide text-white/70 backdrop-blur"
+          className="inline-flex items-center gap-2 rounded-full border border-[#E2E8F0] bg-[#1E293B]/5 px-3 py-1.5 text-xs font-medium tracking-wide text-[#1E293B]/70 backdrop-blur"
         >
           <span className="h-1.5 w-1.5 rounded-full bg-electric shadow-[0_0_8px_#3b82f6]" />
           {eyebrow}
@@ -59,7 +59,7 @@ export function PageHero({
           initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
           animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-6 font-heading text-4xl font-semibold leading-[1.05] tracking-tight text-white sm:text-5xl md:text-6xl"
+          className="mt-6 font-heading text-4xl font-semibold leading-[1.05] tracking-tight text-[#1E293B] sm:text-5xl md:text-6xl"
         >
           {title}
         </motion.h1>
@@ -68,7 +68,7 @@ export function PageHero({
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.25 }}
-            className="mt-6 max-w-2xl text-base leading-relaxed text-white/60 sm:text-lg"
+            className="mt-6 max-w-2xl text-base leading-relaxed text-[#1E293B]/60 sm:text-lg"
           >
             {description}
           </motion.p>

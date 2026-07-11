@@ -248,18 +248,18 @@ function SortableLeadCard({ lead }: { lead: Lead }) {
       >
         <div className="flex items-start gap-3 p-3.5">
           <div
-            className={`grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-gradient-to-br ${lead.avatar} text-xs font-semibold text-white shadow-lg`}
+            className={`grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-gradient-to-br ${lead.avatar} text-xs font-semibold text-[#1E293B] shadow-lg`}
           >
             {lead.initials}
           </div>
           <div className="min-w-0 flex-1">
             <div className="flex items-center justify-between gap-2">
-              <p className="truncate font-heading text-sm font-medium text-white">
+              <p className="truncate font-heading text-sm font-medium text-[#1E293B]">
                 {lead.name}
               </p>
-              <GripVertical className="h-3.5 w-3.5 shrink-0 text-white/25" />
+              <GripVertical className="h-3.5 w-3.5 shrink-0 text-[#1E293B]/25" />
             </div>
-            <p className="tnum mt-0.5 text-sm font-semibold text-white/70">
+            <p className="tnum mt-0.5 text-sm font-semibold text-[#1E293B]/70">
               {lead.value}
             </p>
             <div className="mt-2.5 flex items-center gap-1.5">
@@ -287,10 +287,10 @@ function SortableLeadCard({ lead }: { lead: Lead }) {
 
 function cnCard(isDragging: boolean) {
   return [
-    "group cursor-grab active:cursor-grabbing border border-white/10 transition-all duration-200",
+    "group cursor-grab active:cursor-grabbing border border-[#E2E8F0] transition-all duration-200",
     isDragging
-      ? "z-50 -rotate-1 scale-[1.03] border-white/25 shadow-[0_18px_50px_-12px_rgba(0,0,0,0.8)] ring-1 ring-white/20"
-      : "hover:border-white/20 hover:shadow-[0_8px_24px_-12px_rgba(0,0,0,0.6)]",
+      ? "z-50 -rotate-1 scale-[1.03] border-[#CBD5E1] shadow-[0_18px_50px_-12px_rgba(0,0,0,0.8)] ring-1 ring-white/20"
+      : "hover:border-[#E2E8F0] hover:shadow-[0_8px_24px_-12px_rgba(0,0,0,0.6)]",
   ].join(" ");
 }
 
@@ -299,15 +299,15 @@ function LeadCardStatic({ lead }: { lead: Lead }) {
     <GlassCard className={cnCard(false)}>
       <div className="flex items-start gap-3 p-3.5">
         <div
-          className={`grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-gradient-to-br ${lead.avatar} text-xs font-semibold text-white shadow-lg`}
+          className={`grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-gradient-to-br ${lead.avatar} text-xs font-semibold text-[#1E293B] shadow-lg`}
         >
           {lead.initials}
         </div>
         <div className="min-w-0 flex-1">
-          <p className="truncate font-heading text-sm font-medium text-white">
+          <p className="truncate font-heading text-sm font-medium text-[#1E293B]">
             {lead.name}
           </p>
-          <p className="tnum mt-0.5 text-sm font-semibold text-white/70">
+          <p className="tnum mt-0.5 text-sm font-semibold text-[#1E293B]/70">
             {lead.value}
           </p>
           <div className="mt-2.5 flex items-center gap-1.5">
@@ -345,10 +345,10 @@ function KanbanColumn({ column }: { column: Column }) {
             boxShadow: `0 0 10px ${column.color}`,
           }}
         />
-        <span className="font-heading text-sm font-medium text-white/80">
+        <span className="font-heading text-sm font-medium text-[#1E293B]/80">
           {column.name}
         </span>
-        <span className="tnum ml-auto rounded-full border border-white/10 bg-white/5 px-2 py-0.5 text-[10px] font-medium text-white/60">
+        <span className="tnum ml-auto rounded-full border border-[#E2E8F0] bg-[#1E293B]/5 px-2 py-0.5 text-[10px] font-medium text-[#1E293B]/60">
           {column.leads.length}
         </span>
       </div>
@@ -364,7 +364,7 @@ function KanbanColumn({ column }: { column: Column }) {
           }`}
         >
           {column.leads.length === 0 ? (
-            <div className="grid flex-1 place-items-center rounded-xl border border-dashed border-white/10 py-8 text-xs text-white/30">
+            <div className="grid flex-1 place-items-center rounded-xl border border-dashed border-[#E2E8F0] py-8 text-xs text-[#1E293B]/30">
               Drop leads here
             </div>
           ) : (
@@ -509,7 +509,7 @@ function IntegrationCard({ item, index }: { item: Integration; index: number }) 
   return (
     <Reveal delay={index * 0.04}>
       <div
-        className="group relative flex h-full flex-col items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.03] p-5 backdrop-blur-xl transition-all duration-300 hover:-translate-y-1.5"
+        className="group relative flex h-full flex-col items-center gap-3 rounded-2xl border border-[#E2E8F0] bg-white/[0.03] p-5 backdrop-blur-xl transition-all duration-300 hover:-translate-y-1.5"
         style={{ boxShadow: "0 1px 0 0 rgba(255,255,255,0.04) inset" }}
       >
         <div
@@ -519,7 +519,7 @@ function IntegrationCard({ item, index }: { item: Integration; index: number }) 
           }}
         />
         <div
-          className="grid h-12 w-12 place-items-center rounded-xl border border-white/10 transition-transform duration-300 group-hover:scale-110"
+          className="grid h-12 w-12 place-items-center rounded-xl border border-[#E2E8F0] transition-transform duration-300 group-hover:scale-110"
           style={{
             backgroundColor: `${item.color}1f`,
             color: item.color,
@@ -527,7 +527,7 @@ function IntegrationCard({ item, index }: { item: Integration; index: number }) 
         >
           <Icon className="h-6 w-6" />
         </div>
-        <span className="font-heading text-sm font-medium text-white/80">
+        <span className="font-heading text-sm font-medium text-[#1E293B]/80">
           {item.name}
         </span>
       </div>
@@ -616,7 +616,7 @@ function TestimonialCard({ t }: { t: Testimonial }) {
       <button
         type="button"
         aria-label="Play video testimonial"
-        className="group/play absolute right-5 top-5 grid h-11 w-11 place-items-center rounded-full border border-white/15 bg-white/5 backdrop-blur-md transition-all hover:border-electric/50 hover:bg-electric/10"
+        className="group/play absolute right-5 top-5 grid h-11 w-11 place-items-center rounded-full border border-[#E2E8F0] bg-[#1E293B]/5 backdrop-blur-md transition-all hover:border-electric/50 hover:bg-electric/10"
       >
         <motion.span
           className="absolute inset-0 rounded-full border border-electric/40"
@@ -637,7 +637,7 @@ function TestimonialCard({ t }: { t: Testimonial }) {
           ))}
         </div>
 
-        <blockquote className="font-heading text-xl font-medium leading-relaxed tracking-tight text-white/90 sm:text-2xl">
+        <blockquote className="font-heading text-xl font-medium leading-relaxed tracking-tight text-[#1E293B]/90 sm:text-2xl">
           &ldquo;{t.quote}&rdquo;
         </blockquote>
 
@@ -645,18 +645,18 @@ function TestimonialCard({ t }: { t: Testimonial }) {
 
         <div className="flex items-center justify-center gap-3">
           <div
-            className={`grid h-11 w-11 place-items-center rounded-full bg-gradient-to-br ${t.avatar} text-sm font-semibold text-white shadow-lg ring-2 ring-white/10`}
+            className={`grid h-11 w-11 place-items-center rounded-full bg-gradient-to-br ${t.avatar} text-sm font-semibold text-[#1E293B] shadow-lg ring-2 ring-white/10`}
           >
             {t.initials}
           </div>
           <div className="text-left">
             <div className="flex items-center gap-1.5">
-              <span className="font-heading text-sm font-semibold text-white">
+              <span className="font-heading text-sm font-semibold text-[#1E293B]">
                 {t.name}
               </span>
               <BadgeCheck className="h-4 w-4 text-electric" />
             </div>
-            <p className="text-xs text-white/55">{t.role}</p>
+            <p className="text-xs text-[#1E293B]/55">{t.role}</p>
           </div>
         </div>
       </div>
@@ -713,8 +713,8 @@ function TestimonialsCarousel() {
           ))}
         </CarouselContent>
 
-        <CarouselPrevious className="left-0 top-1/2 hidden h-10 w-10 -translate-y-1/2 border-white/15 bg-black/40 text-white/70 backdrop-blur-md hover:bg-white/10 hover:text-white sm:flex" />
-        <CarouselNext className="right-0 top-1/2 hidden h-10 w-10 -translate-y-1/2 border-white/15 bg-black/40 text-white/70 backdrop-blur-md hover:bg-white/10 hover:text-white sm:flex" />
+        <CarouselPrevious className="left-0 top-1/2 hidden h-10 w-10 -translate-y-1/2 border-[#E2E8F0] bg-white/80 text-[#1E293B]/70 backdrop-blur-md hover:bg-[#1E293B]/8 hover:text-[#1E293B] sm:flex" />
+        <CarouselNext className="right-0 top-1/2 hidden h-10 w-10 -translate-y-1/2 border-[#E2E8F0] bg-white/80 text-[#1E293B]/70 backdrop-blur-md hover:bg-[#1E293B]/8 hover:text-[#1E293B] sm:flex" />
       </Carousel>
 
       {/* dots */}

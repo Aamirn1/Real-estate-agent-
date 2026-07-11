@@ -19,7 +19,7 @@ export function LoadingScreen() {
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.35, ease: "easeInOut" }}
-          className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#050505]"
+          className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#F8FAFC]"
         >
           {/* Ambient glow */}
           <div className="absolute left-1/2 top-1/2 h-[400px] w-[400px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-electric/20 blur-[120px]" />
@@ -53,7 +53,7 @@ export function LoadingScreen() {
               transition={{ duration: 1.4, repeat: Infinity, ease: "easeInOut" }}
               className="relative flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-br from-electric via-violet to-cyan shadow-[0_0_50px_-8px_rgba(59,130,246,0.8)]"
             >
-              <Sparkles className="h-9 w-9 text-white" strokeWidth={2.2} />
+              <Sparkles className="h-9 w-9 text-[#1E293B]" strokeWidth={2.2} />
             </motion.div>
           </motion.div>
 
@@ -64,10 +64,10 @@ export function LoadingScreen() {
             transition={{ delay: 0.15, duration: 0.3 }}
             className="relative mt-8 text-center"
           >
-            <div className="font-heading text-2xl font-semibold tracking-tight text-white">
+            <div className="font-heading text-2xl font-semibold tracking-tight text-[#1E293B]">
               Opus<span className="text-electric"> Solutions</span>
             </div>
-            <div className="mt-1 text-xs text-white/40">More listings. Powered by Opus.</div>
+            <div className="mt-1 text-xs text-[#1E293B]/40">More listings. Powered by Opus.</div>
           </motion.div>
 
           {/* Progress bar */}
@@ -75,7 +75,7 @@ export function LoadingScreen() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="relative mt-8 h-0.5 w-44 overflow-hidden rounded-full bg-white/10"
+            className="relative mt-8 h-0.5 w-44 overflow-hidden rounded-full bg-[#1E293B]/8"
           >
             <motion.div
               initial={{ x: "-100%" }}

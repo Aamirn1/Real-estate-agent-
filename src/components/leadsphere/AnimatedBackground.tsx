@@ -31,7 +31,7 @@ export function AnimatedBackground({
       className={`pointer-events-none absolute inset-0 overflow-hidden ${className}`}
     >
       {/* Base gradient */}
-      <div className="absolute inset-0 bg-[#050505]" />
+      <div className="absolute inset-0 bg-[#F8FAFC]" />
 
       {/* Aurora blobs */}
       {variant === "hero" && (
@@ -93,7 +93,7 @@ export function AnimatedBackground({
       />
 
       {/* Bottom fade */}
-      <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#050505] to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#F8FAFC] to-transparent" />
     </div>
   );
 }
