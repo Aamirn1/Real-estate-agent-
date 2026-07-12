@@ -40,10 +40,10 @@ export function Navbar() {
             : "border border-transparent bg-transparent"
         )}
       >
-        {/* Logo — white text version on hero (dark bg), dark text version when mobile menu opens (white panel) */}
+        {/* Logo — white text on hero (dark bg), dark text when scrolled or menu open (white bg) */}
         <a href="#" className="group flex items-center transition-transform group-hover:scale-[1.02]">
           <img
-            src={open ? "/logo-light.png" : "/logo-dark.png"}
+            src={scrolled || open ? "/logo-light.png" : "/logo-dark.png"}
             alt="Opus Global Solution"
             className="h-10 sm:h-12"
           />
@@ -83,7 +83,7 @@ export function Navbar() {
           onClick={() => setOpen((v) => !v)}
           className={cn(
             "flex h-9 w-9 items-center justify-center rounded-lg transition-colors md:hidden",
-            open ? "text-[#1a1a1a] hover:bg-black/5" : "text-white hover:bg-white/10"
+            scrolled || open ? "text-[#1a1a1a] hover:bg-black/5" : "text-white hover:bg-white/10"
           )}
           aria-label="Toggle menu"
         >
