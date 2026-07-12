@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { SiteChrome, PageHero } from "@/components/leadsphere/SiteChrome";
 import { CTABanner } from "@/components/leadsphere/CTABanner";
-import TrustStatsFeatures from "@/components/leadsphere/sections/TrustStatsFeatures";
 import CrmIntegrationsTestimonials from "@/components/leadsphere/sections/CrmIntegrationsTestimonials";
 import {
   GlassCard,
@@ -91,7 +90,6 @@ export default function TestimonialsPage() {
       />
 
       {/* 1. Trust + Stats + Features grid (social proof: 250M+ leads, 92% conversion, 50K+ agents, 100+ MLS) */}
-      <TrustStatsFeatures />
 
       {/* 2. CRM Kanban + Integrations + Testimonials carousel (id="testimonials") */}
       <CrmIntegrationsTestimonials />

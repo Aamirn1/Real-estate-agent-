@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { SiteChrome, PageHero } from "@/components/leadsphere/SiteChrome";
 import { CTABanner } from "@/components/leadsphere/CTABanner";
-import TrustStatsFeatures from "@/components/leadsphere/sections/TrustStatsFeatures";
 import AiProcessMap from "@/components/leadsphere/sections/AiProcessMap";
 import {
   VirtualAssistantServices,
@@ -30,7 +29,6 @@ export default function ServicesPage() {
       />
 
       {/* 1. Trust + Stats + Services overview grid (id="services") */}
-      <TrustStatsFeatures />
 
       {/* 2. Process timeline | 7 steps */}
       <AiProcessMap />
