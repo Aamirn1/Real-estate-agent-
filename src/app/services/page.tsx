@@ -28,16 +28,28 @@ export default function ServicesPage() {
         description="Unlock your potential for success with our expert marketing consulting, outreach support, and CRM solutions tailored for licensed real estate professionals."
       />
 
+      {/* Services workspace image */}
+      <section className="relative w-full px-5 pb-4 sm:px-8">
+        <div className="mx-auto w-full max-w-5xl overflow-hidden rounded-3xl border border-black/8 shadow-lg">
+          <img
+            src="/sections/services-workspace.jpg"
+            alt="Opus Global Solution services workspace with CRM dashboards"
+            className="h-full w-full object-cover"
+            loading="lazy"
+          />
+        </div>
+      </section>
+
       {/* 1. Trust + Stats + Services overview grid (id="services") */}
 
-      {/* 2. Process timeline | 7 steps */}
-      <AiProcessMap />
-
-      {/* 3. Virtual Assistant Services | 6 service cards */}
+      {/* 2. Virtual Assistant Services | 6 service cards */}
       <VirtualAssistantServices />
 
-      {/* 4. Why Choose Us | 8 reasons */}
+      {/* 3. Why Choose Us | 8 reasons ("Built different, built to last") */}
       <WhyChooseUs />
+
+      {/* 4. Process timeline ("How we work") — moved below Why Choose Us */}
+      <AiProcessMap />
 
       {/* 5. Closing CTA */}
       <CTABanner

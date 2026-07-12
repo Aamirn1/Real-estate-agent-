@@ -41,6 +41,18 @@ export default function Home() {
       {/* 8. Comparison | Traditional vs Professional workflow support */}
       <BeforeAfter />
 
+      {/* Section image */}
+      <section className="relative w-full px-5 py-8 sm:px-8">
+        <div className="mx-auto w-full max-w-5xl overflow-hidden rounded-3xl border border-black/8 shadow-lg">
+          <img
+            src="/sections/handshake.jpg"
+            alt="Real estate professional shaking hands with client in front of modern home"
+            className="h-full w-full object-cover"
+            loading="lazy"
+          />
+        </div>
+      </section>
+
       {/* 9. Featured Professionals | agent cards + success stories */}
       <FeaturedProfessionals />
 

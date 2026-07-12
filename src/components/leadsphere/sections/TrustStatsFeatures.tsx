@@ -13,6 +13,10 @@ import {
   Handshake,
   Users,
   TrendingUp,
+  Search,
+  MessageSquare,
+  Mail,
+  Globe,
   Network,
 } from "lucide-react";
 import {
@@ -396,6 +400,30 @@ const FEATURES: {
     color: "violet",
     title: "Reporting & Analytics",
     desc: "Campaign reports, monthly performance tracking, and growth insights.",
+  },
+  {
+    icon: Megaphone,
+    color: "cyan",
+    title: "Digital Advertising Management",
+    desc: "Compliant campaigns across Google and social media to increase visibility and reach motivated sellers.",
+  },
+  {
+    icon: Search,
+    color: "electric",
+    title: "SEO & Online Presence",
+    desc: "Boost your visibility through search optimization and relevant, high-quality content strategies.",
+  },
+  {
+    icon: MessageSquare,
+    color: "violet",
+    title: "SMS Campaign Support",
+    desc: "Opt-in only communications with full compliance features including STOP/HELP and unsubscribe.",
+  },
+  {
+    icon: Mail,
+    color: "cyan",
+    title: "Email Campaign Support",
+    desc: "Opt-in only email campaigns with compliance features, automated drips, and delivery analytics.",
   },
 ];
 

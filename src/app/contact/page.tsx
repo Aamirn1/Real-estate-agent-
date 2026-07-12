@@ -100,6 +100,18 @@ export default function ContactPage() {
         description="Stop wasting time on unqualified leads. We connect you with motivated home sellers in your area who are serious about selling. Reach out to discuss your goals."
       />
 
+      {/* Office image */}
+      <section className="relative w-full px-5 pb-4 sm:px-8">
+        <div className="mx-auto w-full max-w-5xl overflow-hidden rounded-3xl border border-black/8 shadow-lg">
+          <img
+            src="/sections/contact-office.jpg"
+            alt="Opus Global Solution office reception"
+            className="h-full w-full object-cover"
+            loading="lazy"
+          />
+        </div>
+      </section>
+
       <SectionShell id="contact" className="pt-6 md:pt-8">
         <div className="grid gap-6 lg:grid-cols-2">
           {/* LEFT | Contact form */}

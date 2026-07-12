@@ -117,6 +117,18 @@ export default function AboutPage() {
       {/* 1. Who We Are (Mission / Vision / Who We Serve) + Benefits + Why Different + Achievements banner */}
       <AboutMission />
 
+      {/* Team image */}
+      <section className="relative w-full px-5 pb-4 sm:px-8">
+        <div className="mx-auto w-full max-w-5xl overflow-hidden rounded-3xl border border-black/8 shadow-lg">
+          <img
+            src="/sections/about-team.jpg"
+            alt="Opus Global Solution team collaborating in modern office"
+            className="h-full w-full object-cover"
+            loading="lazy"
+          />
+        </div>
+      </section>
+
       {/* 2. Our Workflow | 4-step onboarding */}
       <OurWorkflow />
 
