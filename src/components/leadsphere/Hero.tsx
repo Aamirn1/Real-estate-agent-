@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import {
   Sparkles,
   ArrowRight,
@@ -32,9 +31,7 @@ export function Hero() {
 
       <div className="relative z-10 mx-auto w-full max-w-7xl px-5 py-32 sm:px-8 sm:py-40">
         <div className="flex max-w-2xl flex-col items-start">
-          <motion.div
-            initial={{ opacity: 1, y: 0 }}
-            animate={{ opacity: 1, y: 0 }}
+          <div
             className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-medium text-white/90 backdrop-blur"
           >
             <span className="relative flex h-1.5 w-1.5">
@@ -50,31 +47,25 @@ export function Hero() {
               ]}
             />
             <Sparkles className="h-3 w-3 text-violet" />
-          </motion.div>
+          </div>
 
-          <motion.h1
-            initial={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          <h1
             className="mt-6 font-heading text-[2.25rem] font-semibold leading-[1.05] tracking-tight text-white sm:text-4xl lg:text-[3.5rem]"
           >
             Scale Your Real Estate
             <br />
             <span className="text-gradient-electric text-glow">Business with Professional Support.</span>
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            initial={{ opacity: 1, y: 0 }}
-            animate={{ opacity: 1, y: 0 }}
+          <p
             className="mt-6 max-w-xl text-base leading-relaxed text-white/85 sm:text-lg"
           >
             Your trusted partner for marketing consulting, outreach support,
             CRM assistance, workflow automation, and administrative services,
             all delivered through verified, human-only outreach.
-          </motion.p>
+          </p>
 
-          <motion.div
-            initial={{ opacity: 1, y: 0 }}
-            animate={{ opacity: 1, y: 0 }}
+          <div
             className="mt-9 flex flex-row items-center gap-2.5"
           >
             <MagneticButton>
@@ -97,11 +88,9 @@ export function Hero() {
                 <span className="xs:hidden sm:hidden">Book Demo</span>
               </a>
             </MagneticButton>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 1 }}
-            animate={{ opacity: 1 }}
+          <div
             className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 text-xs text-white/80"
           >
             <span className="inline-flex items-center gap-1.5">
@@ -116,26 +105,19 @@ export function Hero() {
             <span className="inline-flex items-center gap-1.5">
               <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400" /> Compliance-first
             </span>
-          </motion.div>
+          </div>
         </div>
       </div>
 
-      {/* scroll cue */}
-      <motion.div
-        initial={{ opacity: 1 }}
-        animate={{ opacity: 1 }}
+      {/* scroll cue — only animated element, uses CSS not framer-motion */}
+      <div
         className="absolute bottom-6 left-1/2 z-10 hidden -translate-x-1/2 flex-col items-center gap-2 text-white/40 sm:flex"
       >
         <span className="text-[10px] uppercase tracking-[0.2em]">Scroll</span>
         <span className="flex h-9 w-5 items-start justify-center rounded-full border border-white/20 p-1.5">
-          <motion.span
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
-            className="h-1.5 w-1 rounded-full bg-white/60"
-          />
+          <span className="h-1.5 w-1 animate-bounce rounded-full bg-white/60" />
         </span>
-      </motion.div>
+      </div>
     </section>
   );
 }
-
