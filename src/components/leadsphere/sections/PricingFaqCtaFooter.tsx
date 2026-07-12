@@ -285,7 +285,7 @@ function CtaButton({
       <motion.button
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
-        className="group relative inline-flex w-full items-center justify-center gap-2 overflow-hidden rounded-full bg-[linear-gradient(120deg,#2563EB,#38BDF8,#14B8A6)] px-6 py-3 text-sm font-semibold text-[#1a1a1a] shadow-[0_0_30px_-6px_rgba(37,99,235,0.7)] transition-shadow hover:shadow-[0_0_45px_-4px_rgba(56,189,248,0.85)]"
+        className="group relative inline-flex w-full items-center justify-center gap-2 overflow-hidden rounded-full bg-[linear-gradient(120deg,#2563EB,#38BDF8,#14B8A6)] px-6 py-3 text-sm font-semibold text-white shadow-[0_0_30px_-6px_rgba(37,99,235,0.7)] transition-shadow hover:shadow-[0_0_45px_-4px_rgba(56,189,248,0.85)]"
       >
         <span className="absolute inset-0 -translate-x-full bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.25),transparent)] transition-transform duration-700 group-hover:translate-x-full" />
         <Rocket className="h-4 w-4" />
@@ -785,7 +785,7 @@ function CtaBanner() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 rounded-full border border-black/25 bg-black/10 px-4 py-1.5 text-xs font-medium tracking-wide text-[#1a1a1a] backdrop-blur"
+            className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-1.5 text-xs font-medium tracking-wide text-white backdrop-blur"
           >
             <Sparkles className="h-3.5 w-3.5" />
             Ready to scale?
@@ -796,7 +796,7 @@ function CtaBanner() {
             whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             viewport={{ once: true, margin: "-10% 0px" }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="font-heading text-4xl font-semibold leading-[1.05] tracking-tight text-[#1a1a1a] text-glow sm:text-5xl md:text-6xl"
+            className="font-heading text-4xl font-semibold leading-[1.05] tracking-tight text-white text-glow sm:text-5xl md:text-6xl"
           >
             Ready to grow your business?
           </motion.h2>
@@ -806,7 +806,7 @@ function CtaBanner() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="max-w-xl text-base leading-relaxed text-[#1a1a1a]/85 sm:text-lg"
+            className="max-w-xl text-base leading-relaxed text-white/90 sm:text-lg"
           >
             Join thousands of real estate professionals who trust Opus Global Solution for verified outreach, dedicated VAs, and documented workflows.
           </motion.p>
