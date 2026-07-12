@@ -225,7 +225,7 @@ export function FeaturedProfessionals() {
                 {/* header: avatar + name */}
                 <div className="relative flex items-center gap-3.5">
                   <div
-                    className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-gradient-to-br ${p.avatar} font-heading text-sm font-bold text-[#1a1a1a] shadow-lg`}
+                    className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-gradient-to-br ${p.avatar} font-heading text-sm font-bold text-white shadow-lg`}
                   >
                     {p.initials}
                   </div>

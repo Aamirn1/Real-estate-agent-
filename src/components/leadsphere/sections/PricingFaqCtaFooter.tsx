@@ -572,7 +572,7 @@ function StylizedMap() {
           </div>
           {/* label */}
           <div className="mt-2 rounded-full border border-electric/40 bg-black/70 px-3 py-1 backdrop-blur">
-            <span className="text-xs font-semibold tracking-wide text-[#1a1a1a]">
+            <span className="text-xs font-semibold tracking-wide text-white">
               Albany, NY
             </span>
           </div>
@@ -681,7 +681,7 @@ function ContactSection() {
                 </div>
                 <Button
                   type="submit"
-                  className="group relative h-11 w-full items-center justify-center gap-2 overflow-hidden rounded-full bg-[linear-gradient(120deg,#2563EB,#38BDF8,#14B8A6)] px-6 text-sm font-semibold text-[#1a1a1a] shadow-[0_0_30px_-6px_rgba(37,99,235,0.7)] transition-shadow hover:shadow-[0_0_45px_-4px_rgba(56,189,248,0.85)]"
+                  className="group relative h-11 w-full items-center justify-center gap-2 overflow-hidden rounded-full bg-[linear-gradient(120deg,#2563EB,#38BDF8,#14B8A6)] px-6 text-sm font-semibold text-white shadow-[0_0_30px_-6px_rgba(37,99,235,0.7)] transition-shadow hover:shadow-[0_0_45px_-4px_rgba(56,189,248,0.85)]"
                 >
                   <span className="absolute inset-0 -translate-x-full bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.25),transparent)] transition-transform duration-700 group-hover:translate-x-full" />
                   <Send className="relative h-4 w-4" />
@@ -822,7 +822,7 @@ function CtaBanner() {
             <motion.button
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.97 }}
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-white/50 bg-black/10 px-7 py-3.5 text-sm font-semibold text-[#1a1a1a] backdrop-blur transition-all hover:bg-white/20 hover:shadow-[0_0_35px_-6px_rgba(255,255,255,0.6)]"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-white/50 bg-black/10 px-7 py-3.5 text-sm font-semibold text-white backdrop-blur transition-all hover:bg-white/20 hover:shadow-[0_0_35px_-6px_rgba(255,255,255,0.6)]"
             >
               <Calendar className="h-4 w-4" />
               Book Demo
@@ -839,7 +839,7 @@ function CtaBanner() {
             </motion.button>
           </motion.div>
 
-          <p className="text-xs text-[#1a1a1a]/60">
+          <p className="text-xs text-white/80">
             14-day free trial · No credit card required · Cancel anytime
           </p>
         </div>
@@ -918,7 +918,7 @@ function Footer() {
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
                 type="submit"
-                className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-[linear-gradient(120deg,#2563EB,#38BDF8)] px-5 py-3 text-sm font-semibold text-[#1a1a1a] shadow-[0_0_25px_-8px_rgba(37,99,235,0.8)] transition-shadow hover:shadow-[0_0_35px_-6px_rgba(56,189,248,0.85)]"
+                className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-[linear-gradient(120deg,#2563EB,#38BDF8)] px-5 py-3 text-sm font-semibold text-white shadow-[0_0_25px_-8px_rgba(37,99,235,0.8)] transition-shadow hover:shadow-[0_0_35px_-6px_rgba(56,189,248,0.85)]"
               >
                 <Send className="h-4 w-4" />
                 Subscribe

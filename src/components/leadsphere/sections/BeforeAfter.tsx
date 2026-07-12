@@ -102,7 +102,7 @@ export function BeforeAfter() {
             transition={{ type: "spring", stiffness: 200, damping: 14, delay: 0.2 }}
             className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-[#2563EB] to-[#38BDF8] shadow-[0_0_30px_-4px_rgba(37,99,235,0.7)] lg:h-14 lg:w-14"
           >
-            <ArrowRight className="h-5 w-5 text-[#1a1a1a] lg:rotate-0" />
+            <ArrowRight className="h-5 w-5 text-white lg:rotate-0" />
           </motion.div>
         </div>
 
@@ -114,7 +114,7 @@ export function BeforeAfter() {
               <div className="mb-6 flex items-center justify-between">
                 <div className="flex items-center gap-2.5">
                   <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-[#2563EB] to-[#38BDF8]">
-                    <Zap className="h-4.5 w-4.5 text-[#1a1a1a]" />
+                    <Zap className="h-4.5 w-4.5 text-white" />
                   </span>
                   <h3 className="font-heading text-lg font-semibold text-[#1a1a1a]">
                     The Opus way

@@ -645,7 +645,7 @@ function TestimonialCard({ t }: { t: Testimonial }) {
 
         <div className="flex items-center justify-center gap-3">
           <div
-            className={`grid h-11 w-11 place-items-center rounded-full bg-gradient-to-br ${t.avatar} text-sm font-semibold text-[#1a1a1a] shadow-lg ring-2 ring-white/10`}
+            className={`grid h-11 w-11 place-items-center rounded-full bg-gradient-to-br ${t.avatar} text-sm font-semibold text-white shadow-lg ring-2 ring-white/10`}
           >
             {t.initials}
           </div>
