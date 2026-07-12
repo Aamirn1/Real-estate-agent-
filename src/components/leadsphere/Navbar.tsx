@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { LogoImage } from "@/components/leadsphere/LogoIcon";
 
 const NAV_LINKS = [
   { label: "Home", href: "/" },
@@ -41,9 +40,13 @@ export function Navbar() {
             : "border border-transparent bg-transparent"
         )}
       >
-        {/* Logo */}
+        {/* Logo — white text version on hero (dark bg), dark text version when mobile menu opens (white panel) */}
         <a href="#" className="group flex items-center transition-transform group-hover:scale-[1.02]">
-          <LogoImage className="h-10 sm:h-12" />
+          <img
+            src={open ? "/logo-light.png" : "/logo-dark.png"}
+            alt="Opus Global Solution"
+            className="h-10 sm:h-12"
+          />
         </a>
 
         {/* Desktop links */}
@@ -78,7 +81,10 @@ export function Navbar() {
         {/* Mobile toggle */}
         <button
           onClick={() => setOpen((v) => !v)}
-          className="flex h-9 w-9 items-center justify-center rounded-lg text-white transition-colors hover:bg-white/10 md:hidden"
+          className={cn(
+            "flex h-9 w-9 items-center justify-center rounded-lg transition-colors md:hidden",
+            open ? "text-[#1a1a1a] hover:bg-black/5" : "text-white hover:bg-white/10"
+          )}
           aria-label="Toggle menu"
         >
           {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
