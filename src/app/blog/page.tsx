@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { SiteChrome, PageHero } from "@/components/leadsphere/SiteChrome";
 import { CTABanner } from "@/components/leadsphere/CTABanner";
+import Link from "next/link";
 import {
   GlassCard,
   SectionHeading,
@@ -27,6 +28,7 @@ import { Reveal } from "@/components/leadsphere/Reveal";
 type ColorKey = "electric" | "violet" | "cyan" | "gold";
 
 interface BlogPost {
+  slug: string;
   title: string;
   excerpt: string;
   category: string;
@@ -39,6 +41,7 @@ interface BlogPost {
 
 const POSTS: BlogPost[] = [
   {
+    slug: "10-proven-strategies-to-generate-seller-leads-2025",
     title: "10 Proven Strategies to Generate Seller Leads in 2025",
     excerpt:
       "Discover the most effective seller lead generation strategies for US real estate agents in 2025. From expired listings to FSBO targeting, learn how top producers fill their pipelines with motivated sellers using proven, compliant outreach methods.",
@@ -50,6 +53,7 @@ const POSTS: BlogPost[] = [
     image: "/blog/blog-1.jpg",
   },
   {
+    slug: "how-virtual-assistants-transforming-real-estate",
     title: "How Virtual Assistants Are Transforming Real Estate Businesses",
     excerpt:
       "Real estate virtual assistants handle scheduling, CRM management, lead follow-up, and client communication so agents can focus on closing. Learn how a dedicated VA can save you 15+ hours per week and boost your conversion rate.",
@@ -61,6 +65,7 @@ const POSTS: BlogPost[] = [
     image: "/blog/blog-2.jpg",
   },
   {
+    slug: "complete-guide-real-estate-crm-setup-new-agents",
     title: "The Complete Guide to Real Estate CRM Setup for New Agents",
     excerpt:
       "Setting up your first real estate CRM doesn't have to be overwhelming. This step-by-step guide covers pipeline stages, lead organization, automation rules, and best practices to keep your deals moving from first contact to closing.",
@@ -72,6 +77,7 @@ const POSTS: BlogPost[] = [
     image: "/blog/blog-3.jpg",
   },
   {
+    slug: "why-human-verified-outreach-beats-cold-calling",
     title: "Why Human-Verified Outreach Beats Cold Calling Every Time",
     excerpt:
       "Cold calling is dead. Discover why human-verified, consent-based outreach converts at 4x the rate of robocalls and autodialers. Learn how documented conversations and compliance-first methods build trust and close more deals.",
@@ -83,6 +89,7 @@ const POSTS: BlogPost[] = [
     image: "/blog/blog-4.jpg",
   },
   {
+    slug: "facebook-google-ads-real-estate-2025-playbook",
     title: "Facebook and Google Ads for Real Estate: A 2025 Playbook",
     excerpt:
       "Stop wasting ad spend on the wrong audience. This 2025 playbook shows real estate agents how to target motivated home sellers on Facebook and Google using consent-based intake forms, compliant campaigns, and proven ad creatives.",
@@ -94,6 +101,7 @@ const POSTS: BlogPost[] = [
     image: "/blog/blog-5.jpg",
   },
   {
+    slug: "how-to-build-real-estate-pipeline-never-goes-dry",
     title: "How to Build a Real Estate Pipeline That Never Goes Dry",
     excerpt:
       "A consistent pipeline is the lifeblood of every successful real estate agent. Learn how to combine lead discovery, CRM organization, automated follow-ups, and monthly reporting to keep your pipeline full month after month.",
@@ -105,6 +113,7 @@ const POSTS: BlogPost[] = [
     image: "/blog/blog-6.jpg",
   },
   {
+    slug: "compliance-real-estate-marketing-tcpa-dnc",
     title: "Compliance in Real Estate Marketing: TCPA, DNC, and What Agents Must Know",
     excerpt:
       "TCPA, DNC, CAN-SPAM, CCPA: compliance violations can cost real estate agents thousands in fines. This guide breaks down every regulation you need to know and how to stay compliant while growing your business.",
@@ -116,6 +125,7 @@ const POSTS: BlogPost[] = [
     image: "/blog/blog-7.jpg",
   },
   {
+    slug: "from-lead-to-closing-nurture-real-estate-prospects",
     title: "From Lead to Closing: How to Nurture Real Estate Prospects Effectively",
     excerpt:
       "Generating leads is just the beginning. Learn proven nurturing strategies including timely follow-ups, appointment scheduling, client reminders, and relationship-building techniques that turn cold prospects into closed deals.",
@@ -221,10 +231,11 @@ export default function BlogPage() {
             const c = COLOR_STYLES[post.color];
             return (
               <Reveal key={post.title} delay={i * 0.06} className="h-full">
+                <Link href={`/blog/${post.slug}`} className="group h-full block">
                 <motion.article
                   whileHover={{ y: -8 }}
                   transition={{ type: "spring", stiffness: 280, damping: 22 }}
-                  className="group h-full"
+                  className="h-full"
                 >
                   <GlassCard
                     sheen
@@ -287,6 +298,7 @@ export default function BlogPage() {
                     </div>
                   </GlassCard>
                 </motion.article>
+                </Link>
               </Reveal>
             );
           })}
