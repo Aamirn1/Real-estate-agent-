@@ -4,7 +4,6 @@ import {
   Sparkles,
   ArrowRight,
   PlayCircle,
-  CheckCircle2,
 } from "lucide-react";
 import { AnimatedBackground } from "@/components/leadsphere/AnimatedBackground";
 import { MagneticButton } from "@/components/leadsphere/MagneticButton";
@@ -94,20 +93,24 @@ export function Hero() {
           </div>
 
           <div
-            className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 text-xs text-white/80"
+            className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4 text-white"
           >
-            <span className="inline-flex items-center gap-1.5">
-              <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400" /> Not a brokerage
-            </span>
-            <span className="inline-flex items-center gap-1.5">
-              <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400" /> Human-only outreach
-            </span>
-            <span className="inline-flex items-center gap-1.5">
-              <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400" /> Verified contacts
-            </span>
-            <span className="inline-flex items-center gap-1.5">
-              <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400" /> Compliance-first
-            </span>
+            <div className="flex flex-col">
+              <span className="font-heading text-2xl font-bold tnum">12K+</span>
+              <span className="text-xs text-white/60">Warm Introductions</span>
+            </div>
+            <div className="flex flex-col">
+              <span className="font-heading text-2xl font-bold tnum">100+</span>
+              <span className="text-xs text-white/60">Agent Teams Supported</span>
+            </div>
+            <div className="flex flex-col">
+              <span className="font-heading text-2xl font-bold tnum">500+</span>
+              <span className="text-xs text-white/60">Campaigns Managed</span>
+            </div>
+            <div className="flex flex-col">
+              <span className="font-heading text-2xl font-bold tnum">98%</span>
+              <span className="text-xs text-white/60">Satisfaction Rate</span>
+            </div>
           </div>
         </div>
       </div>

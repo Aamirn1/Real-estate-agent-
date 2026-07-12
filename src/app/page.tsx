@@ -2,9 +2,9 @@
 
 import { Navbar } from "@/components/leadsphere/Navbar";
 import { Hero } from "@/components/leadsphere/Hero";
-import TrustStatsFeatures from "@/components/leadsphere/sections/TrustStatsFeatures";
+import { FeaturesSection } from "@/components/leadsphere/sections/TrustStatsFeatures";
 import { AboutMission, VirtualAssistantServices, OurWorkflow } from "@/components/leadsphere/sections/AboutVaWorkflow";
-import { WhyChooseUs, FeaturedProfessionals } from "@/components/leadsphere/sections/WhyChooseFeatured";
+import { WhyChooseUs } from "@/components/leadsphere/sections/WhyChooseFeatured";
 import { BeforeAfter } from "@/components/leadsphere/sections/BeforeAfter";
 import AiProcessMap from "@/components/leadsphere/sections/AiProcessMap";
 import CrmIntegrationsTestimonials from "@/components/leadsphere/sections/CrmIntegrationsTestimonials";
@@ -17,19 +17,19 @@ export default function Home() {
     <main className="relative min-h-screen overflow-hidden bg-ink">
       <Navbar />
 
-      {/* 1. Hero */}
+      {/* 1. Hero (with 4 stats) */}
       <Hero />
 
-      {/* 2. Trust + Stats + Services */}
-      <TrustStatsFeatures />
+      {/* 2. Services grid (12 services) — stats section removed, stats moved to hero */}
+      <FeaturesSection />
 
-      {/* 3. About | Mission, Vision, Benefits, Why Different, Achievements */}
+      {/* 3. About | "Workflow automation for realtors" — moved here from below */}
       <AboutMission />
 
       {/* 4. Why Choose Us | 8 reasons */}
       <WhyChooseUs />
 
-      {/* 5. Process | 7 steps (Discovery → ... → Business Growth) */}
+      {/* 5. Process | "How we work" */}
       <AiProcessMap />
 
       {/* 6. Virtual Assistant Services */}
@@ -53,13 +53,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 9. Featured Professionals | agent cards + success stories */}
-      <FeaturedProfessionals />
-
-      {/* 10. Testimonials */}
+      {/* 9. Testimonials — "Clients tell the story" */}
       <CrmIntegrationsTestimonials />
 
-      {/* 11. Pricing + FAQ + CTA banner + Footer */}
+      {/* 10. Pricing + FAQ + CTA banner + Footer */}
       <PricingFaqCtaFooter />
 
       <ScrollToTop />
