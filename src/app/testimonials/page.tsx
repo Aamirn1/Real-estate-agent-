@@ -135,7 +135,7 @@ export default function TestimonialsPage() {
                 {/* avatar + name + location + verified badge */}
                 <div className="relative flex items-center gap-3">
                   <div
-                    className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gradient-to-br ${s.avatar} text-sm font-semibold text-[#1a1a1a] shadow-[0_4px_18px_-4px_rgba(37,99,235,0.5)]`}
+                    className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gradient-to-br ${s.avatar} text-sm font-semibold text-white shadow-[0_4px_18px_-4px_rgba(37,99,235,0.5)]`}
                   >
                     {s.initials}
                   </div>
