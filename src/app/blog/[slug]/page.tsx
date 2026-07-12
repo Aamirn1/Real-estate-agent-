@@ -44,6 +44,38 @@ export default async function BlogPostPage({
 
   return (
     <SiteChrome withBackground={false}>
+      {/* BlogPosting structured data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
+            headline: post.title,
+            description: post.excerpt,
+            image: `https://opus-globalsolution.com${post.image}`,
+            datePublished: post.date,
+            dateModified: post.date,
+            author: {
+              "@type": "Organization",
+              name: "Opus Global Solution",
+              url: "https://opus-globalsolution.com",
+            },
+            publisher: {
+              "@type": "Organization",
+              name: "Opus Global Solution",
+              logo: {
+                "@type": "ImageObject",
+                url: "https://opus-globalsolution.com/favicon-32.png",
+              },
+            },
+            mainEntityOfPage: {
+              "@type": "WebPage",
+              "@id": `https://opus-globalsolution.com/blog/${post.slug}`,
+            },
+          }),
+        }}
+      />
       {/* Hero image */}
       <div className="relative w-full px-5 pt-28 sm:px-8">
         <div className="mx-auto w-full max-w-4xl overflow-hidden rounded-3xl border border-black/8 shadow-lg">

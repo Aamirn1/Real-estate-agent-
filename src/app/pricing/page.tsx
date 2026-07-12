@@ -27,7 +27,7 @@ import {
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: "Pricing | Opus Global Solution",
+  title: "Pricing Plans | Real Estate Lead Generation | Opus Global Solution",
   description:
     "Flexible lead generation pricing for real estate agents. Choose from trial to premium plans with referrals, lead transfers, and dedicated support.",
 };

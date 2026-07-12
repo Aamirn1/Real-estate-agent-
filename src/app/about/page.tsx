@@ -26,7 +26,7 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "About Us | Opus Global Solution",
+  title: "About Opus Global Solution | Real Estate Marketing Experts",
   description:
     "Opus Global Solution provides professional marketing and administrative support for real estate professionals. Learn about our mission, vision, and what makes us different.",
 };

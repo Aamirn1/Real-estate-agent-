@@ -11,7 +11,7 @@ import { Reveal } from "@/components/leadsphere/Reveal";
 import { Star, BadgeCheck } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Testimonials | Opus Global Solution",
+  title: "Client Testimonials | Real Estate Marketing Success | Opus Global Solution",
   description:
     "Hear directly from real estate professionals who have enhanced their efficiency and grown their businesses with Opus Global Solution.",
 };

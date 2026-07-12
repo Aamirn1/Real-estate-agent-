@@ -1,14 +1,14 @@
-User-agent: Googlebot
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-
-User-agent: Twitterbot
-Allow: /
-
-User-agent: facebookexternalhit
-Allow: /
+# Opus Global Solution — robots.txt
+# https://opus-globalsolution.com
 
 User-agent: *
 Allow: /
+Disallow: /api/
+Disallow: /get-started
+
+# Block AI scrapers (optional, remove if desired)
+User-agent: GPTBot
+Disallow: /
+
+# Sitemap
+Sitemap: https://opus-globalsolution.com/sitemap.xml

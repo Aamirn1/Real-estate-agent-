@@ -10,7 +10,7 @@ import { ContactFormSection } from "./ContactFormSection";
 import { Mail, Phone, MapPin, Clock } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Contact | Opus Global Solution",
+  title: "Contact Opus Global Solution | Real Estate Marketing Support",
   description:
     "Let's do great work together. Connect with Opus Global Solution for marketing consulting, outreach support, and CRM solutions for real estate professionals.",
 };

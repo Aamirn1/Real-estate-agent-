@@ -9,9 +9,8 @@ import {
 import { WhyChooseUs } from "@/components/leadsphere/sections/WhyChooseFeatured";
 
 export const metadata: Metadata = {
-  title: "Services | Opus Global Solution",
-  description:
-    "Marketing consulting, CRM support, workflow automation, virtual assistance, outreach support, and digital marketing for real estate professionals.",
+  title: "Real Estate Marketing Services | Opus Global Solution",
+  description: "Professional marketing consulting, CRM support, outreach, virtual assistants, and digital advertising for licensed US real estate professionals.",
 };
 
 export default function ServicesPage() {

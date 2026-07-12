@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Blog | Opus Global Solution",
+  title: "Real Estate Marketing Blog | Tips & Strategies | Opus Global Solution",
   description:
     "Stay updated with the latest trends, tips, and insights in real estate lead generation, prospecting, and workflow automation.",
 };

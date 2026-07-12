@@ -16,17 +16,20 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Opus Global Solution | Workflow Automation for Realtors",
+  title: "Real Estate Lead Generation & Marketing Support | Opus Global Solution",
   description:
-    "Your trusted partner for marketing consulting, outreach support, and CRM solutions designed for licensed real estate professionals. Human-verified outreach, virtual assistants, and documented workflows.",
+    "Opus Global Solution helps US real estate agents generate seller leads, manage CRM, and automate outreach with human-verified, compliance-first marketing support. Get started today.",
   keywords: [
-    "real estate leads",
-    "lead generation",
-    "real estate CRM",
-    "prospecting",
-    "skip tracing",
+    "real estate lead generation",
+    "real estate marketing",
     "seller leads",
-    "workflow automation",
+    "CRM for real estate",
+    "outreach support",
+    "virtual assistant real estate",
+    "real estate CRM support",
+    "workflow automation real estate",
+    "human-verified outreach",
+    "real estate marketing services",
   ],
   authors: [{ name: "Opus Global Solution" }],
   // Publicly-accessible base so OG/Twitter image URLs resolve as absolute.
@@ -78,6 +81,46 @@ export default function RootLayout({
       <body
         className={`${spaceGrotesk.variable} ${inter.variable} font-body antialiased bg-ink text-[#1a1a1a] selection:bg-electric/30 selection:text-[#1a1a1a] overflow-x-hidden`}
       >
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": ["Organization", "ProfessionalService", "LocalBusiness"],
+              name: "Opus Global Solution",
+              description: "Professional real estate marketing consulting and outreach support company for licensed real estate professionals.",
+              url: "https://opus-globalsolution.com",
+              telephone: "+1-320-331-0910",
+              email: "info@opussolutions.com",
+              address: {
+                "@type": "PostalAddress",
+                streetAddress: "418 Broadway, Ste. R",
+                addressLocality: "Albany",
+                addressRegion: "NY",
+                postalCode: "12207",
+                addressCountry: "US",
+              },
+              areaServed: { "@type": "Country", name: "United States" },
+              sameAs: [],
+            }),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              name: "Opus Global Solution",
+              url: "https://opus-globalsolution.com",
+              potentialAction: {
+                "@type": "SearchAction",
+                target: "https://opus-globalsolution.com/blog?q={search_term_string}",
+                "query-input": "required name=search_term_string",
+              },
+            }),
+          }}
+        />
         {children}
         <Toaster />
       </body>
