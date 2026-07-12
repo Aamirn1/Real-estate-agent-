@@ -225,7 +225,7 @@ export function AuthForm({ mode }: AuthFormProps) {
           {/* Submit */}
           <button
             type="submit"
-            className="group relative flex w-full items-center justify-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-[#2563EB] to-[#38BDF8] py-3.5 text-sm font-semibold text-[#1E293B] shadow-[0_0_24px_-6px_rgba(37,99,235,0.7)] transition-all hover:shadow-[0_0_32px_-4px_rgba(56,189,248,0.85)]"
+            className="group relative flex w-full items-center justify-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-[#2563EB] to-[#38BDF8] py-3.5 text-sm font-semibold text-white shadow-[0_0_24px_-6px_rgba(37,99,235,0.7)] transition-all hover:shadow-[0_0_32px_-4px_rgba(56,189,248,0.85)]"
           >
             <span className="relative z-10">
               {isSignup ? "Create Account" : "Sign In"}

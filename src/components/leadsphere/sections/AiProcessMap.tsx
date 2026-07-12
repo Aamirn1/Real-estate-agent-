@@ -308,7 +308,7 @@ function StepNumber({ n }: { n: number }) {
   return (
     <div className="relative flex h-14 w-14 items-center justify-center">
       <span className="absolute inset-0 rounded-full bg-gradient-to-br from-[#2563EB] via-[#38BDF8] to-[#14B8A6] opacity-60 blur-md" />
-      <span className="relative flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-[#2563EB] via-[#38BDF8] to-[#14B8A6] font-heading text-lg font-semibold text-[#1a1a1a] shadow-[0_0_30px_-6px_rgba(56,189,248,0.75)]">
+      <span className="relative flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-[#2563EB] via-[#38BDF8] to-[#14B8A6]from-[#2563EB] via-[#38BDF8] to-[#14B8A6] font-heading text-lg font-semibold text-white text-white shadow-[0_0_30px_-6px_rgba(56,189,248,0.75)]">
         {n}
       </span>
     </div>

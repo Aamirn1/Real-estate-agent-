@@ -910,7 +910,7 @@ export default function InteractiveDemo() {
               <span className="tnum">app.opussolutions.com/dashboard</span>
             </div>
             <Avatar className="h-7 w-7 border border-[#E2E8F0]">
-              <AvatarFallback className="bg-gradient-to-br from-[#2563EB] to-[#38BDF8] text-[10px] font-semibold text-[#1E293B]">
+              <AvatarFallback className="bg-gradient-to-br from-[#2563EB] to-[#38BDF8] text-[10px] font-semibold text-white">
                 AK
               </AvatarFallback>
             </Avatar>
