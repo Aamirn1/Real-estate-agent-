@@ -427,7 +427,7 @@ const FEATURES: {
   },
 ];
 
-function FeaturesSection() {
+export function FeaturesSection() {
   return (
     <SectionShell id="services" className="relative overflow-hidden">
       <div
