@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -17,6 +18,8 @@ const NAV_LINKS = [
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+  const isHome = pathname === "/";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -24,6 +27,9 @@ export function Navbar() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  // On sub-pages (not home), the hero is white so navbar should always be dark
+  const useDark = !isHome || scrolled || open;
 
   return (
     <motion.header
@@ -35,15 +41,15 @@ export function Navbar() {
       <nav
         className={cn(
           "flex w-full max-w-6xl items-center justify-between rounded-2xl px-4 py-2.5 transition-all duration-500 sm:px-5",
-          scrolled || open
+          useDark
             ? "glass-strong shadow-[0_8px_40px_-12px_rgba(0,0,0,0.6)]"
             : "border border-transparent bg-transparent"
         )}
       >
-        {/* Logo — white text on hero (dark bg), dark text when scrolled or menu open (white bg) */}
-        <a href="#" className="group flex items-center transition-transform group-hover:scale-[1.02]">
+        {/* Logo — white text on home hero (dark bg), dark text on sub-pages or when scrolled */}
+        <a href="/" className="group flex items-center transition-transform group-hover:scale-[1.02]">
           <img
-            src={scrolled || open ? "/logo-light.png" : "/logo-dark.png"}
+            src={useDark ? "/logo-light.png" : "/logo-dark.png"}
             alt="Opus Global Solution"
             className="h-10 sm:h-12"
           />
@@ -51,20 +57,30 @@ export function Navbar() {
 
         {/* Desktop links */}
         <div className="hidden items-center gap-1 md:flex">
-          {NAV_LINKS.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className={cn(
-                "rounded-lg px-3.5 py-2 text-sm font-medium transition-colors",
-                scrolled
-                  ? "text-[#1a1a1a]/90 hover:text-[#1a1a1a]"
-                  : "text-white/90 hover:text-white"
-              )}
-            >
-              {link.label}
-            </a>
-          ))}
+          {NAV_LINKS.map((link) => {
+            const isActive =
+              link.href === "/"
+                ? pathname === "/"
+                : pathname.startsWith(link.href);
+            return (
+              <a
+                key={link.href}
+                href={link.href}
+                className={cn(
+                  "rounded-lg px-3.5 py-2 text-sm font-medium transition-colors",
+                  useDark
+                    ? isActive
+                      ? "text-[#2563EB]"
+                      : "text-[#1a1a1a]/90 hover:text-[#1a1a1a]"
+                    : isActive
+                      ? "text-[#38BDF8]"
+                      : "text-white/90 hover:text-white"
+                )}
+              >
+                {link.label}
+              </a>
+            );
+          })}
         </div>
 
         {/* Desktop CTAs */}
@@ -83,7 +99,7 @@ export function Navbar() {
           onClick={() => setOpen((v) => !v)}
           className={cn(
             "flex h-9 w-9 items-center justify-center rounded-lg transition-colors md:hidden",
-            scrolled || open ? "text-[#1a1a1a] hover:bg-black/5" : "text-white hover:bg-white/10"
+            useDark ? "text-[#1a1a1a] hover:bg-black/5" : "text-white hover:bg-white/10"
           )}
           aria-label="Toggle menu"
         >
@@ -102,17 +118,33 @@ export function Navbar() {
             className="absolute inset-x-4 top-[68px] z-50 md:hidden"
           >
             <div className="rounded-2xl border border-black/10 bg-white p-3 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.8)]">
-              {NAV_LINKS.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setOpen(false)}
-                  className="flex items-center justify-between rounded-xl px-4 py-3 text-sm font-medium text-[#1a1a1a]/90 transition-colors hover:bg-black/5 hover:text-[#1a1a1a]"
-                >
-                  {link.label}
-                  <ChevronDown className="h-4 w-4 -rotate-90 text-[#1a1a1a]/30" />
-                </a>
-              ))}
+              {NAV_LINKS.map((link) => {
+                const isActive =
+                  link.href === "/"
+                    ? pathname === "/"
+                    : pathname.startsWith(link.href);
+                return (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setOpen(false)}
+                    className={cn(
+                      "flex items-center justify-between rounded-xl px-4 py-3 text-sm font-medium transition-colors",
+                      isActive
+                        ? "bg-[#2563EB]/10 text-[#2563EB]"
+                        : "text-[#1a1a1a]/90 hover:bg-black/5 hover:text-[#1a1a1a]"
+                    )}
+                  >
+                    {link.label}
+                    <ChevronDown
+                      className={cn(
+                        "h-4 w-4 -rotate-90",
+                        isActive ? "text-[#2563EB]" : "text-[#1a1a1a]/30"
+                      )}
+                    />
+                  </a>
+                );
+              })}
               <div className="mt-2 border-t border-black/10 pt-3">
                 <a
                   href="/get-started"
