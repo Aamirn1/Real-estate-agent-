@@ -18,9 +18,12 @@ export function Hero() {
         <source media="(min-width: 768px)" srcSet="/hero-bg-desktop.png" />
         <img
           src="/hero-bg-mobile.png"
-          alt=""
+          alt="Modern luxury home — Opus Global Solution real estate marketing"
           aria-hidden
+          width={768}
+          height={1344}
           className="h-full w-full object-cover"
+          fetchPriority="high"
         />
       </picture>
       {/* Dark gradient overlays for text legibility + brand cohesion */}

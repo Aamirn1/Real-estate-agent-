@@ -11,7 +11,7 @@ interface RevealProps {
   once?: boolean;
 }
 
-/** Scroll-reveal wrapper using framer-motion. */
+/** Scroll-reveal wrapper — GPU-optimized (transform + opacity only, no blur). */
 export function Reveal({
   children,
   className,
@@ -25,13 +25,10 @@ export function Reveal({
     <motion.div
       ref={ref}
       className={className}
-      initial={{ opacity: 0, y, filter: "blur(8px)" }}
-      animate={
-        inView
-          ? { opacity: 1, y: 0, filter: "blur(0px)" }
-          : { opacity: 0, y, filter: "blur(8px)" }
-      }
-      transition={{ duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] }}
+      initial={{ opacity: 0, y }}
+      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y }}
+      transition={{ duration: 0.5, delay, ease: [0.22, 1, 0.36, 1] }}
+      style={{ willChange: "transform, opacity" }}
     >
       {children}
     </motion.div>

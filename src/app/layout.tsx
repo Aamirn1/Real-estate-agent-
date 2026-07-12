@@ -78,6 +78,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning className="dark">
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://raw.githubusercontent.com" />
+      </head>
       <body
         className={`${spaceGrotesk.variable} ${inter.variable} font-body antialiased bg-ink text-[#1a1a1a] selection:bg-electric/30 selection:text-[#1a1a1a] overflow-x-hidden`}
       >
