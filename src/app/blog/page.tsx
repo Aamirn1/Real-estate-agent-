@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import {
   ArrowRight,
   Calendar,
-  Cake,
   Clock,
   Handshake,
   Megaphone,
@@ -35,92 +34,97 @@ interface BlogPost {
   date: string;
   icon: LucideIcon;
   color: ColorKey;
+  image: string;
 }
 
 const POSTS: BlogPost[] = [
   {
-    title:
-      "How a Dedicated VA Team Keeps Your Business Running While You Sleep",
+    title: "10 Proven Strategies to Generate Seller Leads in 2025",
     excerpt:
-      "In the modern global marketplace, the traditional 9-to-5 workday is no longer a standard | it's a limitation. A dedicated virtual assistant team keeps your outreach, scheduling, and follow-ups running around the clock.",
-    category: "Virtual Assistants",
-    readTime: "6 min read",
-    date: "Mar 12, 2025",
-    icon: Moon,
-    color: "electric",
-  },
-  {
-    title:
-      "Why Targeting the Right Prospects Is the Secret to a 60% Sales Increase",
-    excerpt:
-      "In the digital economy, many business owners chase volume. But quality over quantity is the real secret | targeting the right prospects can drive a 60% sales increase.",
-    category: "Prospecting",
-    readTime: "8 min read",
-    date: "Mar 5, 2025",
-    icon: Target,
-    color: "violet",
-  },
-  {
-    title:
-      "The Art of the Warm Introduction: Why Human-Verified Connections Convert Better Than Automation",
-    excerpt:
-      "In the fast-paced world of digital marketing and real estate, automation has promised a revolution. But human-verified connections still convert better than any automated sequence.",
-    category: "Outreach",
-    readTime: "7 min read",
-    date: "Feb 26, 2025",
-    icon: Handshake,
-    color: "cyan",
-  },
-  {
-    title: "5 Anniversary Celebration of Opus Global Solution",
-    excerpt:
-      "Five years of helping real estate professionals grow. We look back at the milestones, the partnerships, and the lessons that shaped our journey.",
-    category: "Company",
-    readTime: "4 min read",
-    date: "Feb 18, 2025",
-    icon: Cake,
-    color: "gold",
-  },
-  {
-    title: "How to Use Google & Facebook Ads to Target Motivated Home Sellers",
-    excerpt:
-      "It's time to stop relying on cold calling and mailers. The next big real estate deal may be hidden in your Facebook feed. Here's how to target motivated sellers with paid ads.",
-    category: "Advertising",
-    readTime: "9 min read",
-    date: "Feb 10, 2025",
-    icon: Megaphone,
-    color: "electric",
-  },
-  {
-    title: "How Top Realtors Are Finding Off-Market Deals",
-    excerpt:
-      "A great realtor will tell you the best deals are the ones no one else knows about. Pocket listings don't pop up on Zillow or the MLS | here's how top realtors find them.",
+      "Discover the most effective seller lead generation strategies for US real estate agents in 2025. From expired listings to FSBO targeting, learn how top producers fill their pipelines with motivated sellers using proven, compliant outreach methods.",
     category: "Lead Generation",
-    readTime: "7 min read",
-    date: "Feb 2, 2025",
-    icon: Search,
-    color: "violet",
-  },
-  {
-    title: "How to Convert Online Real Estate Leads into Paying Clients",
-    excerpt:
-      "Generating online leads is only the first step. The real challenge is turning those leads into actual buyers and sellers. Without a solid conversion strategy, your leads will go cold.",
-    category: "Conversion",
     readTime: "8 min read",
-    date: "Jan 25, 2025",
+    date: "Jul 10, 2025",
     icon: TrendingUp,
-    color: "cyan",
+    color: "electric",
+    image: "/blog/blog-1.jpg",
   },
   {
-    title:
-      "The Future of Real Estate: Enhancing Customer Experience with Smart Strategies",
+    title: "How Virtual Assistants Are Transforming Real Estate Businesses",
     excerpt:
-      "A client-centric approach prioritizes the needs, preferences, and overall experience of buyers and sellers. Discover the smart strategies shaping the future of real estate.",
-    category: "Strategy",
-    readTime: "6 min read",
-    date: "Jan 18, 2025",
+      "Real estate virtual assistants handle scheduling, CRM management, lead follow-up, and client communication so agents can focus on closing. Learn how a dedicated VA can save you 15+ hours per week and boost your conversion rate.",
+    category: "Virtual Assistants",
+    readTime: "7 min read",
+    date: "Jul 5, 2025",
+    icon: Moon,
+    color: "violet",
+    image: "/blog/blog-2.jpg",
+  },
+  {
+    title: "The Complete Guide to Real Estate CRM Setup for New Agents",
+    excerpt:
+      "Setting up your first real estate CRM doesn't have to be overwhelming. This step-by-step guide covers pipeline stages, lead organization, automation rules, and best practices to keep your deals moving from first contact to closing.",
+    category: "CRM",
+    readTime: "9 min read",
+    date: "Jun 28, 2025",
     icon: Sparkles,
+    color: "cyan",
+    image: "/blog/blog-3.jpg",
+  },
+  {
+    title: "Why Human-Verified Outreach Beats Cold Calling Every Time",
+    excerpt:
+      "Cold calling is dead. Discover why human-verified, consent-based outreach converts at 4x the rate of robocalls and autodialers. Learn how documented conversations and compliance-first methods build trust and close more deals.",
+    category: "Outreach",
+    readTime: "6 min read",
+    date: "Jun 20, 2025",
+    icon: Handshake,
+    color: "electric",
+    image: "/blog/blog-4.jpg",
+  },
+  {
+    title: "Facebook and Google Ads for Real Estate: A 2025 Playbook",
+    excerpt:
+      "Stop wasting ad spend on the wrong audience. This 2025 playbook shows real estate agents how to target motivated home sellers on Facebook and Google using consent-based intake forms, compliant campaigns, and proven ad creatives.",
+    category: "Digital Marketing",
+    readTime: "10 min read",
+    date: "Jun 12, 2025",
+    icon: Megaphone,
+    color: "violet",
+    image: "/blog/blog-5.jpg",
+  },
+  {
+    title: "How to Build a Real Estate Pipeline That Never Goes Dry",
+    excerpt:
+      "A consistent pipeline is the lifeblood of every successful real estate agent. Learn how to combine lead discovery, CRM organization, automated follow-ups, and monthly reporting to keep your pipeline full month after month.",
+    category: "Pipeline",
+    readTime: "7 min read",
+    date: "Jun 5, 2025",
+    icon: Target,
+    color: "cyan",
+    image: "/blog/blog-6.jpg",
+  },
+  {
+    title: "Compliance in Real Estate Marketing: TCPA, DNC, and What Agents Must Know",
+    excerpt:
+      "TCPA, DNC, CAN-SPAM, CCPA: compliance violations can cost real estate agents thousands in fines. This guide breaks down every regulation you need to know and how to stay compliant while growing your business.",
+    category: "Compliance",
+    readTime: "8 min read",
+    date: "May 28, 2025",
+    icon: Search,
     color: "gold",
+    image: "/blog/blog-7.jpg",
+  },
+  {
+    title: "From Lead to Closing: How to Nurture Real Estate Prospects Effectively",
+    excerpt:
+      "Generating leads is just the beginning. Learn proven nurturing strategies including timely follow-ups, appointment scheduling, client reminders, and relationship-building techniques that turn cold prospects into closed deals.",
+    category: "Conversion",
+    readTime: "7 min read",
+    date: "May 20, 2025",
+    icon: TrendingUp,
+    color: "electric",
+    image: "/blog/blog-8.jpg",
   },
 ];
 
@@ -226,42 +230,19 @@ export default function BlogPage() {
                     sheen
                     className={`flex h-full flex-col overflow-hidden border border-black/8 transition-colors duration-300 ${c.hoverBorder}`}
                   >
-                    {/* ---------------- Thumbnail ---------------- */}
+                    {/* ---------------- Thumbnail with blog image ---------------- */}
                     <div
-                      className={`relative h-40 overflow-hidden bg-gradient-to-br ${c.gradient}`}
+                      className={`relative h-48 overflow-hidden bg-gradient-to-br ${c.gradient}`}
                     >
-                      {/* subtle grid overlay for depth */}
-                      <div
-                        className="absolute inset-0 opacity-25"
-                        style={{
-                          backgroundImage:
-                            "linear-gradient(rgba(255,255,255,0.18) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.18) 1px,transparent 1px)",
-                          backgroundSize: "32px 32px",
-                          maskImage:
-                            "radial-gradient(ellipse 80% 70% at 50% 50%,#000 30%,transparent 75%)",
-                          WebkitMaskImage:
-                            "radial-gradient(ellipse 80% 70% at 50% 50%,#000 30%,transparent 75%)",
-                        }}
+                      {/* Blog image */}
+                      <img
+                        src={post.image}
+                        alt={post.title}
+                        className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        loading="lazy"
                       />
-                      {/* ambient glow orb */}
-                      <div
-                        className={`pointer-events-none absolute -right-8 -top-8 h-28 w-28 rounded-full ${c.orb} blur-2xl`}
-                      />
-                      <div
-                        className={`pointer-events-none absolute -bottom-10 -left-6 h-24 w-24 rounded-full ${c.orb} blur-2xl opacity-60`}
-                      />
-
-                      {/* centered icon */}
-                      <div className="absolute inset-0 grid place-items-center">
-                        <motion.div
-                          initial={false}
-                          whileHover={{ scale: 1.08 }}
-                          transition={{ type: "spring", stiffness: 300, damping: 18 }}
-                          className={`grid h-16 w-16 place-items-center rounded-2xl border border-black/25 bg-black/10 backdrop-blur-md ${c.ring} ring-1`}
-                        >
-                          <Icon className="h-8 w-8 text-[#1a1a1a] drop-shadow-[0_0_10px_rgba(255,255,255,0.45)]" />
-                        </motion.div>
-                      </div>
+                      {/* Gradient overlay for text legibility */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
 
                       {/* category pill (top-left) */}
                       <div className="absolute left-3 top-3">
