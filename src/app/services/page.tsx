@@ -30,7 +30,7 @@ export default function ServicesPage() {
 
       {/* Services workspace image */}
       <section className="relative w-full px-5 pb-4 sm:px-8">
-        <div className="mx-auto w-full max-w-5xl overflow-hidden rounded-3xl border border-black/8 shadow-lg">
+        <div className="mx-auto w-full max-w-5xl overflow-hidden rounded-3xl border border-black/15 shadow-lg">
           <img
             src="/sections/services-workspace.jpg"
             alt="Opus Global Solution services workspace with CRM dashboards"

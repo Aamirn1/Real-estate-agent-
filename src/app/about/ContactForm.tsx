@@ -31,17 +31,17 @@ export function ContactForm() {
         <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-electric/15">
           <CheckCircle2 className="h-7 w-7 text-electric" />
         </span>
-        <h3 className="font-heading text-2xl font-semibold text-[#1a1a1a]">
+        <h3 className="font-heading text-2xl font-semibold text-black">
           Message received
         </h3>
-        <p className="max-w-sm text-sm leading-relaxed text-[#1a1a1a]/60">
+        <p className="max-w-sm text-sm leading-relaxed text-black/60">
           Thanks for reaching out to Opus Global Solution. A member of our team will
           get back to you within one business day.
         </p>
         <Button
           variant="outline"
           onClick={() => setSubmitted(false)}
-          className="mt-2 border-black/15 bg-black/5 text-[#1a1a1a] hover:bg-black/10 hover:text-[#1a1a1a]"
+          className="mt-2 border-black/15 bg-black/5 text-black hover:bg-black/10 hover:text-black"
         >
           Send another message
         </Button>
@@ -53,7 +53,7 @@ export function ContactForm() {
     <form onSubmit={handleSubmit} className="flex flex-col gap-5 p-7 sm:p-8">
       <div className="grid gap-5 sm:grid-cols-2">
         <div className="flex flex-col gap-2">
-          <Label htmlFor="contact-name" className="text-[#1a1a1a]/70">
+          <Label htmlFor="contact-name" className="text-black/70">
             Name
           </Label>
           <Input
@@ -61,11 +61,11 @@ export function ContactForm() {
             name="name"
             placeholder="Jane Cooper"
             required
-            className="border-black/10 bg-black/5 text-[#1a1a1a] placeholder:text-[#1a1a1a]/35 focus-visible:border-electric/60"
+            className="border-black/15 bg-black/5 text-black placeholder:text-black/35 focus-visible:border-electric/60"
           />
         </div>
         <div className="flex flex-col gap-2">
-          <Label htmlFor="contact-email" className="text-[#1a1a1a]/70">
+          <Label htmlFor="contact-email" className="text-black/70">
             Email
           </Label>
           <Input
@@ -74,13 +74,13 @@ export function ContactForm() {
             type="email"
             placeholder="jane@brokerage.com"
             required
-            className="border-black/10 bg-black/5 text-[#1a1a1a] placeholder:text-[#1a1a1a]/35 focus-visible:border-electric/60"
+            className="border-black/15 bg-black/5 text-black placeholder:text-black/35 focus-visible:border-electric/60"
           />
         </div>
       </div>
 
       <div className="flex flex-col gap-2">
-        <Label htmlFor="contact-phone" className="text-[#1a1a1a]/70">
+        <Label htmlFor="contact-phone" className="text-black/70">
           Phone
         </Label>
         <Input
@@ -88,12 +88,12 @@ export function ContactForm() {
           name="phone"
           type="tel"
           placeholder="(320) 331-0910"
-          className="border-black/10 bg-black/5 text-[#1a1a1a] placeholder:text-[#1a1a1a]/35 focus-visible:border-electric/60"
+          className="border-black/15 bg-black/5 text-black placeholder:text-black/35 focus-visible:border-electric/60"
         />
       </div>
 
       <div className="flex flex-col gap-2">
-        <Label htmlFor="contact-message" className="text-[#1a1a1a]/70">
+        <Label htmlFor="contact-message" className="text-black/70">
           Message
         </Label>
         <Textarea
@@ -102,7 +102,7 @@ export function ContactForm() {
           placeholder="Tell us about your goals and how we can help…"
           required
           rows={5}
-          className="resize-none border-black/10 bg-black/5 text-[#1a1a1a] placeholder:text-[#1a1a1a]/35 focus-visible:border-electric/60"
+          className="resize-none border-black/15 bg-black/5 text-black placeholder:text-black/35 focus-visible:border-electric/60"
         />
       </div>
 

@@ -50,10 +50,10 @@ export function ContactFormSection() {
         <span className="flex h-16 w-16 items-center justify-center rounded-2xl bg-electric/15 ring-1 ring-electric/30">
           <CheckCircle2 className="h-8 w-8 text-electric" />
         </span>
-        <h3 className="font-heading text-2xl font-semibold text-[#1a1a1a]">
+        <h3 className="font-heading text-2xl font-semibold text-black">
           Message received
         </h3>
-        <p className="max-w-sm text-sm leading-relaxed text-[#1a1a1a]/60">
+        <p className="max-w-sm text-sm leading-relaxed text-black/60">
           Thanks for reaching out to Opus Global Solution. A member of our team will
           get back to you within one business day.
         </p>
@@ -63,7 +63,7 @@ export function ContactFormSection() {
             setSubmitted(false);
             setService("");
           }}
-          className="mt-2 border-black/15 bg-black/5 text-[#1a1a1a] hover:bg-black/10 hover:text-[#1a1a1a]"
+          className="mt-2 border-black/15 bg-black/5 text-black hover:bg-black/10 hover:text-black"
         >
           Send another message
         </Button>
@@ -82,10 +82,10 @@ export function ContactFormSection() {
           <MessageSquare className="h-5 w-5 text-electric" />
         </span>
         <div className="flex flex-col">
-          <span className="font-heading text-lg font-semibold text-[#1a1a1a]">
+          <span className="font-heading text-lg font-semibold text-black">
             Send us a message
           </span>
-          <span className="text-xs text-[#1a1a1a]/45">
+          <span className="text-xs text-black/45">
             We reply within one business day.
           </span>
         </div>
@@ -94,7 +94,7 @@ export function ContactFormSection() {
       {/* Name + Email */}
       <div className="grid gap-5 sm:grid-cols-2">
         <div className="flex flex-col gap-2">
-          <Label htmlFor="cf-name" className="text-[#1a1a1a]/70">
+          <Label htmlFor="cf-name" className="text-black/70">
             Name
           </Label>
           <Input
@@ -102,11 +102,11 @@ export function ContactFormSection() {
             name="name"
             placeholder="Jane Cooper"
             required
-            className="border-black/10 bg-black/5 text-[#1a1a1a] placeholder:text-[#1a1a1a]/35 focus-visible:border-electric/60"
+            className="border-black/15 bg-black/5 text-black placeholder:text-black/35 focus-visible:border-electric/60"
           />
         </div>
         <div className="flex flex-col gap-2">
-          <Label htmlFor="cf-email" className="text-[#1a1a1a]/70">
+          <Label htmlFor="cf-email" className="text-black/70">
             Email
           </Label>
           <Input
@@ -115,7 +115,7 @@ export function ContactFormSection() {
             type="email"
             placeholder="jane@brokerage.com"
             required
-            className="border-black/10 bg-black/5 text-[#1a1a1a] placeholder:text-[#1a1a1a]/35 focus-visible:border-electric/60"
+            className="border-black/15 bg-black/5 text-black placeholder:text-black/35 focus-visible:border-electric/60"
           />
         </div>
       </div>
@@ -123,7 +123,7 @@ export function ContactFormSection() {
       {/* Phone + Company/Team */}
       <div className="grid gap-5 sm:grid-cols-2">
         <div className="flex flex-col gap-2">
-          <Label htmlFor="cf-phone" className="text-[#1a1a1a]/70">
+          <Label htmlFor="cf-phone" className="text-black/70">
             Phone
           </Label>
           <Input
@@ -131,40 +131,40 @@ export function ContactFormSection() {
             name="phone"
             type="tel"
             placeholder="(320) 331-0910"
-            className="border-black/10 bg-black/5 text-[#1a1a1a] placeholder:text-[#1a1a1a]/35 focus-visible:border-electric/60"
+            className="border-black/15 bg-black/5 text-black placeholder:text-black/35 focus-visible:border-electric/60"
           />
         </div>
         <div className="flex flex-col gap-2">
-          <Label htmlFor="cf-company" className="text-[#1a1a1a]/70">
+          <Label htmlFor="cf-company" className="text-black/70">
             Company / Team
           </Label>
           <Input
             id="cf-company"
             name="company"
             placeholder="Cooper Realty Group"
-            className="border-black/10 bg-black/5 text-[#1a1a1a] placeholder:text-[#1a1a1a]/35 focus-visible:border-electric/60"
+            className="border-black/15 bg-black/5 text-black placeholder:text-black/35 focus-visible:border-electric/60"
           />
         </div>
       </div>
 
       {/* Service of Interest */}
       <div className="flex flex-col gap-2">
-        <Label htmlFor="cf-service" className="text-[#1a1a1a]/70">
+        <Label htmlFor="cf-service" className="text-black/70">
           Service of Interest
         </Label>
         <Select value={service} onValueChange={setService}>
           <SelectTrigger
             id="cf-service"
-            className="w-full border-black/10 bg-black/5 text-[#1a1a1a] data-[placeholder]:text-[#1a1a1a]/35 focus-visible:border-electric/60 [&_svg]:text-[#1a1a1a]/50"
+            className="w-full border-black/15 bg-black/5 text-black data-[placeholder]:text-black/35 focus-visible:border-electric/60 [&_svg]:text-black/50"
           >
             <SelectValue placeholder="Select a service" />
           </SelectTrigger>
-          <SelectContent className="border-black/10 bg-[#0d0d12] text-[#1a1a1a]">
+          <SelectContent className="border-black/15 bg-[#0d0d12] text-black">
             {SERVICES.map((s) => (
               <SelectItem
                 key={s}
                 value={s}
-                className="focus:bg-electric/15 focus:text-[#1a1a1a]"
+                className="focus:bg-electric/15 focus:text-black"
               >
                 {s}
               </SelectItem>
@@ -175,7 +175,7 @@ export function ContactFormSection() {
 
       {/* Message */}
       <div className="flex flex-1 flex-col gap-2">
-        <Label htmlFor="cf-message" className="text-[#1a1a1a]/70">
+        <Label htmlFor="cf-message" className="text-black/70">
           Message
         </Label>
         <Textarea
@@ -184,7 +184,7 @@ export function ContactFormSection() {
           placeholder="Tell us about your goals and how we can help…"
           required
           rows={5}
-          className="min-h-[140px] resize-none border-black/10 bg-black/5 text-[#1a1a1a] placeholder:text-[#1a1a1a]/35 focus-visible:border-electric/60"
+          className="min-h-[140px] resize-none border-black/15 bg-black/5 text-black placeholder:text-black/35 focus-visible:border-electric/60"
         />
       </div>
 

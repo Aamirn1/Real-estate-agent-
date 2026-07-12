@@ -78,7 +78,7 @@ export default async function BlogPostPage({
       />
       {/* Hero image */}
       <div className="relative w-full px-5 pt-28 sm:px-8">
-        <div className="mx-auto w-full max-w-4xl overflow-hidden rounded-3xl border border-black/8 shadow-lg">
+        <div className="mx-auto w-full max-w-4xl overflow-hidden rounded-3xl border border-black/15 shadow-lg">
           <img
             src={post.image}
             alt={post.title}
@@ -93,9 +93,9 @@ export default async function BlogPostPage({
           {/* Back link */}
           <Link
             href="/blog"
-            className="group mb-6 inline-flex items-center gap-2 text-sm font-medium text-[#1a1a1a]/55 transition-colors hover:text-[#2563EB]"
+            className="group mb-6 inline-flex items-center gap-2 text-sm font-medium text-black/55 transition-colors hover:text-[#2563EB]"
           >
-            <span className="flex h-8 w-8 items-center justify-center rounded-lg border border-black/10 bg-black/5 transition-all group-hover:border-[#2563EB]/30 group-hover:bg-[#2563EB]/10">
+            <span className="flex h-8 w-8 items-center justify-center rounded-lg border border-black/15 bg-black/5 transition-all group-hover:border-[#2563EB]/30 group-hover:bg-[#2563EB]/10">
               <ArrowLeft className="h-4 w-4" />
             </span>
             Back to Blog
@@ -106,23 +106,23 @@ export default async function BlogPostPage({
             <span className="rounded-full bg-[#2563EB]/15 px-3 py-1 font-semibold text-[#2563EB]">
               {post.category}
             </span>
-            <span className="flex items-center gap-1.5 text-[#1a1a1a]/45">
+            <span className="flex items-center gap-1.5 text-black/45">
               <Calendar className="h-3.5 w-3.5" />
               {post.date}
             </span>
-            <span className="flex items-center gap-1.5 text-[#1a1a1a]/45">
+            <span className="flex items-center gap-1.5 text-black/45">
               <Clock className="h-3.5 w-3.5" />
               {post.readTime}
             </span>
           </div>
 
           {/* Title */}
-          <h1 className="font-heading text-3xl font-bold leading-tight text-[#1a1a1a] sm:text-4xl">
+          <h1 className="font-heading text-3xl font-bold leading-tight text-black sm:text-4xl">
             {post.title}
           </h1>
 
           {/* Excerpt */}
-          <p className="mt-4 text-lg leading-relaxed text-[#1a1a1a]/60">
+          <p className="mt-4 text-lg leading-relaxed text-black/60">
             {post.excerpt}
           </p>
 
@@ -131,7 +131,7 @@ export default async function BlogPostPage({
             {post.content.map((paragraph, i) => (
               <p
                 key={i}
-                className="text-base leading-relaxed text-[#1a1a1a]/75"
+                className="text-base leading-relaxed text-black/75"
               >
                 {paragraph}
               </p>
@@ -139,7 +139,7 @@ export default async function BlogPostPage({
           </div>
 
           {/* Share + back */}
-          <div className="mt-10 border-t border-black/8 pt-6">
+          <div className="mt-10 border-t border-black/15 pt-6">
             <Link
               href="/blog"
               className="inline-flex items-center gap-2 rounded-xl bg-[#2563EB] px-5 py-3 text-sm font-semibold text-white transition-all hover:bg-[#1d4ed8]"
@@ -154,7 +154,7 @@ export default async function BlogPostPage({
       {/* Related posts */}
       <section className="w-full px-5 py-10 sm:px-8">
         <div className="mx-auto max-w-5xl">
-          <h2 className="mb-6 font-heading text-2xl font-bold text-[#1a1a1a]">
+          <h2 className="mb-6 font-heading text-2xl font-bold text-black">
             Related Articles
           </h2>
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
@@ -162,7 +162,7 @@ export default async function BlogPostPage({
               <Link
                 key={rp.slug}
                 href={`/blog/${rp.slug}`}
-                className="group overflow-hidden rounded-2xl border border-black/8 bg-white shadow-sm transition-all hover:shadow-lg"
+                className="group overflow-hidden rounded-2xl border border-black/15 bg-white shadow-sm transition-all hover:shadow-lg"
               >
                 <div className="relative h-36 overflow-hidden">
                   <img
@@ -177,10 +177,10 @@ export default async function BlogPostPage({
                   <span className="text-[10px] font-semibold uppercase tracking-wide text-[#2563EB]">
                     {rp.category}
                   </span>
-                  <h3 className="mt-1.5 font-heading text-sm font-semibold leading-snug text-[#1a1a1a] transition-colors group-hover:text-[#2563EB]">
+                  <h3 className="mt-1.5 font-heading text-sm font-semibold leading-snug text-black transition-colors group-hover:text-[#2563EB]">
                     {rp.title}
                   </h3>
-                  <span className="mt-2 inline-flex items-center gap-1 text-xs font-medium text-[#1a1a1a]/50">
+                  <span className="mt-2 inline-flex items-center gap-1 text-xs font-medium text-black/50">
                     Read more
                     <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5" />
                   </span>

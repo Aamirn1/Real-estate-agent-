@@ -70,7 +70,7 @@ export function Navbar() {
                   useDark
                     ? isActive
                       ? "text-[#2563EB]"
-                      : "text-[#1a1a1a]/90 hover:text-[#1a1a1a]"
+                      : "text-black/90 hover:text-black"
                     : isActive
                       ? "text-[#38BDF8]"
                       : "text-white/90 hover:text-white"
@@ -98,7 +98,7 @@ export function Navbar() {
           onClick={() => setOpen((v) => !v)}
           className={cn(
             "flex h-9 w-9 items-center justify-center rounded-lg transition-colors md:hidden",
-            useDark ? "text-[#1a1a1a] hover:bg-black/5" : "text-white hover:bg-white/10"
+            useDark ? "text-black hover:bg-black/5" : "text-white hover:bg-white/10"
           )}
           aria-label="Toggle menu"
         >
@@ -116,7 +116,7 @@ export function Navbar() {
             transition={{ duration: 0.2 }}
             className="absolute inset-x-4 top-[68px] z-50 md:hidden"
           >
-            <div className="rounded-2xl border border-black/10 bg-white p-3 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.8)]">
+            <div className="rounded-2xl border border-black/15 bg-white p-3 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.8)]">
               {NAV_LINKS.map((link) => {
                 const isActive =
                   link.href === "/"
@@ -131,20 +131,20 @@ export function Navbar() {
                       "flex items-center justify-between rounded-xl px-4 py-3 text-sm font-medium transition-colors",
                       isActive
                         ? "bg-[#2563EB]/10 text-[#2563EB]"
-                        : "text-[#1a1a1a]/90 hover:bg-black/5 hover:text-[#1a1a1a]"
+                        : "text-black/90 hover:bg-black/5 hover:text-black"
                     )}
                   >
                     {link.label}
                     <ChevronDown
                       className={cn(
                         "h-4 w-4 -rotate-90",
-                        isActive ? "text-[#2563EB]" : "text-[#1a1a1a]/30"
+                        isActive ? "text-[#2563EB]" : "text-black/30"
                       )}
                     />
                   </a>
                 );
               })}
-              <div className="mt-2 border-t border-black/10 pt-3">
+              <div className="mt-2 border-t border-black/15 pt-3">
                 <a
                   href="/get-started"
                   onClick={() => setOpen(false)}

@@ -52,7 +52,7 @@ export function RoiCalculator() {
               <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-electric/15">
                 <Calculator className="h-4.5 w-4.5 text-electric" />
               </span>
-              <h3 className="font-heading text-lg font-semibold text-[#1a1a1a]">
+              <h3 className="font-heading text-lg font-semibold text-black">
                 Your assumptions
               </h3>
             </div>
@@ -93,7 +93,7 @@ export function RoiCalculator() {
 
             <div className="mt-6 flex items-center gap-2 rounded-xl border border-electric/20 bg-electric/5 p-3.5">
               <Zap className="h-4 w-4 shrink-0 text-electric" />
-              <p className="text-xs leading-relaxed text-[#1a1a1a]/65">
+              <p className="text-xs leading-relaxed text-black/65">
                 Industry average close rate is 1–3%. Opus agents average{" "}
                 <span className="font-semibold text-electric">8–12%</span> thanks
                 to smart lead scoring.
@@ -111,9 +111,9 @@ export function RoiCalculator() {
             <div className="relative">
               <div className="mb-6 flex items-center gap-2.5">
                 <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-[#2563EB] to-[#38BDF8]">
-                  <TrendingUp className="h-4.5 w-4.5 text-[#1a1a1a]" />
+                  <TrendingUp className="h-4.5 w-4.5 text-black" />
                 </span>
-                <h3 className="font-heading text-lg font-semibold text-[#1a1a1a]">
+                <h3 className="font-heading text-lg font-semibold text-black">
                   Projected monthly results
                 </h3>
               </div>
@@ -138,7 +138,7 @@ export function RoiCalculator() {
                   value={cost}
                   prefix="$"
                   icon={Calculator}
-                  tint="text-[#1a1a1a]/60"
+                  tint="text-black/60"
                 />
                 <ResultCard
                   label="Net profit"
@@ -151,15 +151,15 @@ export function RoiCalculator() {
 
               <div className="mt-5 rounded-2xl border border-electric/25 bg-gradient-to-br from-electric/10 to-[#38BDF8]/10 p-5">
                 <div className="flex items-center justify-between">
-                  <span className="text-sm text-[#1a1a1a]/65">Return on investment</span>
+                  <span className="text-sm text-black/65">Return on investment</span>
                   <span className="rounded-full bg-emerald-400/15 px-2.5 py-0.5 text-xs font-semibold text-emerald-400">
                     {roiMultiple.toFixed(0)}x ROI
                   </span>
                 </div>
-                <div className="mt-2 font-heading text-3xl font-bold text-[#1a1a1a] tnum sm:text-4xl">
+                <div className="mt-2 font-heading text-3xl font-bold text-black tnum sm:text-4xl">
                   <CountUp value={roiMultiple} prefix="" suffix="x" duration={900} />
                 </div>
-                <p className="mt-2 text-xs text-[#1a1a1a]/50">
+                <p className="mt-2 text-xs text-black/50">
                   For every $1 spent on Opus, you could generate{" "}
                   <span className="font-semibold text-emerald-400">
                     ${roiMultiple.toFixed(0)}
@@ -213,11 +213,11 @@ function Slider({
   return (
     <div className="mb-6">
       <div className="mb-2.5 flex items-center justify-between">
-        <span className="flex items-center gap-2 text-sm text-[#1a1a1a]/70">
+        <span className="flex items-center gap-2 text-sm text-black/70">
           <Icon className={`h-3.5 w-3.5 text-${color}`} />
           {label}
         </span>
-        <span className="font-heading text-base font-semibold text-[#1a1a1a] tnum">
+        <span className="font-heading text-base font-semibold text-black tnum">
           {format(value)}
         </span>
       </div>
@@ -280,15 +280,15 @@ function ResultCard({
       initial={{ opacity: 0.6, y: 4 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
-      className="rounded-xl border border-black/8 bg-white/[0.03] p-4"
+      className="rounded-xl border border-black/15 bg-white/[0.03] p-4"
     >
       <div className="mb-2 flex items-center gap-1.5">
         <Icon className={`h-3.5 w-3.5 ${tint}`} />
-        <span className="text-[11px] uppercase tracking-wide text-[#1a1a1a]/45">
+        <span className="text-[11px] uppercase tracking-wide text-black/45">
           {label}
         </span>
       </div>
-      <div className="font-heading text-xl font-bold text-[#1a1a1a] tnum sm:text-2xl">
+      <div className="font-heading text-xl font-bold text-black tnum sm:text-2xl">
         <CountUp value={value} prefix={prefix} suffix={suffix} duration={700} />
       </div>
     </motion.div>

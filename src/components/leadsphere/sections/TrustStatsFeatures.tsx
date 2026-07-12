@@ -227,10 +227,10 @@ function Logo({ name, index }: { name: string; index: number }) {
     <div className="group/logo flex items-center gap-2.5 whitespace-nowrap px-3 transition-all duration-300 sm:px-4">
       <Mark
         variant={index}
-        className={`h-4 w-4 text-[#1a1a1a]/40 transition-colors duration-300 ${accent}`}
+        className={`h-4 w-4 text-black/40 transition-colors duration-300 ${accent}`}
       />
       <span
-        className={`font-heading text-base font-semibold tracking-tight text-[#1a1a1a]/40 transition-colors duration-300 group-hover/logo:text-[#1a1a1a] sm:text-[1.05rem] ${accent}`}
+        className={`font-heading text-base font-semibold tracking-tight text-black/40 transition-colors duration-300 group-hover/logo:text-black sm:text-[1.05rem] ${accent}`}
       >
         {name}
       </span>
@@ -242,7 +242,7 @@ function TrustSection() {
   return (
     <SectionShell className="py-14 md:py-16">
       <Reveal className="flex flex-col items-center gap-8">
-        <span className="inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.22em] text-[#1a1a1a]/45">
+        <span className="inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.22em] text-black/45">
           <span className="h-px w-6 bg-gradient-to-r from-transparent to-white/30" />
           Trusted by 50,000+ real estate professionals
           <span className="h-px w-6 bg-gradient-to-l from-transparent to-white/30" />
@@ -309,7 +309,7 @@ function StatsSection() {
               >
                 <GlassCard
                   sheen
-                  className={`h-full border border-black/10 p-6 transition-all duration-300 ${t.cardBorder} ${t.cardGlow}`}
+                  className={`h-full border border-black/15 p-6 transition-all duration-300 ${t.cardBorder} ${t.cardGlow}`}
                 >
                   {/* Icon */}
                   <div
@@ -319,12 +319,12 @@ function StatsSection() {
                   </div>
 
                   {/* Number */}
-                  <div className="font-heading text-4xl font-semibold leading-none tracking-tight text-[#1a1a1a] sm:text-[2.75rem]">
+                  <div className="font-heading text-4xl font-semibold leading-none tracking-tight text-black sm:text-[2.75rem]">
                     <CountUp value={stat.value} suffix={stat.suffix} />
                   </div>
 
                   {/* Label */}
-                  <p className="mt-2.5 text-sm font-medium text-[#1a1a1a]/55">
+                  <p className="mt-2.5 text-sm font-medium text-black/55">
                     {stat.label}
                   </p>
 
@@ -459,7 +459,7 @@ export function FeaturesSection() {
               >
                 <GlassCard
                   sheen
-                  className={`group relative h-full overflow-hidden border border-black/10 p-6 transition-all duration-300 ${t.cardBorder} ${t.cardGlow}`}
+                  className={`group relative h-full overflow-hidden border border-black/15 p-6 transition-all duration-300 ${t.cardBorder} ${t.cardGlow}`}
                 >
                   {/* corner accent glow on hover */}
                   <div
@@ -474,18 +474,18 @@ export function FeaturesSection() {
                     >
                       <Icon className={`h-5 w-5 ${t.text}`} strokeWidth={2} />
                     </div>
-                    <span className="font-heading text-xs font-medium tabular-nums tracking-widest text-[#1a1a1a]/25">
+                    <span className="font-heading text-xs font-medium tabular-nums tracking-widest text-black/25">
                       {idx}
                     </span>
                   </div>
 
                   {/* title */}
-                  <h3 className="relative mt-5 font-heading text-lg font-semibold tracking-tight text-[#1a1a1a]">
+                  <h3 className="relative mt-5 font-heading text-lg font-semibold tracking-tight text-black">
                     {f.title}
                   </h3>
 
                   {/* description */}
-                  <p className="relative mt-2 text-sm leading-relaxed text-[#1a1a1a]/55">
+                  <p className="relative mt-2 text-sm leading-relaxed text-black/55">
                     {f.desc}
                   </p>
 

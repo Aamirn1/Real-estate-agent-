@@ -42,25 +42,25 @@ const STAT_THEME: Record<
     iconWrap: "bg-electric/15",
     icon: "text-electric",
     glow: "shadow-[0_0_40px_-10px_rgba(37,99,235,0.55)]",
-    value: "text-[#1a1a1a]",
+    value: "text-black",
   },
   violet: {
     iconWrap: "bg-violet/15",
     icon: "text-violet",
     glow: "shadow-[0_0_40px_-10px_rgba(56,189,248,0.55)]",
-    value: "text-[#1a1a1a]",
+    value: "text-black",
   },
   cyan: {
     iconWrap: "bg-cyan/15",
     icon: "text-cyan",
     glow: "shadow-[0_0_40px_-10px_rgba(6,182,212,0.55)]",
-    value: "text-[#1a1a1a]",
+    value: "text-black",
   },
   gold: {
     iconWrap: "bg-gold/15",
     icon: "text-gold",
     glow: "shadow-[0_0_40px_-10px_rgba(212,175,55,0.55)]",
-    value: "text-[#1a1a1a]",
+    value: "text-black",
   },
 };
 
@@ -119,7 +119,7 @@ export default function AboutPage() {
 
       {/* Team image */}
       <section className="relative w-full px-5 pb-4 sm:px-8">
-        <div className="mx-auto w-full max-w-5xl overflow-hidden rounded-3xl border border-black/8 shadow-lg">
+        <div className="mx-auto w-full max-w-5xl overflow-hidden rounded-3xl border border-black/15 shadow-lg">
           <img
             src="/sections/about-team.jpg"
             alt="Opus Global Solution team collaborating in modern office"
@@ -170,7 +170,7 @@ export default function AboutPage() {
                       duration={1800}
                     />
                   </div>
-                  <p className="relative mt-2 text-sm font-medium text-[#1a1a1a]/70">
+                  <p className="relative mt-2 text-sm font-medium text-black/70">
                     {stat.label}
                   </p>
                 </GlassCard>
@@ -180,7 +180,7 @@ export default function AboutPage() {
         </div>
 
         <Reveal delay={0.1}>
-          <p className="mx-auto mt-10 max-w-2xl text-center text-base leading-relaxed text-[#1a1a1a]/55">
+          <p className="mx-auto mt-10 max-w-2xl text-center text-base leading-relaxed text-black/55">
             As a fast-growing partner network, our goal is to introduce agents to
             practical tools, workflows, and technology that improve response
             times and win rates.
@@ -200,10 +200,10 @@ export default function AboutPage() {
           {/* LEFT | contact info */}
           <Reveal>
             <GlassCard strong className="flex h-full flex-col p-7 sm:p-8">
-              <h3 className="font-heading text-2xl font-semibold text-[#1a1a1a]">
+              <h3 className="font-heading text-2xl font-semibold text-black">
                 Reach out directly
               </h3>
-              <p className="mt-3 text-sm leading-relaxed text-[#1a1a1a]/55">
+              <p className="mt-3 text-sm leading-relaxed text-black/55">
                 Prefer to skip the form? Use any of the channels below | our team
                 responds within one business day.
               </p>
@@ -217,10 +217,10 @@ export default function AboutPage() {
                         <Icon className="h-5 w-5 text-electric" />
                       </span>
                       <div className="flex flex-col gap-0.5">
-                        <span className="text-xs font-medium uppercase tracking-wider text-[#1a1a1a]/45">
+                        <span className="text-xs font-medium uppercase tracking-wider text-black/45">
                           {row.label}
                         </span>
-                        <span className="text-sm leading-relaxed text-[#1a1a1a]/85">
+                        <span className="text-sm leading-relaxed text-black/85">
                           {row.value}
                         </span>
                       </div>
@@ -230,8 +230,8 @@ export default function AboutPage() {
               </div>
 
               <div className="mt-auto pt-8">
-                <div className="rounded-xl border border-black/10 bg-white/[0.03] p-4">
-                  <p className="text-xs leading-relaxed text-[#1a1a1a]/45">
+                <div className="rounded-xl border border-black/15 bg-white/[0.03] p-4">
+                  <p className="text-xs leading-relaxed text-black/45">
                     Opus Global Solution is a marketing consulting and support company.
                     We do not act as a brokerage, list or sell property, or
                     resell leads.

@@ -102,7 +102,7 @@ export default function ContactPage() {
 
       {/* Office image */}
       <section className="relative w-full px-5 pb-4 sm:px-8">
-        <div className="mx-auto w-full max-w-5xl overflow-hidden rounded-3xl border border-black/8 shadow-lg">
+        <div className="mx-auto w-full max-w-5xl overflow-hidden rounded-3xl border border-black/15 shadow-lg">
           <img
             src="/sections/contact-office.jpg"
             alt="Opus Global Solution office reception"
@@ -148,7 +148,7 @@ export default function ContactPage() {
                       >
                         <Icon className={`h-5 w-5 ${theme.icon}`} />
                       </span>
-                      <p className="relative mt-4 text-xs font-medium uppercase tracking-wider text-[#1a1a1a]/45">
+                      <p className="relative mt-4 text-xs font-medium uppercase tracking-wider text-black/45">
                         {card.label}
                       </p>
                       <div className="relative mt-2 flex flex-col gap-1">
@@ -157,14 +157,14 @@ export default function ContactPage() {
                             <a
                               key={line.text}
                               href={line.href}
-                              className="text-sm leading-relaxed text-[#1a1a1a]/85 transition-colors hover:text-[#1a1a1a]"
+                              className="text-sm leading-relaxed text-black/85 transition-colors hover:text-black"
                             >
                               {line.text}
                             </a>
                           ) : (
                             <span
                               key={line.text}
-                              className="text-sm leading-relaxed text-[#1a1a1a]/85"
+                              className="text-sm leading-relaxed text-black/85"
                             >
                               {line.text}
                             </span>
@@ -235,14 +235,14 @@ function StylizedMap() {
       />
 
       {/* Corner badges */}
-      <div className="absolute left-4 top-4 z-20 flex items-center gap-2 rounded-full border border-black/10 bg-black/5 px-3 py-1.5 text-xs text-[#1a1a1a]/70 backdrop-blur">
+      <div className="absolute left-4 top-4 z-20 flex items-center gap-2 rounded-full border border-black/15 bg-black/5 px-3 py-1.5 text-xs text-black/70 backdrop-blur">
         <span className="relative flex h-2 w-2">
           <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
           <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
         </span>
         HQ · Albany
       </div>
-      <div className="absolute bottom-4 right-4 z-20 rounded-full border border-black/10 bg-black/5 px-3 py-1.5 text-[11px] text-[#1a1a1a]/50 backdrop-blur tnum">
+      <div className="absolute bottom-4 right-4 z-20 rounded-full border border-black/15 bg-black/5 px-3 py-1.5 text-[11px] text-black/50 backdrop-blur tnum">
         42.6526° N, 73.7562° W
       </div>
 
@@ -265,7 +265,7 @@ function StylizedMap() {
             <span className="absolute left-1/2 top-1/2 h-2 w-2 -translate-x-1/2 -translate-y-[60%] rounded-full bg-white shadow-[0_0_10px_rgba(255,255,255,0.95)]" />
           </div>
           {/* Label */}
-          <div className="mt-3 rounded-full border border-electric/30 bg-[#0d0d12]/80 px-3 py-1 text-xs font-medium text-[#1a1a1a] backdrop-blur">
+          <div className="mt-3 rounded-full border border-electric/30 bg-[#0d0d12]/80 px-3 py-1 text-xs font-medium text-black backdrop-blur">
             Albany, NY
           </div>
         </div>

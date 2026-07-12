@@ -187,14 +187,14 @@ function PlanPrice({ plan }: { plan: Plan }) {
   const num = parseInt(plan.price.replace(/[^0-9]/g, ""), 10);
   return (
     <div className="flex items-baseline gap-1">
-      <span className="font-heading text-2xl font-semibold text-[#1a1a1a]/70">
+      <span className="font-heading text-2xl font-semibold text-black/70">
         $
       </span>
       <CountUp
         key={plan.price}
         value={num}
         duration={1400}
-        className="font-heading text-5xl font-semibold tracking-tight text-[#1a1a1a] tnum"
+        className="font-heading text-5xl font-semibold tracking-tight text-black tnum"
       />
     </div>
   );
@@ -211,7 +211,7 @@ function CtaButton({
     return (
       <button
         type="button"
-        className="group relative inline-flex w-full items-center justify-center gap-2 overflow-hidden rounded-full bg-[linear-gradient(120deg,#2563EB,#38BDF8,#14B8A6)] px-6 py-3 text-sm font-semibold text-[#1a1a1a] shadow-[0_0_30px_-6px_rgba(37,99,235,0.7)] transition-shadow duration-300 hover:shadow-[0_0_45px_-4px_rgba(56,189,248,0.85)]"
+        className="group relative inline-flex w-full items-center justify-center gap-2 overflow-hidden rounded-full bg-[linear-gradient(120deg,#2563EB,#38BDF8,#14B8A6)] px-6 py-3 text-sm font-semibold text-black shadow-[0_0_30px_-6px_rgba(37,99,235,0.7)] transition-shadow duration-300 hover:shadow-[0_0_45px_-4px_rgba(56,189,248,0.85)]"
       >
         <span className="absolute inset-0 -translate-x-full bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.25),transparent)] transition-transform duration-700 group-hover:translate-x-full" />
         <Rocket className="relative h-4 w-4" />
@@ -222,7 +222,7 @@ function CtaButton({
   return (
     <button
       type="button"
-      className="group inline-flex w-full items-center justify-center gap-2 rounded-full border border-black/15 bg-black/5 px-6 py-3 text-sm font-semibold text-[#1a1a1a] backdrop-blur transition-colors duration-300 hover:border-black/30 hover:bg-black/10"
+      className="group inline-flex w-full items-center justify-center gap-2 rounded-full border border-black/15 bg-black/5 px-6 py-3 text-sm font-semibold text-black backdrop-blur transition-colors duration-300 hover:border-black/30 hover:bg-black/10"
     >
       <span>{children}</span>
       <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
@@ -238,7 +238,7 @@ function PricingCard({ plan, delay }: { plan: Plan; delay: number }) {
           key={i}
           className={cn(
             "flex items-start gap-3 text-sm",
-            f.included ? "text-[#1a1a1a]/70" : "text-[#1a1a1a]/25"
+            f.included ? "text-black/70" : "text-black/25"
           )}
         >
           <span
@@ -252,7 +252,7 @@ function PricingCard({ plan, delay }: { plan: Plan; delay: number }) {
             {f.included ? (
               <Check className="h-3 w-3 text-emerald-400" />
             ) : (
-              <X className="h-3 w-3 text-[#1a1a1a]/30" />
+              <X className="h-3 w-3 text-black/30" />
             )}
           </span>
           <span className={cn("leading-relaxed", !f.included && "line-through")}>
@@ -265,17 +265,17 @@ function PricingCard({ plan, delay }: { plan: Plan; delay: number }) {
 
   const header = (
     <div className="flex flex-col gap-2">
-      <h3 className="font-heading text-xl font-semibold text-[#1a1a1a]">
+      <h3 className="font-heading text-xl font-semibold text-black">
         {plan.name}
       </h3>
-      <p className="text-sm leading-relaxed text-[#1a1a1a]/50">{plan.tagline}</p>
+      <p className="text-sm leading-relaxed text-black/50">{plan.tagline}</p>
     </div>
   );
 
   const priceBlock = (
     <div className="flex flex-col gap-1">
       <PlanPrice plan={plan} />
-      <span className="text-xs font-medium text-[#1a1a1a]/40">{plan.period}</span>
+      <span className="text-xs font-medium text-black/40">{plan.period}</span>
     </div>
   );
 
@@ -398,7 +398,7 @@ export default function PricingPage() {
 
         {/* billing note */}
         <div className="mt-6 flex justify-center">
-          <div className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-black/5 px-4 py-2 text-xs text-[#1a1a1a]/60 backdrop-blur">
+          <div className="inline-flex items-center gap-2 rounded-full border border-black/15 bg-black/5 px-4 py-2 text-xs text-black/60 backdrop-blur">
             <Calendar className="h-3.5 w-3.5 text-electric" />
             One-time setup · 30-day or 365-day plans
           </div>
@@ -412,7 +412,7 @@ export default function PricingPage() {
         </div>
 
         {/* disclaimer */}
-        <p className="mx-auto mt-10 max-w-3xl text-center text-xs leading-relaxed text-[#1a1a1a]/40">
+        <p className="mx-auto mt-10 max-w-3xl text-center text-xs leading-relaxed text-black/40">
           Opus Global Solution is a marketing consulting and support company. We do
           not act as a brokerage, list or sell property, or resell leads.
           Referral fees apply on successful closings.
@@ -445,19 +445,19 @@ export default function PricingPage() {
               >
                 <AccordionItem
                   value={`faq-${i}`}
-                  className="glass-strong group rounded-2xl border border-black/10 px-5 transition-colors duration-300 data-[state=open]:border-electric/30 sm:px-6"
+                  className="glass-strong group rounded-2xl border border-black/15 px-5 transition-colors duration-300 data-[state=open]:border-electric/30 sm:px-6"
                 >
                   <AccordionTrigger
-                    className="group/trigger hover:no-underline py-5 text-left text-base font-medium text-[#1a1a1a]/90 [&>svg:last-child]:hidden"
+                    className="group/trigger hover:no-underline py-5 text-left text-base font-medium text-black/90 [&>svg:last-child]:hidden"
                   >
-                    <span className="flex-1 pr-4 font-heading text-[15px] font-semibold leading-snug text-[#1a1a1a] sm:text-base">
+                    <span className="flex-1 pr-4 font-heading text-[15px] font-semibold leading-snug text-black sm:text-base">
                       {faq.q}
                     </span>
-                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-black/10 bg-black/5 transition-all duration-300 group-data-[state=open]:border-electric/40 group-data-[state=open]:bg-electric/10">
-                      <ChevronDown className="h-4 w-4 text-[#1a1a1a]/60 transition-all duration-300 group-data-[state=open]:rotate-180 group-data-[state=open]:text-electric" />
+                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-black/15 bg-black/5 transition-all duration-300 group-data-[state=open]:border-electric/40 group-data-[state=open]:bg-electric/10">
+                      <ChevronDown className="h-4 w-4 text-black/60 transition-all duration-300 group-data-[state=open]:rotate-180 group-data-[state=open]:text-electric" />
                     </span>
                   </AccordionTrigger>
-                  <AccordionContent className="text-sm leading-relaxed text-[#1a1a1a]/55 sm:text-[15px]">
+                  <AccordionContent className="text-sm leading-relaxed text-black/55 sm:text-[15px]">
                     <span className="block pr-12 pb-5">{faq.a}</span>
                   </AccordionContent>
                 </AccordionItem>

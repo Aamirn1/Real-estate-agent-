@@ -84,7 +84,7 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://raw.githubusercontent.com" />
       </head>
       <body
-        className={`${spaceGrotesk.variable} ${inter.variable} font-body antialiased bg-ink text-[#1a1a1a] selection:bg-electric/30 selection:text-[#1a1a1a] overflow-x-hidden`}
+        className={`${spaceGrotesk.variable} ${inter.variable} font-body antialiased bg-ink text-black selection:bg-electric/30 selection:text-black overflow-x-hidden`}
       >
         <script
           type="application/ld+json"

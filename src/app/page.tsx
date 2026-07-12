@@ -43,7 +43,7 @@ export default function Home() {
 
       {/* Section image */}
       <section className="relative w-full px-5 py-8 sm:px-8">
-        <div className="mx-auto w-full max-w-5xl overflow-hidden rounded-3xl border border-black/8 shadow-lg">
+        <div className="mx-auto w-full max-w-5xl overflow-hidden rounded-3xl border border-black/15 shadow-lg">
           <img
             src="/sections/handshake.jpg"
             alt="Real estate professional shaking hands with client in front of modern home"

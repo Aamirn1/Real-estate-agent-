@@ -28,7 +28,7 @@ export function ScrollToTop() {
           transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
           onClick={toTop}
           aria-label="Scroll to top"
-          className="group fixed bottom-5 left-5 z-[65] flex h-12 w-12 items-center justify-center rounded-full border border-black/10 bg-[#f8f9fa]/90 text-[#1a1a1a] shadow-[0_10px_30px_-8px_rgba(0,0,0,0.7)] backdrop-blur-xl transition-all hover:border-electric/40 hover:bg-[#f1f3f5] hover:shadow-[0_0_24px_-6px_rgba(37,99,235,0.7)] sm:bottom-6 sm:left-6"
+          className="group fixed bottom-5 left-5 z-[65] flex h-12 w-12 items-center justify-center rounded-full border border-black/15 bg-[#f8f9fa]/90 text-black shadow-[0_10px_30px_-8px_rgba(0,0,0,0.7)] backdrop-blur-xl transition-all hover:border-electric/40 hover:bg-[#f1f3f5] hover:shadow-[0_0_24px_-6px_rgba(37,99,235,0.7)] sm:bottom-6 sm:left-6"
         >
           <span className="absolute inset-0 rounded-full bg-gradient-to-br from-electric/0 to-[#38BDF8]/0 transition-all group-hover:from-electric/15 group-hover:to-[#38BDF8]/15" />
           <ArrowUp className="relative h-5 w-5 transition-transform group-hover:-translate-y-0.5" />

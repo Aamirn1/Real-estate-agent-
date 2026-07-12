@@ -73,7 +73,7 @@ export function GetStartedForm() {
           transition={{ type: "spring", stiffness: 200, damping: 14 }}
           className="relative mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-emerald-400 to-electric"
         >
-          <CheckCircle2 className="h-8 w-8 text-[#1a1a1a]" />
+          <CheckCircle2 className="h-8 w-8 text-black" />
         </motion.div>
         <h2 className="relative mt-6 text-center font-heading text-2xl font-semibold text-[#1E293B]">
           Thank you!
@@ -170,7 +170,7 @@ export function GetStartedForm() {
                           }`}
                         >
                           <span className={`flex h-4 w-4 shrink-0 items-center justify-center rounded border ${selected ? "border-electric bg-electric" : "border-[#E2E8F0]"}`}>
-                            {selected && <Check className="h-3 w-3 text-[#1a1a1a]" />}
+                            {selected && <Check className="h-3 w-3 text-black" />}
                           </span>
                           {s}
                         </button>
@@ -230,7 +230,7 @@ export function GetStartedForm() {
                           }`}
                         >
                           <span className={`flex h-4 w-4 shrink-0 items-center justify-center rounded-full border ${selected ? "border-violet bg-violet" : "border-[#E2E8F0]"}`}>
-                            {selected && <Check className="h-3 w-3 text-[#1a1a1a]" />}
+                            {selected && <Check className="h-3 w-3 text-black" />}
                           </span>
                           {p}
                         </button>

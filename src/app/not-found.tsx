@@ -13,10 +13,10 @@ export default function NotFound() {
         <h1 className="font-heading text-7xl font-bold text-[#2563EB] sm:text-9xl">
           404
         </h1>
-        <h2 className="mt-4 font-heading text-2xl font-semibold text-[#1a1a1a] sm:text-3xl">
+        <h2 className="mt-4 font-heading text-2xl font-semibold text-black sm:text-3xl">
           Page Not Found
         </h2>
-        <p className="mt-3 max-w-md text-base text-[#1a1a1a]/55">
+        <p className="mt-3 max-w-md text-base text-black/55">
           The page you're looking for doesn't exist or has been moved. Let's get
           you back on track.
         </p>
@@ -31,7 +31,7 @@ export default function NotFound() {
           </Link>
           <Link
             href="/services"
-            className="inline-flex items-center gap-2 rounded-xl border border-[#E2E8F0] bg-[#1a1a1a]/5 px-6 py-3 text-sm font-semibold text-[#1a1a1a] transition-all hover:border-[#CBD5E1] hover:bg-[#1a1a1a]/8"
+            className="inline-flex items-center gap-2 rounded-xl border border-[#E2E8F0] bg-[#1a1a1a]/5 px-6 py-3 text-sm font-semibold text-black transition-all hover:border-[#CBD5E1] hover:bg-[#1a1a1a]/8"
           >
             <Search className="h-4 w-4" />
             Browse Services
