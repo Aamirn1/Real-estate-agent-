@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { SiteChrome, PageHero } from "@/components/leadsphere/SiteChrome";
 import { CTABanner } from "@/components/leadsphere/CTABanner";
+import TrustStatsFeatures from "@/components/leadsphere/sections/TrustStatsFeatures";
 import AiProcessMap from "@/components/leadsphere/sections/AiProcessMap";
 import {
   VirtualAssistantServices,
@@ -40,7 +41,8 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* 1. Trust + Stats + Services overview grid (id="services") */}
+      {/* 1. Services overview grid (12 services) + Stats */}
+      <TrustStatsFeatures />
 
       {/* 2. Virtual Assistant Services | 6 service cards */}
       <VirtualAssistantServices />
