@@ -89,7 +89,7 @@ export default function RefundPolicyPage() {
                     <Receipt className="h-5 w-5 text-electric" />
                   </span>
                   <div className="flex flex-col">
-                    <span className="text-xs font-medium uppercase tracking-wider text-black/45">
+                    <span className="text-xs font-medium uppercase tracking-wider text-black">
                       Legal
                     </span>
                     <span className="font-heading text-xl font-semibold text-black">
@@ -97,7 +97,7 @@ export default function RefundPolicyPage() {
                     </span>
                   </div>
                 </div>
-                <p className="text-xs font-medium uppercase tracking-wider text-black/45">
+                <p className="text-xs font-medium uppercase tracking-wider text-black">
                   Last updated: January 2025
                 </p>
               </div>
@@ -110,7 +110,7 @@ export default function RefundPolicyPage() {
                       {section.heading}
                     </h2>
                     {section.body && (
-                      <p className="text-sm leading-relaxed text-black/60">
+                      <p className="text-sm leading-relaxed text-black">
                         {section.body}
                       </p>
                     )}
@@ -119,7 +119,7 @@ export default function RefundPolicyPage() {
                         {section.bullets.map((bullet) => (
                           <li
                             key={bullet}
-                            className="flex items-start gap-3 text-sm leading-relaxed text-black/60"
+                            className="flex items-start gap-3 text-sm leading-relaxed text-black"
                           >
                             <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-electric/70 shadow-[0_0_8px_#2563EB]" />
                             <span>{bullet}</span>
@@ -137,7 +137,7 @@ export default function RefundPolicyPage() {
                   <Mail className="h-4 w-4 text-electric" />
                   <a
                     href="mailto:info@opussolutions.com"
-                    className="text-sm text-black/70 transition-colors hover:text-black"
+                    className="text-sm text-black transition-colors hover:text-black"
                   >
                     info@opussolutions.com
                   </a>
@@ -146,7 +146,7 @@ export default function RefundPolicyPage() {
                   <Phone className="h-4 w-4 text-violet" />
                   <a
                     href="tel:+13203310910"
-                    className="text-sm text-black/70 transition-colors hover:text-black tnum"
+                    className="text-sm text-black transition-colors hover:text-black tnum"
                   >
                     (320) 331-0910
                   </a>
@@ -156,7 +156,7 @@ export default function RefundPolicyPage() {
               {/* Address row */}
               <div className="relative mt-4 flex items-center gap-3 border-t border-white/5 pt-5">
                 <MapPin className="h-4 w-4 text-cyan" />
-                <span className="text-sm text-black/70">
+                <span className="text-sm text-black">
                   418 Broadway, Ste. R, Albany, NY 12207, United States
                 </span>
               </div>

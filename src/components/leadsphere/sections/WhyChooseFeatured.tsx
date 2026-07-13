@@ -117,7 +117,7 @@ export function WhyChooseUs() {
                 <h3 className="font-heading text-base font-semibold text-black">
                   {r.title}
                 </h3>
-                <p className="mt-2.5 text-sm leading-relaxed text-black/55">
+                <p className="mt-2.5 text-sm leading-relaxed text-black">
                   {r.desc}
                 </p>
                 <div
@@ -233,14 +233,14 @@ export function FeaturedProfessionals() {
                     <h3 className="font-heading text-base font-semibold text-black">
                       {p.name}
                     </h3>
-                    <p className="text-xs text-black/50">{p.location}</p>
+                    <p className="text-xs text-black">{p.location}</p>
                   </div>
                   <BadgeCheck className="ml-auto h-5 w-5 shrink-0 text-electric" />
                 </div>
 
                 {/* specialty + metric */}
                 <div className="relative mt-5 flex items-center justify-between">
-                  <span className="rounded-full border border-black/15 bg-black/5 px-2.5 py-1 text-[11px] font-medium text-black/65">
+                  <span className="rounded-full border border-black/15 bg-black/5 px-2.5 py-1 text-[11px] font-medium text-black">
                     {p.specialty}
                   </span>
                   <span className="inline-flex items-center gap-1 text-xs font-semibold text-emerald-400">
@@ -252,7 +252,7 @@ export function FeaturedProfessionals() {
                 {/* story */}
                 <div className="relative mt-4 flex gap-2.5">
                   <Quote className="h-4 w-4 shrink-0 text-electric/50" />
-                  <p className="text-sm leading-relaxed text-black/60">
+                  <p className="text-sm leading-relaxed text-black">
                     {p.story}
                   </p>
                 </div>

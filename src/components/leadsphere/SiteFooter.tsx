@@ -93,7 +93,7 @@ export function SiteFooter() {
         <div className="grid gap-10 lg:grid-cols-2 lg:gap-16">
           <div className="flex flex-col gap-6">
             <LogoMark />
-            <p className="max-w-sm text-sm leading-relaxed text-black/55">
+            <p className="max-w-sm text-sm leading-relaxed text-black">
               Your trusted partner for marketing consulting, outreach
               support, and CRM solutions. Human-verified outreach, dedicated
               virtual assistants, and documented workflows for licensed real
@@ -105,7 +105,7 @@ export function SiteFooter() {
                   key={label}
                   href={href}
                   aria-label={label}
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-black/15 bg-black/5 text-black/60 transition-all hover:-translate-y-0.5 hover:border-electric/40 hover:bg-electric/10 hover:text-black"
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-black/15 bg-black/5 text-black transition-all hover:-translate-y-0.5 hover:border-electric/40 hover:bg-electric/10 hover:text-black"
                 >
                   <Icon className="h-4 w-4" />
                 </a>
@@ -118,7 +118,7 @@ export function SiteFooter() {
               <h3 className="font-heading text-lg font-semibold text-black">
                 Stay ahead of the market
               </h3>
-              <p className="mt-1.5 text-sm text-black/50">
+              <p className="mt-1.5 text-sm text-black">
                 Weekly insights on outreach and prospecting.
               </p>
             </div>
@@ -130,7 +130,7 @@ export function SiteFooter() {
                 type="email"
                 placeholder="you@brokerage.com"
                 aria-label="Email address"
-                className="w-full flex-1 rounded-full border border-black/15 bg-black/5 px-5 py-3 text-sm text-black placeholder:text-black/40 outline-none transition-colors focus:border-electric/50 focus:bg-black/10"
+                className="w-full flex-1 rounded-full border border-black/15 bg-black/5 px-5 py-3 text-sm text-black placeholder:text-black outline-none transition-colors focus:border-electric/50 focus:bg-black/10"
               />
               <motion.button
                 whileHover={{ scale: 1.03 }}
@@ -142,7 +142,7 @@ export function SiteFooter() {
                 Subscribe
               </motion.button>
             </form>
-            <p className="text-xs text-black/35 lg:max-w-sm lg:text-right">
+            <p className="text-xs text-black lg:max-w-sm lg:text-right">
               We respect your inbox. Unsubscribe with one click.
             </p>
           </div>
@@ -162,7 +162,7 @@ export function SiteFooter() {
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="text-sm text-black/55 transition-colors hover:text-black"
+                      className="text-sm text-black transition-colors hover:text-black"
                     >
                       {link.label}
                     </Link>
@@ -175,15 +175,15 @@ export function SiteFooter() {
 
         {/* bottom bar */}
         <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-black/15 pt-8 md:flex-row">
-          <p className="text-xs text-black/45">
+          <p className="text-xs text-black">
             © 2025 Opus Global Solution. All rights reserved.
           </p>
           <div className="flex flex-col items-center gap-4 sm:flex-row sm:gap-6">
-            <span className="inline-flex items-center gap-1.5 text-xs text-black/45">
+            <span className="inline-flex items-center gap-1.5 text-xs text-black">
               <ShieldCheck className="h-3.5 w-3.5 text-electric/70" />
               Made with care
             </span>
-            <span className="inline-flex items-center gap-2 rounded-full border border-black/15 bg-black/5 px-3 py-1 text-xs text-black/60">
+            <span className="inline-flex items-center gap-2 rounded-full border border-black/15 bg-black/5 px-3 py-1 text-xs text-black">
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-60" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-green-400" />

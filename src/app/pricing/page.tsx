@@ -187,7 +187,7 @@ function PlanPrice({ plan }: { plan: Plan }) {
   const num = parseInt(plan.price.replace(/[^0-9]/g, ""), 10);
   return (
     <div className="flex items-baseline gap-1">
-      <span className="font-heading text-2xl font-semibold text-black/70">
+      <span className="font-heading text-2xl font-semibold text-black">
         $
       </span>
       <CountUp
@@ -238,7 +238,7 @@ function PricingCard({ plan, delay }: { plan: Plan; delay: number }) {
           key={i}
           className={cn(
             "flex items-start gap-3 text-sm",
-            f.included ? "text-black/70" : "text-black/25"
+            f.included ? "text-black" : "text-black/25"
           )}
         >
           <span
@@ -268,14 +268,14 @@ function PricingCard({ plan, delay }: { plan: Plan; delay: number }) {
       <h3 className="font-heading text-xl font-semibold text-black">
         {plan.name}
       </h3>
-      <p className="text-sm leading-relaxed text-black/50">{plan.tagline}</p>
+      <p className="text-sm leading-relaxed text-black">{plan.tagline}</p>
     </div>
   );
 
   const priceBlock = (
     <div className="flex flex-col gap-1">
       <PlanPrice plan={plan} />
-      <span className="text-xs font-medium text-black/40">{plan.period}</span>
+      <span className="text-xs font-medium text-black">{plan.period}</span>
     </div>
   );
 
@@ -398,7 +398,7 @@ export default function PricingPage() {
 
         {/* billing note */}
         <div className="mt-6 flex justify-center">
-          <div className="inline-flex items-center gap-2 rounded-full border border-black/15 bg-black/5 px-4 py-2 text-xs text-black/60 backdrop-blur">
+          <div className="inline-flex items-center gap-2 rounded-full border border-black/15 bg-black/5 px-4 py-2 text-xs text-black backdrop-blur">
             <Calendar className="h-3.5 w-3.5 text-electric" />
             One-time setup · 30-day or 365-day plans
           </div>
@@ -412,7 +412,7 @@ export default function PricingPage() {
         </div>
 
         {/* disclaimer */}
-        <p className="mx-auto mt-10 max-w-3xl text-center text-xs leading-relaxed text-black/40">
+        <p className="mx-auto mt-10 max-w-3xl text-center text-xs leading-relaxed text-black">
           Opus Global Solution is a marketing consulting and support company. We do
           not act as a brokerage, list or sell property, or resell leads.
           Referral fees apply on successful closings.
@@ -448,16 +448,16 @@ export default function PricingPage() {
                   className="glass-strong group rounded-2xl border border-black/15 px-5 transition-colors duration-300 data-[state=open]:border-electric/30 sm:px-6"
                 >
                   <AccordionTrigger
-                    className="group/trigger hover:no-underline py-5 text-left text-base font-medium text-black/90 [&>svg:last-child]:hidden"
+                    className="group/trigger hover:no-underline py-5 text-left text-base font-medium text-black [&>svg:last-child]:hidden"
                   >
                     <span className="flex-1 pr-4 font-heading text-[15px] font-semibold leading-snug text-black sm:text-base">
                       {faq.q}
                     </span>
                     <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-black/15 bg-black/5 transition-all duration-300 group-data-[state=open]:border-electric/40 group-data-[state=open]:bg-electric/10">
-                      <ChevronDown className="h-4 w-4 text-black/60 transition-all duration-300 group-data-[state=open]:rotate-180 group-data-[state=open]:text-electric" />
+                      <ChevronDown className="h-4 w-4 text-black transition-all duration-300 group-data-[state=open]:rotate-180 group-data-[state=open]:text-electric" />
                     </span>
                   </AccordionTrigger>
-                  <AccordionContent className="text-sm leading-relaxed text-black/55 sm:text-[15px]">
+                  <AccordionContent className="text-sm leading-relaxed text-black sm:text-[15px]">
                     <span className="block pr-12 pb-5">{faq.a}</span>
                   </AccordionContent>
                 </AccordionItem>

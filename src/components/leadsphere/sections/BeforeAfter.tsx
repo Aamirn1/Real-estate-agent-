@@ -54,13 +54,13 @@ export function BeforeAfter() {
             <div className="mb-6 flex items-center justify-between">
               <div className="flex items-center gap-2.5">
                 <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-black/5">
-                  <Clock className="h-4.5 w-4.5 text-black/50" />
+                  <Clock className="h-4.5 w-4.5 text-black" />
                 </span>
-                <h3 className="font-heading text-lg font-semibold text-black/70">
+                <h3 className="font-heading text-lg font-semibold text-black">
                   The old way
                 </h3>
               </div>
-              <span className="rounded-full border border-black/15 px-2.5 py-1 text-[10px] font-medium uppercase tracking-wide text-black/40">
+              <span className="rounded-full border border-black/15 px-2.5 py-1 text-[10px] font-medium uppercase tracking-wide text-black">
                 Manual
               </span>
             </div>
@@ -78,15 +78,15 @@ export function BeforeAfter() {
                   <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-red-500/10">
                     <item.icon className="h-4 w-4 text-red-400/80" />
                   </span>
-                  <span className="flex-1 text-sm text-black/60">{item.text}</span>
-                  <span className="text-[11px] font-medium text-black/35">{item.time}</span>
+                  <span className="flex-1 text-sm text-black">{item.text}</span>
+                  <span className="text-[11px] font-medium text-black">{item.time}</span>
                 </motion.div>
               ))}
             </div>
 
             <div className="mt-6 rounded-xl bg-red-500/5 p-4 text-center">
-              <div className="text-xs uppercase tracking-wide text-black/35">Avg result</div>
-              <div className="mt-1 font-heading text-2xl font-bold text-black/50 tnum">
+              <div className="text-xs uppercase tracking-wide text-black">Avg result</div>
+              <div className="mt-1 font-heading text-2xl font-bold text-black tnum">
                 2 listings / mo
               </div>
             </div>
@@ -138,14 +138,14 @@ export function BeforeAfter() {
                     <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-emerald-400/10">
                       <item.icon className="h-4 w-4 text-emerald-400" />
                     </span>
-                    <span className="flex-1 text-sm text-black/85">{item.text}</span>
+                    <span className="flex-1 text-sm text-black">{item.text}</span>
                     <span className="text-[11px] font-medium text-electric">{item.time}</span>
                   </motion.div>
                 ))}
               </div>
 
               <div className="mt-6 rounded-xl bg-gradient-to-br from-electric/15 to-[#38BDF8]/15 p-4 text-center">
-                <div className="text-xs uppercase tracking-wide text-black/55">Avg result</div>
+                <div className="text-xs uppercase tracking-wide text-black">Avg result</div>
                 <div className="mt-1 font-heading text-2xl font-bold text-black tnum">
                   6 listings / mo
                 </div>

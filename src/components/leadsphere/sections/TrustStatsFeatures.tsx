@@ -227,10 +227,10 @@ function Logo({ name, index }: { name: string; index: number }) {
     <div className="group/logo flex items-center gap-2.5 whitespace-nowrap px-3 transition-all duration-300 sm:px-4">
       <Mark
         variant={index}
-        className={`h-4 w-4 text-black/40 transition-colors duration-300 ${accent}`}
+        className={`h-4 w-4 text-black transition-colors duration-300 ${accent}`}
       />
       <span
-        className={`font-heading text-base font-semibold tracking-tight text-black/40 transition-colors duration-300 group-hover/logo:text-black sm:text-[1.05rem] ${accent}`}
+        className={`font-heading text-base font-semibold tracking-tight text-black transition-colors duration-300 group-hover/logo:text-black sm:text-[1.05rem] ${accent}`}
       >
         {name}
       </span>
@@ -242,7 +242,7 @@ function TrustSection() {
   return (
     <SectionShell className="py-14 md:py-16">
       <Reveal className="flex flex-col items-center gap-8">
-        <span className="inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.22em] text-black/45">
+        <span className="inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.22em] text-black">
           <span className="h-px w-6 bg-gradient-to-r from-transparent to-white/30" />
           Trusted by 50,000+ real estate professionals
           <span className="h-px w-6 bg-gradient-to-l from-transparent to-white/30" />
@@ -324,7 +324,7 @@ function StatsSection() {
                   </div>
 
                   {/* Label */}
-                  <p className="mt-2.5 text-sm font-medium text-black/55">
+                  <p className="mt-2.5 text-sm font-medium text-black">
                     {stat.label}
                   </p>
 
@@ -485,7 +485,7 @@ export function FeaturesSection() {
                   </h3>
 
                   {/* description */}
-                  <p className="relative mt-2 text-sm leading-relaxed text-black/55">
+                  <p className="relative mt-2 text-sm leading-relaxed text-black">
                     {f.desc}
                   </p>
 

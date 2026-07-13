@@ -260,7 +260,7 @@ function PlanPrice({ plan }: { plan: Plan }) {
   const num = parseInt(plan.price.replace(/[^0-9]/g, ""), 10);
   return (
     <div className="flex items-baseline gap-1">
-      <span className="font-heading text-2xl font-semibold text-black/70">
+      <span className="font-heading text-2xl font-semibold text-black">
         $
       </span>
       <CountUp
@@ -313,7 +313,7 @@ function PricingCard({ plan, delay }: { plan: Plan; delay: number }) {
           key={i}
           className={cn(
             "flex items-start gap-3 text-sm",
-            f.included ? "text-black/70" : "text-black/25"
+            f.included ? "text-black" : "text-black/25"
           )}
         >
           <span
@@ -343,14 +343,14 @@ function PricingCard({ plan, delay }: { plan: Plan; delay: number }) {
       <h3 className="font-heading text-xl font-semibold text-black">
         {plan.name}
       </h3>
-      <p className="text-sm leading-relaxed text-black/50">{plan.tagline}</p>
+      <p className="text-sm leading-relaxed text-black">{plan.tagline}</p>
     </div>
   );
 
   const priceBlock = (
     <div className="flex flex-col gap-1">
       <PlanPrice plan={plan} />
-      <span className="text-xs font-medium text-black/40">{plan.period}</span>
+      <span className="text-xs font-medium text-black">{plan.period}</span>
     </div>
   );
 
@@ -459,16 +459,16 @@ function FaqList() {
             className="glass-strong group rounded-2xl border border-black/15 px-5 transition-colors duration-300 data-[state=open]:border-electric/30 sm:px-6"
           >
             <AccordionTrigger
-              className="group/trigger hover:no-underline py-5 text-left text-base font-medium text-black/90 [&>svg:last-child]:hidden"
+              className="group/trigger hover:no-underline py-5 text-left text-base font-medium text-black [&>svg:last-child]:hidden"
             >
               <span className="flex-1 pr-4 font-heading text-[15px] font-semibold leading-snug text-black sm:text-base">
                 {faq.q}
               </span>
               <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-black/15 bg-black/5 transition-all duration-300 group-data-[state=open]:border-electric/40 group-data-[state=open]:bg-electric/10">
-                <ChevronDown className="h-4 w-4 text-black/60 transition-all duration-300 group-data-[state=open]:rotate-180 group-data-[state=open]:text-electric" />
+                <ChevronDown className="h-4 w-4 text-black transition-all duration-300 group-data-[state=open]:rotate-180 group-data-[state=open]:text-electric" />
               </span>
             </AccordionTrigger>
-            <AccordionContent className="text-sm leading-relaxed text-black/55 sm:text-[15px]">
+            <AccordionContent className="text-sm leading-relaxed text-black sm:text-[15px]">
               <span className="block pr-12 pb-5">{faq.a}</span>
             </AccordionContent>
           </AccordionItem>
@@ -508,7 +508,7 @@ function InfoCard({
           <Icon className="h-4 w-4" />
         </div>
         <div>
-          <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-black/40">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-black">
             {label}
           </p>
           <div className="mt-1 text-sm font-medium text-black leading-relaxed">
@@ -585,10 +585,10 @@ function StylizedMap() {
           <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-60" />
           <span className="relative inline-flex h-2 w-2 rounded-full bg-green-400" />
         </span>
-        <span className="text-[11px] font-medium text-black/80">HQ · Albany</span>
+        <span className="text-[11px] font-medium text-black">HQ · Albany</span>
       </div>
       <div className="absolute bottom-4 right-4 rounded-full border border-black/15 bg-black/60 px-3 py-1 backdrop-blur">
-        <span className="text-[11px] font-medium text-black/60 tnum">
+        <span className="text-[11px] font-medium text-black tnum">
           42.6526° N, 73.7562° W
         </span>
       </div>
@@ -625,7 +625,7 @@ function ContactSection() {
                   <h3 className="font-heading text-lg font-semibold text-black">
                     Send us a message
                   </h3>
-                  <p className="text-sm text-black/50">
+                  <p className="text-sm text-black">
                     We&apos;ll get back to you within 24 hours.
                   </p>
                 </div>
@@ -637,46 +637,46 @@ function ContactSection() {
               >
                 <div className="grid gap-4 sm:grid-cols-2">
                   <div className="flex flex-col gap-1.5">
-                    <Label htmlFor="name" className="text-black/70">
+                    <Label htmlFor="name" className="text-black">
                       Name
                     </Label>
                     <Input
                       id="name"
                       placeholder="Jane Cooper"
-                      className="h-11 rounded-lg border-black/15 bg-black/5 text-black placeholder:text-black/40 focus-visible:border-electric/50 focus-visible:ring-electric/20"
+                      className="h-11 rounded-lg border-black/15 bg-black/5 text-black placeholder:text-black focus-visible:border-electric/50 focus-visible:ring-electric/20"
                     />
                   </div>
                   <div className="flex flex-col gap-1.5">
-                    <Label htmlFor="email" className="text-black/70">
+                    <Label htmlFor="email" className="text-black">
                       Email
                     </Label>
                     <Input
                       id="email"
                       type="email"
                       placeholder="jane@brokerage.com"
-                      className="h-11 rounded-lg border-black/15 bg-black/5 text-black placeholder:text-black/40 focus-visible:border-electric/50 focus-visible:ring-electric/20"
+                      className="h-11 rounded-lg border-black/15 bg-black/5 text-black placeholder:text-black focus-visible:border-electric/50 focus-visible:ring-electric/20"
                     />
                   </div>
                 </div>
                 <div className="flex flex-col gap-1.5">
-                  <Label htmlFor="phone" className="text-black/70">
+                  <Label htmlFor="phone" className="text-black">
                     Phone
                   </Label>
                   <Input
                     id="phone"
                     type="tel"
                     placeholder="(320) 331-0910"
-                    className="h-11 rounded-lg border-black/15 bg-black/5 text-black placeholder:text-black/40 focus-visible:border-electric/50 focus-visible:ring-electric/20"
+                    className="h-11 rounded-lg border-black/15 bg-black/5 text-black placeholder:text-black focus-visible:border-electric/50 focus-visible:ring-electric/20"
                   />
                 </div>
                 <div className="flex flex-1 flex-col gap-1.5">
-                  <Label htmlFor="message" className="text-black/70">
+                  <Label htmlFor="message" className="text-black">
                     Message
                   </Label>
                   <Textarea
                     id="message"
                     placeholder="Tell us about your goals and the counties you cover..."
-                    className="min-h-32 flex-1 resize-none rounded-lg border-black/15 bg-black/5 text-black placeholder:text-black/40 focus-visible:border-electric/50 focus-visible:ring-electric/20"
+                    className="min-h-32 flex-1 resize-none rounded-lg border-black/15 bg-black/5 text-black placeholder:text-black focus-visible:border-electric/50 focus-visible:ring-electric/20"
                   />
                 </div>
                 <Button
@@ -874,7 +874,7 @@ function Footer() {
           {/* left: logo + tagline + socials */}
           <div className="flex flex-col gap-6">
             <LogoMark />
-            <p className="max-w-sm text-sm leading-relaxed text-black/55">
+            <p className="max-w-sm text-sm leading-relaxed text-black">
               Your trusted partner for marketing consulting, outreach
               support, and CRM solutions. Human-verified outreach, dedicated
               virtual assistants, and documented workflows for licensed real
@@ -886,7 +886,7 @@ function Footer() {
                   key={label}
                   href={href}
                   aria-label={label}
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-black/15 bg-black/5 text-black/60 transition-all hover:-translate-y-0.5 hover:border-electric/40 hover:bg-electric/10 hover:text-black"
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-black/15 bg-black/5 text-black transition-all hover:-translate-y-0.5 hover:border-electric/40 hover:bg-electric/10 hover:text-black"
                 >
                   <Icon className="h-4 w-4" />
                 </a>
@@ -900,7 +900,7 @@ function Footer() {
               <h3 className="font-heading text-lg font-semibold text-black">
                 Stay ahead of the market
               </h3>
-              <p className="mt-1.5 text-sm text-black/50">
+              <p className="mt-1.5 text-sm text-black">
                 Weekly insights on outreach and prospecting.
               </p>
             </div>
@@ -912,7 +912,7 @@ function Footer() {
                 type="email"
                 placeholder="you@brokerage.com"
                 aria-label="Email address"
-                className="w-full flex-1 rounded-full border border-black/15 bg-black/5 px-5 py-3 text-sm text-black placeholder:text-black/40 outline-none transition-colors focus:border-electric/50 focus:bg-black/10"
+                className="w-full flex-1 rounded-full border border-black/15 bg-black/5 px-5 py-3 text-sm text-black placeholder:text-black outline-none transition-colors focus:border-electric/50 focus:bg-black/10"
               />
               <motion.button
                 whileHover={{ scale: 1.03 }}
@@ -924,7 +924,7 @@ function Footer() {
                 Subscribe
               </motion.button>
             </form>
-            <p className="text-xs text-black/35 lg:max-w-sm lg:text-right">
+            <p className="text-xs text-black lg:max-w-sm lg:text-right">
               We respect your inbox. Unsubscribe with one click.
             </p>
           </div>
@@ -945,7 +945,7 @@ function Footer() {
                   <li key={link.label}>
                     <a
                       href={link.href}
-                      className="text-sm text-black/55 transition-colors hover:text-black"
+                      className="text-sm text-black transition-colors hover:text-black"
                     >
                       {link.label}
                     </a>
@@ -958,15 +958,15 @@ function Footer() {
 
         {/* ---------- bottom bar ---------- */}
         <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-black/15 pt-8 md:flex-row">
-          <p className="text-xs text-black/45">
+          <p className="text-xs text-black">
             © 2025 Opus Global Solution. All rights reserved.
           </p>
           <div className="flex flex-col items-center gap-4 sm:flex-row sm:gap-6">
-            <span className="inline-flex items-center gap-1.5 text-xs text-black/45">
+            <span className="inline-flex items-center gap-1.5 text-xs text-black">
               <ShieldCheck className="h-3.5 w-3.5 text-electric/70" />
               Made with care
             </span>
-            <span className="inline-flex items-center gap-2 rounded-full border border-black/15 bg-black/5 px-3 py-1 text-xs text-black/60">
+            <span className="inline-flex items-center gap-2 rounded-full border border-black/15 bg-black/5 px-3 py-1 text-xs text-black">
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-60" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-green-400" />
@@ -1000,7 +1000,7 @@ export default function PricingFaqCtaFooter() {
           <div className="mt-10 flex justify-center">
             <div className="inline-flex items-center gap-2 rounded-full border border-black/15 bg-black/5 px-4 py-2 backdrop-blur">
               <Calendar className="h-3.5 w-3.5 text-electric" />
-              <span className="text-sm font-medium text-black/70">
+              <span className="text-sm font-medium text-black">
                 One-time setup
               </span>
               <span className="text-black/20">·</span>
@@ -1024,7 +1024,7 @@ export default function PricingFaqCtaFooter() {
 
         {/* disclaimer */}
         <Reveal delay={0.3}>
-          <p className="mx-auto mt-10 max-w-3xl text-center text-xs leading-relaxed text-black/40">
+          <p className="mx-auto mt-10 max-w-3xl text-center text-xs leading-relaxed text-black">
             Opus Global Solution is a marketing consulting and support company. We do
             not act as a brokerage, list or sell property, or resell leads.
             Referral fees apply on successful closings.
@@ -1053,7 +1053,7 @@ export default function PricingFaqCtaFooter() {
               <p className="font-heading text-base font-semibold text-black">
                 Still have questions?
               </p>
-              <p className="text-sm text-black/50">
+              <p className="text-sm text-black">
                 Our team replies within a few hours, 7 days a week.
               </p>
             </div>

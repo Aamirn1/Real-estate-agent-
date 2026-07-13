@@ -93,7 +93,7 @@ export default async function BlogPostPage({
           {/* Back link */}
           <Link
             href="/blog"
-            className="group mb-6 inline-flex items-center gap-2 text-sm font-medium text-black/55 transition-colors hover:text-[#2563EB]"
+            className="group mb-6 inline-flex items-center gap-2 text-sm font-medium text-black transition-colors hover:text-[#2563EB]"
           >
             <span className="flex h-8 w-8 items-center justify-center rounded-lg border border-black/15 bg-black/5 transition-all group-hover:border-[#2563EB]/30 group-hover:bg-[#2563EB]/10">
               <ArrowLeft className="h-4 w-4" />
@@ -106,11 +106,11 @@ export default async function BlogPostPage({
             <span className="rounded-full bg-[#2563EB]/15 px-3 py-1 font-semibold text-[#2563EB]">
               {post.category}
             </span>
-            <span className="flex items-center gap-1.5 text-black/45">
+            <span className="flex items-center gap-1.5 text-black">
               <Calendar className="h-3.5 w-3.5" />
               {post.date}
             </span>
-            <span className="flex items-center gap-1.5 text-black/45">
+            <span className="flex items-center gap-1.5 text-black">
               <Clock className="h-3.5 w-3.5" />
               {post.readTime}
             </span>
@@ -122,7 +122,7 @@ export default async function BlogPostPage({
           </h1>
 
           {/* Excerpt */}
-          <p className="mt-4 text-lg leading-relaxed text-black/60">
+          <p className="mt-4 text-lg leading-relaxed text-black">
             {post.excerpt}
           </p>
 
@@ -131,7 +131,7 @@ export default async function BlogPostPage({
             {post.content.map((paragraph, i) => (
               <p
                 key={i}
-                className="text-base leading-relaxed text-black/75"
+                className="text-base leading-relaxed text-black"
               >
                 {paragraph}
               </p>
@@ -180,7 +180,7 @@ export default async function BlogPostPage({
                   <h3 className="mt-1.5 font-heading text-sm font-semibold leading-snug text-black transition-colors group-hover:text-[#2563EB]">
                     {rp.title}
                   </h3>
-                  <span className="mt-2 inline-flex items-center gap-1 text-xs font-medium text-black/50">
+                  <span className="mt-2 inline-flex items-center gap-1 text-xs font-medium text-black">
                     Read more
                     <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5" />
                   </span>

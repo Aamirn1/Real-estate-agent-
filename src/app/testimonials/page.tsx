@@ -125,7 +125,7 @@ export default function TestimonialsPage() {
                 </div>
 
                 {/* quote */}
-                <p className="relative mt-4 flex-1 text-[15px] leading-relaxed text-black/75">
+                <p className="relative mt-4 flex-1 text-[15px] leading-relaxed text-black">
                   &ldquo;{s.quote}&rdquo;
                 </p>
 
@@ -146,7 +146,7 @@ export default function TestimonialsPage() {
                       </span>
                       <BadgeCheck className="h-4 w-4 text-electric drop-shadow-[0_0_6px_rgba(37,99,235,0.55)]" />
                     </div>
-                    <span className="text-xs text-black/50">{s.location}</span>
+                    <span className="text-xs text-black">{s.location}</span>
                   </div>
                 </div>
               </GlassCard>

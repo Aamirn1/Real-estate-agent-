@@ -53,7 +53,7 @@ export function AboutMission() {
               <Target className="h-5.5 w-5.5 text-electric" />
             </span>
             <h3 className="mt-5 font-heading text-xl font-semibold text-black">Our Mission</h3>
-            <p className="mt-3 text-sm leading-relaxed text-black/60">
+            <p className="mt-3 text-sm leading-relaxed text-black">
               To help licensed real estate professionals grow their businesses by
               providing marketing support, outreach assistance, CRM solutions, and
               administrative services. We strive to deliver verified, exclusive
@@ -68,7 +68,7 @@ export function AboutMission() {
               <Eye className="h-5.5 w-5.5 text-violet" />
             </span>
             <h3 className="mt-5 font-heading text-xl font-semibold text-black">Our Vision</h3>
-            <p className="mt-3 text-sm leading-relaxed text-black/60">
+            <p className="mt-3 text-sm leading-relaxed text-black">
               To empower real estate professionals nationwide to reach their full
               potential. By leveraging modern digital platforms, scalable support
               solutions, and continuous improvement, we help agents focus on what
@@ -84,7 +84,7 @@ export function AboutMission() {
               <Users className="h-5.5 w-5.5 text-cyan" />
             </span>
             <h3 className="relative mt-5 font-heading text-xl font-semibold text-black">Who We Serve</h3>
-            <p className="relative mt-3 text-sm leading-relaxed text-black/60">
+            <p className="relative mt-3 text-sm leading-relaxed text-black">
               Agents, teams, brokerages, and investors across the USA. From solo
               realtors to large brokerages, our documented workflows and
               human-verified outreach adapt to every stage of your growth.
@@ -111,7 +111,7 @@ export function AboutMission() {
                 Benefits of{" "}
                 <span className="text-gradient-electric">Professional Outreach Support</span>
               </h3>
-              <p className="mt-4 max-w-lg text-sm leading-relaxed text-black/60 sm:text-base">
+              <p className="mt-4 max-w-lg text-sm leading-relaxed text-black sm:text-base">
                 Outsourcing your outreach support with Opus Global Solution saves
                 valuable time by providing verified and standardized contact
                 records. Our documented workflows make follow-ups faster and
@@ -153,7 +153,7 @@ export function AboutMission() {
                     <p className="font-heading text-sm font-semibold text-black">
                       {item.title}
                     </p>
-                    <p className="mt-1 text-xs leading-relaxed text-black/55">
+                    <p className="mt-1 text-xs leading-relaxed text-black">
                       {item.desc}
                     </p>
                   </div>
@@ -172,7 +172,7 @@ export function AboutMission() {
               Why We Are{" "}
               <span className="text-gradient-electric">Different</span>
             </h3>
-            <p className="mt-3 max-w-xl text-sm leading-relaxed text-black/55 sm:text-base">
+            <p className="mt-3 max-w-xl text-sm leading-relaxed text-black sm:text-base">
               Three reasons teams choose Opus Global Solution as their long-term
               outreach partner.
             </p>
@@ -218,7 +218,7 @@ export function AboutMission() {
                   <h4 className="relative mt-5 font-heading text-lg font-semibold text-black">
                     {card.title}
                   </h4>
-                  <p className="relative mt-3 text-sm leading-relaxed text-black/60">
+                  <p className="relative mt-3 text-sm leading-relaxed text-black">
                     {card.desc}
                   </p>
                   <div
@@ -313,7 +313,7 @@ export function VirtualAssistantServices() {
                 <h3 className="mt-5 font-heading text-lg font-semibold text-black">
                   {s.title}
                 </h3>
-                <p className="mt-2.5 text-sm leading-relaxed text-black/55">
+                <p className="mt-2.5 text-sm leading-relaxed text-black">
                   {s.desc}
                 </p>
                 <div className={`mt-4 h-0.5 w-10 rounded-full bg-${s.color}/50 transition-all duration-300 group-hover:w-20`} />
@@ -388,7 +388,7 @@ export function OurWorkflow() {
                 <h3 className="mt-5 font-heading text-base font-semibold text-black">
                   {step.title}
                 </h3>
-                <p className="mt-2 text-sm leading-relaxed text-black/55">
+                <p className="mt-2 text-sm leading-relaxed text-black">
                   {step.desc}
                 </p>
               </div>

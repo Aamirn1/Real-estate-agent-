@@ -166,7 +166,7 @@ export function AiAssistantWidget() {
                 <MessageBubble key={i} msg={msg} />
               ))}
               {loading && (
-                <div className="flex items-center gap-2 text-xs text-black/50">
+                <div className="flex items-center gap-2 text-xs text-black">
                   <span className="flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-br from-[#2563EB] to-[#38BDF8]">
                     <Loader2 className="h-3.5 w-3.5 animate-spin text-black" />
                   </span>
@@ -186,7 +186,7 @@ export function AiAssistantWidget() {
                   <button
                     key={s}
                     onClick={() => send(s)}
-                    className="rounded-full border border-black/15 bg-black/5 px-2.5 py-1 text-[11px] text-black/70 transition-colors hover:border-electric/40 hover:bg-electric/10 hover:text-black"
+                    className="rounded-full border border-black/15 bg-black/5 px-2.5 py-1 text-[11px] text-black transition-colors hover:border-electric/40 hover:bg-electric/10 hover:text-black"
                   >
                     {s}
                   </button>
@@ -206,7 +206,7 @@ export function AiAssistantWidget() {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="Ask Opus anything…"
-                className="flex-1 rounded-xl border border-black/15 bg-black/5 px-3.5 py-2.5 text-sm text-black placeholder:text-black/35 focus:border-electric/50 focus:outline-none focus:ring-1 focus:ring-electric/30"
+                className="flex-1 rounded-xl border border-black/15 bg-black/5 px-3.5 py-2.5 text-sm text-black placeholder:text-black focus:border-electric/50 focus:outline-none focus:ring-1 focus:ring-electric/30"
               />
               <button
                 type="submit"
@@ -236,7 +236,7 @@ function MessageBubble({ msg }: { msg: Msg }) {
         className={`max-w-[82%] rounded-2xl px-3.5 py-2.5 text-[13px] leading-relaxed ${
           isUser
             ? "rounded-br-md bg-gradient-to-br from-[#2563EB] to-[#38BDF8] text-white"
-            : "rounded-bl-md border border-black/15 bg-white/[0.04] text-black/85"
+            : "rounded-bl-md border border-black/15 bg-white/[0.04] text-black"
         }`}
       >
         {msg.content}

@@ -259,7 +259,7 @@ function SortableLeadCard({ lead }: { lead: Lead }) {
               </p>
               <GripVertical className="h-3.5 w-3.5 shrink-0 text-black/25" />
             </div>
-            <p className="tnum mt-0.5 text-sm font-semibold text-black/70">
+            <p className="tnum mt-0.5 text-sm font-semibold text-black">
               {lead.value}
             </p>
             <div className="mt-2.5 flex items-center gap-1.5">
@@ -307,7 +307,7 @@ function LeadCardStatic({ lead }: { lead: Lead }) {
           <p className="truncate font-heading text-sm font-medium text-black">
             {lead.name}
           </p>
-          <p className="tnum mt-0.5 text-sm font-semibold text-black/70">
+          <p className="tnum mt-0.5 text-sm font-semibold text-black">
             {lead.value}
           </p>
           <div className="mt-2.5 flex items-center gap-1.5">
@@ -345,10 +345,10 @@ function KanbanColumn({ column }: { column: Column }) {
             boxShadow: `0 0 10px ${column.color}`,
           }}
         />
-        <span className="font-heading text-sm font-medium text-black/80">
+        <span className="font-heading text-sm font-medium text-black">
           {column.name}
         </span>
-        <span className="tnum ml-auto rounded-full border border-black/15 bg-black/5 px-2 py-0.5 text-[10px] font-medium text-black/60">
+        <span className="tnum ml-auto rounded-full border border-black/15 bg-black/5 px-2 py-0.5 text-[10px] font-medium text-black">
           {column.leads.length}
         </span>
       </div>
@@ -527,7 +527,7 @@ function IntegrationCard({ item, index }: { item: Integration; index: number }) 
         >
           <Icon className="h-6 w-6" />
         </div>
-        <span className="font-heading text-sm font-medium text-black/80">
+        <span className="font-heading text-sm font-medium text-black">
           {item.name}
         </span>
       </div>
@@ -637,7 +637,7 @@ function TestimonialCard({ t }: { t: Testimonial }) {
           ))}
         </div>
 
-        <blockquote className="font-heading text-xl font-medium leading-relaxed tracking-tight text-black/90 sm:text-2xl">
+        <blockquote className="font-heading text-xl font-medium leading-relaxed tracking-tight text-black sm:text-2xl">
           &ldquo;{t.quote}&rdquo;
         </blockquote>
 
@@ -656,7 +656,7 @@ function TestimonialCard({ t }: { t: Testimonial }) {
               </span>
               <BadgeCheck className="h-4 w-4 text-electric" />
             </div>
-            <p className="text-xs text-black/55">{t.role}</p>
+            <p className="text-xs text-black">{t.role}</p>
           </div>
         </div>
       </div>
@@ -713,8 +713,8 @@ function TestimonialsCarousel() {
           ))}
         </CarouselContent>
 
-        <CarouselPrevious className="left-0 top-1/2 hidden h-10 w-10 -translate-y-1/2 border-black/15 bg-black/40 text-black/70 backdrop-blur-md hover:bg-black/10 hover:text-black sm:flex" />
-        <CarouselNext className="right-0 top-1/2 hidden h-10 w-10 -translate-y-1/2 border-black/15 bg-black/40 text-black/70 backdrop-blur-md hover:bg-black/10 hover:text-black sm:flex" />
+        <CarouselPrevious className="left-0 top-1/2 hidden h-10 w-10 -translate-y-1/2 border-black/15 bg-black/40 text-black backdrop-blur-md hover:bg-black/10 hover:text-black sm:flex" />
+        <CarouselNext className="right-0 top-1/2 hidden h-10 w-10 -translate-y-1/2 border-black/15 bg-black/40 text-black backdrop-blur-md hover:bg-black/10 hover:text-black sm:flex" />
       </Carousel>
 
       {/* dots */}

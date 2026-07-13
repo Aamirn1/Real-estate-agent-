@@ -70,7 +70,7 @@ export function Navbar() {
                   useDark
                     ? isActive
                       ? "text-[#2563EB]"
-                      : "text-black/90 hover:text-black"
+                      : "text-black hover:text-black"
                     : isActive
                       ? "text-[#38BDF8]"
                       : "text-white/90 hover:text-white"
@@ -131,7 +131,7 @@ export function Navbar() {
                       "flex items-center justify-between rounded-xl px-4 py-3 text-sm font-medium transition-colors",
                       isActive
                         ? "bg-[#2563EB]/10 text-[#2563EB]"
-                        : "text-black/90 hover:bg-black/5 hover:text-black"
+                        : "text-black hover:bg-black/5 hover:text-black"
                     )}
                   >
                     {link.label}

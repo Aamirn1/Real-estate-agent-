@@ -148,7 +148,7 @@ export default function ContactPage() {
                       >
                         <Icon className={`h-5 w-5 ${theme.icon}`} />
                       </span>
-                      <p className="relative mt-4 text-xs font-medium uppercase tracking-wider text-black/45">
+                      <p className="relative mt-4 text-xs font-medium uppercase tracking-wider text-black">
                         {card.label}
                       </p>
                       <div className="relative mt-2 flex flex-col gap-1">
@@ -157,14 +157,14 @@ export default function ContactPage() {
                             <a
                               key={line.text}
                               href={line.href}
-                              className="text-sm leading-relaxed text-black/85 transition-colors hover:text-black"
+                              className="text-sm leading-relaxed text-black transition-colors hover:text-black"
                             >
                               {line.text}
                             </a>
                           ) : (
                             <span
                               key={line.text}
-                              className="text-sm leading-relaxed text-black/85"
+                              className="text-sm leading-relaxed text-black"
                             >
                               {line.text}
                             </span>
@@ -235,14 +235,14 @@ function StylizedMap() {
       />
 
       {/* Corner badges */}
-      <div className="absolute left-4 top-4 z-20 flex items-center gap-2 rounded-full border border-black/15 bg-black/5 px-3 py-1.5 text-xs text-black/70 backdrop-blur">
+      <div className="absolute left-4 top-4 z-20 flex items-center gap-2 rounded-full border border-black/15 bg-black/5 px-3 py-1.5 text-xs text-black backdrop-blur">
         <span className="relative flex h-2 w-2">
           <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
           <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
         </span>
         HQ · Albany
       </div>
-      <div className="absolute bottom-4 right-4 z-20 rounded-full border border-black/15 bg-black/5 px-3 py-1.5 text-[11px] text-black/50 backdrop-blur tnum">
+      <div className="absolute bottom-4 right-4 z-20 rounded-full border border-black/15 bg-black/5 px-3 py-1.5 text-[11px] text-black backdrop-blur tnum">
         42.6526° N, 73.7562° W
       </div>
 

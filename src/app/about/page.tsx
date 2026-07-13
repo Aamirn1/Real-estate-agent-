@@ -170,7 +170,7 @@ export default function AboutPage() {
                       duration={1800}
                     />
                   </div>
-                  <p className="relative mt-2 text-sm font-medium text-black/70">
+                  <p className="relative mt-2 text-sm font-medium text-black">
                     {stat.label}
                   </p>
                 </GlassCard>
@@ -180,7 +180,7 @@ export default function AboutPage() {
         </div>
 
         <Reveal delay={0.1}>
-          <p className="mx-auto mt-10 max-w-2xl text-center text-base leading-relaxed text-black/55">
+          <p className="mx-auto mt-10 max-w-2xl text-center text-base leading-relaxed text-black">
             As a fast-growing partner network, our goal is to introduce agents to
             practical tools, workflows, and technology that improve response
             times and win rates.
@@ -203,7 +203,7 @@ export default function AboutPage() {
               <h3 className="font-heading text-2xl font-semibold text-black">
                 Reach out directly
               </h3>
-              <p className="mt-3 text-sm leading-relaxed text-black/55">
+              <p className="mt-3 text-sm leading-relaxed text-black">
                 Prefer to skip the form? Use any of the channels below | our team
                 responds within one business day.
               </p>
@@ -217,10 +217,10 @@ export default function AboutPage() {
                         <Icon className="h-5 w-5 text-electric" />
                       </span>
                       <div className="flex flex-col gap-0.5">
-                        <span className="text-xs font-medium uppercase tracking-wider text-black/45">
+                        <span className="text-xs font-medium uppercase tracking-wider text-black">
                           {row.label}
                         </span>
-                        <span className="text-sm leading-relaxed text-black/85">
+                        <span className="text-sm leading-relaxed text-black">
                           {row.value}
                         </span>
                       </div>
@@ -231,7 +231,7 @@ export default function AboutPage() {
 
               <div className="mt-auto pt-8">
                 <div className="rounded-xl border border-black/15 bg-white/[0.03] p-4">
-                  <p className="text-xs leading-relaxed text-black/45">
+                  <p className="text-xs leading-relaxed text-black">
                     Opus Global Solution is a marketing consulting and support company.
                     We do not act as a brokerage, list or sell property, or
                     resell leads.

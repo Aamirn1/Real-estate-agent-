@@ -93,7 +93,7 @@ export function RoiCalculator() {
 
             <div className="mt-6 flex items-center gap-2 rounded-xl border border-electric/20 bg-electric/5 p-3.5">
               <Zap className="h-4 w-4 shrink-0 text-electric" />
-              <p className="text-xs leading-relaxed text-black/65">
+              <p className="text-xs leading-relaxed text-black">
                 Industry average close rate is 1–3%. Opus agents average{" "}
                 <span className="font-semibold text-electric">8–12%</span> thanks
                 to smart lead scoring.
@@ -138,7 +138,7 @@ export function RoiCalculator() {
                   value={cost}
                   prefix="$"
                   icon={Calculator}
-                  tint="text-black/60"
+                  tint="text-black"
                 />
                 <ResultCard
                   label="Net profit"
@@ -151,7 +151,7 @@ export function RoiCalculator() {
 
               <div className="mt-5 rounded-2xl border border-electric/25 bg-gradient-to-br from-electric/10 to-[#38BDF8]/10 p-5">
                 <div className="flex items-center justify-between">
-                  <span className="text-sm text-black/65">Return on investment</span>
+                  <span className="text-sm text-black">Return on investment</span>
                   <span className="rounded-full bg-emerald-400/15 px-2.5 py-0.5 text-xs font-semibold text-emerald-400">
                     {roiMultiple.toFixed(0)}x ROI
                   </span>
@@ -159,7 +159,7 @@ export function RoiCalculator() {
                 <div className="mt-2 font-heading text-3xl font-bold text-black tnum sm:text-4xl">
                   <CountUp value={roiMultiple} prefix="" suffix="x" duration={900} />
                 </div>
-                <p className="mt-2 text-xs text-black/50">
+                <p className="mt-2 text-xs text-black">
                   For every $1 spent on Opus, you could generate{" "}
                   <span className="font-semibold text-emerald-400">
                     ${roiMultiple.toFixed(0)}
@@ -213,7 +213,7 @@ function Slider({
   return (
     <div className="mb-6">
       <div className="mb-2.5 flex items-center justify-between">
-        <span className="flex items-center gap-2 text-sm text-black/70">
+        <span className="flex items-center gap-2 text-sm text-black">
           <Icon className={`h-3.5 w-3.5 text-${color}`} />
           {label}
         </span>
@@ -284,7 +284,7 @@ function ResultCard({
     >
       <div className="mb-2 flex items-center gap-1.5">
         <Icon className={`h-3.5 w-3.5 ${tint}`} />
-        <span className="text-[11px] uppercase tracking-wide text-black/45">
+        <span className="text-[11px] uppercase tracking-wide text-black">
           {label}
         </span>
       </div>
