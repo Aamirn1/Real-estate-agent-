@@ -20,11 +20,11 @@ export default function Home() {
       {/* 1. Hero (with 4 stats) */}
       <Hero />
 
-      {/* 2. Services grid (12 services) — "How we drive growth for real estate professionals" */}
-      <FeaturesSection />
-
-      {/* 3. About | "Workflow automation for realtors" */}
+      {/* 2. About | "Who We Are — Workflow automation for realtors" */}
       <AboutMission />
+
+      {/* 3. Services grid (12 services) — "How we drive growth for real estate professionals" */}
+      <FeaturesSection />
 
       {/* 4. Why Choose Us | 8 reasons */}
       <WhyChooseUs />
