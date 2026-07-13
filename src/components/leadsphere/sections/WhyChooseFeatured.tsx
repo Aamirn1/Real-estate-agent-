@@ -79,17 +79,19 @@ const REASONS = [
 export function WhyChooseUs() {
   return (
     <SectionShell id="why-us" className="relative overflow-hidden">
-      {/* Background image */}
-      <div className="absolute inset-0 z-0">
-        <img
-          src="/sections/why-different-bg.jpg"
-          alt=""
-          aria-hidden
-          className="h-full w-full object-cover opacity-20"
-          loading="lazy"
-        />
-        <div className="absolute inset-0 bg-white/80" />
-      </div>
+      {/* Background image — fixed attachment for stable rendering */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: "url('/sections/why-different-bg.jpg')",
+          opacity: 0.2,
+        }}
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 z-0 bg-white/80"
+      />
 
       {/* ambient orbs */}
       <div
