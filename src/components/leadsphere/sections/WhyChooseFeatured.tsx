@@ -79,16 +79,29 @@ const REASONS = [
 export function WhyChooseUs() {
   return (
     <SectionShell id="why-us" className="relative overflow-hidden">
+      {/* Background image */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src="/sections/why-different-bg.jpg"
+          alt=""
+          aria-hidden
+          className="h-full w-full object-cover opacity-20"
+          loading="lazy"
+        />
+        <div className="absolute inset-0 bg-white/80" />
+      </div>
+
       {/* ambient orbs */}
       <div
         aria-hidden
-        className="pointer-events-none absolute -left-32 top-24 -z-10 h-[420px] w-[420px] rounded-full bg-electric/8 blur-[150px]"
+        className="pointer-events-none absolute -left-32 top-24 z-0 h-[420px] w-[420px] rounded-full bg-electric/8 blur-[150px]"
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute -right-32 bottom-24 -z-10 h-[420px] w-[420px] rounded-full bg-violet/8 blur-[150px]"
+        className="pointer-events-none absolute -right-32 bottom-24 z-0 h-[420px] w-[420px] rounded-full bg-violet/8 blur-[150px]"
       />
 
+      <div className="relative z-10">
       <SectionHeading
         eyebrow="Why Choose Us"
         title={
@@ -127,6 +140,7 @@ export function WhyChooseUs() {
             </motion.div>
           </Reveal>
         ))}
+      </div>
       </div>
     </SectionShell>
   );
