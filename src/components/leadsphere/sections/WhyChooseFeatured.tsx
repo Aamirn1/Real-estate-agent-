@@ -78,7 +78,7 @@ const REASONS = [
 
 export function WhyChooseUs() {
   return (
-    <SectionShell id="why-us" className="relative overflow-hidden">
+    <SectionShell id="why-us" className="relative overflow-hidden pt-32 md:pt-40">
       {/* Background image — uses min-h-full for production stability */}
       <div className="pointer-events-none absolute inset-0 z-0">
         <div
