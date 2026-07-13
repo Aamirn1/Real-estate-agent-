@@ -232,7 +232,7 @@ function CtaButton({
 
 function PricingCard({ plan, delay }: { plan: Plan; delay: number }) {
   const features = (
-    <ul className="custom-scroll flex flex-col gap-2.5 overflow-y-auto pr-1 max-h-72">
+    <ul className="flex flex-col gap-2.5 pr-1 md:max-h-72 md:overflow-y-auto md:custom-scroll">
       {plan.features.map((f, i) => (
         <li
           key={i}
