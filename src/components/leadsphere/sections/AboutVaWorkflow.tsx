@@ -165,19 +165,15 @@ export function AboutMission() {
       </Reveal>
 
       {/* ============ NEW BLOCK 2: Why We Are Different ============ */}
-      <div className="relative mt-24 overflow-hidden rounded-3xl md:mt-32">
-        {/* Background image */}
-        <div className="pointer-events-none absolute inset-0 z-0">
-          <div
-            className="h-full w-full bg-cover bg-center bg-no-repeat"
-            style={{
-              backgroundImage: "url('/sections/why-different-bg.jpg')",
-              opacity: 0.15,
-            }}
-          />
-          <div className="absolute inset-0 bg-white/85" />
-        </div>
-
+      <div className="relative mt-24 overflow-hidden rounded-3xl border border-black/15 shadow-lg md:mt-32">
+        <img
+          src="/sections/why-different-bg.jpg"
+          alt=""
+          aria-hidden
+          className="absolute inset-0 h-full w-full object-cover"
+          loading="lazy"
+        />
+        <div className="absolute inset-0 bg-white/60" />
         <div className="relative z-10 px-4 py-10 sm:px-8 md:py-14">
         <Reveal>
           <div className="mx-auto mb-10 flex max-w-2xl flex-col items-center text-center">
