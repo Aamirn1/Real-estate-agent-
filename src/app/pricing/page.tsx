@@ -271,6 +271,7 @@ function PricingCard({ plan, delay }: { plan: Plan; delay: number }) {
           {/* card body */}
           <GlassCard
             strong
+            glow={false}
             className="relative flex h-full flex-col rounded-2xl p-6 md:p-8"
           >
             {badge}
@@ -301,6 +302,7 @@ function PricingCard({ plan, delay }: { plan: Plan; delay: number }) {
           {/* card body */}
           <GlassCard
             strong
+            glow={false}
             className="relative flex h-full flex-col rounded-2xl p-6 md:p-8"
           >
             {badge}
@@ -324,6 +326,7 @@ function PricingCard({ plan, delay }: { plan: Plan; delay: number }) {
     <Reveal delay={delay} className="h-full">
       <GlassCard
         strong
+        glow={false}
         className="group relative flex h-full flex-col rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_60px_-20px_rgba(37,99,235,0.35)] md:p-8"
       >
         <div className="flex flex-1 flex-col gap-6">

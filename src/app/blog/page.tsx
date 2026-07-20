@@ -239,6 +239,7 @@ export default function BlogPage() {
                 >
                   <GlassCard
                     sheen
+                    glow={false}
                     className={`flex h-full flex-col overflow-hidden border border-black/15 transition-colors duration-300 ${c.hoverBorder}`}
                   >
                     {/* ---------------- Thumbnail with blog image ---------------- */}

@@ -685,3 +685,25 @@ Stage Summary:
 - All cards across the site now share the animated blue gradient border via the GlassCard primitive.
 - Pricing card flow on both home and /pricing is now: name → price → divider → feature list → Get Started (Coinbase Commerce) button.
 - Coinbase Commerce integration is fully wired — drop a real API key into `COINBASE_COMMERCE_API_KEY` and the buttons will create real charges and redirect to Coinbase's hosted checkout. Until then, buttons fail gracefully with an actionable message.
+
+---
+Task ID: 6
+Agent: main
+Task: 6 UI fixes — (1) Why We Are Different: remove black shade + fix invisible card content; (2) undo gradient border on pricing packages; (3) undo gradient border on blog cards; (4) fix invisible workflow connecting line; (5) Get Started page: wrap in SiteChrome + solid form borders; (6) fix desktop favicon stale cache.
+
+Work Log:
+- Task 1: Root cause = `glass-strong` CSS sets `background: rgba(255,255,255,0.98)` (white) which overrides `bg-white/5`, so white text on white cards was invisible. Fix: replaced `<GlassCard strong>` with a plain `<div className="... bg-slate-900/85 ...">` for the 3 "Why We Are Different" cards so the dark background is not overridden. Removed the section-level dark overlay (`bg-gradient-to-br from-black/80 via-black/70 to-black/80`). Added `drop-shadow-[0_2px_12px_rgba(0,0,0,0.7)]` to the heading/description for readability over the raw background image. Added a translucent `bg-black/40 backdrop-blur-sm` pill behind the "Why We Are Different" eyebrow badge. VLM-verified: cards are dark with readable white text, background image visible without heavy overlay.
+- Task 2: Added a `glow?: boolean` prop (default `true`) to `GlassCard` in primitives.tsx. When `glow={false}`, the `card-border-glow` class is omitted. Passed `glow={false}` to all 6 pricing card GlassCard instances (3 in PricingFaqCtaFooter.tsx home + 3 in pricing/page.tsx). The top-selling and premium cards still keep their own custom animated border divs (electric/gold) as before — only the generic card-border-glow is removed.
+- Task 3: Passed `glow={false}` to the blog post `<GlassCard sheen>` in blog/page.tsx. VLM-verified: blog cards now have normal simple borders, no animated gradient.
+- Task 4: The workflow connecting line was `h-px bg-gradient-to-r from-electric/0 via-electric/40 to-electric/0` (1px, 40% max opacity = nearly invisible on white). Changed to `h-0.5 bg-gradient-to-r from-electric/20 via-electric/70 to-cyan/20 rounded-full` (2px, 70% max opacity, rounded). Also adjusted horizontal extent from `left-0 right-0` to `left-8 right-8` so the line starts/ends closer to the first/last icons. VLM-verified: line is now clearly visible.
+- Task 5: Rewrote `get-started/page.tsx` to wrap the form in `<SiteChrome>` + `<PageHero>` + `<SectionShell>` + `<CTABanner>` — now matches the standard page layout (navbar, hero, footer) like /contact, /pricing, etc. In `GetStartedForm.tsx`: replaced all `border-[#E2E8F0]` (light gray, invisible on white) with `border-[#94A3B8]` (slate-400, solid visible). Replaced `bg-[#1E293B]/5` (translucent dark) with `bg-white` for input fields. Removed the "Back" link (navbar provides navigation). Removed unused `ArrowLeft` import. Card border also bumped from `#E2E8F0` to `#94A3B8`.
+- Task 6: Root cause = `src/app/icon.svg` is auto-detected by Next.js App Router and injected as `<link rel="icon" href="/icon.svg">` WITHOUT a cache-busting query parameter. Desktop browsers cache SVG favicons aggressively, so the old cached version persists even after the file content was updated. Mobile browsers typically use the PNG favicons from `metadata.icons` (which have `?v=4` cache-busting). Fix: deleted `src/app/icon.svg` so Next.js no longer auto-injects it. Bumped all 5 favicon version parameters from `?v=4` to `?v=5` in `layout.tsx` metadata.icons (favicon-32, favicon-512, logo.svg, shortcut, apple-icon). Verified via DOM: all `<link rel=icon>` tags now use `?v=5` and there is no `/icon.svg` in the head.
+- Verification: `bun run lint` → exit 0. All routes return 200 (/, /pricing, /blog, /get-started). Agent Browser + VLM confirmed all 6 fixes.
+
+Stage Summary:
+- 6 files edited (AboutVaWorkflow.tsx, primitives.tsx, PricingFaqCtaFooter.tsx, pricing/page.tsx, blog/page.tsx, get-started/page.tsx, get-started/GetStartedForm.tsx, layout.tsx) + 1 file deleted (app/icon.svg).
+- GlassCard now has a `glow` prop for selectively toggling the animated gradient border.
+- Why We Are Different cards use plain dark divs (not GlassCard) to avoid the white-background override.
+- Workflow line is now 2px / 70% opacity / rounded (was 1px / 40% / square).
+- Get Started page now has full SiteChrome (navbar + hero + footer) and solid form field borders.
+- Desktop favicon stale-cache issue fixed by removing app/icon.svg and bumping cache-busting version to v=5.

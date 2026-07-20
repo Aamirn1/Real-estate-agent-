@@ -1,4 +1,7 @@
 import type { Metadata } from "next";
+import { SiteChrome, PageHero } from "@/components/leadsphere/SiteChrome";
+import { CTABanner } from "@/components/leadsphere/CTABanner";
+import { SectionShell } from "@/components/leadsphere/primitives";
 import { GetStartedForm } from "./GetStartedForm";
 
 export const metadata: Metadata = {
@@ -9,12 +12,28 @@ export const metadata: Metadata = {
 
 export default function GetStartedPage() {
   return (
-    <main className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-ink px-5 py-28 sm:px-8">
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute left-1/4 top-1/4 h-[400px] w-[400px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-electric/15 blur-[120px]" />
-        <div className="absolute right-1/4 bottom-1/4 h-[400px] w-[400px] translate-x-1/2 translate-y-1/2 rounded-full bg-violet/15 blur-[120px]" />
-      </div>
-      <GetStartedForm />
-    </main>
+    <SiteChrome>
+      <PageHero
+        eyebrow="Get Started"
+        title={
+          <>
+            Let&apos;s{" "}
+            <span className="text-gradient-electric">grow together</span>
+          </>
+        }
+        description="Fill out the form below and our team will reach out within 24 hours to help you scale your real estate business with professional marketing and outreach support."
+      />
+
+      <SectionShell id="get-started">
+        <div className="mx-auto max-w-2xl">
+          <GetStartedForm />
+        </div>
+      </SectionShell>
+
+      <CTABanner
+        title="Prefer to talk to a human?"
+        subtitle="Call us at (320) 331-0910 or email info@opussolutions.com — we reply within one business day."
+      />
+    </SiteChrome>
   );
 }

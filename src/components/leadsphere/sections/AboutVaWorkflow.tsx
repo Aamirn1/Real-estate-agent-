@@ -165,7 +165,7 @@ export function AboutMission() {
       </Reveal>
 
       {/* ============ NEW BLOCK 2: Why We Are Different ============ */}
-      <div className="relative mt-24 overflow-hidden rounded-3xl border border-white/10 shadow-lg md:mt-32">
+      <div className="relative mt-24 overflow-hidden rounded-3xl border border-black/15 shadow-lg md:mt-32">
         <img
           src="/sections/why-different-bg.jpg"
           alt=""
@@ -173,16 +173,18 @@ export function AboutMission() {
           className="absolute inset-0 h-full w-full object-cover"
           loading="lazy"
         />
-        {/* dark overlay (replaces previous white shade) so white text is readable */}
-        <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-black/70 to-black/80" />
         <div className="relative z-10 px-4 py-10 sm:px-8 md:py-14">
         <Reveal>
           <div className="mx-auto mb-10 flex max-w-2xl flex-col items-center text-center">
-            <h3 className="font-heading text-2xl font-semibold leading-tight text-white sm:text-3xl md:text-4xl">
+            <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/40 px-3 py-1 text-xs font-medium tracking-wide text-white backdrop-blur-sm">
+              <span className="h-1.5 w-1.5 rounded-full bg-electric shadow-[0_0_8px_#2563EB]" />
+              Why We Are Different
+            </span>
+            <h3 className="mt-4 font-heading text-2xl font-semibold leading-tight text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.7)] sm:text-3xl md:text-4xl">
               Why We Are{" "}
               <span className="text-gradient-electric">Different</span>
             </h3>
-            <p className="mt-3 max-w-xl text-sm leading-relaxed text-white/80 sm:text-base">
+            <p className="mt-3 max-w-xl text-sm leading-relaxed text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)] sm:text-base">
               Three reasons teams choose Opus Global Solution as their long-term
               outreach partner.
             </p>
@@ -216,7 +218,9 @@ export function AboutMission() {
                 transition={{ duration: 0.25 }}
                 className="group h-full"
               >
-                <GlassCard strong className="relative h-full overflow-hidden border-white/10 bg-white/5 p-7 backdrop-blur-md">
+                {/* Plain dark card (not GlassCard) so white text is readable.
+                    glass-strong forces a white background which hides white text. */}
+                <div className="relative h-full overflow-hidden rounded-2xl border border-white/15 bg-slate-900/85 p-7 backdrop-blur-md shadow-[0_8px_32px_-8px_rgba(0,0,0,0.4)]">
                   <div
                     className={`pointer-events-none absolute -right-12 -top-12 h-32 w-32 rounded-full bg-${card.color}/25 blur-3xl transition-opacity duration-300 group-hover:opacity-150`}
                   />
@@ -228,13 +232,13 @@ export function AboutMission() {
                   <h4 className="relative mt-5 font-heading text-lg font-semibold text-white">
                     {card.title}
                   </h4>
-                  <p className="relative mt-3 text-sm leading-relaxed text-white/80">
+                  <p className="relative mt-3 text-sm leading-relaxed text-white/85">
                     {card.desc}
                   </p>
                   <div
                     className={`mt-5 h-0.5 w-10 rounded-full bg-${card.color}/70 transition-all duration-300 group-hover:w-20`}
                   />
-                </GlassCard>
+                </div>
               </motion.div>
             </Reveal>
           ))}
@@ -383,7 +387,7 @@ export function OurWorkflow() {
 
       <div className="relative mt-14">
         {/* connecting line - desktop */}
-        <div className="absolute left-0 right-0 top-7 hidden h-px bg-gradient-to-r from-electric/0 via-electric/40 to-electric/0 md:block" />
+        <div className="absolute left-8 right-8 top-7 hidden h-0.5 rounded-full bg-gradient-to-r from-electric/20 via-electric/70 to-cyan/20 md:block" />
 
         <div className="grid gap-8 md:grid-cols-4">
           {WORKFLOW_STEPS.map((step, i) => (

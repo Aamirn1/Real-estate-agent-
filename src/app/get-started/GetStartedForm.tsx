@@ -10,7 +10,6 @@ import {
   MessageSquare,
   ArrowRight,
   CheckCircle2,
-  ArrowLeft,
   ChevronDown,
   Check,
   X,
@@ -64,7 +63,7 @@ export function GetStartedForm() {
         initial={{ opacity: 0, scale: 0.96 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.4 }}
-        className="relative w-full max-w-lg overflow-hidden rounded-3xl border border-[#E2E8F0] bg-white p-8 shadow-[0_30px_80px_-20px_rgba(30,41,59,0.15)] sm:p-10"
+        className="relative w-full max-w-lg overflow-hidden rounded-3xl border border-[#94A3B8] bg-white p-8 shadow-[0_30px_80px_-20px_rgba(30,41,59,0.15)] sm:p-10"
       >
         <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-electric/15 blur-3xl" />
         <motion.div
@@ -98,23 +97,13 @@ export function GetStartedForm() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="relative w-full max-w-lg overflow-hidden rounded-3xl border border-[#E2E8F0] bg-white p-7 shadow-[0_30px_80px_-20px_rgba(30,41,59,0.15)] sm:p-9"
+      className="relative w-full max-w-lg overflow-hidden rounded-3xl border border-[#94A3B8] bg-white p-7 shadow-[0_30px_80px_-20px_rgba(30,41,59,0.15)] sm:p-9"
     >
       <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-electric/15 blur-3xl" />
       <div className="absolute -bottom-10 -left-10 h-32 w-32 rounded-full bg-violet/15 blur-3xl" />
 
       <div className="relative">
-        <a
-          href="/"
-          className="group flex items-center gap-1.5 text-sm font-medium text-[#1E293B]/55 transition-colors hover:text-[#1E293B]"
-        >
-          <span className="flex h-8 w-8 items-center justify-center rounded-lg border border-[#E2E8F0] bg-[#1E293B]/5 transition-all group-hover:border-[#CBD5E1] group-hover:bg-[#1E293B]/8">
-            <ArrowLeft className="h-4 w-4" />
-          </span>
-          Back
-        </a>
-
-        <div className="mt-20 mb-7 text-center">
+        <div className="mb-7 text-center">
           <h1 className="font-heading text-2xl font-semibold text-[#1E293B] sm:text-3xl">
             Get Started
           </h1>
@@ -141,7 +130,7 @@ export function GetStartedForm() {
             <button
               type="button"
               onClick={() => { setServicesOpen(!servicesOpen); setPlanOpen(false); }}
-              className="flex w-full items-center justify-between rounded-xl border border-[#E2E8F0] bg-[#1E293B]/5 px-4 py-3 text-sm text-[#1E293B] transition-colors hover:border-[#CBD5E1] focus:border-electric/50 focus:outline-none"
+              className="flex w-full items-center justify-between rounded-xl border border-[#94A3B8] bg-white px-4 py-3 text-sm text-[#1E293B] transition-colors hover:border-[#64748B] focus:border-electric/50 focus:outline-none"
             >
               <span className={form.services.length > 0 ? "text-[#1E293B]" : "text-[#1E293B]/35"}>
                 {form.services.length > 0 ? `${form.services.length} selected` : "Select services..."}
@@ -157,7 +146,7 @@ export function GetStartedForm() {
                   transition={{ duration: 0.2 }}
                   className="overflow-hidden"
                 >
-                  <div className="mt-2 space-y-1.5 rounded-xl border border-[#E2E8F0] bg-white p-2 shadow-lg">
+                  <div className="mt-2 space-y-1.5 rounded-xl border border-[#94A3B8] bg-white p-2 shadow-lg">
                     {SERVICES.map((s) => {
                       const selected = form.services.includes(s);
                       return (
@@ -169,7 +158,7 @@ export function GetStartedForm() {
                             selected ? "bg-electric/15 text-[#1E293B]" : "text-[#1E293B]/70 hover:bg-[#1E293B]/5"
                           }`}
                         >
-                          <span className={`flex h-4 w-4 shrink-0 items-center justify-center rounded border ${selected ? "border-electric bg-electric" : "border-[#E2E8F0]"}`}>
+                          <span className={`flex h-4 w-4 shrink-0 items-center justify-center rounded border ${selected ? "border-electric bg-electric" : "border-[#94A3B8]"}`}>
                             {selected && <Check className="h-3 w-3 text-black" />}
                           </span>
                           {s}
@@ -201,7 +190,7 @@ export function GetStartedForm() {
             <button
               type="button"
               onClick={() => { setPlanOpen(!planOpen); setServicesOpen(false); }}
-              className="flex w-full items-center justify-between rounded-xl border border-[#E2E8F0] bg-[#1E293B]/5 px-4 py-3 text-sm text-[#1E293B] transition-colors hover:border-[#CBD5E1] focus:border-electric/50 focus:outline-none"
+              className="flex w-full items-center justify-between rounded-xl border border-[#94A3B8] bg-white px-4 py-3 text-sm text-[#1E293B] transition-colors hover:border-[#64748B] focus:border-electric/50 focus:outline-none"
             >
               <span className={form.plan ? "text-[#1E293B]" : "text-[#1E293B]/35"}>
                 {form.plan || "Select a plan..."}
@@ -217,7 +206,7 @@ export function GetStartedForm() {
                   transition={{ duration: 0.2 }}
                   className="overflow-hidden"
                 >
-                  <div className="mt-2 space-y-1.5 rounded-xl border border-[#E2E8F0] bg-white p-2 shadow-lg">
+                  <div className="mt-2 space-y-1.5 rounded-xl border border-[#94A3B8] bg-white p-2 shadow-lg">
                     {PLANS.map((p) => {
                       const selected = form.plan === p;
                       return (
@@ -229,7 +218,7 @@ export function GetStartedForm() {
                             selected ? "bg-violet/15 text-[#1E293B]" : "text-[#1E293B]/70 hover:bg-[#1E293B]/5"
                           }`}
                         >
-                          <span className={`flex h-4 w-4 shrink-0 items-center justify-center rounded-full border ${selected ? "border-violet bg-violet" : "border-[#E2E8F0]"}`}>
+                          <span className={`flex h-4 w-4 shrink-0 items-center justify-center rounded-full border ${selected ? "border-violet bg-violet" : "border-[#94A3B8]"}`}>
                             {selected && <Check className="h-3 w-3 text-black" />}
                           </span>
                           {p}
@@ -251,7 +240,7 @@ export function GetStartedForm() {
               value={form.message}
               onChange={(e) => setForm({ ...form, message: e.target.value })}
               placeholder="Tell us about your goals..."
-              className="w-full resize-none rounded-xl border border-[#E2E8F0] bg-[#1E293B]/5 px-4 py-3 text-sm text-[#1E293B] placeholder:text-[#1E293B]/35 focus:border-electric/50 focus:outline-none focus:ring-1 focus:ring-electric/30"
+              className="w-full resize-none rounded-xl border border-[#94A3B8] bg-white px-4 py-3 text-sm text-[#1E293B] placeholder:text-[#1E293B]/35 focus:border-electric/50 focus:outline-none focus:ring-1 focus:ring-electric/30"
             />
           </div>
 
@@ -302,7 +291,7 @@ function Field({
           value={value}
           onChange={(e) => onChange(e.target.value)}
           required={required}
-          className="w-full rounded-xl border border-[#E2E8F0] bg-[#1E293B]/5 py-3 pl-10 pr-4 text-sm text-[#1E293B] placeholder:text-[#1E293B]/35 focus:border-electric/50 focus:outline-none focus:ring-1 focus:ring-electric/30"
+          className="w-full rounded-xl border border-[#94A3B8] bg-white py-3 pl-10 pr-4 text-sm text-[#1E293B] placeholder:text-[#1E293B]/35 focus:border-electric/50 focus:outline-none focus:ring-1 focus:ring-electric/30"
         />
       </div>
     </div>

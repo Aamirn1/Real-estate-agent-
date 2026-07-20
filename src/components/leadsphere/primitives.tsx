@@ -12,17 +12,21 @@ interface GlassCardProps {
   className?: string;
   strong?: boolean;
   sheen?: boolean;
+  /** Toggle the animated blue gradient border. Default: true. */
+  glow?: boolean;
 }
 export function GlassCard({
   children,
   className,
   strong = false,
   sheen = false,
+  glow = true,
 }: GlassCardProps) {
   return (
     <div
       className={cn(
-        "relative rounded-2xl card-border-glow",
+        "relative rounded-2xl",
+        glow && "card-border-glow",
         strong ? "glass-strong" : "glass-card",
         sheen && "glass-sheen",
         className
