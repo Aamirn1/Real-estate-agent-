@@ -165,7 +165,7 @@ export function AboutMission() {
       </Reveal>
 
       {/* ============ NEW BLOCK 2: Why We Are Different ============ */}
-      <div className="relative mt-24 overflow-hidden rounded-3xl border border-black/15 shadow-lg md:mt-32">
+      <div className="relative mt-24 overflow-hidden rounded-3xl border border-white/10 shadow-lg md:mt-32">
         <img
           src="/sections/why-different-bg.jpg"
           alt=""
@@ -173,15 +173,16 @@ export function AboutMission() {
           className="absolute inset-0 h-full w-full object-cover"
           loading="lazy"
         />
-        <div className="absolute inset-0 bg-white/60" />
+        {/* dark overlay (replaces previous white shade) so white text is readable */}
+        <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-black/70 to-black/80" />
         <div className="relative z-10 px-4 py-10 sm:px-8 md:py-14">
         <Reveal>
           <div className="mx-auto mb-10 flex max-w-2xl flex-col items-center text-center">
-            <h3 className="font-heading text-2xl font-semibold leading-tight text-black sm:text-3xl md:text-4xl">
+            <h3 className="font-heading text-2xl font-semibold leading-tight text-white sm:text-3xl md:text-4xl">
               Why We Are{" "}
               <span className="text-gradient-electric">Different</span>
             </h3>
-            <p className="mt-3 max-w-xl text-sm leading-relaxed text-black sm:text-base">
+            <p className="mt-3 max-w-xl text-sm leading-relaxed text-white/80 sm:text-base">
               Three reasons teams choose Opus Global Solution as their long-term
               outreach partner.
             </p>
@@ -215,23 +216,23 @@ export function AboutMission() {
                 transition={{ duration: 0.25 }}
                 className="group h-full"
               >
-                <GlassCard strong className="relative h-full overflow-hidden p-7">
+                <GlassCard strong className="relative h-full overflow-hidden border-white/10 bg-white/5 p-7 backdrop-blur-md">
                   <div
-                    className={`pointer-events-none absolute -right-12 -top-12 h-32 w-32 rounded-full bg-${card.color}/15 blur-3xl transition-opacity duration-300 group-hover:opacity-150`}
+                    className={`pointer-events-none absolute -right-12 -top-12 h-32 w-32 rounded-full bg-${card.color}/25 blur-3xl transition-opacity duration-300 group-hover:opacity-150`}
                   />
                   <span
-                    className={`relative flex h-12 w-12 items-center justify-center rounded-xl bg-${card.color}/15 transition-transform duration-300 group-hover:scale-110`}
+                    className={`relative flex h-12 w-12 items-center justify-center rounded-xl bg-${card.color}/20 transition-transform duration-300 group-hover:scale-110`}
                   >
                     <card.icon className={`h-6 w-6 text-${card.color}`} />
                   </span>
-                  <h4 className="relative mt-5 font-heading text-lg font-semibold text-black">
+                  <h4 className="relative mt-5 font-heading text-lg font-semibold text-white">
                     {card.title}
                   </h4>
-                  <p className="relative mt-3 text-sm leading-relaxed text-black">
+                  <p className="relative mt-3 text-sm leading-relaxed text-white/80">
                     {card.desc}
                   </p>
                   <div
-                    className={`mt-5 h-0.5 w-10 rounded-full bg-${card.color}/50 transition-all duration-300 group-hover:w-20`}
+                    className={`mt-5 h-0.5 w-10 rounded-full bg-${card.color}/70 transition-all duration-300 group-hover:w-20`}
                   />
                 </GlassCard>
               </motion.div>

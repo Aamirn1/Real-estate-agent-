@@ -9,6 +9,7 @@ import {
   SectionShell,
 } from "@/components/leadsphere/primitives";
 import { Reveal } from "@/components/leadsphere/Reveal";
+import { CheckoutButton } from "@/components/leadsphere/CheckoutButton";
 import {
   Accordion,
   AccordionContent,
@@ -20,8 +21,6 @@ import {
   Star,
   ChevronDown,
   Calendar,
-  Rocket,
-  ArrowRight,
   X,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -200,36 +199,6 @@ function PlanPrice({ plan }: { plan: Plan }) {
   );
 }
 
-function CtaButton({
-  variant,
-  children,
-}: {
-  variant: "outline" | "solid";
-  children: React.ReactNode;
-}) {
-  if (variant === "solid") {
-    return (
-      <button
-        type="button"
-        className="group relative inline-flex w-full items-center justify-center gap-2 overflow-hidden rounded-full bg-[linear-gradient(120deg,#2563EB,#38BDF8,#14B8A6)] px-6 py-3 text-sm font-semibold text-black shadow-[0_0_30px_-6px_rgba(37,99,235,0.7)] transition-shadow duration-300 hover:shadow-[0_0_45px_-4px_rgba(56,189,248,0.85)]"
-      >
-        <span className="absolute inset-0 -translate-x-full bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.25),transparent)] transition-transform duration-700 group-hover:translate-x-full" />
-        <Rocket className="relative h-4 w-4" />
-        <span className="relative">{children}</span>
-      </button>
-    );
-  }
-  return (
-    <button
-      type="button"
-      className="group inline-flex w-full items-center justify-center gap-2 rounded-full border border-black/15 bg-black/5 px-6 py-3 text-sm font-semibold text-black backdrop-blur transition-colors duration-300 hover:border-black/30 hover:bg-black/10"
-    >
-      <span>{children}</span>
-      <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
-    </button>
-  );
-}
-
 function PricingCard({ plan, delay }: { plan: Plan; delay: number }) {
   const features = (
     <ul className="flex flex-col gap-2.5 pr-1 md:max-h-72 md:overflow-y-auto md:custom-scroll">
@@ -308,9 +277,11 @@ function PricingCard({ plan, delay }: { plan: Plan; delay: number }) {
             <div className="flex flex-1 flex-col gap-6 pt-2">
               {header}
               {priceBlock}
-              <CtaButton variant="solid">{plan.cta}</CtaButton>
-              <div className="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+              <div className="h-px w-full bg-gradient-to-r from-transparent via-black/10 to-transparent" />
               {features}
+              <CheckoutButton plan={plan.name} variant="solid">
+                {plan.cta}
+              </CheckoutButton>
             </div>
           </GlassCard>
         </div>
@@ -336,9 +307,11 @@ function PricingCard({ plan, delay }: { plan: Plan; delay: number }) {
             <div className="flex flex-1 flex-col gap-6 pt-2">
               {header}
               {priceBlock}
-              <CtaButton variant="outline">{plan.cta}</CtaButton>
               <div className="h-px w-full bg-gradient-to-r from-transparent via-gold/25 to-transparent" />
               {features}
+              <CheckoutButton plan={plan.name} variant="outline">
+                {plan.cta}
+              </CheckoutButton>
             </div>
           </GlassCard>
         </div>
@@ -351,14 +324,16 @@ function PricingCard({ plan, delay }: { plan: Plan; delay: number }) {
     <Reveal delay={delay} className="h-full">
       <GlassCard
         strong
-        className="group relative flex h-full flex-col rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 hover:border-black/20 hover:shadow-[0_20px_60px_-20px_rgba(37,99,235,0.35)] md:p-8"
+        className="group relative flex h-full flex-col rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_60px_-20px_rgba(37,99,235,0.35)] md:p-8"
       >
         <div className="flex flex-1 flex-col gap-6">
           {header}
           {priceBlock}
-          <CtaButton variant={plan.ctaVariant}>{plan.cta}</CtaButton>
-          <div className="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+          <div className="h-px w-full bg-gradient-to-r from-transparent via-black/10 to-transparent" />
           {features}
+          <CheckoutButton plan={plan.name} variant={plan.ctaVariant}>
+            {plan.cta}
+          </CheckoutButton>
         </div>
       </GlassCard>
     </Reveal>
@@ -445,7 +420,7 @@ export default function PricingPage() {
               >
                 <AccordionItem
                   value={`faq-${i}`}
-                  className="glass-strong group rounded-2xl border border-black/15 px-5 transition-colors duration-300 data-[state=open]:border-electric/30 sm:px-6"
+                  className="glass-strong card-border-glow group rounded-2xl border border-black/15 px-5 transition-colors duration-300 data-[state=open]:border-electric/30 sm:px-6"
                 >
                   <AccordionTrigger
                     className="group/trigger hover:no-underline py-5 text-left text-base font-medium text-black [&>svg:last-child]:hidden"

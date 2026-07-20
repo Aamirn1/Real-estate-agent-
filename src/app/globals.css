@@ -306,6 +306,28 @@
   border: 1px solid transparent;
 }
 
+/* ============ Animated blue gradient border for all cards ============ */
+/* Matches the button/AI-assistant gradient: #2563EB -> #38BDF8 -> #14B8A6 */
+.card-border-glow {
+  position: relative;
+  border-color: transparent !important;
+}
+.card-border-glow::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: linear-gradient(120deg, #2563EB 0%, #38BDF8 35%, #14B8A6 70%, #2563EB 100%);
+  background-size: 200% 200%;
+  animation: gradient-x 6s ease infinite;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
+  z-index: 2;
+}
+
 /* Noise texture overlay */
 .noise {
   position: relative;

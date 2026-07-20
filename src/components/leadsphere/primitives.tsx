@@ -22,7 +22,7 @@ export function GlassCard({
   return (
     <div
       className={cn(
-        "relative rounded-2xl",
+        "relative rounded-2xl card-border-glow",
         strong ? "glass-strong" : "glass-card",
         sheen && "glass-sheen",
         className
