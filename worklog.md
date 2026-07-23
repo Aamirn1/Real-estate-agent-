@@ -881,3 +881,21 @@ Work Log:
 Stage Summary:
 - 4 files edited (globals.css, pricing/page.tsx, PricingFaqCtaFooter.tsx, blog/page.tsx).
 - ALL cards across the website now share the same gradient border + inner-corner shadow as the Services cards: pricing cards (home + /pricing), blog cards, FAQ accordion items, stats cards, info cards, contact form card, and all other GlassCard-based cards. The effect is applied centrally via the .card-border-glow CSS utility + GlassCard's glow prop, so it's consistent everywhere.
+
+---
+Task ID: 16
+Agent: main
+Task: Undo the gradient border + inner-corner shadow on pricing packages (home + /pricing). NOTE: pricing packages should NOT be changed on future "all cards" requests — they already look professional.
+
+Work Log:
+- Set `glow={false}` back on all 6 pricing card GlassCard instances:
+  • pricing/page.tsx — 3 cards (top-selling Gold, premium Platinum, standard Trial)
+  • PricingFaqCtaFooter.tsx (home) — 3 cards (same 3 variants)
+- Left the blog cards with `glow` (those stay as-is per the earlier request).
+- DOM-verified on /pricing: card-border-glow class is absent, boxShadow is the default glass-strong shadow (no inset blue glow), ::after content is "none" (no gradient ring). VLM-verified: no inner-corner gradient shadows; Trial card has clean simple border, Gold keeps its original electric gradient border div, Platinum keeps its original gold gradient border div — all back to their professional pre-change state.
+
+NOTE FOR FUTURE: When the user asks for changes to "all cards", do NOT apply them to pricing package cards. Pricing packages (Trial/Gold/Platinum on both home and /pricing page) already look professional and should be left untouched unless the user explicitly mentions pricing.
+
+Stage Summary:
+- 2 files edited (pricing/page.tsx, PricingFaqCtaFooter.tsx).
+- Pricing packages reverted to their clean professional look (no card-border-glow gradient border, no inner-corner shadow). The Gold/Platinum cards retain their original custom electric/gold gradient border divs which were part of the design before any of my changes.
