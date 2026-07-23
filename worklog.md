@@ -846,3 +846,19 @@ Stage Summary:
 - 4 files edited (agreement/AgreementForm.tsx, agreement/page.tsx, agreement/SignaturePad.tsx, sections/TrustStatsFeatures.tsx).
 - Agreement + form text is now pure #000000 (was #281000 dark brown).
 - Services section now uses the actual CardStack fanned carousel: 12 service cards arranged in a 3D fan (7 visible at a time), auto-advancing every 2.2s, with dots navigation, spring physics, depth/lift, drag-to-advance on the active card — exactly matching the reference animation from the prompt.
+
+---
+Task ID: 14
+Agent: main
+Task: Add a slight gradient shadow in all inner corners of the Services page service cards + fix the gradient border visibility.
+
+Work Log:
+- Added 2 overlay layers to the ServiceFanCard renderer in TrustStatsFeatures.tsx (applies to all 12 cards in the CardStack fanned carousel):
+  1. Gradient border overlay: an absolute inset-0 div with padding:2px, a 135° linear-gradient background (rgba(37,99,235,0.7) → rgba(56,189,248,0.5) → rgba(20,184,166,0.7)) — the brand blue→sky→teal gradient — and the mask-composite:exclude technique so only the 2px ring paints. This makes the card boundary clearly visible (was nearly invisible before since the CardStack's default `border-4 border-black/10` was too faint on white).
+  2. Inner-corner gradient shadow overlay: an absolute inset-0 div with `boxShadow: inset 0 0 30px 6px rgba(37,99,235,0.10), inset 0 0 0 1px rgba(15,23,42,0.06)` — a soft blue inner glow + a 1px dark hairline that gives the cards subtle depth in all 4 corners, making the edges read clearly against the white background.
+- Both overlays are pointer-events-none + aria-hidden so they don't interfere with the card content or interactions.
+- Verification: `bun run lint` → exit 0. Home page returns 200. VLM-verified: cards have a "distinct, visible border that features a blue-to-teal gradient" and a "subtle inner shadow or gradient effect within the corners and along the edges of the cards" giving depth.
+
+Stage Summary:
+- 1 file edited (sections/TrustStatsFeatures.tsx).
+- All 12 service cards in the Services section CardStack fanned carousel now have: (1) a visible blue→teal gradient border ring, and (2) a subtle inner-corner gradient shadow for depth — both making the card boundaries clearly visible against the white background.

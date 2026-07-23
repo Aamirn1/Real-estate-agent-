@@ -448,7 +448,31 @@ function ServiceFanCard({ item, active }: { item: ServiceItem; active: boolean }
 
   return (
     <div className="relative flex h-full w-full flex-col bg-white p-6">
-      {/* corner accent glow */}
+      {/* Gradient border — brand blue→teal ring so the card boundary is clearly visible */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 rounded-2xl"
+        style={{
+          padding: 2,
+          background: "linear-gradient(135deg, rgba(37,99,235,0.7), rgba(56,189,248,0.5), rgba(20,184,166,0.7))",
+          WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+          WebkitMaskComposite: "xor",
+          maskComposite: "exclude",
+        }}
+      />
+
+      {/* Inner-corner gradient shadow — subtle depth in all 4 corners so the
+          card edges read clearly against the white background */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 rounded-2xl"
+        style={{
+          boxShadow:
+            "inset 0 0 30px 6px rgba(37,99,235,0.10), inset 0 0 0 1px rgba(15,23,42,0.06)",
+        }}
+      />
+
+      {/* corner accent glow (brand color) */}
       <div
         aria-hidden
         className={`pointer-events-none absolute -right-10 -top-10 h-28 w-28 rounded-full ${t.orb} opacity-60 blur-2xl`}
