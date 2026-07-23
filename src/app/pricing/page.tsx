@@ -364,19 +364,8 @@ export default function PricingPage() {
 
       {/* 1. Pricing section (6 plans) */}
       <SectionShell id="pricing">
-        <SectionHeading
-          eyebrow="Pricing"
-          title={
-            <>
-              We&apos;ve got a plan that&apos;s{" "}
-              <span className="text-gradient-electric">perfect for you</span>
-            </>
-          }
-          description="Whether you're just starting or need an all-inclusive solution, our plans scale with your goals."
-        />
-
         {/* billing note */}
-        <div className="mt-6 flex justify-center">
+        <div className="flex justify-center">
           <div className="inline-flex items-center gap-2 rounded-full border border-black/15 bg-black/5 px-4 py-2 text-xs text-black backdrop-blur">
             <Calendar className="h-3.5 w-3.5 text-electric" />
             One-time setup · 30-day or 365-day plans

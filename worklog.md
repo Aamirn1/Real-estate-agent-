@@ -769,3 +769,27 @@ Stage Summary:
 - All pricing updated to $299/$599/$1199 across home, /pricing, API, and Get Started form dropdown.
 - Get Started page now has a home hero image with transparent navbar.
 - Get Started form redesigned as a professional two-column split layout (dark info panel + white form) that fills the full width.
+
+---
+Task ID: 10
+Agent: main
+Task: 2-part — (1) remove duplicate pricing heading on /pricing; (2) replace direct Coinbase checkout with a Terms of Service Agreement form flow: Get Started → /agreement?plan=X → read plan-specific agreement → fill sign-up form + signature + 4 consents → email details to info@opusglobalsolution.com + redirect to Coinbase Commerce payment.
+
+Work Log:
+- Task 1: Removed the duplicate SectionHeading (eyebrow "Pricing" + title "We've got a plan that's perfect for you" + description) from the /pricing page's SectionShell. Kept the "One-time setup · 30-day or 365-day plans" billing note and the 3 pricing cards. DOM-verified: no duplicate heading, billing note present, 3 cards present.
+- Task 2 — full agreement flow built across 5 new files:
+  • src/lib/agreement-plans.ts: Plan-specific agreement data module. Defines AGREEMENT_PLANS (Trial $299 / Gold $599 / Platinum $1199) with per-plan values for referralFee (20%/15%/10%), leadCount (6/12/18), durationDays (90/180/365), counties, and feature flags. getAgreementSections() builds 13 agreement sections (Scope of Services, Payment Terms, Referral Fees, Lead Delivery, Client Responsibilities, Refund Policy, Refund & Dispute Eligibility, Agreement Validity, Support & Additional Services, Holiday Observance, Confidentiality, Payment Authorization, Entire Agreement) with plan values interpolated. Company = "Opus Global Solution Services LLC" throughout (NOT V Leads).
+  • src/app/agreement/SignaturePad.tsx: Client component. Canvas-based drawn signature with high-DPI scaling, pointer events (mouse + touch), clear button, and exports base64 PNG via onChange. Validates non-empty pixels before exporting.
+  • src/app/agreement/AgreementForm.tsx: Client component. Sign-up form with 7 fields (Full Name, Phone, DRE/License#, Email, Billing Address, Service Area, Signature pad) + 4 required consent checkboxes (Terms & Privacy, Payment Authorization, SMS notifications, Marketing messages — all mentioning Opus Global Solution). Validates all fields + signature + all 4 consents before submit. On submit → POST /api/agreement/submit → redirect to returned hosted_url (Coinbase Commerce). Shows loading/error states.
+  • src/app/agreement/page.tsx: Server component. Reads ?plan= from searchParams (async, Next.js 16). Validates plan is Trial/Gold/Platinum (else notFound() → 404). Renders PageHero with hero image + the agreement document (quick-facts grid + 13 sections) + the AgreementForm. Uses SiteChrome with flushTop + withBackground={false}.
+  • src/app/api/agreement/submit/route.ts: POST handler. Validates payload (plan, all 6 fields, signature PNG, all 4 consents). Emails the full submission (HTML + plaintext) with signature PNG attached to info@opusglobalsolution.com via nodemailer when SMTP_HOST/SMTP_USER/SMTP_PASS are set; otherwise logs server-side. Then creates a Coinbase Commerce charge for the plan amount and returns the hosted_url. Graceful 503 when Coinbase key isn't configured.
+- Task 2 — CheckoutButton updated: src/components/leadsphere/CheckoutButton.tsx rewritten from a fetch-to-API button to a simple <motion.a> link pointing to /agreement?plan=X. Removed all the fetch/loading/error state (the agreement page handles that flow now).
+- Installed nodemailer + @types/nodemailer. Added SMTP_HOST/PORT/SECURE/USER/PASS env vars to .env (all blank by default).
+- Verification: `bun run lint` → exit 0. Routes: /pricing 200, /agreement?plan=Trial|Gold|Platinum 200, /agreement?plan=Hacker 404, POST /api/agreement/submit (valid) → 503 JSON (no Coinbase key, expected). Server log confirms submission details logged when no SMTP. Agent Browser + VLM confirmed: Gold agreement page shows "Gold Plan — Terms of Service", company is "Opus Global Solution Services LLC" (no V Leads), form has all 7 fields + 4 consent checkboxes + signature canvas + "Continue to Secure Payment" button.
+
+Stage Summary:
+- 1 file edited (pricing/page.tsx), 1 file rewritten (CheckoutButton.tsx), 5 new files (agreement-plans.ts, SignaturePad.tsx, AgreementForm.tsx, agreement/page.tsx, api/agreement/submit/route.ts), 2 packages installed (nodemailer, @types/nodemailer).
+- /pricing no longer has the duplicate heading below the hero.
+- Clicking any "Get Started" button now navigates to /agreement?plan=X where the user reads a plan-specific Terms of Service Agreement, fills a sign-up form (name, phone, DRE, email, billing address, service area, drawn signature), checks 4 consent boxes, then clicks "Continue to Secure Payment" — which emails their details to info@opusglobalsolution.com and redirects to Coinbase Commerce to complete payment.
+- All company references say "Opus Global Solution" / "Opus Global Solution Services LLC" (no V Leads).
+- To activate: set COINBASE_COMMERCE_API_KEY + SMTP credentials in env vars (Vercel dashboard).
