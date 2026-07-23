@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import {
   Megaphone,
   Table2,
@@ -26,6 +26,65 @@ import {
   SectionShell,
 } from "@/components/leadsphere/primitives";
 import { Reveal } from "@/components/leadsphere/Reveal";
+
+/* ============================================================
+   Tilt3DCard — pointer-driven 3D tilt inspired by CardStack
+   ------------------------------------------------------------
+   Tracks the pointer over the card and applies rotateX/rotateY
+   + translateZ depth, with spring smoothing (CardStack feel).
+   The grid container sets `perspective` so the 3D reads.
+   ============================================================ */
+function Tilt3DCard({
+  children,
+  maxTilt = 12,
+  lift = 10,
+  className,
+}: {
+  children: React.ReactNode;
+  maxTilt?: number;
+  lift?: number;
+  className?: string;
+}) {
+  // raw pointer position (-0.5 .. 0.5)
+  const px = useMotionValue(0);
+  const py = useMotionValue(0);
+
+  // spring-smoothed (matches CardStack's spring stiffness/damping feel)
+  const sx = useSpring(px, { stiffness: 280, damping: 28 });
+  const sy = useSpring(py, { stiffness: 280, damping: 28 });
+
+  const rotateY = useTransform(sx, [-0.5, 0.5], [-maxTilt, maxTilt]);
+  const rotateX = useTransform(sy, [-0.5, 0.5], [maxTilt, -maxTilt]);
+
+  function onMove(e: React.MouseEvent<HTMLDivElement>) {
+    const rect = e.currentTarget.getBoundingClientRect();
+    px.set((e.clientX - rect.left) / rect.width - 0.5);
+    py.set((e.clientY - rect.top) / rect.height - 0.5);
+  }
+
+  function onLeave() {
+    px.set(0);
+    py.set(0);
+  }
+
+  return (
+    <motion.div
+      onMouseMove={onMove}
+      onMouseLeave={onLeave}
+      whileHover={{ y: -lift }}
+      transition={{ type: "spring", stiffness: 280, damping: 28 }}
+      style={{
+        rotateX,
+        rotateY,
+        transformStyle: "preserve-3d",
+        transformPerspective: 1100,
+      }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+}
 
 /* ============================================================
    Color theme tokens — static class strings so Tailwind picks
@@ -445,21 +504,35 @@ export function FeaturesSection() {
         description="Outreach support, digital advertising, CRM management, and virtual assistants, twelve services working together to fill your pipeline."
       />
 
-      <div className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {/* CardStack-inspired 3D stage: perspective on the grid so each card's
+          rotateX/rotateY reads as real 3D depth. */}
+      <div
+        className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"
+        style={{ perspective: "1100px" }}
+      >
         {FEATURES.map((f, i) => {
           const t = THEME[f.color];
           const Icon = f.icon;
           const idx = String(i + 1).padStart(2, "0");
           return (
-            <Reveal key={f.title} delay={i * 0.05}>
-              <motion.div
-                whileHover={{ y: -4 }}
-                transition={{ type: "spring", stiffness: 320, damping: 22 }}
-                className="h-full"
-              >
+            <motion.div
+              key={f.title}
+              initial={{ opacity: 0, y: 28, filter: "blur(8px)" }}
+              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              viewport={{ once: true, margin: "-8% 0px" }}
+              transition={{
+                type: "spring",
+                stiffness: 280,
+                damping: 28,
+                delay: i * 0.05,
+              }}
+              className="h-full"
+            >
+              <Tilt3DCard maxTilt={10} lift={8} className="h-full">
                 <GlassCard
                   sheen
-                  className={`group relative h-full overflow-hidden border border-black/15 p-6 transition-all duration-300 ${t.cardBorder} ${t.cardGlow}`}
+                  glow={false}
+                  className={`group relative h-full overflow-hidden border border-black/15 p-6 transition-colors duration-300 ${t.cardBorder} ${t.cardGlow}`}
                 >
                   {/* corner accent glow on hover */}
                   <div
@@ -467,10 +540,11 @@ export function FeaturesSection() {
                     className={`pointer-events-none absolute -right-10 -top-10 h-28 w-28 rounded-full ${t.orb} opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-100`}
                   />
 
-                  {/* top row: icon + index */}
+                  {/* top row: icon + index — icon pops forward in 3D on hover */}
                   <div className="relative flex items-start justify-between">
                     <div
-                      className={`flex h-11 w-11 items-center justify-center rounded-xl ${t.iconWrap} ${t.iconGlow} transition-transform duration-300 group-hover:scale-105`}
+                      className={`flex h-11 w-11 items-center justify-center rounded-xl ${t.iconWrap} ${t.iconGlow} transition-transform duration-300 group-hover:scale-110`}
+                      style={{ transformStyle: "preserve-3d", transform: "translateZ(40px)" }}
                     >
                       <Icon className={`h-5 w-5 ${t.text}`} strokeWidth={2} />
                     </div>
@@ -479,13 +553,19 @@ export function FeaturesSection() {
                     </span>
                   </div>
 
-                  {/* title */}
-                  <h3 className="relative mt-5 font-heading text-lg font-semibold tracking-tight text-black">
+                  {/* title — slight forward pop */}
+                  <h3
+                    className="relative mt-5 font-heading text-lg font-semibold tracking-tight text-black"
+                    style={{ transformStyle: "preserve-3d", transform: "translateZ(24px)" }}
+                  >
                     {f.title}
                   </h3>
 
                   {/* description */}
-                  <p className="relative mt-2 text-sm leading-relaxed text-black">
+                  <p
+                    className="relative mt-2 text-sm leading-relaxed text-black"
+                    style={{ transformStyle: "preserve-3d", transform: "translateZ(16px)" }}
+                  >
                     {f.desc}
                   </p>
 
@@ -496,8 +576,8 @@ export function FeaturesSection() {
                     />
                   </div>
                 </GlassCard>
-              </motion.div>
-            </Reveal>
+              </Tilt3DCard>
+            </motion.div>
           );
         })}
       </div>

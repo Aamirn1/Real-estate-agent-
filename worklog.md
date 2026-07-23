@@ -810,3 +810,19 @@ Work Log:
 Stage Summary:
 - 3 files edited (AgreementForm.tsx, page.tsx, SignaturePad.tsx).
 - All agreement form text (field labels, input values, consent text, agreement section headings, agreement body paragraphs, quick-fact values) now renders in #281000 (dark brown) instead of #1E293B (light slate), making it clearly visible on the white card background. The drawn signature stroke is also #281000.
+
+---
+Task ID: 12
+Agent: main
+Task: Add CardStack-inspired 3D animation to the Services section ("How we drive growth for real estate professionals") cards on the home page. Reference: a fanned CardStack component with 3D perspective, spring transitions, depth/lift, and stagger entrance.
+
+Work Log:
+- Copied the provided CardStack component verbatim to src/components/ui/card-stack.tsx (with the default path /components/ui as instructed). Removed the unused eslint-disable directive to keep lint clean. Dependencies (framer-motion, lucide-react, next) already installed.
+- Added a Tilt3DCard wrapper component to src/components/leadsphere/sections/TrustStatsFeatures.tsx — uses framer-motion's useMotionValue + useSpring + useTransform to track the pointer over each card and apply rotateX/rotateY (±10°) with spring smoothing (stiffness 280, damping 28 — matching CardStack's spring feel). The wrapper also lifts the card up (y: -8px) on hover with the same spring transition. transformPerspective: 1100 + transformStyle: preserve-3d on the wrapper.
+- Enhanced the FeaturesSection: added `perspective: 1100px` on the grid container so each card's 3D rotation reads as real depth. Replaced the old Reveal + simple whileHover with a staggered spring entrance (opacity 0→1, y 28→0, blur 8px→0px, spring stiffness 280 / damping 28 / delay i*0.05) wrapping the Tilt3DCard. Gave the icon translateZ(40px), title translateZ(24px), and description translateZ(16px) so content layers pop forward in 3D on hover (parallax depth, CardStack style). Icon also scales 110% on hover. Kept glow={false} on these GlassCards to avoid the animated border competing with the 3D tilt.
+- Verification: `bun run lint` → exit 0, zero errors/warnings. Home page returns 200. Agent Browser DOM check: grid has perspective=1100px, 12 cards present, 24 elements with preserve-3d (1 Tilt3DCard wrapper + 2 inner translateZ layers per card), icon 3D pop (translateZ 40px) confirmed. VLM-verified: 3-column grid, cards render correctly with icons/titles/descriptions. No runtime errors in dev.log.
+
+Stage Summary:
+- 2 files created/edited: src/components/ui/card-stack.tsx (new, verbatim CardStack component), src/components/leadsphere/sections/TrustStatsFeatures.tsx (added Tilt3DCard wrapper + enhanced FeaturesSection with 3D perspective grid, pointer-driven tilt, spring stagger entrance, translateZ depth layering).
+- The 12 Services cards now animate with a CardStack-inspired feel: staggered spring entrance (blur→clear), pointer-driven 3D tilt on hover (rotateX/rotateY with spring smoothing), lift on hover, and parallax depth (icon pops forward 40px, title 24px, description 16px via translateZ).
+- The card-stack.tsx component is available for reuse anywhere in the app at @/components/ui/card-stack.
