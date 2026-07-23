@@ -247,7 +247,7 @@ const SOCIALS = [
 ];
 
 const CONTACT_INFO = {
-  email: "info@opussolutions.com",
+  email: "info@opusglobalsolution.com",
   phones: ["(320) 331-0910", "(320) 331-8501", "(320) 331-3559"],
   addressLines: ["418 Broadway, Ste. R", "Albany, NY 12207", "United States"],
   hours: "10:00 A.M. to 08:00 P.M (EST)",
@@ -276,7 +276,7 @@ function PlanPrice({ plan }: { plan: Plan }) {
 
 function PricingCard({ plan, delay }: { plan: Plan; delay: number }) {
   const features = (
-    <ul className="custom-scroll flex flex-col gap-2.5 overflow-y-auto pr-1 max-h-72">
+    <ul className="flex flex-col gap-2.5 pr-1">
       {plan.features.map((f, i) => (
         <li
           key={i}
@@ -347,10 +347,10 @@ function PricingCard({ plan, delay }: { plan: Plan; delay: number }) {
           <GlassCard
             strong
             glow={false}
-            className="relative flex h-full flex-col rounded-2xl p-6 md:p-8"
+            className="relative flex h-full flex-col rounded-2xl p-5 md:p-6"
           >
             {badge}
-            <div className="flex flex-1 flex-col gap-6 pt-2">
+            <div className="flex flex-1 flex-col gap-5 pt-2">
               {header}
               {priceBlock}
               <div className="h-px w-full bg-gradient-to-r from-transparent via-black/10 to-transparent" />
@@ -378,10 +378,10 @@ function PricingCard({ plan, delay }: { plan: Plan; delay: number }) {
           <GlassCard
             strong
             glow={false}
-            className="relative flex h-full flex-col rounded-2xl p-6 md:p-8"
+            className="relative flex h-full flex-col rounded-2xl p-5 md:p-6"
           >
             {badge}
-            <div className="flex flex-1 flex-col gap-6 pt-2">
+            <div className="flex flex-1 flex-col gap-5 pt-2">
               {header}
               {priceBlock}
               <div className="h-px w-full bg-gradient-to-r from-transparent via-gold/25 to-transparent" />
@@ -402,9 +402,9 @@ function PricingCard({ plan, delay }: { plan: Plan; delay: number }) {
       <GlassCard
         strong
         glow={false}
-        className="group relative flex h-full flex-col rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_60px_-20px_rgba(37,99,235,0.35)] md:p-8"
+        className="group relative flex h-full flex-col rounded-2xl p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_60px_-20px_rgba(37,99,235,0.35)] md:p-6"
       >
-        <div className="flex flex-1 flex-col gap-6">
+        <div className="flex flex-1 flex-col gap-5">
           {header}
           {priceBlock}
           <div className="h-px w-full bg-gradient-to-r from-transparent via-black/10 to-transparent" />
@@ -670,10 +670,10 @@ function ContactSection() {
           </GlassCard>
         </Reveal>
 
-        {/* ---------- RIGHT: info cards + map ---------- */}
+        {/* ---------- RIGHT: info cards (email + phones + hours) ---------- */}
         <Reveal delay={0.2} className="h-full">
           <div className="flex h-full flex-col gap-4">
-            {/* 2x2 info cards */}
+            {/* info cards */}
             <div className="grid gap-4 sm:grid-cols-2">
               <InfoCard icon={Mail} iconTint="text-electric" label="Email">
                 <a
@@ -699,24 +699,9 @@ function ContactSection() {
                 </ul>
               </InfoCard>
 
-              <InfoCard icon={MapPin} iconTint="text-cyan" label="Address">
-                <span className="block leading-relaxed">
-                  {CONTACT_INFO.addressLines.map((line) => (
-                    <span key={line} className="block">
-                      {line}
-                    </span>
-                  ))}
-                </span>
-              </InfoCard>
-
               <InfoCard icon={Clock} iconTint="text-gold" label="Office Hours">
                 <span className="tnum">{CONTACT_INFO.hours}</span>
               </InfoCard>
-            </div>
-
-            {/* stylized map */}
-            <div className="flex-1">
-              <StylizedMap />
             </div>
           </div>
         </Reveal>
@@ -1010,6 +995,9 @@ export default function PricingFaqCtaFooter() {
         </Reveal>
       </SectionShell>
 
+      {/* ============ CONTACT ============ */}
+      <ContactSection />
+
       {/* ============ FAQ ============ */}
       <SectionShell id="faq" className="md:py-24">
         <SectionHeading
@@ -1023,31 +1011,7 @@ export default function PricingFaqCtaFooter() {
             <FaqList />
           </div>
         </Reveal>
-
-        {/* contact prompt */}
-        <Reveal delay={0.2}>
-          <div className="mx-auto mt-10 flex max-w-3xl flex-col items-center gap-3 rounded-2xl border border-black/15 bg-white/[0.02] px-6 py-6 text-center sm:flex-row sm:justify-between sm:text-left">
-            <div>
-              <p className="font-heading text-base font-semibold text-black">
-                Still have questions?
-              </p>
-              <p className="text-sm text-black">
-                Our team replies within a few hours, 7 days a week.
-              </p>
-            </div>
-            <a
-              href="#contact"
-              className="inline-flex shrink-0 items-center gap-2 rounded-full border border-black/15 bg-black/5 px-5 py-2.5 text-sm font-semibold text-black transition-colors hover:border-black/30 hover:bg-black/10"
-            >
-              Contact support
-              <ArrowRight className="h-4 w-4" />
-            </a>
-          </div>
-        </Reveal>
       </SectionShell>
-
-      {/* ============ CONTACT ============ */}
-      <ContactSection />
 
       {/* ============ CTA BANNER ============ */}
       <CtaBanner />

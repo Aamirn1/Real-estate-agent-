@@ -38,19 +38,40 @@ export function PageHero({
   eyebrow,
   title,
   description,
+  heroImage,
 }: {
   eyebrow: string;
   title: React.ReactNode;
   description?: string;
+  heroImage?: string;
 }) {
   return (
-    <section className="relative w-full px-5 pb-8 pt-12 sm:px-8 md:pt-16">
-      <div className="mx-auto flex w-full max-w-4xl flex-col items-center text-center">
+    <section className="relative w-full overflow-hidden px-5 pb-12 pt-28 sm:px-8 md:pt-32">
+      {/* Background home image with gradient overlay for text readability */}
+      {heroImage && (
+        <>
+          <div className="absolute inset-0 z-0">
+            <img
+              src={heroImage}
+              alt=""
+              aria-hidden
+              className="h-full w-full object-cover"
+              loading="lazy"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/45 to-white" />
+          </div>
+        </>
+      )}
+      <div className="relative z-10 mx-auto flex w-full max-w-4xl flex-col items-center text-center">
         <motion.span
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="inline-flex items-center gap-2 rounded-full border border-[#E2E8F0] bg-[#1E293B]/5 px-3 py-1.5 text-xs font-medium tracking-wide text-[#1E293B]/70 backdrop-blur"
+          className={
+            heroImage
+              ? "inline-flex items-center gap-2 rounded-full border border-white/25 bg-black/40 px-3 py-1.5 text-xs font-medium tracking-wide text-white backdrop-blur"
+              : "inline-flex items-center gap-2 rounded-full border border-[#E2E8F0] bg-[#1E293B]/5 px-3 py-1.5 text-xs font-medium tracking-wide text-[#1E293B]/70 backdrop-blur"
+          }
         >
           <span className="h-1.5 w-1.5 rounded-full bg-electric shadow-[0_0_8px_#2563EB]" />
           {eyebrow}
@@ -59,7 +80,11 @@ export function PageHero({
           initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
           animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-6 font-heading text-4xl font-semibold leading-[1.05] tracking-tight text-[#1E293B] sm:text-5xl md:text-6xl"
+          className={
+            heroImage
+              ? "mt-6 font-heading text-4xl font-semibold leading-[1.05] tracking-tight text-white drop-shadow-[0_2px_16px_rgba(0,0,0,0.6)] sm:text-5xl md:text-6xl"
+              : "mt-6 font-heading text-4xl font-semibold leading-[1.05] tracking-tight text-[#1E293B] sm:text-5xl md:text-6xl"
+          }
         >
           {title}
         </motion.h1>
@@ -68,7 +93,11 @@ export function PageHero({
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.25 }}
-            className="mt-6 max-w-2xl text-base leading-relaxed text-[#1E293B]/60 sm:text-lg"
+            className={
+              heroImage
+                ? "mt-6 max-w-2xl text-base leading-relaxed text-white/90 drop-shadow-[0_1px_8px_rgba(0,0,0,0.6)] sm:text-lg"
+                : "mt-6 max-w-2xl text-base leading-relaxed text-[#1E293B]/60 sm:text-lg"
+            }
           >
             {description}
           </motion.p>

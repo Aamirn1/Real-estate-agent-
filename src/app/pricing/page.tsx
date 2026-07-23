@@ -201,7 +201,7 @@ function PlanPrice({ plan }: { plan: Plan }) {
 
 function PricingCard({ plan, delay }: { plan: Plan; delay: number }) {
   const features = (
-    <ul className="flex flex-col gap-2.5 pr-1 md:max-h-72 md:overflow-y-auto md:custom-scroll">
+    <ul className="flex flex-col gap-2.5 pr-1">
       {plan.features.map((f, i) => (
         <li
           key={i}
@@ -272,10 +272,10 @@ function PricingCard({ plan, delay }: { plan: Plan; delay: number }) {
           <GlassCard
             strong
             glow={false}
-            className="relative flex h-full flex-col rounded-2xl p-6 md:p-8"
+            className="relative flex h-full flex-col rounded-2xl p-5 md:p-6"
           >
             {badge}
-            <div className="flex flex-1 flex-col gap-6 pt-2">
+            <div className="flex flex-1 flex-col gap-5 pt-2">
               {header}
               {priceBlock}
               <div className="h-px w-full bg-gradient-to-r from-transparent via-black/10 to-transparent" />
@@ -303,10 +303,10 @@ function PricingCard({ plan, delay }: { plan: Plan; delay: number }) {
           <GlassCard
             strong
             glow={false}
-            className="relative flex h-full flex-col rounded-2xl p-6 md:p-8"
+            className="relative flex h-full flex-col rounded-2xl p-5 md:p-6"
           >
             {badge}
-            <div className="flex flex-1 flex-col gap-6 pt-2">
+            <div className="flex flex-1 flex-col gap-5 pt-2">
               {header}
               {priceBlock}
               <div className="h-px w-full bg-gradient-to-r from-transparent via-gold/25 to-transparent" />
@@ -327,9 +327,9 @@ function PricingCard({ plan, delay }: { plan: Plan; delay: number }) {
       <GlassCard
         strong
         glow={false}
-        className="group relative flex h-full flex-col rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_60px_-20px_rgba(37,99,235,0.35)] md:p-8"
+        className="group relative flex h-full flex-col rounded-2xl p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_60px_-20px_rgba(37,99,235,0.35)] md:p-6"
       >
-        <div className="flex flex-1 flex-col gap-6">
+        <div className="flex flex-1 flex-col gap-5">
           {header}
           {priceBlock}
           <div className="h-px w-full bg-gradient-to-r from-transparent via-black/10 to-transparent" />
@@ -349,8 +349,9 @@ function PricingCard({ plan, delay }: { plan: Plan; delay: number }) {
 
 export default function PricingPage() {
   return (
-    <SiteChrome>
+    <SiteChrome withBackground={false}>
       <PageHero
+        heroImage="/heroes/pricing-home.jpg"
         eyebrow="Pricing"
         title={
           <>

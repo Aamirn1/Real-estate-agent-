@@ -45,8 +45,6 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselPrevious,
-  CarouselNext,
   type CarouselApi,
 } from "@/components/ui/carousel";
 
@@ -712,9 +710,6 @@ function TestimonialsCarousel() {
             </CarouselItem>
           ))}
         </CarouselContent>
-
-        <CarouselPrevious className="left-0 top-1/2 hidden h-10 w-10 -translate-y-1/2 border-black/15 bg-black/40 text-black backdrop-blur-md hover:bg-black/10 hover:text-black sm:flex" />
-        <CarouselNext className="right-0 top-1/2 hidden h-10 w-10 -translate-y-1/2 border-black/15 bg-black/40 text-black backdrop-blur-md hover:bg-black/10 hover:text-black sm:flex" />
       </Carousel>
 
       {/* dots */}

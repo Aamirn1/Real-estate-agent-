@@ -707,3 +707,23 @@ Stage Summary:
 - Workflow line is now 2px / 70% opacity / rounded (was 1px / 40% / square).
 - Get Started page now has full SiteChrome (navbar + hero + footer) and solid form field borders.
 - Desktop favicon stale-cache issue fixed by removing app/icon.svg and bumping cache-busting version to v=5.
+
+---
+Task ID: 7
+Agent: main
+Task: 5 UI changes — (1) flip FAQ/Contact order in home (form first); (2) remove map+address card from home Contact, update email; (3) remove pricing feature scroll + reduce card height; (4) remove testimonials carousel arrows; (5) add generated home hero images to Testimonials/Pricing/Blog/About pages.
+
+Work Log:
+- Task 1: In PricingFaqCtaFooter.tsx main export, moved `<ContactSection />` ABOVE the FAQ SectionShell. Also removed the "Still have questions? Contact support" prompt block from inside the FAQ section (no longer needed since Contact is right above). VLM/DOM-verified: Contact at y=11010, FAQ at y=11925.
+- Task 2: Updated CONTACT_INFO.email from "info@opussolutions.com" → "info@opusglobalsolution.com". Removed the Address InfoCard and the StylizedMap component call from ContactSection's right column. Right column now shows only: Email card + Phones card + Office Hours card (3 cards in a 2-col grid, no map). VLM-verified: email updated, map/address removed.
+- Task 3: Removed `custom-scroll overflow-y-auto max-h-72` from the features `<ul>` in both PricingFaqCtaFooter.tsx (home) and pricing/page.tsx — features now render in full without internal scrolling (page scroll handles it). Reduced card padding from `p-6 md:p-8` → `p-5 md:p-6` and internal gap from `gap-6` → `gap-5` across all 3 card variants (standard, top-selling, premium) in both files. DOM-verified: hasScroll=false, 12 features visible in first card.
+- Task 4: Removed `<CarouselPrevious>` and `<CarouselNext>` from the TestimonialsCarousel in CrmIntegrationsTestimonials.tsx. Removed the now-unused `CarouselPrevious`/`CarouselNext` imports. The auto-scroll (3s interval) + dots pagination remain. This component is used by BOTH the home page and the /testimonials page, so the fix applies to both. DOM-verified: 0 arrow buttons, dots still present.
+- Task 5: Generated 4 professional real estate home images (1344x768 landscape) via z-ai image CLI → saved to /public/heroes/{testimonials,pricing,blog,about}-home.jpg. Enhanced the `PageHero` component in SiteChrome.tsx with an optional `heroImage?: string` prop — when provided, renders a full-bleed `<img>` background with a `from-black/55 via-black/45 to-white` gradient overlay, switches heading text to white with drop-shadow, switches eyebrow pill to dark translucent glass. Added `heroImage` to all 4 pages (testimonials, pricing, blog, about) and set `withBackground={false}` on their `<SiteChrome>` so the default animated background doesn't conflict. VLM-verified on /testimonials: home image visible, white heading/description readable over the image.
+- Verification: `bun run lint` → exit 0. All 5 routes return 200 (/, /pricing, /blog, /testimonials, /about). Agent Browser + VLM confirmed all 5 fixes.
+
+Stage Summary:
+- 7 files edited (PricingFaqCtaFooter.tsx, CrmIntegrationsTestimonials.tsx, SiteChrome.tsx, pricing/page.tsx, blog/page.tsx, about/page.tsx, testimonials/page.tsx) + 4 new images generated (/public/heroes/*.jpg).
+- Home page section order is now: Pricing → Contact → FAQ → CTA → Footer (was Pricing → FAQ → Contact → CTA → Footer).
+- Pricing cards show all features without internal scroll; cards are more compact (p-5/p-6, gap-5).
+- Testimonials carousel on both home and /testimonials has no arrows (auto-scroll + dots only).
+- 4 sub-page heroes now feature professional real estate home photography with readable white text overlay.

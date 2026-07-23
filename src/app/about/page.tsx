@@ -102,8 +102,9 @@ const CONTACT_ROWS: { icon: typeof Mail; label: string; value: string }[] = [
 
 export default function AboutPage() {
   return (
-    <SiteChrome>
+    <SiteChrome withBackground={false}>
       <PageHero
+        heroImage="/heroes/about-home.jpg"
         eyebrow="About Us"
         title={
           <>
