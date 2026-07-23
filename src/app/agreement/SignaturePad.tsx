@@ -33,7 +33,7 @@ export function SignaturePad({
         ctx.lineWidth = 2;
         ctx.lineCap = "round";
         ctx.lineJoin = "round";
-        ctx.strokeStyle = "#1E293B";
+        ctx.strokeStyle = "#281000";
       }
     };
     resize();
@@ -98,7 +98,7 @@ export function SignaturePad({
     <div className="relative">
       <div className="relative overflow-hidden rounded-xl border border-[#94A3B8] bg-white">
         <div className="pointer-events-none absolute inset-x-0 bottom-7 flex items-center justify-center">
-          <span className="text-[11px] uppercase tracking-[0.12em] text-[#1E293B]/30">
+          <span className="text-[11px] uppercase tracking-[0.12em] text-[#281000]/30">
             ✕ Sign above this line
           </span>
         </div>
@@ -114,7 +114,7 @@ export function SignaturePad({
       <button
         type="button"
         onClick={clear}
-        className="mt-2 inline-flex items-center gap-1.5 text-xs font-medium text-[#1E293B]/60 transition-colors hover:text-electric"
+        className="mt-2 inline-flex items-center gap-1.5 text-xs font-medium text-[#281000]/60 transition-colors hover:text-electric"
       >
         <Eraser className="h-3.5 w-3.5" />
         Clear signature

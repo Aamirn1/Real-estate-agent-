@@ -793,3 +793,20 @@ Stage Summary:
 - Clicking any "Get Started" button now navigates to /agreement?plan=X where the user reads a plan-specific Terms of Service Agreement, fills a sign-up form (name, phone, DRE, email, billing address, service area, drawn signature), checks 4 consent boxes, then clicks "Continue to Secure Payment" — which emails their details to info@opusglobalsolution.com and redirects to Coinbase Commerce to complete payment.
 - All company references say "Opus Global Solution" / "Opus Global Solution Services LLC" (no V Leads).
 - To activate: set COINBASE_COMMERCE_API_KEY + SMTP credentials in env vars (Vercel dashboard).
+
+---
+Task ID: 11
+Agent: main
+Task: Change all agreement form + agreement body text color from #1E293B (light slate, hard to read on white) to #281000 (dark brown) for better visibility.
+
+Work Log:
+- Replaced all instances of `#1E293B` with `#281000` across 3 files using replace_all:
+  • src/app/agreement/AgreementForm.tsx (form labels, field text, headings, consent text)
+  • src/app/agreement/page.tsx (agreement section headings, body text, quick-fact values)
+  • src/app/agreement/SignaturePad.tsx (canvas strokeStyle for the drawn signature)
+- 17 total occurrences replaced. The `text-[#281000]/55`, `/60`, `/45`, `/75`, `/40` opacity variants now use the dark brown base instead of slate.
+- Verification: `bun run lint` → exit 0. /agreement?plan=Gold returns 200. Agent Browser DOM check: heading + section headings computed color = rgb(40, 16, 0) = #281000. VLM-verified: agreement body text and section headings are "dark brown/black and easily readable" against the white background.
+
+Stage Summary:
+- 3 files edited (AgreementForm.tsx, page.tsx, SignaturePad.tsx).
+- All agreement form text (field labels, input values, consent text, agreement section headings, agreement body paragraphs, quick-fact values) now renders in #281000 (dark brown) instead of #1E293B (light slate), making it clearly visible on the white card background. The drawn signature stroke is also #281000.

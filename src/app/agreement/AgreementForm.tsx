@@ -111,10 +111,10 @@ export function AgreementForm({ plan }: Props) {
     <div className="rounded-3xl border border-[#94A3B8] bg-white p-7 shadow-[0_30px_80px_-20px_rgba(30,41,59,0.15)] sm:p-10">
       {/* form header */}
       <div className="mb-8 border-b border-[#E2E8F0] pb-6">
-        <h2 className="font-heading text-2xl font-semibold text-[#1E293B]">
+        <h2 className="font-heading text-2xl font-semibold text-[#281000]">
           {plan.name} — Sign-Up Form
         </h2>
-        <p className="mt-2 text-sm text-[#1E293B]/60">
+        <p className="mt-2 text-sm text-[#281000]/60">
           Complete the form below to proceed to secure payment. All fields marked
           with <span className="text-electric">*</span> are required.
         </p>
@@ -138,7 +138,7 @@ export function AgreementForm({ plan }: Props) {
 
         {/* signature */}
         <div>
-          <label className="mb-1.5 block text-[11px] font-semibold uppercase tracking-[0.08em] text-[#1E293B]/60">
+          <label className="mb-1.5 block text-[11px] font-semibold uppercase tracking-[0.08em] text-[#281000]/60">
             Signature <span className="text-electric">*</span>
           </label>
           <SignaturePad onChange={setSignature} hasContent={!!signature} />
@@ -214,7 +214,7 @@ export function AgreementForm({ plan }: Props) {
           )}
         </motion.button>
 
-        <p className="text-center text-xs text-[#1E293B]/40">
+        <p className="text-center text-xs text-[#281000]/40">
           You will be redirected to our secure payment processor (Coinbase Commerce) to complete your{" "}
           {plan.priceLabel} payment.
         </p>
@@ -243,18 +243,18 @@ function Field({
 }) {
   return (
     <div>
-      <label className="mb-1.5 block text-[11px] font-semibold uppercase tracking-[0.08em] text-[#1E293B]/60">
+      <label className="mb-1.5 block text-[11px] font-semibold uppercase tracking-[0.08em] text-[#281000]/60">
         {label} {required && <span className="text-electric">*</span>}
       </label>
       <div className="relative">
-        <Icon className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-[#1E293B]/35" />
+        <Icon className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-[#281000]/35" />
         <input
           type={type}
           value={value}
           onChange={(e) => onChange(e.target.value)}
           required={required}
           placeholder={placeholder}
-          className="w-full rounded-xl border border-[#94A3B8] bg-white py-3 pl-10 pr-4 text-sm text-[#1E293B] placeholder:text-[#1E293B]/35 focus:border-electric/50 focus:outline-none focus:ring-1 focus:ring-electric/30"
+          className="w-full rounded-xl border border-[#94A3B8] bg-white py-3 pl-10 pr-4 text-sm text-[#281000] placeholder:text-[#281000]/35 focus:border-electric/50 focus:outline-none focus:ring-1 focus:ring-electric/30"
         />
       </div>
     </div>
@@ -292,7 +292,7 @@ function ConsentRow({
           </svg>
         )}
       </button>
-      <div className="flex-1 text-xs leading-relaxed text-[#1E293B]/75">
+      <div className="flex-1 text-xs leading-relaxed text-[#281000]/75">
         {children}
       </div>
     </label>
