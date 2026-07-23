@@ -862,3 +862,22 @@ Work Log:
 Stage Summary:
 - 1 file edited (sections/TrustStatsFeatures.tsx).
 - All 12 service cards in the Services section CardStack fanned carousel now have: (1) a visible blue→teal gradient border ring, and (2) a subtle inner-corner gradient shadow for depth — both making the card boundaries clearly visible against the white background.
+
+---
+Task ID: 15
+Agent: main
+Task: Add the same gradient inner-corner shadow + visible gradient border to ALL cards across the website (same as the Services cards).
+
+Work Log:
+- Updated the `.card-border-glow` CSS utility in globals.css to include the inner-corner gradient shadow directly on the element (box-shadow: inset 0 0 30px 6px rgba(37,99,235,0.10) + inset 0 0 0 1px rgba(15,23,42,0.06)), matching the Services cards exactly. The existing ::after gradient border (blue→sky→teal animated ring) is retained.
+- Re-enabled `glow` on all cards where it was previously disabled with `glow={false}`:
+  • pricing/page.tsx — 3 instances (top-selling, premium, standard pricing cards)
+  • PricingFaqCtaFooter.tsx (home pricing) — 3 instances (same 3 card variants)
+  • blog/page.tsx — 1 instance (blog post cards)
+  All now use `glow` (default true) so they inherit the card-border-glow class with both the gradient border and inner-corner shadow.
+- The GlassCard primitive applies `card-border-glow` when `glow` is true (default), so ALL GlassCard-based cards across the entire site now have: (1) the animated blue→teal gradient border ring, and (2) the subtle inner-corner gradient shadow for depth.
+- Verification: `bun run lint` → exit 0. All pages return 200. DOM-verified on /pricing: boxShadow includes "rgba(37,99,235,0.1) 0px 0px 30px 6px inset", ::after has "linear-gradient(120deg, rgb(37,99,235)...)" with mask set, card-border-glow class present. VLM-verified on both /pricing and /blog: cards have "visible blue/teal gradient border" and "subtle inner shadow that gives depth".
+
+Stage Summary:
+- 4 files edited (globals.css, pricing/page.tsx, PricingFaqCtaFooter.tsx, blog/page.tsx).
+- ALL cards across the website now share the same gradient border + inner-corner shadow as the Services cards: pricing cards (home + /pricing), blog cards, FAQ accordion items, stats cards, info cards, contact form card, and all other GlassCard-based cards. The effect is applied centrally via the .card-border-glow CSS utility + GlassCard's glow prop, so it's consistent everywhere.
