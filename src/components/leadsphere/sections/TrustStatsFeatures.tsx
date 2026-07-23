@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import {
   Megaphone,
   Table2,
@@ -26,65 +26,7 @@ import {
   SectionShell,
 } from "@/components/leadsphere/primitives";
 import { Reveal } from "@/components/leadsphere/Reveal";
-
-/* ============================================================
-   Tilt3DCard — pointer-driven 3D tilt inspired by CardStack
-   ------------------------------------------------------------
-   Tracks the pointer over the card and applies rotateX/rotateY
-   + translateZ depth, with spring smoothing (CardStack feel).
-   The grid container sets `perspective` so the 3D reads.
-   ============================================================ */
-function Tilt3DCard({
-  children,
-  maxTilt = 12,
-  lift = 10,
-  className,
-}: {
-  children: React.ReactNode;
-  maxTilt?: number;
-  lift?: number;
-  className?: string;
-}) {
-  // raw pointer position (-0.5 .. 0.5)
-  const px = useMotionValue(0);
-  const py = useMotionValue(0);
-
-  // spring-smoothed (matches CardStack's spring stiffness/damping feel)
-  const sx = useSpring(px, { stiffness: 280, damping: 28 });
-  const sy = useSpring(py, { stiffness: 280, damping: 28 });
-
-  const rotateY = useTransform(sx, [-0.5, 0.5], [-maxTilt, maxTilt]);
-  const rotateX = useTransform(sy, [-0.5, 0.5], [maxTilt, -maxTilt]);
-
-  function onMove(e: React.MouseEvent<HTMLDivElement>) {
-    const rect = e.currentTarget.getBoundingClientRect();
-    px.set((e.clientX - rect.left) / rect.width - 0.5);
-    py.set((e.clientY - rect.top) / rect.height - 0.5);
-  }
-
-  function onLeave() {
-    px.set(0);
-    py.set(0);
-  }
-
-  return (
-    <motion.div
-      onMouseMove={onMove}
-      onMouseLeave={onLeave}
-      whileHover={{ y: -lift }}
-      transition={{ type: "spring", stiffness: 280, damping: 28 }}
-      style={{
-        rotateX,
-        rotateY,
-        transformStyle: "preserve-3d",
-        transformPerspective: 1100,
-      }}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
-}
+import { CardStack, type CardStackItem } from "@/components/ui/card-stack";
 
 /* ============================================================
    Color theme tokens — static class strings so Tailwind picks
@@ -404,87 +346,145 @@ function StatsSection() {
 }
 
 /* ============================================================
-   3. INTERACTIVE FEATURES SECTION
+   3. INTERACTIVE FEATURES SECTION — CardStack fanned carousel
    ============================================================ */
-const FEATURES: {
+type ServiceItem = CardStackItem & {
   icon: typeof Megaphone;
   color: ColorKey;
-  title: string;
-  desc: string;
-}[] = [
+};
+
+const FEATURES: ServiceItem[] = [
   {
+    id: 1,
     icon: Megaphone,
     color: "electric",
     title: "Marketing Consulting",
-    desc: "Campaign planning, growth strategy, and brand positioning tailored to your market.",
+    description: "Campaign planning, growth strategy, and brand positioning tailored to your market.",
   },
   {
+    id: 2,
     icon: Table2,
     color: "violet",
     title: "CRM Support",
-    desc: "CRM setup, lead organization, pipeline optimization, and automation.",
+    description: "CRM setup, lead organization, pipeline optimization, and automation.",
   },
   {
+    id: 3,
     icon: Workflow,
     color: "cyan",
     title: "Workflow Automation",
-    desc: "Automate repetitive tasks, lead tracking, reminders, and follow-ups.",
+    description: "Automate repetitive tasks, lead tracking, reminders, and follow-ups.",
   },
   {
+    id: 4,
     icon: Headset,
     color: "electric",
     title: "Virtual Assistance",
-    desc: "Administrative support, scheduling, data organization, and client communication.",
+    description: "Administrative support, scheduling, data organization, and client communication.",
   },
   {
+    id: 5,
     icon: PhoneCall,
     color: "violet",
     title: "Outreach Support",
-    desc: "Human-based, verified communication with documented follow-up processes.",
+    description: "Human-based, verified communication with documented follow-up processes.",
   },
   {
+    id: 6,
     icon: Share2,
     color: "cyan",
     title: "Digital Marketing",
-    desc: "Social campaigns, email marketing, landing pages, and lead funnels.",
+    description: "Social campaigns, email marketing, landing pages, and lead funnels.",
   },
   {
+    id: 7,
     icon: CalendarClock,
     color: "electric",
     title: "Appointment Coordination",
-    desc: "Scheduling, calendar management, and client reminders handled for you.",
+    description: "Scheduling, calendar management, and client reminders handled for you.",
   },
   {
+    id: 8,
     icon: BarChart3,
     color: "violet",
     title: "Reporting & Analytics",
-    desc: "Campaign reports, monthly performance tracking, and growth insights.",
+    description: "Campaign reports, monthly performance tracking, and growth insights.",
   },
   {
+    id: 9,
     icon: Megaphone,
     color: "cyan",
     title: "Digital Advertising Management",
-    desc: "Compliant campaigns across Google and social media to increase visibility and reach motivated sellers.",
+    description: "Compliant campaigns across Google and social media to increase visibility and reach motivated sellers.",
   },
   {
+    id: 10,
     icon: Search,
     color: "electric",
     title: "SEO & Online Presence",
-    desc: "Boost your visibility through search optimization and relevant, high-quality content strategies.",
+    description: "Boost your visibility through search optimization and relevant, high-quality content strategies.",
   },
   {
+    id: 11,
     icon: MessageSquare,
     color: "violet",
     title: "SMS Campaign Support",
-    desc: "Opt-in only communications with full compliance features including STOP/HELP and unsubscribe.",
+    description: "Opt-in only communications with full compliance features including STOP/HELP and unsubscribe.",
   },
   {
+    id: 12,
     icon: Mail,
     color: "cyan",
     title: "Email Campaign Support",
-    desc: "Opt-in only email campaigns with compliance features, automated drips, and delivery analytics.",
+    description: "Opt-in only email campaigns with compliance features, automated drips, and delivery analytics.",
   },
 ];
+
+/** Custom card renderer for the CardStack — shows the service icon + title + description. */
+function ServiceFanCard({ item, active }: { item: ServiceItem; active: boolean }) {
+  const t = THEME[item.color];
+  const Icon = item.icon;
+  const idx = String(FEATURES.findIndex((f) => f.id === item.id) + 1).padStart(2, "0");
+
+  return (
+    <div className="relative flex h-full w-full flex-col bg-white p-6">
+      {/* corner accent glow */}
+      <div
+        aria-hidden
+        className={`pointer-events-none absolute -right-10 -top-10 h-28 w-28 rounded-full ${t.orb} opacity-60 blur-2xl`}
+      />
+
+      {/* top row: icon + index */}
+      <div className="relative flex items-start justify-between">
+        <div
+          className={`flex h-11 w-11 items-center justify-center rounded-xl ${t.iconWrap} ${t.iconGlow}`}
+        >
+          <Icon className={`h-5 w-5 ${t.text}`} strokeWidth={2} />
+        </div>
+        <span className="font-heading text-xs font-medium tabular-nums tracking-widest text-black/25">
+          {idx}
+        </span>
+      </div>
+
+      {/* title */}
+      <h3 className="relative mt-5 font-heading text-lg font-semibold tracking-tight text-black">
+        {item.title}
+      </h3>
+
+      {/* description */}
+      <p className="relative mt-2 text-sm leading-relaxed text-black">
+        {item.description}
+      </p>
+
+      {/* bottom accent line */}
+      <div className="relative mt-auto pt-5">
+        <div className="h-px w-full bg-black/5">
+          <div className={`h-px ${active ? "w-full" : "w-1/3"} ${t.bar} transition-all duration-500`} />
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export function FeaturesSection() {
   return (
@@ -504,82 +504,33 @@ export function FeaturesSection() {
         description="Outreach support, digital advertising, CRM management, and virtual assistants, twelve services working together to fill your pipeline."
       />
 
-      {/* CardStack-inspired 3D stage: perspective on the grid so each card's
-          rotateX/rotateY reads as real 3D depth. */}
-      <div
-        className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"
-        style={{ perspective: "1100px" }}
-      >
-        {FEATURES.map((f, i) => {
-          const t = THEME[f.color];
-          const Icon = f.icon;
-          const idx = String(i + 1).padStart(2, "0");
-          return (
-            <motion.div
-              key={f.title}
-              initial={{ opacity: 0, y: 28, filter: "blur(8px)" }}
-              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              viewport={{ once: true, margin: "-8% 0px" }}
-              transition={{
-                type: "spring",
-                stiffness: 280,
-                damping: 28,
-                delay: i * 0.05,
-              }}
-              className="h-full"
-            >
-              <Tilt3DCard maxTilt={10} lift={8} className="h-full">
-                <GlassCard
-                  sheen
-                  glow={false}
-                  className={`group relative h-full overflow-hidden border border-black/15 p-6 transition-colors duration-300 ${t.cardBorder} ${t.cardGlow}`}
-                >
-                  {/* corner accent glow on hover */}
-                  <div
-                    aria-hidden
-                    className={`pointer-events-none absolute -right-10 -top-10 h-28 w-28 rounded-full ${t.orb} opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-100`}
-                  />
-
-                  {/* top row: icon + index — icon pops forward in 3D on hover */}
-                  <div className="relative flex items-start justify-between">
-                    <div
-                      className={`flex h-11 w-11 items-center justify-center rounded-xl ${t.iconWrap} ${t.iconGlow} transition-transform duration-300 group-hover:scale-110`}
-                      style={{ transformStyle: "preserve-3d", transform: "translateZ(40px)" }}
-                    >
-                      <Icon className={`h-5 w-5 ${t.text}`} strokeWidth={2} />
-                    </div>
-                    <span className="font-heading text-xs font-medium tabular-nums tracking-widest text-black/25">
-                      {idx}
-                    </span>
-                  </div>
-
-                  {/* title — slight forward pop */}
-                  <h3
-                    className="relative mt-5 font-heading text-lg font-semibold tracking-tight text-black"
-                    style={{ transformStyle: "preserve-3d", transform: "translateZ(24px)" }}
-                  >
-                    {f.title}
-                  </h3>
-
-                  {/* description */}
-                  <p
-                    className="relative mt-2 text-sm leading-relaxed text-black"
-                    style={{ transformStyle: "preserve-3d", transform: "translateZ(16px)" }}
-                  >
-                    {f.desc}
-                  </p>
-
-                  {/* bottom accent line */}
-                  <div className="relative mt-5 h-px w-full bg-black/5">
-                    <div
-                      className={`h-px w-0 ${t.bar} transition-all duration-500 group-hover:w-full`}
-                    />
-                  </div>
-                </GlassCard>
-              </Tilt3DCard>
-            </motion.div>
-          );
-        })}
+      {/* CardStack fanned carousel — cards arranged in a 3D fan, auto-advancing */}
+      <div className="mt-10">
+        <CardStack
+          items={FEATURES}
+          initialIndex={0}
+          maxVisible={7}
+          cardWidth={440}
+          cardHeight={300}
+          overlap={0.42}
+          spreadDeg={42}
+          perspectivePx={1100}
+          depthPx={120}
+          tiltXDeg={10}
+          activeLiftPx={18}
+          activeScale={1.04}
+          inactiveScale={0.93}
+          springStiffness={280}
+          springDamping={28}
+          loop
+          autoAdvance
+          intervalMs={2200}
+          pauseOnHover
+          showDots
+          renderCard={(item, { active }) => (
+            <ServiceFanCard item={item as ServiceItem} active={active} />
+          )}
+        />
       </div>
     </SectionShell>
   );

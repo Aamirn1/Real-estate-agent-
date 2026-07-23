@@ -68,10 +68,10 @@ async function AgreementRenderer({
                     </>
                   )}
                 </span>
-                <h2 className="mt-4 font-heading text-2xl font-semibold text-[#281000] sm:text-3xl">
+                <h2 className="mt-4 font-heading text-2xl font-semibold text-[#000000] sm:text-3xl">
                   {plan.name} — Terms of Service Agreement
                 </h2>
-                <p className="mt-2 text-sm text-[#281000]/55">
+                <p className="mt-2 text-sm text-[#000000]/55">
                   Between {COMPANY.legalName} (&quot;the Company&quot;) and the Client
                   (&quot;the Client&quot;). Effective as of the date of signing.
                 </p>
@@ -89,10 +89,10 @@ async function AgreementRenderer({
               <div className="flex flex-col gap-6">
                 {sections.map((s, i) => (
                   <section key={i}>
-                    <h3 className="font-heading text-base font-semibold text-[#281000]">
+                    <h3 className="font-heading text-base font-semibold text-[#000000]">
                       {i + 1}. {s.title}
                     </h3>
-                    <p className="mt-2 whitespace-pre-line text-sm leading-relaxed text-[#281000]/70">
+                    <p className="mt-2 whitespace-pre-line text-sm leading-relaxed text-[#000000]/70">
                       {s.body}
                     </p>
                   </section>
@@ -116,10 +116,10 @@ async function AgreementRenderer({
 function Fact({ label, value }: { label: string; value: string }) {
   return (
     <div className="rounded-xl border border-[#E2E8F0] bg-[#F8FAFC] p-4 text-center">
-      <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-[#281000]/45">
+      <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-[#000000]/45">
         {label}
       </p>
-      <p className="mt-1 font-heading text-lg font-semibold text-[#281000]">
+      <p className="mt-1 font-heading text-lg font-semibold text-[#000000]">
         {value}
       </p>
     </div>

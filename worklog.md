@@ -826,3 +826,23 @@ Stage Summary:
 - 2 files created/edited: src/components/ui/card-stack.tsx (new, verbatim CardStack component), src/components/leadsphere/sections/TrustStatsFeatures.tsx (added Tilt3DCard wrapper + enhanced FeaturesSection with 3D perspective grid, pointer-driven tilt, spring stagger entrance, translateZ depth layering).
 - The 12 Services cards now animate with a CardStack-inspired feel: staggered spring entrance (blur→clear), pointer-driven 3D tilt on hover (rotateX/rotateY with spring smoothing), lift on hover, and parallax depth (icon pops forward 40px, title 24px, description 16px via translateZ).
 - The card-stack.tsx component is available for reuse anywhere in the app at @/components/ui/card-stack.
+
+---
+Task ID: 13
+Agent: main
+Task: (1) Change agreement/form text color from #281000 to #000000; (2) Replace the Services section grid+tilt with the actual CardStack fanned carousel from the reference prompt (cards arranged in a 3D fan, auto-advancing).
+
+Work Log:
+- Task 1: Replaced all `#281000` with `#000000` across 3 agreement files (AgreementForm.tsx, page.tsx, SignaturePad.tsx) using replace_all. All opacity variants (/55, /60, /45, /75, /40) now darken from pure black. DOM-verified: heading color = rgb(0,0,0), section heading = rgb(0,0,0), labels = black at 60% opacity.
+- Task 2: Rewrote the FeaturesSection in TrustStatsFeatures.tsx to use the actual CardStack component from @/components/ui/card-stack:
+  • Converted the 12 FEATURES array from plain objects to ServiceItem (CardStackItem + icon + color) with `id` field, `description` (renamed from `desc`).
+  • Created a ServiceFanCard custom renderer that fills each CardStack card with: white bg, colored icon chip + index number, title, description, accent bar (full-width on active card, 1/3 width on inactive).
+  • Configured CardStack: cardWidth=440, cardHeight=300, maxVisible=7, overlap=0.42, spreadDeg=42, perspectivePx=1100, depthPx=120, tiltXDeg=10, activeLiftPx=18, activeScale=1.04, inactiveScale=0.93, springStiffness=280, springDamping=28, loop=true, autoAdvance=true, intervalMs=2200, pauseOnHover=true, showDots=true.
+  • Removed the now-unused Tilt3DCard wrapper component and its framer-motion imports (useMotionValue, useSpring, useTransform) to keep the file clean.
+  • DOM-verified: stage perspective=1100px, 7 cards visible in the fan (maxVisible=7), 12 dots for navigation, first card has matrix3d 3D transform applied. VLM-verified: cards arranged in a fanned 3D carousel (NOT a grid), active card in center/front with other cards fanned behind at angles, active card shows "Marketing Consulting" with readable description, auto-advances through services.
+- Verification: `bun run lint` → exit 0. Home page returns 200. No runtime errors in dev.log.
+
+Stage Summary:
+- 4 files edited (agreement/AgreementForm.tsx, agreement/page.tsx, agreement/SignaturePad.tsx, sections/TrustStatsFeatures.tsx).
+- Agreement + form text is now pure #000000 (was #281000 dark brown).
+- Services section now uses the actual CardStack fanned carousel: 12 service cards arranged in a 3D fan (7 visible at a time), auto-advancing every 2.2s, with dots navigation, spring physics, depth/lift, drag-to-advance on the active card — exactly matching the reference animation from the prompt.
