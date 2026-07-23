@@ -93,7 +93,7 @@ export default function TestimonialsPage() {
       {/* 1. Trust + Stats + Features grid (social proof: 250M+ leads, 92% conversion, 50K+ agents, 100+ MLS) */}
 
       {/* 2. CRM Kanban + Integrations + Testimonials carousel (id="testimonials") */}
-      <CrmIntegrationsTestimonials />
+      <CrmIntegrationsTestimonials showHeading={false} />
 
       {/* 3. NEW | More Client Stories (6 verified testimonial cards) */}
       <SectionShell id="more-stories">

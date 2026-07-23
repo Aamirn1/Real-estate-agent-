@@ -24,6 +24,7 @@ const HERO_IMAGE_ROUTES = [
   "/pricing",
   "/blog",
   "/about",
+  "/get-started",
 ];
 
 export function Navbar() {

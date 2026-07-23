@@ -739,18 +739,24 @@ function TestimonialsCarousel() {
    MAIN
    ========================================================================== */
 
-export default function CrmIntegrationsTestimonials() {
+export default function CrmIntegrationsTestimonials({
+  showHeading = true,
+}: {
+  showHeading?: boolean;
+}) {
   return (
     <>
       {/* TESTIMONIALS */}
       <SectionShell id="testimonials">
-        <Reveal className="mb-10">
-          <SectionHeading
-            eyebrow="Testimonials"
-            title="Clients tell the story"
-            description="Real results from real estate professionals who trust Opus Global Solution."
-          />
-        </Reveal>
+        {showHeading && (
+          <Reveal className="mb-10">
+            <SectionHeading
+              eyebrow="Testimonials"
+              title="Clients tell the story"
+              description="Real results from real estate professionals who trust Opus Global Solution."
+            />
+          </Reveal>
+        )}
         <TestimonialsCarousel />
       </SectionShell>
     </>

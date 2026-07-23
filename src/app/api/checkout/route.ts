@@ -28,9 +28,9 @@ type Plan = {
 // Canonical plan registry — the API only trusts these values
 // (prevents arbitrary amount/name injection from the client).
 const ALLOWED_PLANS: Record<string, Plan> = {
-  Trial: { name: "Trial Plan", price: "$300", period: "One-Time · 90 Days Setup" },
-  Gold: { name: "Gold Plan", price: "$600", period: "One-Time · 180 Days Setup" },
-  Platinum: { name: "Platinum Plan", price: "$1200", period: "One-Time · 365 Days Setup" },
+  Trial: { name: "Trial Plan", price: "$299", period: "One-Time · 90 Days Setup" },
+  Gold: { name: "Gold Plan", price: "$599", period: "One-Time · 180 Days Setup" },
+  Platinum: { name: "Platinum Plan", price: "$1199", period: "One-Time · 365 Days Setup" },
 };
 
 function parseAmount(price: string): number {

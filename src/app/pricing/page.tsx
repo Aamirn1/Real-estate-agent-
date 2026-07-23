@@ -50,7 +50,7 @@ type Plan = {
 const PLANS: Plan[] = [
   {
     name: "Trial",
-    price: "$300",
+    price: "$299",
     period: "One-Time · 90 Days Setup",
     tagline: "Test the waters",
     features: [
@@ -72,7 +72,7 @@ const PLANS: Plan[] = [
   },
   {
     name: "Gold",
-    price: "$600",
+    price: "$599",
     period: "One-Time · 180 Days Setup",
     tagline: "Most popular choice",
     features: [
@@ -98,7 +98,7 @@ const PLANS: Plan[] = [
   },
   {
     name: "Platinum",
-    price: "$1200",
+    price: "$1199",
     period: "One-Time · 365 Days Setup",
     tagline: "High-volume prospecting",
     features: [

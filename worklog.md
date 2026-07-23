@@ -745,3 +745,27 @@ Stage Summary:
 - 7 files edited (services/page.tsx, testimonials/page.tsx, pricing/page.tsx, blog/page.tsx, about/page.tsx, Navbar.tsx, SiteChrome.tsx) + 1 new image (/public/heroes/services-home.jpg).
 - Services page now has a home hero image (matching the other 4 pages) and the old workspace image is removed.
 - All 5 hero-image pages (services, testimonials, pricing, blog, about) now have a transparent navbar at the top of the page (just like the home page), with the hero image showing through behind the nav links. Navbar turns solid glass once the user scrolls past 24px.
+
+---
+Task ID: 9
+Agent: main
+Task: 4 UI changes — (1) remove duplicate testimonials heading below hero on /testimonials; (2) update pricing Trial=$299 Gold=$599 Platinum=$1199; (3) add hero image to Get Started page; (4) redesign Get Started form as two-column split layout per reference photo.
+
+Work Log:
+- Task 1: Added `showHeading?: boolean` prop (default true) to CrmIntegrationsTestimonials component. When false, the SectionHeading (eyebrow "Testimonials" + title "Clients tell the story" + description "Real results...") is not rendered. Passed `showHeading={false}` from /testimonials/page.tsx. Home page keeps the heading (default true). DOM-verified: "Clients tell the story" heading gone from below hero, carousel cards still present.
+- Task 2: Updated prices in 4 locations: (a) PricingFaqCtaFooter.tsx PLANS: Trial $300→$299, Gold $600→$599, Platinum $1200→$1199; (b) pricing/page.tsx PLANS: same 3 updates; (c) api/checkout/route.ts ALLOWED_PLANS: same 3 updates; (d) get-started/GetStartedForm.tsx PLANS dropdown: "Trial ($300)"→"Trial ($299)", "Gold ($600)"→"Gold ($599)", "Platinum ($1200)"→"Platinum ($1199)". DOM-verified on both home + /pricing: prices show $299, $599, $1,199 after CountUp animation.
+- Task 3: Generated /public/heroes/get-started-home.jpg (modern luxury home at twilight, 1344x768). Updated get-started/page.tsx: added `heroImage="/heroes/get-started-home.jpg"` to PageHero, set `withBackground={false} flushTop` on SiteChrome. Added "/get-started" to Navbar HERO_IMAGE_ROUTES so navbar is transparent at top. Updated CTA email from info@opussolutions.com → info@opusglobalsolution.com. VLM-verified: hero image of luxury home visible with transparent navbar.
+- Task 4: Completely redesigned GetStartedForm.tsx from a narrow centered card (max-w-lg) to a wide two-column split layout matching the reference photo:
+  • LEFT panel (dark gradient bg #0B1120→#1E293B): "Get Started" eyebrow pill, "Tell us about your goals" heading with gradient, description, email contact method (Mail icon in electric chip), phone contact method (Phone icon in violet chip), "Fast Response Guaranteed" badge with Zap icon.
+  • RIGHT panel (white bg): Full form with uppercase labels — Full Name + Company/Team (2 cols), Email + Phone (2 cols), Interested Plan (custom dropdown), Service of Interest (multi-select dropdown), Your Message (textarea, 4 rows), Submit Request button (gradient pill). Solid borders (#94A3B8) on all fields for desktop visibility.
+  • Grid layout: `lg:grid-cols-[0.85fr_1.15fr]` — fills the full width of the SectionShell container (no large empty margins).
+  • Removed the "Back" link (navbar provides navigation). Updated success state to match.
+  • VLM-verified: two-column layout, dark info panel left + white form right, fills width, looks professional.
+- Verification: `bun run lint` → exit 0. All routes return 200. Agent Browser + VLM confirmed all 4 fixes.
+
+Stage Summary:
+- 8 files edited (CrmIntegrationsTestimonials.tsx, testimonials/page.tsx, PricingFaqCtaFooter.tsx, pricing/page.tsx, api/checkout/route.ts, get-started/page.tsx, get-started/GetStartedForm.tsx, Navbar.tsx) + 1 new image (/public/heroes/get-started-home.jpg).
+- Testimonials page no longer has the duplicate heading below the hero (cards remain).
+- All pricing updated to $299/$599/$1199 across home, /pricing, API, and Get Started form dropdown.
+- Get Started page now has a home hero image with transparent navbar.
+- Get Started form redesigned as a professional two-column split layout (dark info panel + white form) that fills the full width.

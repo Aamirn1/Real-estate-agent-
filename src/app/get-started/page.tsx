@@ -12,8 +12,9 @@ export const metadata: Metadata = {
 
 export default function GetStartedPage() {
   return (
-    <SiteChrome>
+    <SiteChrome withBackground={false} flushTop>
       <PageHero
+        heroImage="/heroes/get-started-home.jpg"
         eyebrow="Get Started"
         title={
           <>
@@ -24,15 +25,13 @@ export default function GetStartedPage() {
         description="Fill out the form below and our team will reach out within 24 hours to help you scale your real estate business with professional marketing and outreach support."
       />
 
-      <SectionShell id="get-started">
-        <div className="mx-auto max-w-2xl">
-          <GetStartedForm />
-        </div>
+      <SectionShell id="get-started" className="md:py-20">
+        <GetStartedForm />
       </SectionShell>
 
       <CTABanner
         title="Prefer to talk to a human?"
-        subtitle="Call us at (320) 331-0910 or email info@opussolutions.com — we reply within one business day."
+        subtitle="Call us at (320) 331-0910 or email info@opusglobalsolution.com — we reply within one business day."
       />
     </SiteChrome>
   );
