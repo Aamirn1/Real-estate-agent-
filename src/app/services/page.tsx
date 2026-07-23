@@ -15,8 +15,9 @@ export const metadata: Metadata = {
 
 export default function ServicesPage() {
   return (
-    <SiteChrome>
+    <SiteChrome withBackground={false} flushTop>
       <PageHero
+        heroImage="/heroes/services-home.jpg"
         eyebrow="Services"
         title={
           <>
@@ -27,18 +28,6 @@ export default function ServicesPage() {
         }
         description="Unlock your potential for success with our expert marketing consulting, outreach support, and CRM solutions tailored for licensed real estate professionals."
       />
-
-      {/* Services workspace image */}
-      <section className="relative w-full px-5 pb-4 sm:px-8">
-        <div className="mx-auto w-full max-w-5xl overflow-hidden rounded-3xl border border-black/15 shadow-lg">
-          <img
-            src="/sections/services-workspace.jpg"
-            alt="Opus Global Solution services workspace with CRM dashboards"
-            className="h-full w-full object-cover"
-            loading="lazy"
-          />
-        </div>
-      </section>
 
       {/* 1. Services overview grid (12 services) — stats section removed */}
       <FeaturesSection />

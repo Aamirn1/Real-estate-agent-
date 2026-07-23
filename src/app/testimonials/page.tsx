@@ -78,7 +78,7 @@ const MORE_STORIES: ClientStory[] = [
 
 export default function TestimonialsPage() {
   return (
-    <SiteChrome withBackground={false}>
+    <SiteChrome withBackground={false} flushTop>
       <PageHero
         heroImage="/heroes/testimonials-home.jpg"
         eyebrow="Testimonials"

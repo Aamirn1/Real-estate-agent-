@@ -15,11 +15,23 @@ const NAV_LINKS = [
   { label: "About Us", href: "/about" },
 ];
 
+// Routes that render a dark hero image behind the navbar.
+// On these pages the navbar starts transparent (like the home page)
+// and only switches to the solid glass background once the user scrolls.
+const HERO_IMAGE_ROUTES = [
+  "/services",
+  "/testimonials",
+  "/pricing",
+  "/blog",
+  "/about",
+];
+
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
   const isHome = pathname === "/";
+  const hasHeroImage = HERO_IMAGE_ROUTES.includes(pathname);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -28,8 +40,9 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // On sub-pages (not home), the hero is white so navbar should always be dark
-  const useDark = !isHome || scrolled || open;
+  // Transparent navbar at the top of the home page and any page with a hero image.
+  // Switches to solid glass once scrolled or when the mobile menu is open.
+  const useDark = !(isHome || hasHeroImage) || scrolled || open;
 
   return (
     <motion.header

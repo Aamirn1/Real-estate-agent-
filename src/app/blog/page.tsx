@@ -206,7 +206,7 @@ const COLOR_STYLES: Record<
 /* ------------------------------ Page ------------------------------ */
 export default function BlogPage() {
   return (
-    <SiteChrome withBackground={false}>
+    <SiteChrome withBackground={false} flushTop>
       <PageHero
         heroImage="/heroes/blog-home.jpg"
         eyebrow="Blog"

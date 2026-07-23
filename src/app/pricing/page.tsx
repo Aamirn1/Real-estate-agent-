@@ -349,7 +349,7 @@ function PricingCard({ plan, delay }: { plan: Plan; delay: number }) {
 
 export default function PricingPage() {
   return (
-    <SiteChrome withBackground={false}>
+    <SiteChrome withBackground={false} flushTop>
       <PageHero
         heroImage="/heroes/pricing-home.jpg"
         eyebrow="Pricing"

@@ -727,3 +727,21 @@ Stage Summary:
 - Pricing cards show all features without internal scroll; cards are more compact (p-5/p-6, gap-5).
 - Testimonials carousel on both home and /testimonials has no arrows (auto-scroll + dots only).
 - 4 sub-page heroes now feature professional real estate home photography with readable white text overlay.
+
+---
+Task ID: 8
+Agent: main
+Task: 3 UI changes — (1) add home hero image to services page; (2) remove the workspace image below the services hero; (3) make navbar transparent at top on all pages with hero images (like the home page).
+
+Work Log:
+- Task 1: Generated a professional real estate home image (1344x768) for the services page → /public/heroes/services-home.jpg (modern two-story suburban home, brick + vinyl siding, blue sky). Added `heroImage="/heroes/services-home.jpg"` to the services page's <PageHero> and set `withBackground={false}` on <SiteChrome>.
+- Task 2: Removed the entire "Services workspace image" <section> (the rounded-3xl card with /sections/services-workspace.jpg) that sat just below the hero on the services page.
+- Task 3: Two-part fix:
+  • Navbar.tsx: Added a HERO_IMAGE_ROUTES whitelist ["/services","/testimonials","/pricing","/blog","/about"]. Added `hasHeroImage` flag. Changed `useDark` logic from `!isHome || scrolled || open` to `!(isHome || hasHeroImage) || scrolled || open`. Now on any hero-image page (or the home page), the navbar starts transparent with white text/logo, and switches to solid glass-strong once scrolled past 24px or when the mobile menu opens.
+  • SiteChrome.tsx: Added a `flushTop?: boolean` prop. When true, removes the `pt-24` top padding on the content wrapper so the hero <section> image can start at y=0 and sit behind the transparent navbar. Set `flushTop` on all 5 hero-image pages (services, testimonials, pricing, blog, about).
+- Verification: `bun run lint` → exit 0. All 6 routes return 200. Agent Browser DOM check on /services: navBg=rgba(0,0,0,0) (transparent), heroImgTop=0 (overlaps navbar), workspaceImgGone=true. VLM-verified: navbar transparent with house image visible behind, nav links + Get Started button visible in white, logo visible. Scroll test on /testimonials: after scrolling 300px, navBg=rgba(255,255,255,0.98) (solid glass) — correct behavior.
+
+Stage Summary:
+- 7 files edited (services/page.tsx, testimonials/page.tsx, pricing/page.tsx, blog/page.tsx, about/page.tsx, Navbar.tsx, SiteChrome.tsx) + 1 new image (/public/heroes/services-home.jpg).
+- Services page now has a home hero image (matching the other 4 pages) and the old workspace image is removed.
+- All 5 hero-image pages (services, testimonials, pricing, blog, about) now have a transparent navbar at the top of the page (just like the home page), with the hero image showing through behind the nav links. Navbar turns solid glass once the user scrolls past 24px.

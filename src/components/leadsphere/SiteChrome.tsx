@@ -12,10 +12,13 @@ interface SiteChromeProps {
   children: React.ReactNode;
   /** show the ambient animated background behind the page hero area */
   withBackground?: boolean;
+  /** when true, remove the top padding so a hero image can sit behind the
+      transparent navbar at the top of the page (like the home page hero). */
+  flushTop?: boolean;
 }
 
 /** Shared page chrome for sub-pages: navbar, cursor glow, footer, widgets. */
-export function SiteChrome({ children, withBackground = true }: SiteChromeProps) {
+export function SiteChrome({ children, withBackground = true, flushTop = false }: SiteChromeProps) {
   return (
     <main className="relative min-h-screen overflow-hidden bg-ink">
       <CursorGlow />
@@ -25,7 +28,7 @@ export function SiteChrome({ children, withBackground = true }: SiteChromeProps)
           <AnimatedBackground variant="section" />
         </div>
       )}
-      <div className="relative z-10 pt-24">{children}</div>
+      <div className={flushTop ? "relative z-10" : "relative z-10 pt-24"}>{children}</div>
       <SiteFooter />
       <ScrollToTop />
       <AiAssistantWidget />
