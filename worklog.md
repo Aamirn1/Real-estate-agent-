@@ -899,3 +899,20 @@ NOTE FOR FUTURE: When the user asks for changes to "all cards", do NOT apply the
 Stage Summary:
 - 2 files edited (pricing/page.tsx, PricingFaqCtaFooter.tsx).
 - Pricing packages reverted to their clean professional look (no card-border-glow gradient border, no inner-corner shadow). The Gold/Platinum cards retain their original custom electric/gold gradient border divs which were part of the design before any of my changes.
+
+---
+Task ID: 17
+Agent: main
+Task: Add 3D sliding cards animation to the Virtual Assistant Services section on the home page. Reference: a fanned 3D card stack that slides vertically on scroll. Add click-to-front (clicking any card brings it to position 1) + auto-advance (cards cycle to front every ~2.6s with a 2-3 second gap).
+
+Work Log:
+- Created src/components/ui/3d-sliding-cards.tsx — a generic FloatingCards<T> component adapted from the reference prompt. Tracks a `front` index (which card is in position 1). Auto-advances every `intervalMs` (default 2600ms) via setInterval, pauses on hover when `pauseOnHover` is true. Click-to-front: clicking any card sets it as the front. Scroll-driven vertical slide on the whole stage (window scroll → slider translateY, matching the reference). Supports a custom `renderCard(item, active, index)` so callers can render any content inside the 3D cards. Generic over the item type so it's reusable. No external image dependencies (the reference used picsum.photos; this version uses a custom renderer instead).
+- Added 3D slider CSS to globals.css: `.floating-cards-stage` (520px tall, perspective container), `.slider` (absolute-centered, preserve-3d), `.card` (300x380px, absolute, transition for transform/opacity/box-shadow). Position classes `.card-pos-0` through `.card-pos-5` place cards in a 3D fan behind the front card (increasing translateY, decreasing translateZ, increasing rotateY/rotateZ, decreasing opacity). Cards beyond pos 5 stack deeper. Hover on a non-active card lifts it forward. Responsive shrink at 640px.
+- Replaced the VirtualAssistantServices grid in AboutVaWorkflow.tsx with the FloatingCards component. Each of the 6 VA services (Customer Support, Prospect Calling, Calendar Management, CRM Management, Social Media Management, Website Management) renders as a 3D card with: gradient border ring + inner-corner shadow (matching the site's other cards), colored icon chip + index number, title, description, accent bar (full-width when active, 10px when inactive), and an "● Active" badge on the front card. Auto-advances every 2.6s, pauses on hover, click any card to bring it to front.
+- Added FloatingCards import to AboutVaWorkflow.tsx. Added `id` field to each VA_SERVICES entry (required by FloatingCardItem type).
+- Verification: `bun run lint` → exit 0. Home page returns 200. Agent Browser DOM: stage present (520px), 6 cards, active card present. VLM-verified: "3D fan of cards... front card prominently displayed... other cards visible behind it at 3D angles... layered 3D effect that gives depth". Click-to-front tested: clicked card 3 → "Social Media Management" became active. Auto-advance tested: after 3s, active card cycled from "Social Media Management" → "Customer Support".
+
+Stage Summary:
+- 3 files created/edited: src/components/ui/3d-sliding-cards.tsx (new reusable component), src/app/globals.css (3D slider CSS), src/components/leadsphere/sections/AboutVaWorkflow.tsx (VirtualAssistantServices now uses FloatingCards).
+- The Virtual Assistant Services section on the home page now features a 3D sliding cards carousel: 6 service cards arranged in a fanned 3D stack, auto-advancing every 2.6s (2-3 second gap), with click-to-front interaction. The stage also slides vertically on page scroll (matching the reference animation).
+- The 3d-sliding-cards component is reusable at @/components/ui/3d-sliding-cards for any future 3D card carousel needs.

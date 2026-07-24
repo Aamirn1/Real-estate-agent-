@@ -306,6 +306,124 @@
   border: 1px solid transparent;
 }
 
+/* ============ 3D Sliding Cards (FloatingCards) ============ */
+/* Reference: a fanned stack of cards rotated in 3D, the front card
+   sits center-stage and the rest fan out behind it. Click any card
+   (or wait for auto-advance) to bring it to the front.            */
+.floating-cards-stage {
+  position: relative;
+  width: 100%;
+  /* tall enough for the 3D fan + perspective */
+  height: 520px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.floating-cards-stage .slider {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.floating-cards-stage .card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 380px;
+  margin-left: -150px;   /* center the card on the origin */
+  margin-top: -190px;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  cursor: pointer;
+  /* each card is offset around the fan based on --pos (0 = front) */
+  transform: translate3d(0, 0, 0) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.4s ease,
+              opacity 0.4s ease;
+  box-shadow: 0 20px 50px -12px rgba(15, 23, 42, 0.35);
+  background: #ffffff;
+}
+
+/* Position cards in a vertical-ish fan behind the front card.
+   --pos is set inline (0 = front, 1..n = behind). */
+.floating-cards-stage .card[data-pos] { /* hook for older browsers */ }
+
+.floating-cards-stage .card[style*="--pos"] {
+  /* default (will be overridden per pos below) */
+}
+
+/* Front card — fully visible, no rotation */
+.floating-cards-stage .card-pos-0 {
+  transform: translate3d(0, 0, 220px) rotateY(0deg) rotateZ(0deg);
+  z-index: 100;
+  opacity: 1;
+}
+
+/* Card 1 behind front */
+.floating-cards-stage .card-pos-1 {
+  transform: translate3d(0, 24px, 150px) rotateY(-8deg) rotateZ(-4deg);
+  z-index: 90;
+  opacity: 0.96;
+}
+.floating-cards-stage .card-pos-2 {
+  transform: translate3d(0, 48px, 90px) rotateY(-16deg) rotateZ(-8deg);
+  z-index: 80;
+  opacity: 0.92;
+}
+.floating-cards-stage .card-pos-3 {
+  transform: translate3d(0, 72px, 40px) rotateY(-22deg) rotateZ(-12deg);
+  z-index: 70;
+  opacity: 0.85;
+}
+.floating-cards-stage .card-pos-4 {
+  transform: translate3d(0, 96px, 0px) rotateY(-28deg) rotateZ(-16deg);
+  z-index: 60;
+  opacity: 0.78;
+}
+.floating-cards-stage .card-pos-5 {
+  transform: translate3d(0, 120px, -40px) rotateY(-34deg) rotateZ(-20deg);
+  z-index: 50;
+  opacity: 0.7;
+}
+
+/* Any card beyond pos 5 (6+) — stacked deeper behind */
+.floating-cards-stage .card[class*="card-pos-"]:not(.card-pos-0):not(.card-pos-1):not(.card-pos-2):not(.card-pos-3):not(.card-pos-4):not(.card-pos-5) {
+  transform: translate3d(0, 140px, -80px) rotateY(-40deg) rotateZ(-24deg);
+  z-index: 40;
+  opacity: 0.6;
+}
+
+/* Hovering a non-active card nudges it out a little so it's clickable/noticeable */
+.floating-cards-stage .card:not(.card-active):hover {
+  transform: translate3d(0, var(--hover-y, 0px), 250px) rotateY(0deg) rotateZ(0deg) !important;
+  z-index: 200;
+  opacity: 1;
+  box-shadow: 0 30px 70px -10px rgba(37, 99, 235, 0.45);
+}
+
+/* Active card hover lift */
+.floating-cards-stage .card-active:hover {
+  box-shadow: 0 30px 70px -10px rgba(37, 99, 235, 0.45);
+}
+
+/* Responsive — shrink cards on small screens */
+@media (max-width: 640px) {
+  .floating-cards-stage .card {
+    width: 240px;
+    height: 320px;
+    margin-left: -120px;
+    margin-top: -160px;
+  }
+  .floating-cards-stage {
+    height: 440px;
+  }
+}
+
 /* ============ Animated blue gradient border + inner-corner shadow for all cards ============ */
 /* Matches the button/AI-assistant gradient: #2563EB -> #38BDF8 -> #14B8A6 */
 .card-border-glow {
