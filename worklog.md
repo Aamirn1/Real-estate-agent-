@@ -934,3 +934,23 @@ Stage Summary:
 - The invisible 3D sliding cards animation (caused by rotateZ(-120deg) rotating cards off-screen) has been removed.
 - The Virtual Assistant Services section now uses a clean, mobile-friendly animated card grid: staggered spring scroll-reveal (blur→clear), 3D hover tilt, gradient borders, and responsive sizing (compact cards on mobile, full cards on desktop). Cards are visible and properly sized at every breakpoint.
 - The AnimatedServiceCards component is reusable at @/components/ui/services-card.
+
+---
+Task ID: 19
+Agent: main
+Task: (1) Rebuild VA services animation to match the reference prompt (Embla carousel + framer-motion useInView); (2) make Services section CardStack cards smaller on mobile, matching Why Choose Us card proportions.
+
+Work Log:
+- Task 1: Completely rewrote src/components/ui/services-card.tsx to use useEmblaCarousel (with UseEmblaCarouselType type) + framer-motion useInView + Button from shadcn — matching the reference prompt's imports. The component is now a proper Embla carousel: slides scroll horizontally, auto-advances every 3s, has prev/next Button arrows + dot pagination. Each slide animates in with framer-motion staggered spring (opacity 0→1, y 28→0, blur 8px→0px). Responsive basis: 1 card on mobile, 2 on sm, 3 on lg. Card content matches Why Choose Us sizing (p-6, h-12 w-12 icon, text-base title, text-sm description). DOM-verified: 6 slides, 6 dots, navigation buttons, Embla viewport. VLM-verified desktop: 3 cards visible (Calendar Management, CRM Management, Social Media Management) with icons/titles/descriptions, navigation arrows + dots below.
+- Task 2: Made the Services section CardStack responsive for mobile:
+  • Added viewport detection (useEffect + useState) in FeaturesSection — `isMobile = window.innerWidth < 640`.
+  • Pass responsive card dimensions: 240×170 on mobile, 440×300 on desktop.
+  • Updated ServiceFanCard renderer with responsive content: p-4/p-6 padding, h-9/h-11 icon, text-sm/text-lg title, text-xs/text-sm description — compact on mobile, full on desktop.
+  • Reduced CardStack stage height minimum from 380px to 300px so mobile doesn't have excessive empty space.
+  • VLM-verified on mobile (375px): cards are 35-40% of screen height (reasonable), 3D fanned animation fully visible, title "Workflow Automation" and description readable, not cut off.
+- Verification: `bun run lint` → exit 0. Home page returns 200. Agent Browser + VLM confirmed both fixes on desktop and mobile.
+
+Stage Summary:
+- 3 files edited (services-card.tsx, TrustStatsFeatures.tsx, card-stack.tsx).
+- VA services section now uses a proper Embla carousel (matching the reference prompt) with framer-motion scroll-reveal, auto-advance, navigation arrows + dots, responsive slide count (1/2/3).
+- Services section CardStack cards are now responsive: 240×170 on mobile (matching Why Choose Us card proportions), 440×300 on desktop. The 3D fanned animation is fully visible and readable on mobile.

@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 import {
   Megaphone,
   Table2,
@@ -440,14 +441,15 @@ const FEATURES: ServiceItem[] = [
   },
 ];
 
-/** Custom card renderer for the CardStack — shows the service icon + title + description. */
+/** Custom card renderer for the CardStack — shows the service icon + title + description.
+ *  Responsive: compact on mobile (p-4, smaller icon/text), full on desktop (p-6). */
 function ServiceFanCard({ item, active }: { item: ServiceItem; active: boolean }) {
   const t = THEME[item.color];
   const Icon = item.icon;
   const idx = String(FEATURES.findIndex((f) => f.id === item.id) + 1).padStart(2, "0");
 
   return (
-    <div className="relative flex h-full w-full flex-col bg-white p-6">
+    <div className="relative flex h-full w-full flex-col bg-white p-4 sm:p-6">
       {/* Gradient border — brand blue→teal ring so the card boundary is clearly visible */}
       <div
         aria-hidden
@@ -478,30 +480,30 @@ function ServiceFanCard({ item, active }: { item: ServiceItem; active: boolean }
         className={`pointer-events-none absolute -right-10 -top-10 h-28 w-28 rounded-full ${t.orb} opacity-60 blur-2xl`}
       />
 
-      {/* top row: icon + index */}
+      {/* top row: icon + index — responsive sizing (smaller on mobile) */}
       <div className="relative flex items-start justify-between">
         <div
-          className={`flex h-11 w-11 items-center justify-center rounded-xl ${t.iconWrap} ${t.iconGlow}`}
+          className={`flex h-9 w-9 items-center justify-center rounded-lg sm:h-11 sm:w-11 sm:rounded-xl ${t.iconWrap} ${t.iconGlow}`}
         >
-          <Icon className={`h-5 w-5 ${t.text}`} strokeWidth={2} />
+          <Icon className={`h-4 w-4 sm:h-5 sm:w-5 ${t.text}`} strokeWidth={2} />
         </div>
-        <span className="font-heading text-xs font-medium tabular-nums tracking-widest text-black/25">
+        <span className="font-heading text-[10px] font-medium tabular-nums tracking-widest text-black/25 sm:text-xs">
           {idx}
         </span>
       </div>
 
-      {/* title */}
-      <h3 className="relative mt-5 font-heading text-lg font-semibold tracking-tight text-black">
+      {/* title — responsive (text-sm mobile, text-lg desktop) */}
+      <h3 className="relative mt-3 font-heading text-sm font-semibold tracking-tight text-black sm:mt-5 sm:text-lg">
         {item.title}
       </h3>
 
-      {/* description */}
-      <p className="relative mt-2 text-sm leading-relaxed text-black">
+      {/* description — responsive (text-xs mobile, text-sm desktop) */}
+      <p className="relative mt-1.5 text-xs leading-relaxed text-black sm:mt-2 sm:text-sm">
         {item.description}
       </p>
 
       {/* bottom accent line */}
-      <div className="relative mt-auto pt-5">
+      <div className="relative mt-auto pt-3 sm:pt-5">
         <div className="h-px w-full bg-black/5">
           <div className={`h-px ${active ? "w-full" : "w-1/3"} ${t.bar} transition-all duration-500`} />
         </div>
@@ -511,6 +513,20 @@ function ServiceFanCard({ item, active }: { item: ServiceItem; active: boolean }
 }
 
 export function FeaturesSection() {
+  // Responsive card sizing — smaller cards on mobile (matches Why Choose Us
+  // card proportions), full size on desktop. This keeps the 3D fan fully
+  // visible at every breakpoint.
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 640);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
+  const cardWidth = isMobile ? 240 : 440;
+  const cardHeight = isMobile ? 170 : 300;
+
   return (
     <SectionShell id="services" className="relative overflow-hidden">
       <div
@@ -528,14 +544,15 @@ export function FeaturesSection() {
         description="Outreach support, digital advertising, CRM management, and virtual assistants, twelve services working together to fill your pipeline."
       />
 
-      {/* CardStack fanned carousel — cards arranged in a 3D fan, auto-advancing */}
+      {/* CardStack fanned carousel — cards arranged in a 3D fan, auto-advancing.
+          Responsive: 280×200 on mobile, 440×300 on desktop. */}
       <div className="mt-10">
         <CardStack
           items={FEATURES}
           initialIndex={0}
           maxVisible={7}
-          cardWidth={440}
-          cardHeight={300}
+          cardWidth={cardWidth}
+          cardHeight={cardHeight}
           overlap={0.42}
           spreadDeg={42}
           perspectivePx={1100}
