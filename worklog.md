@@ -954,3 +954,21 @@ Stage Summary:
 - 3 files edited (services-card.tsx, TrustStatsFeatures.tsx, card-stack.tsx).
 - VA services section now uses a proper Embla carousel (matching the reference prompt) with framer-motion scroll-reveal, auto-advance, navigation arrows + dots, responsive slide count (1/2/3).
 - Services section CardStack cards are now responsive: 240×170 on mobile (matching Why Choose Us card proportions), 440×300 on desktop. The 3D fanned animation is fully visible and readable on mobile.
+
+---
+Task ID: 20
+Agent: main
+Task: Fix the VA services Embla carousel loop — when one cycle completes (cards 1-6) there's an empty space/gap before it restarts. Make a smooth seamless connection between last and first card.
+
+Work Log:
+- Root cause: the Embla carousel with `loop: true` + `align: "start"` was leaving empty space on wrap-around because scroll snap positions at the edges didn't have enough slides to fill the viewport.
+- Fix: Added `containScroll: "trimSnaps"` to the Embla options. This trims scroll positions that would leave empty space at the edges, making the loop seamless.
+- Used the standard Embla gap pattern: `-ml-4` on the flex container + `pl-4` on each slide + responsive `basis-full / sm:basis-1/2 / lg:basis-1/3` for 1/2/3 slides per view. This is the Embla-recommended approach and works reliably with Tailwind v4.
+- Tried several alternative approaches that didn't work: (a) `gap` + inline `flexBasis` via JS state — the state didn't update reliably due to SSR hydration mismatch; (b) CSS class in globals.css (`va-slide` with media queries) — Tailwind v4 didn't include the class in the output even with `@layer components`; (c) `key` remount — caused Embla to lose its ref. All reverted in favor of the standard pattern + `trimSnaps`.
+- Verification: `bun run lint` → exit 0. Agent Browser tested on desktop (1440px) and mobile (375px):
+  • Desktop: 3 cards visible (Calendar Management, CRM Management, Social Media Management), no empty space.
+  • Mobile: 1 card per view, cycled through all 6 cards. Card 06 → Card 01 wrap is seamless — both cards visible during the transition with no empty gap. VLM confirmed: "card is fully filling the carousel viewport with no gap" on card 06, and during the 06→01 wrap both cards are visible side-by-side (normal transition, no empty space).
+
+Stage Summary:
+- 1 file edited (services-card.tsx). Added `containScroll: "trimSnaps"` to Embla options and used the standard `-ml-4` + `pl-4` + responsive `basis` gap pattern.
+- The VA services carousel now loops seamlessly: cards 1→2→3→4→5→6→1 with no empty space or gap at any point in the cycle, on both desktop and mobile.

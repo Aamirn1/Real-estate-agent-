@@ -106,10 +106,17 @@ export function AnimatedServiceCards({
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
     align: "start",
+    // trimSnaps removes scroll positions that would leave empty space at the
+    // edges — this is what makes the loop seamless (no gap on wrap-around).
+    containScroll: "trimSnaps",
     ...options,
   });
   const [selected, setSelected] = React.useState(0);
   const [snapCount, setSnapCount] = React.useState(0);
+
+  // Responsive slides-per-view handled by Tailwind responsive basis classes
+  // (basis-full / sm:basis-1/2 / lg:basis-1/3) + the standard Embla -ml-4/pl-4
+  // gap pattern. containScroll:"trimSnaps" + loop:true keep the loop seamless.
 
   // Track current slide
   const onSelect = React.useCallback(() => {
@@ -161,12 +168,7 @@ export function AnimatedServiceCards({
               <motion.div
                 key={item.id}
                 variants={slideVariants}
-                className={cn(
-                  // Responsive basis: 1 on mobile, 2 on sm, 3 on lg
-                  "min-w-0 shrink-0 grow-0 basis-full pl-4",
-                  "sm:basis-1/2",
-                  "lg:basis-1/3"
-                )}
+                className="min-w-0 shrink-0 grow-0 basis-full pl-4 sm:basis-1/2 lg:basis-1/3"
               >
                 <div
                   className={cn(
