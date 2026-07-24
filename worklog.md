@@ -916,3 +916,21 @@ Stage Summary:
 - 3 files created/edited: src/components/ui/3d-sliding-cards.tsx (new reusable component), src/app/globals.css (3D slider CSS), src/components/leadsphere/sections/AboutVaWorkflow.tsx (VirtualAssistantServices now uses FloatingCards).
 - The Virtual Assistant Services section on the home page now features a 3D sliding cards carousel: 6 service cards arranged in a fanned 3D stack, auto-advancing every 2.6s (2-3 second gap), with click-to-front interaction. The stage also slides vertically on page scroll (matching the reference animation).
 - The 3d-sliding-cards component is reusable at @/components/ui/3d-sliding-cards for any future 3D card carousel needs.
+
+---
+Task ID: 18
+Agent: main
+Task: Fix the invisible 3D sliding cards animation in the Virtual Assistant Services section, remove it, and replace with a new mobile-friendly animated card component (smaller cards on mobile so the animation looks good at every breakpoint).
+
+Work Log:
+- Investigated the broken 3D animation: the FloatingCards component's scroll handler applied the reference's `initialTransform` with `rotateZ(-120deg)` to the whole slider, which rotated the entire card fan 120° out of view. DOM check confirmed slider had a matrix3d transform with rotateZ(-120deg) and the cards were rendering at 456×430px (too large). VLM confirmed the stage area was "completely empty" — cards were rotated off-screen.
+- Created src/components/ui/services-card.tsx — a new AnimatedServiceCards component using framer-motion's useInView + staggered spring variants. Each card animates in on scroll (opacity 0→1, y 32→0, blur 8px→0px, scale 0.96→1, spring stiffness 260 / damping 26, stagger 0.08s). On hover: 3D tilt (rotateX 4°, rotateY -4°, scale 1.02, y -6) with transformPerspective 900 + preserve-3d. Includes the gradient border ring + inner-corner shadow (matching the site's other cards). Per-color theme tokens (electric/violet/cyan/gold).
+- Mobile-friendly responsive sizing: 1 column on mobile (gap-4), 2 on sm (gap-5), 3 on lg (gap-5). Card padding p-5 on mobile, p-6 on sm+. Icon 40×40px on mobile, 48×48px on sm+. Title text-base on mobile, text-lg on sm+. Description text-xs on mobile, text-sm on sm+. This makes the cards compact and readable on small screens (was too big before).
+- Replaced the VirtualAssistantServices function in AboutVaWorkflow.tsx: removed the FloatingCards + VaCardContent + VA_THEME, replaced with AnimatedServiceCards. Updated the import from FloatingCards to AnimatedServiceCards + AnimatedService type. Renamed VA_SERVICES `desc` field to `description` (matching the new component's type).
+- Verification: `bun run lint` → exit 0. Home page returns 200. Agent Browser DOM (desktop 1440px): 6 cards in a `grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3 lg:gap-5`, no floating-cards-stage, first card = "Customer Support". VLM desktop: "3 columns... cards show icons, titles, and descriptions... visible blue/teal gradient borders". VLM mobile (375px): "single column, 1 card per row... appropriately sized for mobile... readable... clean and mobile-friendly".
+
+Stage Summary:
+- 2 files created/edited: src/components/ui/services-card.tsx (new AnimatedServiceCards component), src/components/leadsphere/sections/AboutVaWorkflow.tsx (VA services section now uses AnimatedServiceCards instead of the broken FloatingCards).
+- The invisible 3D sliding cards animation (caused by rotateZ(-120deg) rotating cards off-screen) has been removed.
+- The Virtual Assistant Services section now uses a clean, mobile-friendly animated card grid: staggered spring scroll-reveal (blur→clear), 3D hover tilt, gradient borders, and responsive sizing (compact cards on mobile, full cards on desktop). Cards are visible and properly sized at every breakpoint.
+- The AnimatedServiceCards component is reusable at @/components/ui/services-card.

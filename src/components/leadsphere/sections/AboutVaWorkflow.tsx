@@ -28,7 +28,7 @@ import {
   SectionShell,
 } from "@/components/leadsphere/primitives";
 import { Reveal } from "@/components/leadsphere/Reveal";
-import { FloatingCards } from "@/components/ui/3d-sliding-cards";
+import { AnimatedServiceCards, type AnimatedService } from "@/components/ui/services-card";
 
 /* ============================================================
    ABOUT / WHO WE ARE / MISSION / VISION
@@ -252,151 +252,54 @@ export function AboutMission() {
 
 /* ============================================================
    VIRTUAL ASSISTANT SERVICES
-   3D sliding cards carousel — click any card (or wait for
-   auto-advance) to bring it to the front.
+   Mobile-friendly animated cards — staggered spring scroll-reveal
+   with 3D hover tilt. Cards shrink on mobile so the animation
+   reads well at every breakpoint.
    ============================================================ */
-const VA_SERVICES = [
+const VA_SERVICES: AnimatedService[] = [
   {
     id: 1,
     icon: Headset,
     title: "Customer Support",
-    desc: "Dedicated reps handle inbound inquiries, qualify prospects, and keep your clients informed at every stage.",
+    description: "Dedicated reps handle inbound inquiries, qualify prospects, and keep your clients informed at every stage.",
     color: "electric",
   },
   {
     id: 2,
     icon: PhoneCall,
     title: "Prospect Calling",
-    desc: "Personalized, human-only outreach to reconnect with prior contacts, schedule follow-ups, and book appointments.",
+    description: "Personalized, human-only outreach to reconnect with prior contacts, schedule follow-ups, and book appointments.",
     color: "violet",
   },
   {
     id: 3,
     icon: CalendarClock,
     title: "Calendar Management",
-    desc: "Never miss a meeting. Our assistants schedule, confirm, and coordinate your appointments end-to-end.",
+    description: "Never miss a meeting. Our assistants schedule, confirm, and coordinate your appointments end-to-end.",
     color: "cyan",
   },
   {
     id: 4,
     icon: Table2,
     title: "CRM Management",
-    desc: "From CRM setup to reporting and pipeline hygiene, we keep your data clean and your follow-ups on track.",
+    description: "From CRM setup to reporting and pipeline hygiene, we keep your data clean and your follow-ups on track.",
     color: "electric",
   },
   {
     id: 5,
     icon: Share2,
     title: "Social Media Management",
-    desc: "Consistent, on-brand content across your channels to keep you top-of-mind with sellers and buyers.",
+    description: "Consistent, on-brand content across your channels to keep you top-of-mind with sellers and buyers.",
     color: "violet",
   },
   {
     id: 6,
     icon: Globe,
     title: "Website Management",
-    desc: "Listing updates, landing pages, and performance tweaks handled, so your web presence always converts.",
+    description: "Listing updates, landing pages, and performance tweaks handled, so your web presence always converts.",
     color: "cyan",
   },
 ];
-
-const VA_THEME: Record<string, { text: string; iconWrap: string; bar: string; orb: string }> = {
-  electric: {
-    text: "text-electric",
-    iconWrap: "bg-electric/15 ring-1 ring-inset ring-electric/30",
-    bar: "bg-electric",
-    orb: "bg-electric/20",
-  },
-  violet: {
-    text: "text-violet",
-    iconWrap: "bg-violet/15 ring-1 ring-inset ring-violet/30",
-    bar: "bg-violet",
-    orb: "bg-violet/20",
-  },
-  cyan: {
-    text: "text-cyan",
-    iconWrap: "bg-cyan/15 ring-1 ring-inset ring-cyan/30",
-    bar: "bg-cyan",
-    orb: "bg-cyan/20",
-  },
-};
-
-/** The content rendered inside each 3D sliding card. */
-function VaCardContent({ item, active }: { item: typeof VA_SERVICES[number]; active: boolean }) {
-  const t = VA_THEME[item.color];
-  const Icon = item.icon;
-  const idx = String(item.id).padStart(2, "0");
-
-  return (
-    <div className="relative flex h-full w-full flex-col bg-white p-7">
-      {/* gradient border ring (matches other cards on the site) */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 rounded-[1.25rem]"
-        style={{
-          padding: 2,
-          background: "linear-gradient(135deg, rgba(37,99,235,0.7), rgba(56,189,248,0.5), rgba(20,184,166,0.7))",
-          WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
-          WebkitMaskComposite: "xor",
-          maskComposite: "exclude",
-        }}
-      />
-      {/* inner-corner gradient shadow for depth */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 rounded-[1.25rem]"
-        style={{
-          boxShadow:
-            "inset 0 0 30px 6px rgba(37,99,235,0.10), inset 0 0 0 1px rgba(15,23,42,0.06)",
-        }}
-      />
-
-      {/* corner accent glow */}
-      <div
-        aria-hidden
-        className={`pointer-events-none absolute -right-10 -top-10 h-28 w-28 rounded-full ${t.orb} opacity-60 blur-2xl`}
-      />
-
-      {/* icon + index */}
-      <div className="relative flex items-start justify-between">
-        <span
-          className={`flex h-12 w-12 items-center justify-center rounded-xl ${t.iconWrap}`}
-        >
-          <Icon className={`h-6 w-6 ${t.text}`} />
-        </span>
-        <span className="font-heading text-3xl font-bold text-black/15 tnum">
-          {idx}
-        </span>
-      </div>
-
-      {/* title */}
-      <h3 className="relative mt-5 font-heading text-lg font-semibold text-black">
-        {item.title}
-      </h3>
-
-      {/* description */}
-      <p className="relative mt-2.5 text-sm leading-relaxed text-black">
-        {item.desc}
-      </p>
-
-      {/* bottom accent bar — full width when active */}
-      <div className="relative mt-auto pt-5">
-        <div className="h-0.5 w-full bg-black/5">
-          <div
-            className={`h-0.5 ${active ? "w-full" : "w-10"} ${t.bar} transition-all duration-500`}
-          />
-        </div>
-      </div>
-
-      {/* active hint */}
-      {active && (
-        <span className="absolute bottom-3 right-4 text-[10px] font-semibold uppercase tracking-[0.15em] text-electric/60">
-          ● Active
-        </span>
-      )}
-    </div>
-  );
-}
 
 export function VirtualAssistantServices() {
   return (
@@ -412,17 +315,8 @@ export function VirtualAssistantServices() {
         description="Reduce your admin workload so you can focus on clients. Our virtual assistants handle the operational heavy lifting."
       />
 
-      {/* 3D sliding cards — click any card to bring it to the front.
-          Auto-advances every ~2.6s. */}
-      <div className="mt-6">
-        <FloatingCards
-          items={VA_SERVICES}
-          intervalMs={2600}
-          pauseOnHover
-          renderCard={(item, active) => (
-            <VaCardContent item={item as typeof VA_SERVICES[number]} active={active} />
-          )}
-        />
+      <div className="mt-10 sm:mt-12">
+        <AnimatedServiceCards items={VA_SERVICES} />
       </div>
     </SectionShell>
   );
