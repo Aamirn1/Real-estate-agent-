@@ -63,9 +63,7 @@ const INFO_CARDS: {
     color: "violet",
     label: "Phone",
     lines: [
-      { text: "(320) 331-0910", href: "tel:+13203310910" },
-      { text: "(320) 331-8501", href: "tel:+13203318501" },
-      { text: "(320) 331-3559", href: "tel:+13203313559" },
+      { text: "(645) 253-6830", href: "tel:+16452536830" },
     ],
   },
   {

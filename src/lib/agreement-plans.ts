@@ -5,7 +5,7 @@
    master template. Company = Opus Global Solution (not V Leads).
    ============================================================ */
 
-export type PlanKey = "Trial" | "Gold" | "Platinum";
+export type PlanKey = "Trial" | "Gold" | "Platinum" | "VA-Trial" | "VA-Gold" | "VA-Platinum";
 
 export type AgreementPlan = {
   key: PlanKey;
@@ -81,13 +81,66 @@ export const AGREEMENT_PLANS: Record<PlanKey, AgreementPlan> = {
     includesSMS: true,
     includesCallRecording: true,
   },
+  "VA-Trial": {
+    key: "VA-Trial",
+    name: "VA Trial Plan",
+    price: 599,
+    priceLabel: "$599",
+    referralFee: "N/A",
+    leadCount: 0,
+    durationDays: 30,
+    counties: "N/A",
+    signupFee: 599,
+    includesDigitalMarketing: false,
+    includesLiveTransfer: false,
+    includesDedicatedManager: false,
+    includesMonthlyReporting: false,
+    includesSMS: false,
+    includesCallRecording: false,
+  },
+  "VA-Gold": {
+    key: "VA-Gold",
+    name: "VA Gold Plan",
+    price: 899,
+    priceLabel: "$899",
+    referralFee: "N/A",
+    leadCount: 0,
+    durationDays: 30,
+    counties: "N/A",
+    badge: "Top Selling",
+    signupFee: 899,
+    includesDigitalMarketing: false,
+    includesLiveTransfer: false,
+    includesDedicatedManager: true,
+    includesMonthlyReporting: true,
+    includesSMS: false,
+    includesCallRecording: false,
+  },
+  "VA-Platinum": {
+    key: "VA-Platinum",
+    name: "VA Platinum Plan",
+    price: 1499,
+    priceLabel: "$1,499",
+    referralFee: "N/A",
+    leadCount: 0,
+    durationDays: 30,
+    counties: "N/A",
+    badge: "Premium",
+    signupFee: 1499,
+    includesDigitalMarketing: false,
+    includesLiveTransfer: false,
+    includesDedicatedManager: true,
+    includesMonthlyReporting: true,
+    includesSMS: true,
+    includesCallRecording: false,
+  },
 };
 
 export const COMPANY = {
   name: "Opus Global Solution",
-  legalName: "Opus Global Solution Services LLC",
+  legalName: "Opus Global Solution Services",
   email: "info@opusglobalsolution.com",
-  phones: ["(320) 331-0910", "(320) 331-8501", "(320) 331-3559"],
+  phones: ["(645) 253-6830"],
 };
 
 /** Build the sections of the agreement for a given plan. */

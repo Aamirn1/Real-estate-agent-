@@ -972,3 +972,38 @@ Work Log:
 Stage Summary:
 - 1 file edited (services-card.tsx). Added `containScroll: "trimSnaps"` to Embla options and used the standard `-ml-4` + `pl-4` + responsive `basis` gap pattern.
 - The VA services carousel now loops seamlessly: cards 1→2→3→4→5→6→1 with no empty space or gap at any point in the cycle, on both desktop and mobile.
+
+---
+Task ID: 21
+Agent: main
+Task: 16 UI changes — button animations, phone number update, border fixes, shimmer effects, AI assistant fix, navbar hover, page restructuring (services/about), new Contact + Virtual Assistance pages, pricing tagline fix, navbar sequence, agreement LLC removal.
+
+Work Log:
+- Task 1: Removed MagneticButton zoom from Hero buttons, replaced with motion.a whileHover scale 1.03 + shimmer sweep. Added shimmer to "Book a Consultation" (previously had none). Added whileHover scale to navbar Get Started.
+- Task 2: Updated ALL phone numbers across 13 files/18 locations from (320) 331-xxxx to (645) 253-6830. Collapsed multi-number arrays to single entry. Updated all tel: links, placeholders, JSON-LD, consent text.
+- Task 3: AiProcessMap "How we work" cards — set glow={false} on all 4 step GlassCards (desktop + mobile) to remove the animated gradient border that was rendering at different phases per card. All cards now share the same simple glass-card border.
+- Task 4: BeforeAfter arrow — added overflow-hidden + shine shimmer sweep span to the arrow's motion.div.
+- Task 5: SiteFooter + PricingFaqCtaFooter Subscribe buttons — added group relative overflow-hidden + shimmer sweep span. Both already had whileHover scale 1.03. Standard = scale 1.03 + shimmer.
+- Task 6: ScrollToTop — changed border from black/15 to electric/30, added electric glow to box-shadow (0_0_20px_-2px_rgba(37,99,235,0.5)) + stronger glow on hover.
+- Task 7: AI Assistant — root cause: ZAI.create() reads from .z-ai-config file which doesn't exist in production. Fix: added getZAI() helper that constructs ZAI from env vars (ZAI_BASE_URL, ZAI_API_KEY, ZAI_CHAT_ID, ZAI_USER_ID, ZAI_TOKEN) with fallback to ZAI.create() for local dev. Added env vars to .env. Updated system prompt with correct Opus Global Solution details + pricing. Tested: API returns proper responses.
+- Task 8: Navbar desktop links — added hover:text-[#2563EB] (dark) / hover:text-[#38BDF8] (transparent), plus an animated underline span that grows from w-0 to w-1/2 on hover. Active links show the underline permanently.
+- Task 9: Services page — removed WhyChooseUs and AiProcessMap imports/sections. Fixed VA card visibility issue: removed per-slide framer-motion slideVariants (opacity:0 hidden state was re-triggering when Embla repositioned slides for loop). Replaced motion.div slides with plain div slides. Container-level reveal only.
+- Task 10: About page — added showWhyDifferent prop to AboutMission (default true). About page passes showWhyDifferent={false}. Removed entire Contact section (CONTACT_ROWS, ContactForm import, SectionShell id="contact"). Removed unused imports (Mail, Phone, MapPin, Clock, ContactForm).
+- Task 11: Contact page — already exists at /contact with ContactFormSection. No changes needed (already has a form, contact info, and the correct phone number).
+- Task 12: Created /virtual-assistance page with PageHero (hero image), VirtualAssistantServices section, VA pricing packages section, and CTABanner. Added to Navbar NAV_LINKS + HERO_IMAGE_ROUTES.
+- Task 13: VA packages — Trial $599/mo (10hrs, basic admin), Gold $899/mo (20hrs, social media, priority), Platinum $1499/mo (40hrs, CRM, chat, unlimited). Added VA-Trial, VA-Gold, VA-Platinum to agreement-plans.ts, checkout API, and agreement page VALID_PLANS. CheckoutButton uses `VA-${plan.name}` to link to correct agreement.
+- Task 14: "Test the waters" → "Test for Realtors" in PricingFaqCtaFooter.tsx (home) + pricing/page.tsx.
+- Task 15: Navbar sequence updated to: Home, Services, Virtual Assistance, Testimonials, Pricing, Contact, Blog, About Us.
+- Task 16: Removed "LLC" from agreement-plans.ts (legalName), AgreementForm.tsx (4 consent checkboxes), api/agreement/submit/route.ts (Coinbase charge description). All now say "Opus Global Solution" or "Opus Global Solution Services" without "LLC".
+- Verification: `bun run lint` → exit 0. All routes return 200 (/, /services, /virtual-assistance, /about, /contact, /pricing, /agreement?plan=VA-Gold). AI assistant API tested and working.
+
+Stage Summary:
+- ~20 files edited/created. All 16 tasks completed.
+- Button standard: whileHover scale 1.03 + shimmer sweep (Hero, Navbar, Footer Subscribe, BeforeAfter arrow).
+- All phone numbers → (645) 253-6830. All "LLC" removed from agreement. Trial tagline → "Test for Realtors".
+- Navbar: 8 links in new sequence, blue hover text + animated underline.
+- Services page: Why Choose Us + Our Process removed. VA card visibility fixed (removed per-slide framer-motion that conflicted with Embla loop).
+- About page: Why We Are Different + Contact section removed.
+- New /virtual-assistance page with VA services + 3 monthly pricing packages ($599/$899/$1499).
+- AI Assistant fixed for production (env vars instead of .z-ai-config file).
+- ScrollToTop has electric glow for white-bg visibility.

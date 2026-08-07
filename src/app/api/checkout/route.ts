@@ -31,6 +31,9 @@ const ALLOWED_PLANS: Record<string, Plan> = {
   Trial: { name: "Trial Plan", price: "$299", period: "One-Time · 90 Days Setup" },
   Gold: { name: "Gold Plan", price: "$599", period: "One-Time · 180 Days Setup" },
   Platinum: { name: "Platinum Plan", price: "$1199", period: "One-Time · 365 Days Setup" },
+  "VA-Trial": { name: "VA Trial Plan", price: "$599", period: "Per Month" },
+  "VA-Gold": { name: "VA Gold Plan", price: "$899", period: "Per Month" },
+  "VA-Platinum": { name: "VA Platinum Plan", price: "$1499", period: "Per Month" },
 };
 
 function parseAmount(price: string): number {

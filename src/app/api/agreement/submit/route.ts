@@ -88,7 +88,7 @@ export async function POST(req: NextRequest) {
 
     const chargePayload = {
       name: `${plan.name} — Sign-Up`,
-      description: `${plan.name} sign-up fee (${plan.priceLabel}). ${plan.referralFee} referral fee on closings. ${plan.leadCount} leads over ${plan.durationDays} days. Opus Global Solution Services LLC.`,
+      description: `${plan.name} sign-up fee (${plan.priceLabel}). ${plan.referralFee} referral fee on closings. ${plan.leadCount} leads over ${plan.durationDays} days. Opus Global Solution Services.`,
       pricing_type: "fixed_price",
       local_price: {
         amount: plan.price.toFixed(2),

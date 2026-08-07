@@ -34,7 +34,7 @@ import { AnimatedServiceCards, type AnimatedService } from "@/components/ui/serv
    ABOUT / WHO WE ARE / MISSION / VISION
    (follows vleadservice.com "Who We Are" + "Our Mission" + "Our Vision")
    ============================================================ */
-export function AboutMission() {
+export function AboutMission({ showWhyDifferent = true }: { showWhyDifferent?: boolean }) {
   return (
     <SectionShell id="about">
       <SectionHeading
@@ -166,6 +166,7 @@ export function AboutMission() {
       </Reveal>
 
       {/* ============ NEW BLOCK 2: Why We Are Different ============ */}
+      {showWhyDifferent && (
       <div className="relative mt-24 overflow-hidden rounded-3xl border border-black/15 shadow-lg md:mt-32">
         <img
           src="/sections/why-different-bg.jpg"
@@ -246,6 +247,7 @@ export function AboutMission() {
         </div>
         </div>
       </div>
+      )}
     </SectionShell>
   );
 }

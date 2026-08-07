@@ -9,8 +9,10 @@ import { cn } from "@/lib/utils";
 const NAV_LINKS = [
   { label: "Home", href: "/" },
   { label: "Services", href: "/services" },
+  { label: "Virtual Assistance", href: "/virtual-assistance" },
   { label: "Testimonials", href: "/testimonials" },
   { label: "Pricing", href: "/pricing" },
+  { label: "Contact", href: "/contact" },
   { label: "Blog", href: "/blog" },
   { label: "About Us", href: "/about" },
 ];
@@ -20,8 +22,10 @@ const NAV_LINKS = [
 // and only switches to the solid glass background once the user scrolls.
 const HERO_IMAGE_ROUTES = [
   "/services",
+  "/virtual-assistance",
   "/testimonials",
   "/pricing",
+  "/contact",
   "/blog",
   "/about",
   "/get-started",
@@ -80,17 +84,26 @@ export function Navbar() {
                 key={link.href}
                 href={link.href}
                 className={cn(
-                  "rounded-lg px-3.5 py-2 text-sm font-medium transition-colors",
+                  "group relative rounded-lg px-3.5 py-2 text-sm font-medium transition-colors",
                   useDark
                     ? isActive
                       ? "text-[#2563EB]"
-                      : "text-black hover:text-black"
+                      : "text-black hover:text-[#2563EB]"
                     : isActive
                       ? "text-[#38BDF8]"
-                      : "text-white/90 hover:text-white"
+                      : "text-white/90 hover:text-[#38BDF8]"
                 )}
               >
                 {link.label}
+                {/* underline line below text on hover/active */}
+                <span
+                  className={cn(
+                    "absolute bottom-0.5 left-1/2 h-0.5 -translate-x-1/2 rounded-full bg-[#2563EB] transition-all duration-300",
+                    isActive
+                      ? "w-1/2 opacity-100"
+                      : "w-0 opacity-0 group-hover:w-1/2 group-hover:opacity-100"
+                  )}
+                />
               </a>
             );
           })}
@@ -98,13 +111,15 @@ export function Navbar() {
 
         {/* Desktop CTAs */}
         <div className="hidden items-center gap-2 md:flex">
-          <a
+          <motion.a
             href="/get-started"
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
             className="group relative overflow-hidden rounded-xl bg-gradient-to-r from-[#2563EB] to-[#38BDF8] px-4 py-2 text-sm font-semibold text-white shadow-[0_0_24px_-6px_rgba(37,99,235,0.7)] transition-all hover:shadow-[0_0_30px_-4px_rgba(56,189,248,0.8)]"
           >
             <span className="relative z-10">Get Started</span>
             <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/25 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
-          </a>
+          </motion.a>
         </div>
 
         {/* Mobile toggle */}

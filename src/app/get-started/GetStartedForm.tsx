@@ -154,10 +154,10 @@ export function GetStartedForm() {
                   Call Us
                 </p>
                 <a
-                  href="tel:+13203310910"
+                  href="tel:+16452536830"
                   className="tnum text-sm font-medium text-white transition-colors hover:text-violet"
                 >
-                  (320) 331-0910
+                  (645) 253-6830
                 </a>
               </div>
             </div>

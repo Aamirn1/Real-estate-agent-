@@ -100,9 +100,11 @@ export function BeforeAfter() {
             whileInView={{ scale: 1, rotate: 0 }}
             viewport={{ once: true }}
             transition={{ type: "spring", stiffness: 200, damping: 14, delay: 0.2 }}
-            className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-[#2563EB] to-[#38BDF8] shadow-[0_0_30px_-4px_rgba(37,99,235,0.7)] lg:h-14 lg:w-14"
+            className="group relative flex h-12 w-12 items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-[#2563EB] to-[#38BDF8] shadow-[0_0_30px_-4px_rgba(37,99,235,0.7)] lg:h-14 lg:w-14"
           >
-            <ArrowRight className="h-5 w-5 text-white lg:rotate-0" />
+            <ArrowRight className="relative z-10 h-5 w-5 text-white lg:rotate-0" />
+            {/* shine shimmer sweep */}
+            <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/40 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
           </motion.div>
         </div>
 

@@ -81,19 +81,14 @@ const THEME: Record<string, {
   },
 };
 
-/* Stagger container + child variants for scroll-reveal */
+/* Stagger container for scroll-reveal — applied to the wrapper, NOT the
+   individual slides. This prevents framer-motion from re-triggering opacity
+   animations when Embla repositions slides for the loop. */
 const containerVariants: Variants = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.06 } },
-};
-
-const slideVariants: Variants = {
-  hidden: { opacity: 0, y: 28, filter: "blur(8px)" },
+  hidden: { opacity: 0 },
   show: {
     opacity: 1,
-    y: 0,
-    filter: "blur(0px)",
-    transition: { type: "spring", stiffness: 260, damping: 26 },
+    transition: { duration: 0.5, ease: "easeOut" },
   },
 };
 
@@ -165,9 +160,8 @@ export function AnimatedServiceCards({
             const Icon = item.icon;
             const idx = String(i + 1).padStart(2, "0");
             return (
-              <motion.div
+              <div
                 key={item.id}
-                variants={slideVariants}
                 className="min-w-0 shrink-0 grow-0 basis-full pl-4 sm:basis-1/2 lg:basis-1/3"
               >
                 <div
@@ -240,7 +234,7 @@ export function AnimatedServiceCards({
                   {/* accent bar — same as Why Choose Us (h-0.5 w-10, grows to w-20 on hover) */}
                   <div className={cn("relative mt-4 h-0.5 w-10 rounded-full transition-all duration-300 group-hover:w-20", t.bar)} />
                 </div>
-              </motion.div>
+              </div>
             );
           })}
         </div>

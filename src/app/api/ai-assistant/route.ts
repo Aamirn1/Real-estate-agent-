@@ -3,23 +3,24 @@ import ZAI from "z-ai-web-dev-sdk";
 
 export const runtime = "nodejs";
 
-const SYSTEM_PROMPT = `You are the "Opus Assistant", the smart sales assistant for Opus Solutions — a premium real estate lead generation and workflow automation platform.
+const SYSTEM_PROMPT = `You are the "Opus Assistant", the smart sales assistant for Opus Global Solution — a premium real estate marketing consulting and workflow automation service for licensed real estate professionals.
 
-Your role: qualify leads and answer questions from real estate agents and brokers who are evaluating the platform. Demonstrate how smart lead generation and outreach automation work.
+Your role: qualify leads and answer questions from real estate agents and brokers who are evaluating the service. Demonstrate how marketing consulting, outreach support, and CRM services work.
 
 Product facts you can share:
-- Opus Solutions generates high-quality seller leads using 250M+ property records and smart motivation scoring.
-- Features: Lead Discovery, Expired Listings, FSBO Leads, Geo Prospecting, Skip Tracing, Smart CRM, Power Dialer, Email/SMS automation, Smart Follow-up, Analytics, Team Collaboration. Also offers Virtual Assistant services (Customer Support, Prospect Calling, Calendar Management, CRM Management, Social Media Management, Website Management).
-- Pricing: Starter $49/mo, Professional $149/mo, Enterprise (custom). 14-day free trial, no credit card.
-- 50,000+ active agents, 100+ MLS integrations, 92% conversion improvement.
-- The team provides human-verified outreach, summarizes conversations, suggests best call times, drafts emails, and qualifies leads.
+- Opus Global Solution provides marketing consulting, CRM support, outreach support, virtual assistance, digital marketing, appointment coordination, and reporting & analytics for real estate professionals.
+- Virtual Assistant services include: Customer Support, Prospect Calling, Calendar Management, CRM Management, Social Media Management, Website Management.
+- Pricing: Trial $299 (one-time, 90 days), Gold $599 (one-time, 180 days), Platinum $1,199 (one-time, 365 days). Referral fees apply on successful closings.
+- Virtual Assistance packages: Trial $599/mo, Gold $899/mo, Platinum $1,499/mo.
+- Human-verified, consent-based outreach. TCPA, DNC, CAN-SPAM, CCPA/CPRA, and Fair Housing Act compliant.
+- Contact: info@opusglobalsolution.com or (645) 253-6830.
 
 Guidelines:
 - Be concise, friendly, and consultative. Keep replies under 120 words.
 - When a visitor shares info (team size, market, budget), qualify them and recommend the right plan.
-- Use a touch of real estate domain vocabulary (listings, pipeline, MLS, motivated sellers, FSBO).
-- If asked something outside real estate / Opus Solutions, gently steer back.
-- Never invent pricing or features beyond what's listed. If unsure, suggest booking a demo.
+- Use a touch of real estate domain vocabulary (listings, pipeline, motivated sellers, CRM, outreach).
+- If asked something outside real estate / Opus Global Solution, gently steer back.
+- Never invent pricing or features beyond what's listed. If unsure, suggest booking a consultation.
 - Do not use markdown headings. Use short paragraphs or bullet points sparingly.`;
 
 interface ChatMessage {
@@ -31,6 +32,25 @@ interface ChatMessage {
 const sessions = new Map<string, ChatMessage[]>();
 const MAX_SESSIONS = 200;
 const MAX_MESSAGES = 12;
+
+/** Build a ZAI instance from environment variables (works in production
+ *  without the .z-ai-config file). Falls back to ZAI.create() for local dev. */
+async function getZAI() {
+  const baseUrl = process.env.ZAI_BASE_URL;
+  const apiKey = process.env.ZAI_API_KEY;
+  if (baseUrl && apiKey) {
+    // Construct directly — bypasses the .z-ai-config file lookup
+    return new ZAI({
+      baseUrl,
+      apiKey,
+      chatId: process.env.ZAI_CHAT_ID,
+      userId: process.env.ZAI_USER_ID,
+      token: process.env.ZAI_TOKEN,
+    } as any);
+  }
+  // Fallback: use config file (local dev / sandbox)
+  return ZAI.create();
+}
 
 export async function POST(req: NextRequest) {
   try {
@@ -52,14 +72,13 @@ export async function POST(req: NextRequest) {
     // Build conversation: system + stored history + incoming history + new message
     let convo: ChatMessage[] = sessions.get(sessionId) || [];
     if (Array.isArray(history) && history.length) {
-      // Use provided history if session empty
       convo = history
         .filter((h) => h && (h.role === "user" || h.role === "assistant") && typeof h.content === "string")
         .slice(-MAX_MESSAGES);
     }
     convo = [...convo, { role: "user", content: userMsg }].slice(-MAX_MESSAGES);
 
-    const zai = await ZAI.create();
+    const zai = await getZAI();
     const completion = await zai.chat.completions.create({
       messages: [
         { role: "assistant", content: SYSTEM_PROMPT },
@@ -97,7 +116,7 @@ export async function POST(req: NextRequest) {
       {
         error: "The assistant is temporarily unavailable.",
         reply:
-          "I'm having trouble connecting right now. Please try again in a moment, or book a demo and our team will reach out.",
+          "I'm having trouble connecting right now. Please try again in a moment, or contact us at (645) 253-6830 and our team will reach out.",
       },
       { status: 200 }
     );
@@ -107,10 +126,13 @@ export async function POST(req: NextRequest) {
 function nextSuggestions(msg: string): string[] {
   const m = msg.toLowerCase();
   if (m.includes("price") || m.includes("cost") || m.includes("plan")) {
-    return ["What's included in Professional?", "Do you offer team discounts?", "Book a demo"];
+    return ["What's included in the Gold plan?", "Do you offer team discounts?", "Book a consultation"];
   }
-  if (m.includes("lead") || m.includes("seller") || m.includes("fsbo")) {
-    return ["How accurate is the smart scoring?", "What MLS areas do you cover?", "Show me the ROI"];
+  if (m.includes("lead") || m.includes("seller") || m.includes("outreach")) {
+    return ["How does your outreach work?", "What areas do you cover?", "Show me the ROI"];
   }
-  return ["How does Smart Lead Discovery work?", "What does it cost?", "Can it integrate with my CRM?"];
+  if (m.includes("virtual") || m.includes("assistant") || m.includes("va")) {
+    return ["What does a VA do?", "How much does VA service cost?", "Can I get a dedicated VA?"];
+  }
+  return ["What services do you offer?", "What does it cost?", "Can you integrate with my CRM?"];
 }

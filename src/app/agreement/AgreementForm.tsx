@@ -154,7 +154,7 @@ export function AgreementForm({ plan }: Props) {
             By checking this box, I confirm that I have read and understood the{" "}
             <a href="/terms" className="text-electric hover:underline">Terms and Conditions</a> and{" "}
             <a href="/privacy-policy" className="text-electric hover:underline">Privacy Policy</a>{" "}
-            available on the Opus Global Solution Services LLC website, and agree to be bound by them.
+            available on the Opus Global Solution Services website, and agree to be bound by them.
           </ConsentRow>
 
           <ConsentRow
@@ -162,7 +162,7 @@ export function AgreementForm({ plan }: Props) {
             onChange={() => toggleConsent("payment")}
             icon={CreditCard}
           >
-            By checking this box, I authorize Opus Global Solution LLC to process payment for the selected plan or service through its secure, PCI-compliant payment processor. I confirm that I have reviewed and accepted the Agreement, Scope of Services, Payment Terms, and Refund Policy. I understand that my card details are entered directly on the processor's secure platform and are not stored or handled by Opus Global Solution LLC.
+            By checking this box, I authorize Opus Global Solution to process payment for the selected plan or service through its secure, PCI-compliant payment processor. I confirm that I have reviewed and accepted the Agreement, Scope of Services, Payment Terms, and Refund Policy. I understand that my card details are entered directly on the processor's secure platform and are not stored or handled by Opus Global Solution.
           </ConsentRow>
 
           <ConsentRow
@@ -170,7 +170,7 @@ export function AgreementForm({ plan }: Props) {
             onChange={() => toggleConsent("sms")}
             icon={MessageSquare}
           >
-            By checking this box, I agree to receive SMS notifications and alerts from Opus Global Solution LLC. Message frequency varies. Message &amp; data rates may apply. Text HELP to (320) 331-0910, (320) 331-8501, or (320) 331-3559 for assistance. Reply STOP to unsubscribe anytime.
+            By checking this box, I agree to receive SMS notifications and alerts from Opus Global Solution. Message frequency varies. Message &amp; data rates may apply. Text HELP to (645) 253-6830 for assistance. Reply STOP to unsubscribe anytime.
           </ConsentRow>
 
           <ConsentRow
@@ -178,7 +178,7 @@ export function AgreementForm({ plan }: Props) {
             onChange={() => toggleConsent("marketing")}
             icon={Megaphone}
           >
-            I consent to receive occasional marketing messages from Opus Global Solution LLC. Reply STOP to unsubscribe anytime. Learn more on our{" "}
+            I consent to receive occasional marketing messages from Opus Global Solution. Reply STOP to unsubscribe anytime. Learn more on our{" "}
             <a href="/privacy-policy" className="text-electric hover:underline">Privacy Policy</a> page and{" "}
             <a href="/terms" className="text-electric hover:underline">Terms and Conditions</a>.
           </ConsentRow>

@@ -363,7 +363,7 @@ function ProcessTimelineSection() {
                 className="flex flex-col items-center text-center"
               >
                 <StepNumber n={s.n} />
-                <GlassCard sheen className="mt-6 w-full p-4">
+                <GlassCard sheen glow={false} className="mt-6 w-full p-4">
                   <s.icon className="mx-auto mb-3 h-5 w-5 text-cyan" />
                   <h3 className="font-heading text-sm font-semibold sm:text-base">
                     {s.title}
@@ -409,7 +409,7 @@ function ProcessTimelineSection() {
                 <div className="absolute left-0 top-0">
                   <StepNumber n={s.n} />
                 </div>
-                <GlassCard sheen className="p-4">
+                <GlassCard sheen glow={false} className="p-4">
                   <div className="flex items-center gap-2">
                     <s.icon className="h-4 w-4 text-cyan" />
                     <h3 className="font-heading text-sm font-semibold">

@@ -65,7 +65,7 @@ const PLANS: Plan[] = [
     name: "Trial",
     price: "$299",
     period: "One-Time · 90 Days Setup",
-    tagline: "Test the waters",
+    tagline: "Test for Realtors",
     cta: "Get Started",
     ctaVariant: "outline",
     features: [
@@ -248,7 +248,7 @@ const SOCIALS = [
 
 const CONTACT_INFO = {
   email: "info@opusglobalsolution.com",
-  phones: ["(320) 331-0910", "(320) 331-8501", "(320) 331-3559"],
+  phones: ["(645) 253-6830"],
   addressLines: ["418 Broadway, Ste. R", "Albany, NY 12207", "United States"],
   hours: "10:00 A.M. to 08:00 P.M (EST)",
 };
@@ -643,7 +643,7 @@ function ContactSection() {
                   <Input
                     id="phone"
                     type="tel"
-                    placeholder="(320) 331-0910"
+                    placeholder="(645) 253-6830"
                     className="h-11 rounded-lg border-black/15 bg-black/5 text-black placeholder:text-black focus-visible:border-electric/50 focus-visible:ring-electric/20"
                   />
                 </div>
@@ -881,10 +881,11 @@ function Footer() {
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
                 type="submit"
-                className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-[linear-gradient(120deg,#2563EB,#38BDF8)] px-5 py-3 text-sm font-semibold text-white shadow-[0_0_25px_-8px_rgba(37,99,235,0.8)] transition-shadow hover:shadow-[0_0_35px_-6px_rgba(56,189,248,0.85)]"
+                className="group relative inline-flex shrink-0 items-center justify-center gap-2 overflow-hidden rounded-full bg-[linear-gradient(120deg,#2563EB,#38BDF8)] px-5 py-3 text-sm font-semibold text-white shadow-[0_0_25px_-8px_rgba(37,99,235,0.8)] transition-shadow hover:shadow-[0_0_35px_-6px_rgba(56,189,248,0.85)]"
               >
-                <Send className="h-4 w-4" />
-                Subscribe
+                <Send className="relative z-10 h-4 w-4" />
+                <span className="relative z-10">Subscribe</span>
+                <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/25 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
               </motion.button>
             </form>
             <p className="text-xs text-black lg:max-w-sm lg:text-right">

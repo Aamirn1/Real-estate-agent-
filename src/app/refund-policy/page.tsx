@@ -59,7 +59,7 @@ const SECTIONS: RefundSection[] = [
     body: "If you have any questions about this Refund Policy, please contact us:",
     bullets: [
       "Email: info@opussolutions.com",
-      "Phone: (320) 331-0910",
+      "Phone: (645) 253-6830",
       "Address: 418 Broadway, Ste. R, Albany, NY 12207, United States",
     ],
   },
@@ -145,10 +145,10 @@ export default function RefundPolicyPage() {
                 <div className="flex items-center gap-3">
                   <Phone className="h-4 w-4 text-violet" />
                   <a
-                    href="tel:+13203310910"
+                    href="tel:+16452536830"
                     className="text-sm text-black transition-colors hover:text-black tnum"
                   >
-                    (320) 331-0910
+                    (645) 253-6830
                   </a>
                 </div>
               </div>

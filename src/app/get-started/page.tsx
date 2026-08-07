@@ -31,7 +31,7 @@ export default function GetStartedPage() {
 
       <CTABanner
         title="Prefer to talk to a human?"
-        subtitle="Call us at (320) 331-0910 or email info@opusglobalsolution.com — we reply within one business day."
+        subtitle="Call us at (645) 253-6830 or email info@opusglobalsolution.com — we reply within one business day."
       />
     </SiteChrome>
   );

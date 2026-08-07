@@ -95,7 +95,7 @@ const SECTIONS: TermSection[] = [
     body: "If you have any questions about these Terms & Conditions, please contact us:",
     bullets: [
       "Email: info@opussolutions.com",
-      "Phone: (320) 331-0910",
+      "Phone: (645) 253-6830",
     ],
   },
 ];
@@ -180,10 +180,10 @@ export default function TermsPage() {
                 <div className="flex items-center gap-3">
                   <Phone className="h-4 w-4 text-violet" />
                   <a
-                    href="tel:+13203310910"
+                    href="tel:+16452536830"
                     className="text-sm text-black transition-colors hover:text-black tnum"
                   >
-                    (320) 331-0910
+                    (645) 253-6830
                   </a>
                 </div>
               </div>

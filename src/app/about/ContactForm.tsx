@@ -87,7 +87,7 @@ export function ContactForm() {
           id="contact-phone"
           name="phone"
           type="tel"
-          placeholder="(320) 331-0910"
+          placeholder="(645) 253-6830"
           className="border-black/15 bg-black/5 text-black placeholder:text-black focus-visible:border-electric/60"
         />
       </div>

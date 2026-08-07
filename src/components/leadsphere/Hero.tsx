@@ -5,8 +5,8 @@ import {
   ArrowRight,
   PlayCircle,
 } from "lucide-react";
+import { motion } from "framer-motion";
 import { AnimatedBackground } from "@/components/leadsphere/AnimatedBackground";
-import { MagneticButton } from "@/components/leadsphere/MagneticButton";
 import { Typewriter } from "@/components/leadsphere/Typewriter";
 
 export function Hero() {
@@ -70,26 +70,27 @@ export function Hero() {
           <div
             className="mt-9 flex flex-row items-center gap-2.5"
           >
-            <MagneticButton>
-              <a
-                href="/get-started"
-                className="group relative inline-flex items-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-electric to-violet px-5 py-3 text-sm font-semibold text-white shadow-[0_0_30px_-6px_rgba(59,130,246,0.7)] transition-all hover:shadow-[0_0_40px_-4px_rgba(139,92,246,0.85)]"
-              >
-                <span className="relative z-10">Get Started</span>
-                <ArrowRight className="relative z-10 h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-                <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/30 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
-              </a>
-            </MagneticButton>
-            <MagneticButton strength={0.3}>
-              <a
-                href="/contact"
-                className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-5 py-3 text-sm font-semibold text-white backdrop-blur transition-all hover:border-white/25 hover:bg-white/10"
-              >
-                <PlayCircle className="h-4 w-4 text-cyan" />
-                <span className="hidden xs:inline sm:inline">Book a Consultation</span>
-                <span className="xs:hidden sm:hidden">Book Demo</span>
-              </a>
-            </MagneticButton>
+            <motion.a
+              href="/get-started"
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+              className="group relative inline-flex items-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-electric to-violet px-5 py-3 text-sm font-semibold text-white shadow-[0_0_30px_-6px_rgba(59,130,246,0.7)] transition-all hover:shadow-[0_0_40px_-4px_rgba(139,92,246,0.85)]"
+            >
+              <span className="relative z-10">Get Started</span>
+              <ArrowRight className="relative z-10 h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+              <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/30 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
+            </motion.a>
+            <motion.a
+              href="/contact"
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+              className="group relative inline-flex items-center gap-2 overflow-hidden rounded-xl border border-white/15 bg-white/5 px-5 py-3 text-sm font-semibold text-white backdrop-blur transition-all hover:border-white/25 hover:bg-white/10"
+            >
+              <PlayCircle className="relative z-10 h-4 w-4 text-cyan" />
+              <span className="relative z-10 hidden xs:inline sm:inline">Book a Consultation</span>
+              <span className="relative z-10 xs:hidden sm:hidden">Book Demo</span>
+              <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
+            </motion.a>
           </div>
 
           <div

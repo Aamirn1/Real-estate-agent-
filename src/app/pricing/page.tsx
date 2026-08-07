@@ -52,7 +52,7 @@ const PLANS: Plan[] = [
     name: "Trial",
     price: "$299",
     period: "One-Time · 90 Days Setup",
-    tagline: "Test the waters",
+    tagline: "Test for Realtors",
     features: [
       { text: "20% Referral Fee", included: true },
       { text: "6 Qualified, Pre-screened Introductions", included: true },

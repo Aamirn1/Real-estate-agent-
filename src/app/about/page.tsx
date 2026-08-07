@@ -13,12 +13,7 @@ import {
   SectionShell,
 } from "@/components/leadsphere/primitives";
 import { Reveal } from "@/components/leadsphere/Reveal";
-import { ContactForm } from "./ContactForm";
 import {
-  Mail,
-  Phone,
-  MapPin,
-  Clock,
   Users,
   Network,
   TrendingUp,
@@ -77,29 +72,6 @@ const STATS: {
   { icon: Database, value: 250, suffix: "M+", label: "Lead Records", color: "gold" },
 ];
 
-const CONTACT_ROWS: { icon: typeof Mail; label: string; value: string }[] = [
-  {
-    icon: Mail,
-    label: "Email",
-    value: "info@opussolutions.com",
-  },
-  {
-    icon: Phone,
-    label: "Phone",
-    value: "(320) 331-0910  ·  (320) 331-8501  ·  (320) 331-3559",
-  },
-  {
-    icon: MapPin,
-    label: "Office",
-    value: "418 Broadway, Ste. R, Albany, NY 12207, United States",
-  },
-  {
-    icon: Clock,
-    label: "Hours",
-    value: "10:00 A.M. to 08:00 P.M (EST)",
-  },
-];
-
 export default function AboutPage() {
   return (
     <SiteChrome withBackground={false} flushTop>
@@ -115,8 +87,8 @@ export default function AboutPage() {
         description="We provide professional marketing and administrative support for real estate professionals. Our mission is to help licensed agents and brokerages stay organized, save time, and grow stronger businesses."
       />
 
-      {/* 1. Who We Are (Mission / Vision / Who We Serve) + Benefits + Why Different + Achievements banner */}
-      <AboutMission />
+      {/* 1. Who We Are (Mission / Vision / Who We Serve) + Benefits (Why We Are Different removed from About page) */}
+      <AboutMission showWhyDifferent={false} />
 
       {/* Team image */}
       <section className="relative w-full px-5 pb-4 sm:px-8">
@@ -136,7 +108,7 @@ export default function AboutPage() {
       {/* 3. Traditional vs Opus-powered comparison */}
       <BeforeAfter />
 
-      {/* 4. NEW | Our Achievements / Stats grid */}
+      {/* 4. Our Achievements / Stats grid */}
       <SectionShell id="achievements">
         <SectionHeading
           eyebrow="Our Achievements"
@@ -189,69 +161,7 @@ export default function AboutPage() {
         </Reveal>
       </SectionShell>
 
-      {/* 5. NEW | Contact section */}
-      <SectionShell id="contact">
-        <SectionHeading
-          eyebrow="Contact"
-          title="Let's do great work together"
-          description="Tell us about your goals and we'll show you how Opus Global Solution can fit into your workflow."
-        />
-
-        <div className="mt-12 grid gap-5 lg:grid-cols-2">
-          {/* LEFT | contact info */}
-          <Reveal>
-            <GlassCard strong className="flex h-full flex-col p-7 sm:p-8">
-              <h3 className="font-heading text-2xl font-semibold text-black">
-                Reach out directly
-              </h3>
-              <p className="mt-3 text-sm leading-relaxed text-black">
-                Prefer to skip the form? Use any of the channels below | our team
-                responds within one business day.
-              </p>
-
-              <div className="mt-8 flex flex-col gap-5">
-                {CONTACT_ROWS.map((row) => {
-                  const Icon = row.icon;
-                  return (
-                    <div key={row.label} className="flex items-start gap-4">
-                      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-black/5 ring-1 ring-white/10">
-                        <Icon className="h-5 w-5 text-electric" />
-                      </span>
-                      <div className="flex flex-col gap-0.5">
-                        <span className="text-xs font-medium uppercase tracking-wider text-black">
-                          {row.label}
-                        </span>
-                        <span className="text-sm leading-relaxed text-black">
-                          {row.value}
-                        </span>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-
-              <div className="mt-auto pt-8">
-                <div className="rounded-xl border border-black/15 bg-white/[0.03] p-4">
-                  <p className="text-xs leading-relaxed text-black">
-                    Opus Global Solution is a marketing consulting and support company.
-                    We do not act as a brokerage, list or sell property, or
-                    resell leads.
-                  </p>
-                </div>
-              </div>
-            </GlassCard>
-          </Reveal>
-
-          {/* RIGHT | contact form (client component) */}
-          <Reveal delay={0.08}>
-            <GlassCard strong className="h-full p-0">
-              <ContactForm />
-            </GlassCard>
-          </Reveal>
-        </div>
-      </SectionShell>
-
-      {/* 6. Closing CTA */}
+      {/* 5. Closing CTA */}
       <CTABanner
         title="Partner with Opus Global Solution"
         subtitle="Long-term support, documented workflows, and a team that scales with your goals."

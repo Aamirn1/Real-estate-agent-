@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     "Review and sign the service agreement for your selected plan, then proceed to secure payment.",
 };
 
-const VALID_PLANS: PlanKey[] = ["Trial", "Gold", "Platinum"];
+const VALID_PLANS: PlanKey[] = ["Trial", "Gold", "Platinum", "VA-Trial", "VA-Gold", "VA-Platinum"];
 
 export default function AgreementPage({
   searchParams,
