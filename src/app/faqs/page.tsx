@@ -16,8 +16,7 @@ import { ChevronDown } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "FAQs | Real Estate Marketing Services | Opus Global Solution",
-  description:
-    "Find answers to commonly asked questions about Opus Global Solution' services, CRM support, marketing, scheduling, pricing, and compliance.",
+  description: "Find answers about Opus Global Solution's real estate marketing services, CRM support, outreach compliance, pricing, virtual assistants, and cancellation policy.",
   alternates: { canonical: "https://opusglobalsolution.com/faqs" },
 };
 
@@ -143,6 +142,25 @@ export default function FaqsPage() {
       <CTABanner
         title="Still have questions?"
         subtitle="Our team replies within a few hours, 7 days a week. Reach out and we'll help."
+      />
+
+      {/* FAQPage structured data for Google rich snippets */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: FAQS.map((faq) => ({
+              "@type": "Question",
+              name: faq.q,
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: faq.a,
+              },
+            })),
+          }),
+        }}
       />
     </SiteChrome>
   );

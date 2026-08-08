@@ -56,7 +56,7 @@ export function PageHero({
           <div className="absolute inset-0 z-0">
             <img
               src={heroImage}
-              alt=""
+              alt="Real estate professional home — Opus Global Solution marketing support"
               aria-hidden
               className="h-full w-full object-cover"
               loading="lazy"

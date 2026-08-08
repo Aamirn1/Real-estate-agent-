@@ -12,8 +12,7 @@ import { Star, BadgeCheck } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Client Testimonials | Real Estate Marketing Success | Opus Global Solution",
-  description:
-    "Hear directly from real estate professionals who have enhanced their efficiency and grown their businesses with Opus Global Solution.",
+  description: "Real estate agents share how Opus Global Solution improved conversion rates, saved hours weekly, and grew their pipelines with verified outreach and CRM support.",
   alternates: { canonical: "https://opusglobalsolution.com/testimonials" },
 };
 

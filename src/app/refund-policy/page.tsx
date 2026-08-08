@@ -11,7 +11,7 @@ import { Receipt, Mail, Phone, MapPin } from "lucide-react";
 export const metadata: Metadata = {
   title: "Refund Policy | Opus Global Solution",
   description:
-    "Our policy on refunds, cancellations, setup fees, and billing for Opus Global Solution' marketing support services.",
+    "Opus Global Solution's policy on refunds, cancellations, setup fees, and billing for real estate marketing support services.",
   alternates: { canonical: "https://opusglobalsolution.com/refund-policy" },
 };
 

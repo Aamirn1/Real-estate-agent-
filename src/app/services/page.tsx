@@ -8,7 +8,7 @@ import {
 
 export const metadata: Metadata = {
   title: "Real Estate Marketing Services | Opus Global Solution",
-  description: "Professional marketing consulting, CRM support, outreach, virtual assistants, and digital advertising for licensed US real estate professionals.",
+  description: "Real estate marketing services for US agents: CRM support, outreach, workflow automation, virtual assistants, and digital advertising. Compliance-first, human-verified.",
   alternates: { canonical: "https://opusglobalsolution.com/services" },
 };
 
@@ -20,9 +20,9 @@ export default function ServicesPage() {
         eyebrow="Services"
         title={
           <>
-            Get Started With{" "}
-            <span className="text-gradient-electric">Professional Support</span>{" "}
-            Services
+            Real Estate{" "}
+            <span className="text-gradient-electric">Marketing Services</span>{" "}
+            for Licensed Agents
           </>
         }
         description="Unlock your potential for success with our expert marketing consulting, outreach support, and CRM solutions tailored for licensed real estate professionals."

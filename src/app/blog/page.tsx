@@ -211,8 +211,8 @@ export default function BlogPage() {
         eyebrow="Blog"
         title={
           <>
-            Our{" "}
-            <span className="text-gradient-electric">Latest News</span>
+            Real Estate Marketing{" "}
+            <span className="text-gradient-electric">Insights &amp; Strategies</span>
           </>
         }
         description="Stay updated with the latest trends, tips, and insights in real estate lead generation. At Opus Global Solution, we share strategies that help agents and brokerages grow stronger businesses."

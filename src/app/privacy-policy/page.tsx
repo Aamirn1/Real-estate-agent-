@@ -11,7 +11,7 @@ import { ShieldCheck, Mail, MapPin } from "lucide-react";
 export const metadata: Metadata = {
   title: "Privacy Policy | Opus Global Solution",
   description:
-    "How Opus Global Solution collects, uses, and protects your information when you use our marketing consulting and outreach services.",
+    "How Opus Global Solution's real estate marketing consulting and outreach services collect, use, and protect your information.",
   alternates: { canonical: "https://opusglobalsolution.com/privacy-policy" },
 };
 

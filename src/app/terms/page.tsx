@@ -11,7 +11,7 @@ import { FileText, Mail, Phone } from "lucide-react";
 export const metadata: Metadata = {
   title: "Terms & Conditions | Opus Global Solution",
   description:
-    "The terms governing your use of Opus Global Solution' marketing consulting, outreach, and CRM services for real estate professionals.",
+    "The terms governing your use of Opus Global Solution's marketing consulting, outreach, and CRM services for real estate professionals.",
   alternates: { canonical: "https://opusglobalsolution.com/terms" },
 };
 

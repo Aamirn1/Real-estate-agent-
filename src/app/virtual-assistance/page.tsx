@@ -16,7 +16,7 @@ import { Check, Star, Calendar, Rocket } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: "Virtual Assistance Services | Opus Global Solution",
+  title: "Real Estate Virtual Assistant Services | Opus Global Solution",
   description:
     "Dedicated virtual assistants for real estate professionals. Customer support, prospect calling, calendar management, CRM management, social media, and website management.",
   alternates: { canonical: "https://opusglobalsolution.com/virtual-assistance" },
@@ -258,9 +258,9 @@ export default function VirtualAssistancePage() {
         eyebrow="Virtual Assistance"
         title={
           <>
-            Your dedicated{" "}
-            <span className="text-gradient-electric">virtual assistant</span>{" "}
-            team
+            Your Dedicated{" "}
+            <span className="text-gradient-electric">Real Estate Virtual Assistant</span>{" "}
+            Team
           </>
         }
         description="Reduce your admin workload so you can focus on clients. Our virtual assistants handle customer support, prospect calling, calendar management, CRM, social media, and website management."

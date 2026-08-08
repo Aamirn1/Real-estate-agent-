@@ -27,8 +27,7 @@ import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Pricing Plans | Real Estate Lead Generation | Opus Global Solution",
-  description:
-    "Flexible lead generation pricing for real estate agents. Choose from trial to premium plans with referrals, lead transfers, and dedicated support.",
+  description: "Transparent pricing for real estate marketing support. Plans from $299 to $1,199 with referral fees, lead delivery, CRM, and dedicated VAs included.",
   alternates: { canonical: "https://opusglobalsolution.com/pricing" },
 };
 
@@ -356,8 +355,8 @@ export default function PricingPage() {
         eyebrow="Pricing"
         title={
           <>
-            We&apos;ve got a plan that&apos;s{" "}
-            <span className="text-gradient-electric">perfect for you</span>
+            Real Estate Marketing{" "}
+            <span className="text-gradient-electric">Plans &amp; Pricing</span>
           </>
         }
         description="Whether you're just starting or need an all-inclusive solution, our plans scale with your goals. One-time setup, 30-day or 365-day plans available."
