@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { SiteChrome, PageHero } from "@/components/leadsphere/SiteChrome";
 import { CTABanner } from "@/components/leadsphere/CTABanner";
+import { BreadcrumbSchema } from "@/components/seo/BreadcrumbSchema";
 import Link from "next/link";
 import {
   GlassCard,
@@ -206,6 +207,12 @@ const COLOR_STYLES: Record<
 export default function BlogPage() {
   return (
     <SiteChrome withBackground={false} flushTop>
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://opusglobalsolution.com" },
+          { name: "Blog", url: "https://opusglobalsolution.com/blog" },
+        ]}
+      />
       <PageHero
         heroImage="/heroes/blog-home.jpg"
         eyebrow="Blog"

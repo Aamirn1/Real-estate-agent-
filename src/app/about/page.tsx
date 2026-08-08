@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { SiteChrome, PageHero } from "@/components/leadsphere/SiteChrome";
 import { CTABanner } from "@/components/leadsphere/CTABanner";
+import { BreadcrumbSchema } from "@/components/seo/BreadcrumbSchema";
 import {
   AboutMission,
   OurWorkflow,
@@ -76,6 +77,12 @@ const STATS: {
 export default function AboutPage() {
   return (
     <SiteChrome withBackground={false} flushTop>
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://opusglobalsolution.com" },
+          { name: "About Us", url: "https://opusglobalsolution.com/about" },
+        ]}
+      />
       <PageHero
         heroImage="/heroes/about-home.jpg"
         eyebrow="About Us"

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { SiteChrome, PageHero } from "@/components/leadsphere/SiteChrome";
 import { CTABanner } from "@/components/leadsphere/CTABanner";
+import { BreadcrumbSchema } from "@/components/seo/BreadcrumbSchema";
 import {
   GlassCard,
   SectionShell,
@@ -78,6 +79,12 @@ const INFO_CARDS: {
 export default function ContactPage() {
   return (
     <SiteChrome withBackground={false} flushTop>
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://opusglobalsolution.com" },
+          { name: "Contact", url: "https://opusglobalsolution.com/contact" },
+        ]}
+      />
       <PageHero
         heroImage="/heroes/get-started-home.jpg"
         eyebrow="Contact"

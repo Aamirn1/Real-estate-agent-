@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { SiteChrome, PageHero } from "@/components/leadsphere/SiteChrome";
 import { CTABanner } from "@/components/leadsphere/CTABanner";
+import { BreadcrumbSchema } from "@/components/seo/BreadcrumbSchema";
 import { RoiCalculator } from "@/components/leadsphere/sections/RoiCalculator";
 import {
   GlassCard,
@@ -350,6 +351,12 @@ function PricingCard({ plan, delay }: { plan: Plan; delay: number }) {
 export default function PricingPage() {
   return (
     <SiteChrome withBackground={false} flushTop>
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://opusglobalsolution.com" },
+          { name: "Pricing", url: "https://opusglobalsolution.com/pricing" },
+        ]}
+      />
       <PageHero
         heroImage="/heroes/pricing-home.jpg"
         eyebrow="Pricing"

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowLeft, Calendar, Clock, ArrowRight, ArrowUpRight } from "lucide-react";
 import { SiteChrome } from "@/components/leadsphere/SiteChrome";
 import { CTABanner } from "@/components/leadsphere/CTABanner";
+import { BreadcrumbSchema } from "@/components/seo/BreadcrumbSchema";
 import { BLOG_POSTS, getPostBySlug } from "../blog-data";
 import { getServiceBySlug } from "@/lib/service-details";
 
@@ -103,7 +104,12 @@ export default async function BlogPostPage({
             "@type": "BlogPosting",
             headline: post.title,
             description: post.excerpt,
-            image: `https://opusglobalsolution.com${post.image}`,
+            image: {
+              "@type": "ImageObject",
+              url: `https://opusglobalsolution.com${post.image}`,
+              width: 1024,
+              height: 1024,
+            },
             datePublished: post.date,
             dateModified: post.date,
             author: {
@@ -125,6 +131,13 @@ export default async function BlogPostPage({
             },
           }),
         }}
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://opusglobalsolution.com" },
+          { name: "Blog", url: "https://opusglobalsolution.com/blog" },
+          { name: post.title, url: `https://opusglobalsolution.com/blog/${post.slug}` },
+        ]}
       />
       {/* Hero image */}
       <div className="relative w-full px-5 pt-28 sm:px-8">

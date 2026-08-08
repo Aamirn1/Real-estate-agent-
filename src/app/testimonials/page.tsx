@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { SiteChrome, PageHero } from "@/components/leadsphere/SiteChrome";
 import { CTABanner } from "@/components/leadsphere/CTABanner";
+import { BreadcrumbSchema } from "@/components/seo/BreadcrumbSchema";
 import CrmIntegrationsTestimonials from "@/components/leadsphere/sections/CrmIntegrationsTestimonials";
 import {
   GlassCard,
@@ -79,6 +80,12 @@ const MORE_STORIES: ClientStory[] = [
 export default function TestimonialsPage() {
   return (
     <SiteChrome withBackground={false} flushTop>
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://opusglobalsolution.com" },
+          { name: "Testimonials", url: "https://opusglobalsolution.com/testimonials" },
+        ]}
+      />
       <PageHero
         heroImage="/heroes/testimonials-home.jpg"
         eyebrow="Testimonials"

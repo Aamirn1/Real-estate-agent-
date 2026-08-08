@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { SiteChrome, PageHero } from "@/components/leadsphere/SiteChrome";
 import { CTABanner } from "@/components/leadsphere/CTABanner";
+import { BreadcrumbSchema } from "@/components/seo/BreadcrumbSchema";
 import {
   VirtualAssistantServices,
 } from "@/components/leadsphere/sections/AboutVaWorkflow";
@@ -253,6 +254,12 @@ function VAPricingCard({ plan, delay }: { plan: VAPlan; delay: number }) {
 export default function VirtualAssistancePage() {
   return (
     <SiteChrome withBackground={false} flushTop>
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://opusglobalsolution.com" },
+          { name: "Virtual Assistance", url: "https://opusglobalsolution.com/virtual-assistance" },
+        ]}
+      />
       <PageHero
         heroImage="/heroes/va-home.jpg"
         eyebrow="Virtual Assistance"

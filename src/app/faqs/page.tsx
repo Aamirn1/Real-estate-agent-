@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { SiteChrome, PageHero } from "@/components/leadsphere/SiteChrome";
 import { CTABanner } from "@/components/leadsphere/CTABanner";
+import { BreadcrumbSchema } from "@/components/seo/BreadcrumbSchema";
 import {
   SectionHeading,
   SectionShell,
@@ -83,6 +84,12 @@ const FAQS: { q: string; a: string }[] = [
 export default function FaqsPage() {
   return (
     <SiteChrome>
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://opusglobalsolution.com" },
+          { name: "FAQs", url: "https://opusglobalsolution.com/faqs" },
+        ]}
+      />
       <PageHero
         eyebrow="FAQs"
         title={

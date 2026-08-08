@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { SiteChrome, PageHero } from "@/components/leadsphere/SiteChrome";
 import { CTABanner } from "@/components/leadsphere/CTABanner";
+import { BreadcrumbSchema } from "@/components/seo/BreadcrumbSchema";
 import { FeaturesSection } from "@/components/leadsphere/sections/TrustStatsFeatures";
 import {
   VirtualAssistantServices,
@@ -15,6 +16,12 @@ export const metadata: Metadata = {
 export default function ServicesPage() {
   return (
     <SiteChrome withBackground={false} flushTop>
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://opusglobalsolution.com" },
+          { name: "Services", url: "https://opusglobalsolution.com/services" },
+        ]}
+      />
       <PageHero
         heroImage="/heroes/services-home.jpg"
         eyebrow="Services"

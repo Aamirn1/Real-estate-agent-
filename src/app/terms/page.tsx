@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { SiteChrome, PageHero } from "@/components/leadsphere/SiteChrome";
 import { CTABanner } from "@/components/leadsphere/CTABanner";
+import { BreadcrumbSchema } from "@/components/seo/BreadcrumbSchema";
 import {
   GlassCard,
   SectionShell,
@@ -104,6 +105,12 @@ const SECTIONS: TermSection[] = [
 export default function TermsPage() {
   return (
     <SiteChrome>
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://opusglobalsolution.com" },
+          { name: "Terms & Conditions", url: "https://opusglobalsolution.com/terms" },
+        ]}
+      />
       <PageHero
         eyebrow="Legal"
         title="Terms & Conditions"

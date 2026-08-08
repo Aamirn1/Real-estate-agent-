@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { SiteChrome, PageHero } from "@/components/leadsphere/SiteChrome";
 import { CTABanner } from "@/components/leadsphere/CTABanner";
+import { BreadcrumbSchema } from "@/components/seo/BreadcrumbSchema";
 import {
   GlassCard,
   SectionShell,
@@ -86,6 +87,12 @@ const SECTIONS: PolicySection[] = [
 export default function PrivacyPolicyPage() {
   return (
     <SiteChrome>
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://opusglobalsolution.com" },
+          { name: "Privacy Policy", url: "https://opusglobalsolution.com/privacy-policy" },
+        ]}
+      />
       <PageHero
         eyebrow="Legal"
         title="Privacy Policy"

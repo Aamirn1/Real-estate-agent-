@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { SiteChrome, PageHero } from "@/components/leadsphere/SiteChrome";
 import { CTABanner } from "@/components/leadsphere/CTABanner";
+import { BreadcrumbSchema } from "@/components/seo/BreadcrumbSchema";
 import {
   GlassCard,
   SectionShell,
@@ -69,6 +70,12 @@ const SECTIONS: RefundSection[] = [
 export default function RefundPolicyPage() {
   return (
     <SiteChrome>
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://opusglobalsolution.com" },
+          { name: "Refund Policy", url: "https://opusglobalsolution.com/refund-policy" },
+        ]}
+      />
       <PageHero
         eyebrow="Legal"
         title="Refund Policy"
