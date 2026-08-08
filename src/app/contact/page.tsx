@@ -94,7 +94,7 @@ export default function ContactPage() {
             <span className="text-gradient-electric">great work</span> together
           </>
         }
-        description="Stop wasting time on unqualified leads. We connect you with motivated home sellers in your area who are serious about selling. Reach out to discuss your goals."
+        description="Tell us about your goals and we'll show you how Opus Global Solution can fit into your workflow. Our team responds within one business day."
       />
 
       <SectionShell id="contact" className="pt-6 md:pt-8">

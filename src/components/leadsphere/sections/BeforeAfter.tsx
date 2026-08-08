@@ -85,9 +85,9 @@ export function BeforeAfter() {
             </div>
 
             <div className="mt-6 rounded-xl bg-red-500/5 p-4 text-center">
-              <div className="text-xs uppercase tracking-wide text-black">Avg result</div>
-              <div className="mt-1 font-heading text-2xl font-bold text-black tnum">
-                2 listings / mo
+              <div className="text-xs uppercase tracking-wide text-black">Typical challenge</div>
+              <div className="mt-1 font-heading text-lg font-bold text-black">
+                Inconsistent pipeline
               </div>
             </div>
           </GlassCard>
@@ -147,12 +147,12 @@ export function BeforeAfter() {
               </div>
 
               <div className="mt-6 rounded-xl bg-gradient-to-br from-electric/15 to-[#38BDF8]/15 p-4 text-center">
-                <div className="text-xs uppercase tracking-wide text-black">Avg result</div>
-                <div className="mt-1 font-heading text-2xl font-bold text-black tnum">
-                  6 listings / mo
+                <div className="text-xs uppercase tracking-wide text-black">With Opus</div>
+                <div className="mt-1 font-heading text-lg font-bold text-black">
+                  Consistent, documented pipeline
                 </div>
                 <div className="mt-0.5 text-[11px] font-medium text-emerald-400">
-                  +200% more listings
+                  Human-verified, compliance-first
                 </div>
               </div>
             </div>

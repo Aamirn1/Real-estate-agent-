@@ -68,10 +68,10 @@ const STATS: {
   label: string;
   color: StatColor;
 }[] = [
-  { icon: Users, value: 50, suffix: "K+", label: "Active Agents", color: "electric" },
-  { icon: Network, value: 100, suffix: "+", label: "MLS Integrations", color: "violet" },
-  { icon: TrendingUp, value: 92, suffix: "%", label: "Conversion Improvement", color: "cyan" },
-  { icon: Database, value: 250, suffix: "M+", label: "Lead Records", color: "gold" },
+  { icon: Users, value: 12, suffix: "", label: "Core Services Offered", color: "electric" },
+  { icon: Network, value: 6, suffix: "", label: "VA Specialties", color: "violet" },
+  { icon: TrendingUp, value: 100, suffix: "%", label: "Human-Verified Outreach", color: "cyan" },
+  { icon: Database, value: 3, suffix: "", label: "Flexible Pricing Plans", color: "gold" },
 ];
 
 export default function AboutPage() {
@@ -108,7 +108,7 @@ export default function AboutPage() {
       <SectionShell id="achievements">
         <SectionHeading
           eyebrow="Our Achievements"
-          title="Fast-growing partner network nationwide"
+          title="A growing partner network nationwide"
         />
 
         <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">

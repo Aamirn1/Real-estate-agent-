@@ -97,7 +97,7 @@ export default function TestimonialsPage() {
         description="At Opus Global Solution, our clients' success is our greatest achievement. Hear directly from real estate professionals who have enhanced their efficiency and grown their businesses with our support."
       />
 
-      {/* 1. Trust + Stats + Features grid (social proof: 250M+ leads, 92% conversion, 50K+ agents, 100+ MLS) */}
+      {/* 1. CRM Kanban + Integrations + Testimonials carousel (id="testimonials") */}
 
       {/* 2. CRM Kanban + Integrations + Testimonials carousel (id="testimonials") */}
       <CrmIntegrationsTestimonials showHeading={false} />
@@ -165,8 +165,8 @@ export default function TestimonialsPage() {
 
       {/* 4. Closing CTA */}
       <CTABanner
-        title="Join 50,000+ agents growing with Opus"
-        subtitle="See why top-producing realtors trust Opus Global Solution to fill their pipeline."
+        title="Ready to grow your real estate business?"
+        subtitle="See how Opus Global Solution can help you save time, stay compliant, and close more deals."
       />
     </SiteChrome>
   );

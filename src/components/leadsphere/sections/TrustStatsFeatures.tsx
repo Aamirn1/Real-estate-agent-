@@ -247,7 +247,7 @@ function TrustSection() {
       <Reveal className="flex flex-col items-center gap-8">
         <span className="inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.22em] text-black">
           <span className="h-px w-6 bg-gradient-to-r from-transparent to-white/30" />
-          Trusted by 50,000+ real estate professionals
+          Trusted by real estate professionals across the USA
           <span className="h-px w-6 bg-gradient-to-l from-transparent to-white/30" />
         </span>
 

@@ -95,20 +95,20 @@ export function Hero() {
             className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4 text-white"
           >
             <div className="flex flex-col">
-              <span className="font-heading text-2xl font-bold text-white tnum">12K+</span>
-              <span className="text-xs text-white/60">Warm Introductions</span>
+              <span className="font-heading text-2xl font-bold text-white">12</span>
+              <span className="text-xs text-white/60">Core Services</span>
             </div>
             <div className="flex flex-col">
-              <span className="font-heading text-2xl font-bold text-white tnum">100+</span>
-              <span className="text-xs text-white/60">Agent Teams Supported</span>
+              <span className="font-heading text-2xl font-bold text-white">6</span>
+              <span className="text-xs text-white/60">VA Specialties</span>
             </div>
             <div className="flex flex-col">
-              <span className="font-heading text-2xl font-bold text-white tnum">500+</span>
-              <span className="text-xs text-white/60">Campaigns Managed</span>
+              <span className="font-heading text-2xl font-bold text-white">3</span>
+              <span className="text-xs text-white/60">Pricing Plans</span>
             </div>
             <div className="flex flex-col">
-              <span className="font-heading text-2xl font-bold text-white tnum">98%</span>
-              <span className="text-xs text-white/60">Satisfaction Rate</span>
+              <span className="font-heading text-2xl font-bold text-white">100%</span>
+              <span className="text-xs text-white/60">Human-Verified</span>
             </div>
           </div>
         </div>
