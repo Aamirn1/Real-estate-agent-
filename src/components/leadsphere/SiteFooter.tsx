@@ -136,11 +136,10 @@ export function SiteFooter() {
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
                 type="submit"
-                className="group relative inline-flex shrink-0 items-center justify-center gap-2 overflow-hidden rounded-full bg-[linear-gradient(120deg,#2563EB,#38BDF8)] px-5 py-3 text-sm font-semibold text-white shadow-[0_0_25px_-8px_rgba(37,99,235,0.8)] transition-shadow hover:shadow-[0_0_35px_-6px_rgba(56,189,248,0.85)]"
+                className="btn-shimmer group relative inline-flex shrink-0 items-center justify-center gap-2 overflow-hidden rounded-full bg-[linear-gradient(120deg,#2563EB,#38BDF8)] px-5 py-3 text-sm font-semibold text-white shadow-[0_0_25px_-8px_rgba(37,99,235,0.8)] transition-shadow hover:shadow-[0_0_35px_-6px_rgba(56,189,248,0.85)]"
               >
                 <Send className="relative z-10 h-4 w-4" />
                 <span className="relative z-10">Subscribe</span>
-                <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/25 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
               </motion.button>
             </form>
             <p className="text-xs text-black lg:max-w-sm lg:text-right">

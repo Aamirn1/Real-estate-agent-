@@ -74,22 +74,20 @@ export function Hero() {
               href="/get-started"
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
-              className="group relative inline-flex items-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-electric to-violet px-5 py-3 text-sm font-semibold text-white shadow-[0_0_30px_-6px_rgba(59,130,246,0.7)] transition-all hover:shadow-[0_0_40px_-4px_rgba(139,92,246,0.85)]"
+              className="btn-shimmer group relative inline-flex items-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-electric to-violet px-5 py-3 text-sm font-semibold text-white shadow-[0_0_30px_-6px_rgba(59,130,246,0.7)] transition-all hover:shadow-[0_0_40px_-4px_rgba(139,92,246,0.85)]"
             >
               <span className="relative z-10">Get Started</span>
               <ArrowRight className="relative z-10 h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-              <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/30 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
             </motion.a>
             <motion.a
               href="/contact"
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
-              className="group relative inline-flex items-center gap-2 overflow-hidden rounded-xl border border-white/15 bg-white/5 px-5 py-3 text-sm font-semibold text-white backdrop-blur transition-all hover:border-white/25 hover:bg-white/10"
+              className="btn-shimmer group relative inline-flex items-center gap-2 overflow-hidden rounded-xl border border-white/15 bg-white/5 px-5 py-3 text-sm font-semibold text-white backdrop-blur transition-all hover:border-white/25 hover:bg-white/10"
             >
               <PlayCircle className="relative z-10 h-4 w-4 text-cyan" />
               <span className="relative z-10 hidden xs:inline sm:inline">Book a Consultation</span>
               <span className="relative z-10 xs:hidden sm:hidden">Book Demo</span>
-              <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
             </motion.a>
           </div>
 
@@ -97,19 +95,19 @@ export function Hero() {
             className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4 text-white"
           >
             <div className="flex flex-col">
-              <span className="font-heading text-2xl font-bold tnum">12K+</span>
+              <span className="font-heading text-2xl font-bold text-white tnum">12K+</span>
               <span className="text-xs text-white/60">Warm Introductions</span>
             </div>
             <div className="flex flex-col">
-              <span className="font-heading text-2xl font-bold tnum">100+</span>
+              <span className="font-heading text-2xl font-bold text-white tnum">100+</span>
               <span className="text-xs text-white/60">Agent Teams Supported</span>
             </div>
             <div className="flex flex-col">
-              <span className="font-heading text-2xl font-bold tnum">500+</span>
+              <span className="font-heading text-2xl font-bold text-white tnum">500+</span>
               <span className="text-xs text-white/60">Campaigns Managed</span>
             </div>
             <div className="flex flex-col">
-              <span className="font-heading text-2xl font-bold tnum">98%</span>
+              <span className="font-heading text-2xl font-bold text-white tnum">98%</span>
               <span className="text-xs text-white/60">Satisfaction Rate</span>
             </div>
           </div>

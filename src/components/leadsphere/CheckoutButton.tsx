@@ -28,7 +28,7 @@ export function CheckoutButton({ plan, variant, children, className }: Props) {
   const href = `/agreement?plan=${encodeURIComponent(plan)}`;
 
   const base =
-    "group relative inline-flex w-full items-center justify-center gap-2 px-6 py-3 text-sm font-semibold rounded-full transition-all duration-300";
+    "btn-shimmer group relative inline-flex w-full items-center justify-center gap-2 px-6 py-3 text-sm font-semibold rounded-full transition-all duration-300";
 
   const variantCls =
     variant === "solid"
@@ -36,7 +36,7 @@ export function CheckoutButton({ plan, variant, children, className }: Props) {
       : "border border-black/15 bg-black/5 text-black backdrop-blur hover:border-black/30 hover:bg-black/10";
 
   return (
-    <div className={cn("flex w-full", className)}>
+    <div className={cn("flex w-full mt-auto", className)}>
       <motion.a
         href={href}
         whileHover={{ scale: 1.02 }}
@@ -44,18 +44,15 @@ export function CheckoutButton({ plan, variant, children, className }: Props) {
         className={cn(base, variantCls)}
         aria-label={`Get started with the ${plan} plan`}
       >
-        {variant === "solid" && (
-          <span className="absolute inset-0 -translate-x-full bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.25),transparent)] transition-transform duration-700 group-hover:translate-x-full" />
-        )}
         {variant === "solid" ? (
           <>
-            <Rocket className="relative h-4 w-4" />
-            <span className="relative">{children}</span>
+            <Rocket className="relative z-10 h-4 w-4" />
+            <span className="relative z-10">{children}</span>
           </>
         ) : (
           <>
-            <span>{children}</span>
-            <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
+            <span className="relative z-10">{children}</span>
+            <ArrowRight className="relative z-10 h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
           </>
         )}
       </motion.a>

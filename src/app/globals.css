@@ -306,6 +306,59 @@
   border: 1px solid transparent;
 }
 
+/* ============ Button shine shimmer (hover) ============ */
+/* Use a CSS :hover rule instead of Tailwind's group-hover so it works
+   reliably even when framer-motion sets inline transforms on the button. */
+.btn-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+.btn-shimmer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.btn-shimmer:hover::after {
+  transform: translateX(100%);
+}
+
+/* ============ Navbar link hover underline ============ */
+/* CSS :hover based so it works reliably without depending on group-hover. */
+.nav-link {
+  position: relative;
+}
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
+  height: 2px;
+  width: 0;
+  transform: translateX(-50%);
+  border-radius: 9999px;
+  background: #2563EB;
+  transition: width 0.3s ease, opacity 0.3s ease;
+  opacity: 0;
+}
+.nav-link:hover::after {
+  width: 50%;
+  opacity: 1;
+}
+.nav-link-active::after {
+  width: 50%;
+  opacity: 1;
+}
+
 /* ============ 3D Sliding Cards (FloatingCards) ============ */
 /* Reference: a fanned stack of cards rotated in 3D, the front card
    sits center-stage and the rest fan out behind it. Click any card
