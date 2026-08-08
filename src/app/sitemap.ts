@@ -1,5 +1,6 @@
 import { MetadataRoute } from "next";
 import { BLOG_POSTS } from "./blog/blog-data";
+import { SERVICE_SLUGS } from "@/lib/service-details";
 
 const BASE_URL = "https://opusglobalsolution.com";
 
@@ -37,8 +38,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: page.priority,
   }));
 
-  // Blog posts — automatically reads from blog-data.ts.
-  // When a new post is added there, the sitemap updates automatically.
+  // Individual service detail pages — automatically reads from service-details.ts
+  const serviceEntries: MetadataRoute.Sitemap = SERVICE_SLUGS.map((slug) => ({
+    url: `${BASE_URL}/services/${slug}`,
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: 0.8,
+  }));
+
+  // Blog posts — automatically reads from blog-data.ts
   const blogEntries: MetadataRoute.Sitemap = BLOG_POSTS.map((post) => ({
     url: `${BASE_URL}/blog/${post.slug}`,
     lastModified: new Date(post.date),
@@ -46,5 +54,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  return [...staticEntries, ...blogEntries];
+  return [...staticEntries, ...serviceEntries, ...blogEntries];
 }
+

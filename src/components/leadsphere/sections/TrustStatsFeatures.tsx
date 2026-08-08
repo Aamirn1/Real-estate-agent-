@@ -19,6 +19,7 @@ import {
   Mail,
   Globe,
   Network,
+  ArrowRight,
 } from "lucide-react";
 import {
   GlassCard,
@@ -352,6 +353,7 @@ function StatsSection() {
 type ServiceItem = CardStackItem & {
   icon: typeof Megaphone;
   color: ColorKey;
+  href: string;
 };
 
 const FEATURES: ServiceItem[] = [
@@ -361,6 +363,7 @@ const FEATURES: ServiceItem[] = [
     color: "electric",
     title: "Marketing Consulting",
     description: "Campaign planning, growth strategy, and brand positioning tailored to your market.",
+    href: "/services/marketing-consulting",
   },
   {
     id: 2,
@@ -368,6 +371,7 @@ const FEATURES: ServiceItem[] = [
     color: "violet",
     title: "CRM Support",
     description: "CRM setup, lead organization, pipeline optimization, and automation.",
+    href: "/services/crm-support",
   },
   {
     id: 3,
@@ -375,6 +379,7 @@ const FEATURES: ServiceItem[] = [
     color: "cyan",
     title: "Workflow Automation",
     description: "Automate repetitive tasks, lead tracking, reminders, and follow-ups.",
+    href: "/services/workflow-automation",
   },
   {
     id: 4,
@@ -382,6 +387,7 @@ const FEATURES: ServiceItem[] = [
     color: "electric",
     title: "Virtual Assistance",
     description: "Administrative support, scheduling, data organization, and client communication.",
+    href: "/services/virtual-assistance",
   },
   {
     id: 5,
@@ -389,6 +395,7 @@ const FEATURES: ServiceItem[] = [
     color: "violet",
     title: "Outreach Support",
     description: "Human-based, verified communication with documented follow-up processes.",
+    href: "/services/real-estate-outreach",
   },
   {
     id: 6,
@@ -396,6 +403,7 @@ const FEATURES: ServiceItem[] = [
     color: "cyan",
     title: "Digital Marketing",
     description: "Social campaigns, email marketing, landing pages, and lead funnels.",
+    href: "/services/digital-advertising",
   },
   {
     id: 7,
@@ -403,6 +411,7 @@ const FEATURES: ServiceItem[] = [
     color: "electric",
     title: "Appointment Coordination",
     description: "Scheduling, calendar management, and client reminders handled for you.",
+    href: "/services/calendar-management",
   },
   {
     id: 8,
@@ -410,6 +419,7 @@ const FEATURES: ServiceItem[] = [
     color: "violet",
     title: "Reporting & Analytics",
     description: "Campaign reports, monthly performance tracking, and growth insights.",
+    href: "/services/marketing-consulting",
   },
   {
     id: 9,
@@ -417,6 +427,7 @@ const FEATURES: ServiceItem[] = [
     color: "cyan",
     title: "Digital Advertising Management",
     description: "Compliant campaigns across Google and social media to increase visibility and reach motivated sellers.",
+    href: "/services/digital-advertising",
   },
   {
     id: 10,
@@ -424,6 +435,7 @@ const FEATURES: ServiceItem[] = [
     color: "electric",
     title: "SEO & Online Presence",
     description: "Boost your visibility through search optimization and relevant, high-quality content strategies.",
+    href: "/services/seo-online-presence",
   },
   {
     id: 11,
@@ -431,6 +443,7 @@ const FEATURES: ServiceItem[] = [
     color: "violet",
     title: "SMS Campaign Support",
     description: "Opt-in only communications with full compliance features including STOP/HELP and unsubscribe.",
+    href: "/services/sms-campaign-support",
   },
   {
     id: 12,
@@ -438,6 +451,7 @@ const FEATURES: ServiceItem[] = [
     color: "cyan",
     title: "Email Campaign Support",
     description: "Opt-in only email campaigns with compliance features, automated drips, and delivery analytics.",
+    href: "/services/email-campaign-support",
   },
 ];
 
@@ -502,11 +516,20 @@ function ServiceFanCard({ item, active }: { item: ServiceItem; active: boolean }
         {item.description}
       </p>
 
-      {/* bottom accent line */}
+      {/* bottom accent line + learn more link */}
       <div className="relative mt-auto pt-3 sm:pt-5">
         <div className="h-px w-full bg-black/5">
           <div className={`h-px ${active ? "w-full" : "w-1/3"} ${t.bar} transition-all duration-500`} />
         </div>
+        {active && item.href && (
+          <a
+            href={item.href}
+            className="mt-3 inline-flex items-center gap-1 text-xs font-semibold text-electric hover:underline"
+          >
+            Learn more
+            <ArrowRight className="h-3 w-3" />
+          </a>
+        )}
       </div>
     </div>
   );
