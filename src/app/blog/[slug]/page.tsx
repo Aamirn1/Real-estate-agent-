@@ -1,10 +1,56 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft, Calendar, Clock, ArrowRight } from "lucide-react";
+import { ArrowLeft, Calendar, Clock, ArrowRight, ArrowUpRight } from "lucide-react";
 import { SiteChrome } from "@/components/leadsphere/SiteChrome";
 import { CTABanner } from "@/components/leadsphere/CTABanner";
 import { BLOG_POSTS, getPostBySlug } from "../blog-data";
+import { getServiceBySlug } from "@/lib/service-details";
+
+/* Map each blog post to relevant service pages for internal linking.
+   Uses descriptive anchor text — not exact-match keywords. */
+const BLOG_SERVICE_LINKS: Record<string, { slug: string; anchorText: string }[]> = {
+  "10-proven-strategies-to-generate-seller-leads-2025": [
+    { slug: "marketing-consulting", anchorText: "real estate marketing consulting" },
+    { slug: "real-estate-outreach", anchorText: "human-verified outreach support" },
+    { slug: "crm-support", anchorText: "CRM setup and pipeline management" },
+  ],
+  "how-virtual-assistants-transforming-real-estate": [
+    { slug: "virtual-assistance", anchorText: "dedicated real estate virtual assistant" },
+    { slug: "crm-support", anchorText: "CRM management services" },
+    { slug: "calendar-management", anchorText: "calendar management support" },
+  ],
+  "complete-guide-real-estate-crm-setup-new-agents": [
+    { slug: "crm-support", anchorText: "professional CRM support" },
+    { slug: "workflow-automation", anchorText: "workflow automation" },
+    { slug: "marketing-consulting", anchorText: "marketing consulting services" },
+  ],
+  "why-human-verified-outreach-beats-cold-calling": [
+    { slug: "real-estate-outreach", anchorText: "outreach support services" },
+    { slug: "marketing-consulting", anchorText: "marketing strategy consulting" },
+    { slug: "sms-campaign-support", anchorText: "compliant SMS campaigns" },
+  ],
+  "facebook-google-ads-real-estate-2025-playbook": [
+    { slug: "digital-advertising", anchorText: "digital advertising management" },
+    { slug: "seo-online-presence", anchorText: "SEO and online presence" },
+    { slug: "marketing-consulting", anchorText: "marketing consulting" },
+  ],
+  "how-to-build-real-estate-pipeline-never-goes-dry": [
+    { slug: "marketing-consulting", anchorText: "marketing strategy and planning" },
+    { slug: "crm-support", anchorText: "CRM and pipeline support" },
+    { slug: "real-estate-outreach", anchorText: "outreach and prospecting support" },
+  ],
+  "compliance-real-estate-marketing-tcpa-dnc": [
+    { slug: "real-estate-outreach", anchorText: "compliant outreach services" },
+    { slug: "sms-campaign-support", anchorText: "TCPA-compliant SMS campaigns" },
+    { slug: "email-campaign-support", anchorText: "CAN-SPAM compliant email campaigns" },
+  ],
+  "from-lead-to-closing-nurture-real-estate-prospects": [
+    { slug: "crm-support", anchorText: "CRM and lead management" },
+    { slug: "email-campaign-support", anchorText: "email nurture campaigns" },
+    { slug: "workflow-automation", anchorText: "follow-up automation" },
+  ],
+};
 
 export function generateStaticParams() {
   return BLOG_POSTS.map((post) => ({ slug: post.slug }));
@@ -41,7 +87,10 @@ export default async function BlogPostPage({
   const post = getPostBySlug(slug);
   if (!post) notFound();
 
-  const relatedPosts = BLOG_POSTS.filter((p) => p.slug !== slug).slice(0, 3);
+  // Show 3 related posts — prefer same category, then fill with other posts
+  const sameCategory = BLOG_POSTS.filter((p) => p.slug !== slug && p.category === post.category);
+  const otherPosts = BLOG_POSTS.filter((p) => p.slug !== slug && p.category !== post.category);
+  const relatedPosts = [...sameCategory, ...otherPosts].slice(0, 3);
 
   return (
     <SiteChrome withBackground={false}>
@@ -149,6 +198,57 @@ export default async function BlogPostPage({
               All Blog Posts
             </Link>
           </div>
+
+          {/* Related services — internal links to commercial pages */}
+          {(() => {
+            const serviceLinks = BLOG_SERVICE_LINKS[post.slug] || [];
+            const services = serviceLinks
+              .map((sl) => ({ ...sl, service: getServiceBySlug(sl.slug) }))
+              .filter((s) => s.service);
+            if (services.length === 0) return null;
+            return (
+              <div className="mt-8 rounded-2xl border border-black/10 bg-[#f8f9fa] p-6">
+                <h2 className="font-heading text-lg font-semibold text-black">
+                  Related Services
+                </h2>
+                <p className="mt-1 text-sm text-black">
+                  Need help implementing these strategies? Explore our support services:
+                </p>
+                <div className="mt-4 flex flex-col gap-2">
+                  {services.map(({ service, anchorText }) => (
+                    <Link
+                      key={service!.slug}
+                      href={`/services/${service!.slug}`}
+                      className="group inline-flex items-center gap-2 text-sm text-[#2563EB] hover:underline"
+                    >
+                      <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                      {anchorText}
+                    </Link>
+                  ))}
+                </div>
+                <div className="mt-4 flex gap-3">
+                  <Link
+                    href="/pricing"
+                    className="text-sm font-medium text-black hover:text-[#2563EB] transition-colors"
+                  >
+                    View pricing plans →
+                  </Link>
+                  <Link
+                    href="/contact"
+                    className="text-sm font-medium text-black hover:text-[#2563EB] transition-colors"
+                  >
+                    Contact us →
+                  </Link>
+                  <Link
+                    href="/faqs"
+                    className="text-sm font-medium text-black hover:text-[#2563EB] transition-colors"
+                  >
+                    FAQs →
+                  </Link>
+                </div>
+              </div>
+            );
+          })()}
         </div>
       </article>
 
