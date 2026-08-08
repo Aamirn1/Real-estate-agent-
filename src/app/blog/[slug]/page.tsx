@@ -23,6 +23,7 @@ export async function generateMetadata({
     title: `${post.title} | Opus Global Solution`,
     description: post.excerpt,
     keywords: [post.category, "real estate", "marketing", "lead generation"],
+    alternates: { canonical: `https://opusglobalsolution.com/blog/${slug}` },
     openGraph: {
       title: post.title,
       description: post.excerpt,
@@ -53,25 +54,25 @@ export default async function BlogPostPage({
             "@type": "BlogPosting",
             headline: post.title,
             description: post.excerpt,
-            image: `https://opus-globalsolution.com${post.image}`,
+            image: `https://opusglobalsolution.com${post.image}`,
             datePublished: post.date,
             dateModified: post.date,
             author: {
               "@type": "Organization",
               name: "Opus Global Solution",
-              url: "https://opus-globalsolution.com",
+              url: "https://opusglobalsolution.com",
             },
             publisher: {
               "@type": "Organization",
               name: "Opus Global Solution",
               logo: {
                 "@type": "ImageObject",
-                url: "https://opus-globalsolution.com/favicon-32.png",
+                url: "https://opusglobalsolution.com/favicon-32.png",
               },
             },
             mainEntityOfPage: {
               "@type": "WebPage",
-              "@id": `https://opus-globalsolution.com/blog/${post.slug}`,
+              "@id": `https://opusglobalsolution.com/blog/${post.slug}`,
             },
           }),
         }}

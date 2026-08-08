@@ -12,6 +12,7 @@ export const metadata: Metadata = {
   title: "Refund Policy | Opus Global Solution",
   description:
     "Our policy on refunds, cancellations, setup fees, and billing for Opus Global Solution' marketing support services.",
+  alternates: { canonical: "https://opusglobalsolution.com/refund-policy" },
 };
 
 /* ----------------------------- Refund policy sections ----------------------------- */
@@ -58,7 +59,7 @@ const SECTIONS: RefundSection[] = [
     heading: "9. Contact",
     body: "If you have any questions about this Refund Policy, please contact us:",
     bullets: [
-      "Email: info@opussolutions.com",
+      "Email: info@opusglobalsolution.com",
       "Phone: (645) 253-6830",
       "Address: 418 Broadway, Ste. R, Albany, NY 12207, United States",
     ],
@@ -136,10 +137,10 @@ export default function RefundPolicyPage() {
                 <div className="flex items-center gap-3">
                   <Mail className="h-4 w-4 text-electric" />
                   <a
-                    href="mailto:info@opussolutions.com"
+                    href="mailto:info@opusglobalsolution.com"
                     className="text-sm text-black transition-colors hover:text-black"
                   >
-                    info@opussolutions.com
+                    info@opusglobalsolution.com
                   </a>
                 </div>
                 <div className="flex items-center gap-3">

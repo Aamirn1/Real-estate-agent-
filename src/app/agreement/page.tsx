@@ -11,6 +11,7 @@ export const metadata: Metadata = {
   title: "Service Agreement | Opus Global Solution",
   description:
     "Review and sign the service agreement for your selected plan, then proceed to secure payment.",
+  robots: { index: false, follow: false },
 };
 
 const VALID_PLANS: PlanKey[] = ["Trial", "Gold", "Platinum", "VA-Trial", "VA-Gold", "VA-Platinum"];

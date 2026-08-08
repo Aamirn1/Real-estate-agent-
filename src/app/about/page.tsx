@@ -24,6 +24,7 @@ export const metadata: Metadata = {
   title: "About Opus Global Solution | Real Estate Marketing Experts",
   description:
     "Opus Global Solution provides professional marketing and administrative support for real estate professionals. Learn about our mission, vision, and what makes us different.",
+  alternates: { canonical: "https://opusglobalsolution.com/about" },
 };
 
 /* ---- Inline data for the Achievements stats grid ---- */

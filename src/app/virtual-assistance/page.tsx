@@ -19,6 +19,7 @@ export const metadata: Metadata = {
   title: "Virtual Assistance Services | Opus Global Solution",
   description:
     "Dedicated virtual assistants for real estate professionals. Customer support, prospect calling, calendar management, CRM management, social media, and website management.",
+  alternates: { canonical: "https://opusglobalsolution.com/virtual-assistance" },
 };
 
 /* ============================================================

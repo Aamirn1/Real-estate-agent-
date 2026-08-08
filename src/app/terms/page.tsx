@@ -12,6 +12,7 @@ export const metadata: Metadata = {
   title: "Terms & Conditions | Opus Global Solution",
   description:
     "The terms governing your use of Opus Global Solution' marketing consulting, outreach, and CRM services for real estate professionals.",
+  alternates: { canonical: "https://opusglobalsolution.com/terms" },
 };
 
 /* ----------------------------- Terms sections ----------------------------- */
@@ -94,7 +95,7 @@ const SECTIONS: TermSection[] = [
     heading: "12. Contact",
     body: "If you have any questions about these Terms & Conditions, please contact us:",
     bullets: [
-      "Email: info@opussolutions.com",
+      "Email: info@opusglobalsolution.com",
       "Phone: (645) 253-6830",
     ],
   },
@@ -171,10 +172,10 @@ export default function TermsPage() {
                 <div className="flex items-center gap-3">
                   <Mail className="h-4 w-4 text-electric" />
                   <a
-                    href="mailto:info@opussolutions.com"
+                    href="mailto:info@opusglobalsolution.com"
                     className="text-sm text-black transition-colors hover:text-black"
                   >
-                    info@opussolutions.com
+                    info@opusglobalsolution.com
                   </a>
                 </div>
                 <div className="flex items-center gap-3">

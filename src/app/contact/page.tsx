@@ -13,6 +13,7 @@ export const metadata: Metadata = {
   title: "Contact Opus Global Solution | Real Estate Marketing Support",
   description:
     "Let's do great work together. Connect with Opus Global Solution for marketing consulting, outreach support, and CRM solutions for real estate professionals.",
+  alternates: { canonical: "https://opusglobalsolution.com/contact" },
 };
 
 /* ----------------------------- Contact info data ----------------------------- */

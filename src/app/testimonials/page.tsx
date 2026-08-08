@@ -14,6 +14,7 @@ export const metadata: Metadata = {
   title: "Client Testimonials | Real Estate Marketing Success | Opus Global Solution",
   description:
     "Hear directly from real estate professionals who have enhanced their efficiency and grown their businesses with Opus Global Solution.",
+  alternates: { canonical: "https://opusglobalsolution.com/testimonials" },
 };
 
 /* ---- Inline "More Client Stories" data ---- */

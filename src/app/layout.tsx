@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   // Publicly-accessible base so OG/Twitter image URLs resolve as absolute.
   // Uses the GitHub raw URL so link previews work even before you deploy.
   // After deploying to Vercel, you can change this to your production URL.
-  metadataBase: new URL("https://raw.githubusercontent.com/Aamirn1/Real-estate-agent-/main/public"),
+  metadataBase: new URL("https://opusglobalsolution.com"),
   icons: {
     icon: [
       { url: "/favicon-32.png?v=5", sizes: "32x32", type: "image/png" },
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     images: [
       {
-        url: "https://raw.githubusercontent.com/Aamirn1/Real-estate-agent-/main/public/og-image.jpg",
+        url: "https://opusglobalsolution.com/og-image.jpg",
         width: 1344,
         height: 768,
         alt: "Opus Global Solution | Workflow Automation for Realtors",
@@ -67,7 +67,10 @@ export const metadata: Metadata = {
     title: "Opus Global Solution | Workflow Automation for Realtors",
     description:
       "Your trusted partner for marketing consulting, outreach support, and CRM solutions for licensed real estate professionals.",
-    images: ["https://raw.githubusercontent.com/Aamirn1/Real-estate-agent-/main/public/og-image.jpg"],
+    images: ["https://opusglobalsolution.com/og-image.jpg"],
+  },
+  alternates: {
+    canonical: "https://opusglobalsolution.com",
   },
 };
 
@@ -81,7 +84,6 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="dns-prefetch" href="https://raw.githubusercontent.com" />
       </head>
       <body
         className={`${spaceGrotesk.variable} ${inter.variable} font-body antialiased bg-ink text-black selection:bg-electric/30 selection:text-black overflow-x-hidden`}
@@ -94,9 +96,9 @@ export default function RootLayout({
               "@type": ["Organization", "ProfessionalService", "LocalBusiness"],
               name: "Opus Global Solution",
               description: "Professional real estate marketing consulting and outreach support company for licensed real estate professionals.",
-              url: "https://opus-globalsolution.com",
+              url: "https://opusglobalsolution.com",
               telephone: "+1-645-253-6830",
-              email: "info@opussolutions.com",
+              email: "info@opusglobalsolution.com",
               address: {
                 "@type": "PostalAddress",
                 streetAddress: "418 Broadway, Ste. R",
@@ -117,10 +119,10 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "WebSite",
               name: "Opus Global Solution",
-              url: "https://opus-globalsolution.com",
+              url: "https://opusglobalsolution.com",
               potentialAction: {
                 "@type": "SearchAction",
-                target: "https://opus-globalsolution.com/blog?q={search_term_string}",
+                target: "https://opusglobalsolution.com/blog?q={search_term_string}",
                 "query-input": "required name=search_term_string",
               },
             }),

@@ -712,8 +712,8 @@ function MarketingPanel() {
               </AvatarFallback>
             </Avatar>
             <div className="min-w-0">
-              <div className="text-xs font-semibold text-[#1E293B]">Opus Solutions</div>
-              <div className="truncate text-[11px] text-[#1E293B]/45">noreply@opussolutions.com</div>
+              <div className="text-xs font-semibold text-[#1E293B]">Opus Global Solution</div>
+              <div className="truncate text-[11px] text-[#1E293B]/45">noreply@opusglobalsolution.com</div>
             </div>
             <span className="ml-auto rounded-md bg-[#1E293B]/5 px-2 py-0.5 text-[10px] text-[#1E293B]/45">
               Draft
@@ -907,7 +907,7 @@ export default function InteractiveDemo() {
             </div>
             <div className="mx-auto flex items-center gap-2 rounded-lg border border-[#E2E8F0] bg-graphite/60 px-3 py-1 text-xs text-[#1E293B]/55">
               <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-              <span className="tnum">app.opussolutions.com/dashboard</span>
+              <span className="tnum">app.opusglobalsolution.com/dashboard</span>
             </div>
             <Avatar className="h-7 w-7 border border-[#E2E8F0]">
               <AvatarFallback className="bg-gradient-to-br from-[#2563EB] to-[#38BDF8] text-[10px] font-semibold text-white">

@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import { AuthForm } from "@/components/leadsphere/AuthForm";
 
 export const metadata: Metadata = {
-  title: "Sign In — Opus Solutions",
-  description: "Sign in to your Opus Solutions account.",
+  title: "Sign In | Opus Global Solution",
+  description: "Sign in to your Opus Global Solution account.",
+  robots: { index: false, follow: false },
 };
 
 export default function SigninPage() {

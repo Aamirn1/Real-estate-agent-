@@ -12,6 +12,7 @@ export const metadata: Metadata = {
   title: "Privacy Policy | Opus Global Solution",
   description:
     "How Opus Global Solution collects, uses, and protects your information when you use our marketing consulting and outreach services.",
+  alternates: { canonical: "https://opusglobalsolution.com/privacy-policy" },
 };
 
 /* ----------------------------- Policy sections ----------------------------- */
@@ -76,7 +77,7 @@ const SECTIONS: PolicySection[] = [
     heading: "10. Contact",
     body: "If you have any questions about this Privacy Policy, please contact us:",
     bullets: [
-      "Email: info@opussolutions.com",
+      "Email: info@opusglobalsolution.com",
       "Address: 418 Broadway, Ste. R, Albany, NY 12207, United States",
     ],
   },
@@ -153,10 +154,10 @@ export default function PrivacyPolicyPage() {
                 <div className="flex items-center gap-3">
                   <Mail className="h-4 w-4 text-electric" />
                   <a
-                    href="mailto:info@opussolutions.com"
+                    href="mailto:info@opusglobalsolution.com"
                     className="text-sm text-black transition-colors hover:text-black"
                   >
-                    info@opussolutions.com
+                    info@opusglobalsolution.com
                   </a>
                 </div>
                 <div className="flex items-center gap-3">

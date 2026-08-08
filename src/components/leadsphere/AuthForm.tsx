@@ -90,7 +90,7 @@ export function AuthForm({ mode }: AuthFormProps) {
           <p className="mt-1.5 text-sm text-[#1E293B]/50">
             {isSignup
               ? "Start scaling your real estate business today"
-              : "Sign in to your Opus Solutions account"}
+              : "Sign in to your Opus Global Solution account"}
           </p>
         </div>
 

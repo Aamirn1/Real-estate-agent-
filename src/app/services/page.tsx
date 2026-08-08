@@ -9,6 +9,7 @@ import {
 export const metadata: Metadata = {
   title: "Real Estate Marketing Services | Opus Global Solution",
   description: "Professional marketing consulting, CRM support, outreach, virtual assistants, and digital advertising for licensed US real estate professionals.",
+  alternates: { canonical: "https://opusglobalsolution.com/services" },
 };
 
 export default function ServicesPage() {

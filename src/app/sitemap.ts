@@ -1,10 +1,11 @@
 import { MetadataRoute } from "next";
 
-const BASE_URL = "https://opus-globalsolution.com";
+const BASE_URL = "https://opusglobalsolution.com";
 
 const STATIC_PAGES = [
   { path: "", priority: 1.0, changeFrequency: "weekly" as const },
   { path: "/services", priority: 0.9, changeFrequency: "monthly" as const },
+  { path: "/virtual-assistance", priority: 0.9, changeFrequency: "monthly" as const },
   { path: "/about", priority: 0.8, changeFrequency: "monthly" as const },
   { path: "/pricing", priority: 0.9, changeFrequency: "monthly" as const },
   { path: "/testimonials", priority: 0.7, changeFrequency: "monthly" as const },

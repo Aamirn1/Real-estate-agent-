@@ -18,6 +18,7 @@ export const metadata: Metadata = {
   title: "FAQs | Real Estate Marketing Services | Opus Global Solution",
   description:
     "Find answers to commonly asked questions about Opus Global Solution' services, CRM support, marketing, scheduling, pricing, and compliance.",
+  alternates: { canonical: "https://opusglobalsolution.com/faqs" },
 };
 
 /* ----------------------------- 14 FAQs ----------------------------- */

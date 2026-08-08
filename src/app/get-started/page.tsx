@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: "Get Started | Opus Global Solution",
   description:
     "Fill out the form and our team will reach out within 24 hours to help you scale your real estate business with professional marketing and outreach support.",
+  robots: { index: false, follow: false },
 };
 
 export default function GetStartedPage() {
