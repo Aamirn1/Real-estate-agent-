@@ -161,6 +161,10 @@ export default function TestimonialsPage() {
             </Reveal>
           ))}
         </div>
+        <p className="mx-auto mt-8 max-w-2xl text-center text-xs leading-relaxed text-black/40">
+          Testimonials are representative of client experiences. Individual results
+          may vary based on market conditions, effort, and engagement scope.
+        </p>
       </SectionShell>
 
       {/* 4. Closing CTA */}

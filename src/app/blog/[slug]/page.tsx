@@ -177,6 +177,9 @@ export default async function BlogPostPage({
               <Clock className="h-3.5 w-3.5" />
               {post.readTime}
             </span>
+            <span className="text-xs text-black/40">
+              Last updated: {post.date}
+            </span>
           </div>
 
           {/* Title */}

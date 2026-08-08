@@ -66,13 +66,9 @@ const FOOTER_COLUMNS: { title: string; links: { label: string; href: string }[] 
   },
 ];
 
-const SOCIALS = [
-  { Icon: Twitter, label: "Twitter / X", href: "#" },
-  { Icon: Linkedin, label: "LinkedIn", href: "#" },
-  { Icon: Instagram, label: "Instagram", href: "#" },
-  { Icon: Youtube, label: "YouTube", href: "#" },
-  { Icon: Github, label: "GitHub", href: "#" },
-];
+// Social links removed — placeholder "#" links damage trust.
+// Add real social profile URLs here when accounts are created.
+const SOCIALS: { Icon: typeof Twitter; label: string; href: string }[] = [];
 
 function LogoMark() {
   return (

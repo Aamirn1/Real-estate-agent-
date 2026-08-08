@@ -98,6 +98,55 @@ export default function AboutPage() {
       {/* 1. Who We Are (Mission / Vision / Who We Serve) + Benefits (Why We Are Different removed from About page) */}
       <AboutMission showWhyDifferent={false} />
 
+      {/* 1b. Our Expertise & Methodology */}
+      <SectionShell id="expertise" className="pt-8">
+        <SectionHeading
+          eyebrow="Our Expertise"
+          title="How we work"
+          description="Our methodology is built on three principles: human-verified outreach, documented workflows, and compliance-first operations."
+        />
+        <div className="mt-10 grid gap-5 sm:grid-cols-3">
+          <Reveal>
+            <GlassCard strong className="h-full p-6">
+              <h3 className="font-heading text-base font-semibold text-black">
+                Human-Verified Outreach
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-black">
+                Every contact we make is handled by a trained professional — no autodialers,
+                no robocalls, no automated SMS blasts. This ensures quality conversations,
+                accurate qualification, and full compliance with TCPA and DNC regulations.
+              </p>
+            </GlassCard>
+          </Reveal>
+          <Reveal delay={0.08}>
+            <GlassCard strong className="h-full p-6">
+              <h3 className="font-heading text-base font-semibold text-black">
+                Documented Workflows
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-black">
+                Every process is documented, repeatable, and transparent. You receive
+                records of who was contacted, when, and what was discussed. This
+                documentation protects you legally and gives you visibility into your
+                pipeline at all times.
+              </p>
+            </GlassCard>
+          </Reveal>
+          <Reveal delay={0.16}>
+            <GlassCard strong className="h-full p-6">
+              <h3 className="font-heading text-base font-semibold text-black">
+                Compliance-First Operations
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-black">
+                We operate within TCPA, DNC, CAN-SPAM, CCPA/CPRA, and Fair Housing Act
+                guidelines. Consent is obtained before any outreach. All campaigns are
+                reviewed for compliance before launch. This protects your license and
+                your reputation.
+              </p>
+            </GlassCard>
+          </Reveal>
+        </div>
+      </SectionShell>
+
       {/* 2. Our Workflow | 4-step onboarding */}
       <OurWorkflow />
 
