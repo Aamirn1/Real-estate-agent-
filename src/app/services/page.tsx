@@ -27,8 +27,8 @@ export default function ServicesPage() {
         description="Unlock your potential for success with our expert marketing consulting, outreach support, and CRM solutions tailored for licensed real estate professionals."
       />
 
-      {/* 1. Services overview grid (12 services) */}
-      <FeaturesSection />
+      {/* 1. Services overview grid (12 services) — heading hidden (PageHero already shows it) */}
+      <FeaturesSection showHeading={false} />
 
       {/* 2. Virtual Assistant Services | 6 service cards */}
       <VirtualAssistantServices />

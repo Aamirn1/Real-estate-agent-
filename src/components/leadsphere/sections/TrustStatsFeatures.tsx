@@ -512,7 +512,7 @@ function ServiceFanCard({ item, active }: { item: ServiceItem; active: boolean }
   );
 }
 
-export function FeaturesSection() {
+export function FeaturesSection({ showHeading = true }: { showHeading?: boolean }) {
   // Responsive card sizing — smaller cards on mobile (matches Why Choose Us
   // card proportions), full size on desktop. This keeps the 3D fan fully
   // visible at every breakpoint.
@@ -538,11 +538,13 @@ export function FeaturesSection() {
         className="pointer-events-none absolute -right-32 bottom-24 -z-10 h-[420px] w-[420px] rounded-full bg-cyan/10 blur-[150px]"
       />
 
-      <SectionHeading
-        eyebrow="Services"
-        title="How we drive growth for real estate professionals"
-        description="Outreach support, digital advertising, CRM management, and virtual assistants, twelve services working together to fill your pipeline."
-      />
+      {showHeading && (
+        <SectionHeading
+          eyebrow="Services"
+          title="How we drive growth for real estate professionals"
+          description="Outreach support, digital advertising, CRM management, and virtual assistants, twelve services working together to fill your pipeline."
+        />
+      )}
 
       {/* CardStack fanned carousel — cards arranged in a 3D fan, auto-advancing.
           Responsive: 280×200 on mobile, 440×300 on desktop. */}

@@ -265,8 +265,8 @@ export default function VirtualAssistancePage() {
         description="Reduce your admin workload so you can focus on clients. Our virtual assistants handle customer support, prospect calling, calendar management, CRM, social media, and website management."
       />
 
-      {/* 1. Virtual Assistant Services — 6 service cards */}
-      <VirtualAssistantServices />
+      {/* 1. Virtual Assistant Services — 6 service cards (heading hidden, PageHero shows it) */}
+      <VirtualAssistantServices showHeading={false} />
 
       {/* 2. VA Pricing Packages */}
       <SectionShell id="va-pricing">

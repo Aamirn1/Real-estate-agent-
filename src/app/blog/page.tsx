@@ -19,7 +19,6 @@ import { CTABanner } from "@/components/leadsphere/CTABanner";
 import Link from "next/link";
 import {
   GlassCard,
-  SectionHeading,
   SectionShell,
 } from "@/components/leadsphere/primitives";
 import { Reveal } from "@/components/leadsphere/Reveal";
@@ -220,12 +219,6 @@ export default function BlogPage() {
       />
 
       <SectionShell id="blog" className="pt-10 md:pt-12">
-        <SectionHeading
-          eyebrow="Blog"
-          title="Insights for real estate professionals"
-          description="Strategies, tips, and stories from the front lines of real estate lead generation."
-        />
-
         <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-7 lg:grid-cols-3">
           {POSTS.map((post, i) => {
             const Icon = post.icon;

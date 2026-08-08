@@ -303,19 +303,21 @@ const VA_SERVICES: AnimatedService[] = [
   },
 ];
 
-export function VirtualAssistantServices() {
+export function VirtualAssistantServices({ showHeading = true }: { showHeading?: boolean }) {
   return (
     <SectionShell id="va-services" className="relative">
-      <SectionHeading
-        eyebrow="Virtual Assistant Services"
-        title={
-          <>
-            A dedicated team that keeps your business{" "}
-            <span className="text-gradient-electric">running</span>
-          </>
-        }
-        description="Reduce your admin workload so you can focus on clients. Our virtual assistants handle the operational heavy lifting."
-      />
+      {showHeading && (
+        <SectionHeading
+          eyebrow="Virtual Assistant Services"
+          title={
+            <>
+              A dedicated team that keeps your business{" "}
+              <span className="text-gradient-electric">running</span>
+            </>
+          }
+          description="Reduce your admin workload so you can focus on clients. Our virtual assistants handle the operational heavy lifting."
+        />
+      )}
 
       <div className="mt-10 sm:mt-12">
         <AnimatedServiceCards items={VA_SERVICES} />
