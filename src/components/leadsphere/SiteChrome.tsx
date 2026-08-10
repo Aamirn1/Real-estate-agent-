@@ -58,8 +58,10 @@ export function PageHero({
               src={heroImage}
               alt="Real estate professional home — Opus Global Solution marketing support"
               aria-hidden
+              width={1344}
+              height={768}
               className="h-full w-full object-cover"
-              loading="lazy"
+              fetchPriority="high"
             />
             <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/45 to-white" />
           </div>

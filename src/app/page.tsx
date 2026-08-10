@@ -47,6 +47,8 @@ export default function Home() {
           <img
             src="/sections/handshake.jpg"
             alt="Real estate professional shaking hands with client in front of modern home"
+            width={1024}
+            height={683}
             className="h-full w-full object-cover"
             loading="lazy"
           />

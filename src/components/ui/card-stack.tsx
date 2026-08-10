@@ -382,6 +382,8 @@ function DefaultFanCard({ item }: { item: CardStackItem; active: boolean }) {
           <img
             src={item.imageSrc}
             alt={item.title}
+            width={520}
+            height={320}
             className="h-full w-full object-cover"
             draggable={false}
             loading="eager"

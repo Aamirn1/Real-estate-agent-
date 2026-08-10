@@ -172,6 +172,8 @@ export function AboutMission({ showWhyDifferent = true }: { showWhyDifferent?: b
           src="/sections/why-different-bg.jpg"
           alt=""
           aria-hidden
+          width={1200}
+          height={800}
           className="absolute inset-0 h-full w-full object-cover"
           loading="lazy"
         />

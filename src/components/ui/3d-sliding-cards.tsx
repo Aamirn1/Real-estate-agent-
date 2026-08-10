@@ -134,6 +134,8 @@ function DefaultCard({ item }: { item: FloatingCardItem }) {
         <img
           src={imgSrc}
           alt={title}
+          width={300}
+          height={380}
           className="h-full w-full object-cover"
           loading="lazy"
         />

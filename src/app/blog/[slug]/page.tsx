@@ -145,7 +145,10 @@ export default async function BlogPostPage({
           <img
             src={post.image}
             alt={post.title}
+            width={1024}
+            height={576}
             className="h-64 w-full object-cover sm:h-96"
+            fetchPriority="high"
           />
         </div>
       </div>
@@ -285,6 +288,8 @@ export default async function BlogPostPage({
                   <img
                     src={rp.image}
                     alt={rp.title}
+                    width={300}
+                    height={200}
                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                     loading="lazy"
                   />

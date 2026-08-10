@@ -68,7 +68,10 @@ export function Navbar() {
           <img
             src={useDark ? "/logo-light.png" : "/logo-dark.png"}
             alt="Opus Global Solution"
-            className="h-10 sm:h-12"
+            width={160}
+            height={48}
+            className="h-10 sm:h-12 w-auto"
+            fetchPriority="high"
           />
         </a>
 
