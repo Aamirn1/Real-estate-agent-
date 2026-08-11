@@ -173,9 +173,9 @@ export default async function ServiceDetailPage({
                 <span className={`flex h-12 w-12 items-center justify-center rounded-xl ${t.iconWrap}`}>
                   <Icon className={`h-6 w-6 ${t.text}`} />
                 </span>
-                <h1 className="font-heading text-2xl font-semibold tracking-tight text-black sm:text-3xl">
+                <h2 className="font-heading text-2xl font-semibold tracking-tight text-black sm:text-3xl">
                   {service.title}
-                </h1>
+                </h2>
               </div>
               <div className="mt-6 flex flex-col gap-4">
                 {service.overview.map((para, i) => (
