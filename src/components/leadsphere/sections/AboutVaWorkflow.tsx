@@ -170,8 +170,7 @@ export function AboutMission({ showWhyDifferent = true }: { showWhyDifferent?: b
       <div className="relative mt-24 overflow-hidden rounded-3xl border border-black/15 shadow-lg md:mt-32">
         <img
           src="/sections/why-different-bg.jpg"
-          alt=""
-          aria-hidden
+          alt="Real estate professionals discussing marketing strategy"
           width={1200}
           height={800}
           className="absolute inset-0 h-full w-full object-cover"

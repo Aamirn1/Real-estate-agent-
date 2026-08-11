@@ -18,7 +18,7 @@ export const BLOG_POSTS: BlogPost[] = [
     category: "Lead Generation",
     readTime: "8 min read",
     date: "Jul 10, 2025",
-    image: "/blog/blog-1.jpg",
+    image: "/blog/seller-leads-strategies-2025.jpg",
     content: [
       "Generating seller leads is the lifeblood of every successful real estate agent. In 2025, the strategies that worked five years ago simply don't cut it anymore. Buyers and sellers are more informed, more selective, and more skeptical of traditional marketing tactics. To stay ahead, agents need a multi-channel approach that combines data-driven targeting, human-verified outreach, and compliance-first methods.",
       "1. Target Expired Listings: Expired listings are one of the most undervalued lead sources in real estate. These homeowners already tried to sell and failed, which means they're motivated but frustrated. A thoughtful, human-verified outreach campaign can position you as the solution they've been looking for. Use your CRM to track expiration dates and set automated reminders for follow-up calls within 48 hours of expiration.",
@@ -42,7 +42,7 @@ export const BLOG_POSTS: BlogPost[] = [
     category: "Virtual Assistants",
     readTime: "7 min read",
     date: "Jul 5, 2025",
-    image: "/blog/blog-2.jpg",
+    image: "/blog/virtual-assistants-real-estate.jpg",
     content: [
       "Real estate is a relationship business, but the administrative workload can overwhelm even the most organized agents. Between lead follow-up, CRM management, scheduling, client communication, and marketing tasks, there's precious little time left for what actually generates revenue: closing deals. This is where virtual assistants (VAs) are transforming the industry.",
       "A virtual assistant is a dedicated professional who handles the operational side of your real estate business remotely. They manage your calendar, update your CRM, follow up with leads, coordinate appointments, and handle client communication. This frees you to focus on high-value activities like showings, negotiations, and closings.",
@@ -62,7 +62,7 @@ export const BLOG_POSTS: BlogPost[] = [
     category: "CRM",
     readTime: "9 min read",
     date: "Jun 28, 2025",
-    image: "/blog/blog-3.jpg",
+    image: "/blog/crm-setup-guide.jpg",
     content: [
       "A Customer Relationship Management (CRM) system is the backbone of every successful real estate business. Yet many new agents either skip setting up a CRM entirely or set it up poorly, leading to lost leads, missed follow-ups, and disorganized pipelines. This guide walks you through everything you need to know to set up your CRM the right way from day one.",
       "Why You Need a CRM: Without a CRM, you're relying on sticky notes, spreadsheets, and memory. Leads fall through the cracks. Follow-ups get missed. You lose track of where each prospect is in the sales process. A CRM solves all of these problems by centralizing every contact, conversation, and task in one organized system.",
@@ -84,7 +84,7 @@ export const BLOG_POSTS: BlogPost[] = [
     category: "Outreach",
     readTime: "6 min read",
     date: "Jun 20, 2025",
-    image: "/blog/blog-4.jpg",
+    image: "/blog/human-verified-outreach.jpg",
     content: [
       "Cold calling has been the default prospecting method for real estate agents for decades. But in 2025, it's rapidly losing effectiveness. Consumers are bombarded with robocalls, spoofed numbers, and automated texts. They've learned to ignore unknown numbers and report unsolicited calls. The result? Cold calling conversion rates have plummeted to below 1%.",
       "Human-verified outreach is the alternative that actually works. It's not about dialing more numbers; it's about having meaningful, documented conversations with the right people at the right time. Here's why it outperforms cold calling every single time.",
@@ -105,7 +105,7 @@ export const BLOG_POSTS: BlogPost[] = [
     category: "Digital Marketing",
     readTime: "10 min read",
     date: "Jun 12, 2025",
-    image: "/blog/blog-5.jpg",
+    image: "/blog/facebook-google-ads-2025.jpg",
     content: [
       "Paid advertising on Google and Facebook is one of the most powerful lead generation channels for real estate agents. But most agents waste thousands of dollars targeting the wrong audience with the wrong message. This 2025 playbook shows you exactly how to set up compliant, high-converting campaigns that target motivated home sellers.",
       "Google Ads for Real Estate: Google Ads allows you to capture demand at the exact moment someone is searching. The key is targeting the right keywords with the right ad copy.",
@@ -127,7 +127,7 @@ export const BLOG_POSTS: BlogPost[] = [
     category: "Pipeline",
     readTime: "7 min read",
     date: "Jun 5, 2025",
-    image: "/blog/blog-6.jpg",
+    image: "/blog/pipeline-never-goes-dry.jpg",
     content: [
       "Every real estate agent knows the feast-or-famine cycle: one month you're drowning in deals, the next your phone is silent. The root cause is almost always an inconsistent pipeline. Building a pipeline that never goes dry requires a systematic approach to lead generation, follow-up, and pipeline management.",
       "The Pipeline Formula: A healthy real estate pipeline has four components: consistent lead generation (new leads entering weekly), organized CRM management (every lead tracked and categorized), systematic follow-up (no lead left behind), regular pipeline review (monthly performance analysis).",
@@ -149,7 +149,7 @@ export const BLOG_POSTS: BlogPost[] = [
     category: "Compliance",
     readTime: "8 min read",
     date: "May 28, 2025",
-    image: "/blog/blog-7.jpg",
+    image: "/blog/compliance-tcpa-dnc.jpg",
     content: [
       "Compliance isn't the most exciting topic in real estate, but it's one of the most important. A single TCPA violation can cost $500-$1,500 per call. A CAN-SPAM violation can cost $43,280 per email. Yet many agents are unaware of the regulations that govern their marketing activities. This guide covers everything you need to know.",
       "TCPA (Telephone Consumer Protection Act): The TCPA regulates telemarketing calls, text messages, and fax communications. Key requirements: no autodialers or robocalls to mobile numbers without prior express consent, honor DNC (Do Not Call) registry requests, maintain internal DNC list, calling hours restricted to 8 AM - 9 PM local time, provide caller identification.",
@@ -171,7 +171,7 @@ export const BLOG_POSTS: BlogPost[] = [
     category: "Conversion",
     readTime: "7 min read",
     date: "May 20, 2025",
-    image: "/blog/blog-8.jpg",
+    image: "/blog/lead-to-closing-nurture.jpg",
     content: [
       "Generating leads is only half the battle. The real challenge is nurturing those leads from first contact to closing day. Statistics show that 80% of sales require 5+ follow-ups, yet most agents give up after just 2 attempts. Effective lead nurturing is the difference between a thriving business and a struggling one.",
       "The Nurturing Mindset: Lead nurturing is not about pushing someone to buy. It's about building a relationship, providing value, and being the obvious choice when they're ready to move. The goal is to stay top-of-mind without being annoying.",
