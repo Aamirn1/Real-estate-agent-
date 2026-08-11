@@ -253,19 +253,24 @@ export function AnimatedServiceCards({
         </Button>
 
         {/* dots */}
-        <div className="flex items-center gap-1.5">
+        <div className="flex items-center gap-1">
           {Array.from({ length: snapCount }).map((_, i) => (
             <button
               key={i}
               onClick={() => emblaApi?.scrollTo(i)}
               aria-label={`Go to slide ${i + 1}`}
-              className="h-1.5 rounded-full transition-all duration-300"
-              style={{
-                width: i === selected ? 24 : 8,
-                backgroundColor:
-                  i === selected ? "#2563EB" : "rgba(0,0,0,0.15)",
-              }}
-            />
+              className="flex h-8 w-8 items-center justify-center rounded-full transition-all duration-300"
+            >
+              <span
+                className="block rounded-full transition-all duration-300"
+                style={{
+                  width: i === selected ? 24 : 8,
+                  height: 6,
+                  backgroundColor:
+                    i === selected ? "#2563EB" : "rgba(0,0,0,0.15)",
+                }}
+              />
+            </button>
           ))}
         </div>
 

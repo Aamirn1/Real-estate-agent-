@@ -524,7 +524,7 @@ function ServiceFanCard({ item, active }: { item: ServiceItem; active: boolean }
         {active && item.href && (
           <a
             href={item.href}
-            className="mt-3 inline-flex items-center gap-1 text-xs font-semibold text-electric hover:underline"
+            className="mt-3 inline-flex items-center gap-1 rounded-lg px-2 py-1.5 text-xs font-semibold text-electric hover:bg-electric/5 hover:underline"
           >
             Learn more
             <ArrowRight className="h-3 w-3" />

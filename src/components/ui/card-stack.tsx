@@ -338,7 +338,7 @@ export function CardStack<T extends CardStackItem>({
       {/* Dots navigation centered at bottom */}
       {showDots ? (
         <div className="mt-6 flex items-center justify-center gap-3">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5">
             {items.map((it, idx) => {
               const on = idx === active;
               return (
@@ -346,13 +346,20 @@ export function CardStack<T extends CardStackItem>({
                   key={it.id}
                   onClick={() => setActive(idx)}
                   className={cn(
-                    "h-2 w-2 rounded-full transition",
+                    "flex h-8 w-8 items-center justify-center rounded-full transition",
                     on
                       ? "bg-foreground"
                       : "bg-foreground/30 hover:bg-foreground/50",
                   )}
                   aria-label={`Go to ${it.title}`}
-                />
+                >
+                  <span
+                    className={cn(
+                      "rounded-full transition",
+                      on ? "h-2 w-2 bg-background" : "h-1.5 w-1.5 bg-background/50"
+                    )}
+                  />
+                </button>
               );
             })}
           </div>
