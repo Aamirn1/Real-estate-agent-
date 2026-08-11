@@ -768,7 +768,7 @@ function CtaBanner() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="max-w-xl text-base leading-relaxed text-white/90 sm:text-lg"
           >
-            Join thousands of real estate professionals who trust Opus Global Solution for verified outreach, dedicated VAs, and documented workflows.
+            Real estate professionals trust Opus Global Solution for verified outreach, dedicated VAs, and documented workflows. Get started today.
           </motion.p>
 
           <motion.div
@@ -778,29 +778,31 @@ function CtaBanner() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="mt-2 flex flex-col items-center gap-3 sm:flex-row"
           >
-            {/* Book Demo, white / outline */}
-            <motion.button
+            {/* Book Demo — links to contact page */}
+            <motion.a
+              href="/contact"
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.97 }}
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-white/50 bg-black/10 px-7 py-3.5 text-sm font-semibold text-white backdrop-blur transition-all hover:bg-white/20 hover:shadow-[0_0_35px_-6px_rgba(255,255,255,0.6)]"
+              className="btn-shimmer inline-flex items-center justify-center gap-2 rounded-full border border-white/50 bg-black/10 px-7 py-3.5 text-sm font-semibold text-white backdrop-blur transition-all hover:bg-white/20 hover:shadow-[0_0_35px_-6px_rgba(255,255,255,0.6)]"
             >
-              <Calendar className="h-4 w-4" />
-              Book Demo
-            </motion.button>
-            {/* Start Free Trial, dark solid with glow */}
-            <motion.button
+              <Calendar className="relative z-10 h-4 w-4" />
+              <span className="relative z-10">Book Demo</span>
+            </motion.a>
+            {/* Get Started — links to pricing page */}
+            <motion.a
+              href="/pricing"
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.97 }}
-              className="group inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-semibold text-black shadow-[0_0_35px_-6px_rgba(0,0,0,0.8)] ring-1 ring-white/10 transition-all hover:shadow-[0_0_50px_-4px_rgba(255,255,255,0.5)]"
+              className="btn-shimmer group inline-flex items-center justify-center gap-2 overflow-hidden rounded-full bg-white px-7 py-3.5 text-sm font-semibold text-black shadow-[0_0_35px_-6px_rgba(0,0,0,0.8)] ring-1 ring-white/10 transition-all hover:shadow-[0_0_50px_-4px_rgba(255,255,255,0.5)]"
             >
-              <Rocket className="h-4 w-4 text-electric" />
-              Start Free Trial
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-            </motion.button>
+              <Rocket className="relative z-10 h-4 w-4 text-electric" />
+              <span className="relative z-10">Get Started</span>
+              <ArrowRight className="relative z-10 h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+            </motion.a>
           </motion.div>
 
           <p className="text-xs text-white/80">
-            14-day free trial · No credit card required · Cancel anytime
+            One-time setup · No hidden charges · Cancel anytime
           </p>
         </div>
       </div>
