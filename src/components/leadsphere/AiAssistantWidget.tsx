@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Headset, Send, X, Sparkles, Loader2 } from "lucide-react";
+import { trackAIAssistantOpen, trackAIAssistantMessage } from "@/lib/analytics";
 
 interface Msg {
   role: "user" | "assistant";
@@ -54,6 +55,7 @@ export function AiAssistantWidget() {
     setHasChatted(true);
     const next = [...messages, { role: "user" as const, content }];
     setMessages(next);
+    trackAIAssistantMessage();
     try {
       const res = await fetch("/api/ai-assistant", {
         method: "POST",
@@ -93,6 +95,7 @@ export function AiAssistantWidget() {
         animate={{ scale: 1, opacity: 1 }}
         transition={{ delay: 1.4, type: "spring", stiffness: 220, damping: 16 }}
         onClick={() => {
+          if (!open) trackAIAssistantOpen();
           setOpen((v) => !v);
           setUnread(false);
         }}

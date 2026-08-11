@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Rocket, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { trackCheckoutStart } from "@/lib/analytics";
 
 /* ============================================================
    CheckoutButton
@@ -41,6 +42,7 @@ export function CheckoutButton({ plan, variant, children, className }: Props) {
         href={href}
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
+        onClick={() => trackCheckoutStart(plan)}
         className={cn(base, variantCls)}
         aria-label={`Get started with the ${plan} plan`}
       >

@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { trackGetStartedClick } from "@/lib/analytics";
 
 const NAV_LINKS = [
   { label: "Home", href: "/" },
@@ -110,6 +111,7 @@ export function Navbar() {
             href="/get-started"
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
+            onClick={() => trackGetStartedClick("navbar")}
             className="btn-shimmer group relative overflow-hidden rounded-xl bg-gradient-to-r from-[#2563EB] to-[#38BDF8] px-4 py-2 text-sm font-semibold text-white shadow-[0_0_24px_-6px_rgba(37,99,235,0.7)] transition-all hover:shadow-[0_0_30px_-4px_rgba(56,189,248,0.8)]"
           >
             <span className="relative z-10">Get Started</span>
@@ -170,7 +172,10 @@ export function Navbar() {
               <div className="mt-2 border-t border-black/15 pt-3">
                 <a
                   href="/get-started"
-                  onClick={() => setOpen(false)}
+                  onClick={() => {
+                    setOpen(false);
+                    trackGetStartedClick("navbar_mobile");
+                  }}
                   className="block rounded-xl bg-gradient-to-r from-[#2563EB] to-[#38BDF8] px-4 py-2.5 text-center text-sm font-semibold text-white"
                 >
                   Get Started

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Space_Grotesk, Inter } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-heading",
@@ -155,6 +156,10 @@ export default function RootLayout({
         />
         {children}
         <Toaster />
+        {/* Google Analytics 4 — only loads if NEXT_PUBLIC_GA_ID is set */}
+        {process.env.NEXT_PUBLIC_GA_ID && (
+          <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
+        )}
       </body>
     </html>
   );

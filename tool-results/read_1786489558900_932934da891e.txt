@@ -1,0 +1,1020 @@
+     1→"use client";
+     2→
+     3→import {
+     4→  GlassCard,
+     5→  SectionHeading,
+     6→  SectionShell,
+     7→  CountUp,
+     8→} from "@/components/leadsphere/primitives";
+     9→import { Reveal } from "@/components/leadsphere/Reveal";
+    10→import { CheckoutButton } from "@/components/leadsphere/CheckoutButton";
+    11→import {
+    12→  Accordion,
+    13→  AccordionItem,
+    14→  AccordionTrigger,
+    15→  AccordionContent,
+    16→} from "@/components/ui/accordion";
+    17→import { Input } from "@/components/ui/input";
+    18→import { Textarea } from "@/components/ui/textarea";
+    19→import { Label } from "@/components/ui/label";
+    20→import { Button } from "@/components/ui/button";
+    21→import { motion } from "framer-motion";
+    22→import { cn } from "@/lib/utils";
+    23→import {
+    24→  Check,
+    25→  ChevronDown,
+    26→  Sparkles,
+    27→  ArrowRight,
+    28→  Rocket,
+    29→  Calendar,
+    30→  Twitter,
+    31→  Linkedin,
+    32→  Instagram,
+    33→  Youtube,
+    34→  Github,
+    35→  ShieldCheck,
+    36→  Send,
+    37→  Star,
+    38→  Mail,
+    39→  Phone,
+    40→  MapPin,
+    41→  Clock,
+    42→  MessageSquare,
+    43→  X,
+    44→} from "lucide-react";
+    45→import { LogoImage } from "@/components/leadsphere/LogoIcon";
+    46→
+    47→/* ============================================================
+    48→   DATA
+    49→============================================================ */
+    50→
+    51→type Plan = {
+    52→  name: string;
+    53→  price: string;
+    54→  period: string;
+    55→  tagline: string;
+    56→  features: { text: string; included: boolean }[];
+    57→  cta: string;
+    58→  ctaVariant: "outline" | "solid";
+    59→  highlight?: "top-selling" | "premium";
+    60→  badge?: string;
+    61→};
+    62→
+    63→const PLANS: Plan[] = [
+    64→  {
+    65→    name: "Trial",
+    66→    price: "$299",
+    67→    period: "One-Time · 90 Days Setup",
+    68→    tagline: "Test for Realtors",
+    69→    cta: "Get Started",
+    70→    ctaVariant: "outline",
+    71→    features: [
+    72→      { text: "20% Referral Fee", included: true },
+    73→      { text: "6 Qualified, Pre-screened Introductions", included: true },
+    74→      { text: "Up to 5 Counties", included: true },
+    75→      { text: "10 hr/day Support", included: true },
+    76→      { text: "Spreadsheet", included: true },
+    77→      { text: "Pipeline Tracking", included: true },
+    78→      { text: "No Hidden Charges", included: true },
+    79→      { text: "Exclusive Warm Live Transfer", included: false },
+    80→      { text: "SMS/WhatsApp Support", included: false },
+    81→      { text: "Monthly Activity Summary", included: false },
+    82→      { text: "Dedicated Account Manager", included: false },
+    83→      { text: "Digital Marketing Services", included: false },
+    84→    ],
+    85→  },
+    86→  {
+    87→    name: "Gold",
+    88→    price: "$599",
+    89→    period: "One-Time · 180 Days Setup",
+    90→    tagline: "Most popular choice",
+    91→    cta: "Get Started",
+    92→    ctaVariant: "solid",
+    93→    highlight: "top-selling",
+    94→    badge: "Top Selling",
+    95→    features: [
+    96→      { text: "15% Referral Fee", included: true },
+    97→      { text: "12 Qualified, Pre-screened Introductions", included: true },
+    98→      { text: "Up to 5 Counties", included: true },
+    99→      { text: "10 hr/day Support", included: true },
+   100→      { text: "Spreadsheet", included: true },
+   101→      { text: "Priority-based Appointment Scheduling", included: true },
+   102→      { text: "Call/lead recording (where permitted and with notice)", included: true },
+   103→      { text: "Pipeline Tracking", included: true },
+   104→      { text: "No Hidden Charges", included: true },
+   105→      { text: "Exclusive Warm Live Transfer", included: false },
+   106→      { text: "SMS/WhatsApp Support", included: false },
+   107→      { text: "Monthly Activity Summary", included: false },
+   108→      { text: "Dedicated Account Manager", included: false },
+   109→      { text: "Digital Marketing Services", included: false },
+   110→    ],
+   111→  },
+   112→  {
+   113→    name: "Platinum",
+   114→    price: "$1199",
+   115→    period: "One-Time · 365 Days Setup",
+   116→    tagline: "High-volume prospecting",
+   117→    cta: "Get Started",
+   118→    ctaVariant: "outline",
+   119→    highlight: "premium",
+   120→    badge: "For Premium Realtors",
+   121→    features: [
+   122→      { text: "10% Referral Fee", included: true },
+   123→      { text: "18 Qualified, Pre-screened Introductions", included: true },
+   124→      { text: "Up to 10 Counties", included: true },
+   125→      { text: "10 hr/day Support", included: true },
+   126→      { text: "Priority-based Appointment Scheduling", included: true },
+   127→      { text: "Call/lead recording (where permitted and with notice)", included: true },
+   128→      { text: "Advanced Pipeline Tracking", included: true },
+   129→      { text: "No Hidden Charges", included: true },
+   130→      { text: "Exclusive Warm Live Transfer", included: true },
+   131→      { text: "SMS/WhatsApp Support", included: true },
+   132→      { text: "Monthly Reporting", included: true },
+   133→      { text: "Dedicated Account Manager", included: true },
+   134→      { text: "Digital Marketing Services", included: true },
+   135→    ],
+   136→  },
+   137→];
+   138→
+   139→const FAQS: { q: string; a: string }[] = [
+   140→  {
+   141→    q: "What does Opus Global Solution do?",
+   142→    a: "We provide marketing consulting, CRM support, account management, and virtual assistance for licensed real estate professionals. Our services reduce administrative workload by managing outreach, reporting, scheduling, and digital marketing, allowing professionals to focus on building client relationships and closing deals.",
+   143→  },
+   144→  {
+   145→    q: "Are we a real estate brokerage?",
+   146→    a: "No. We are not a brokerage, and we do not list or sell property. We are a support partner that offers administrative, outreach, and marketing solutions designed for real estate professionals.",
+   147→  },
+   148→  {
+   149→    q: "Do we sell data or contacts?",
+   150→    a: "No. We do not sell or resell data or contacts. We provide consent-based outreach support, documented records, CRM management, and workflow reporting to help professionals manage their own outreach efficiently.",
+   151→  },
+   152→  {
+   153→    q: "How does our outreach work?",
+   154→    a: "We use human-only outreach methods, never autodialers or robocalls. All engagement is consent-based, documented, and reported, giving full transparency into our work and ensuring compliance with applicable regulations.",
+   155→  },
+   156→  {
+   157→    q: "How many professionals do we work with in the same area?",
+   158→    a: "We dedicate our resources, account managers, and virtual assistants on an exclusive basis during each active campaign. This ensures our efforts are fully aligned with your goals and territory.",
+   159→  },
+   160→  {
+   161→    q: "Is there a setup fee?",
+   162→    a: "Yes. We charge a one-time onboarding fee that covers setup, documentation, and account preparation. This ensures your CRM, reporting, and workflows are properly established before outreach begins.",
+   163→  },
+   164→  {
+   165→    q: "Do we provide support?",
+   166→    a: "Yes. Every client is assigned a dedicated account manager and virtual assistant for ongoing communication, reporting, and campaign support. We also provide regular updates and documented reporting throughout the engagement.",
+   167→  },
+   168→  {
+   169→    q: "What compliance standards do we follow?",
+   170→    a: "We comply with all applicable regulations, including TCPA, DNC, CAN-SPAM, CCPA/CPRA, and the Fair Housing Act. Clients remain responsible for their own regulatory licensing and compliance obligations.",
+   171→  },
+   172→  {
+   173→    q: "How do we ensure data security?",
+   174→    a: "All payments are processed securely through our PCI-compliant processor's hosted checkout. We never store or directly handle cardholder data, and all authorized payments are made only through official invoice links.",
+   175→  },
+   176→  {
+   177→    q: "What makes us different from listing platforms?",
+   178→    a: "We are not a marketplace, and we do not distribute inquiries broadly. We provide customized support packages that focus on administrative efficiency, CRM management, and documented outreach tailored to each client.",
+   179→  },
+   180→  {
+   181→    q: "Do we guarantee business results?",
+   182→    a: "No. We do not guarantee specific outcomes. Our role is to improve efficiency through marketing support, documentation, and workflow management, enabling professionals to focus on activities that drive results.",
+   183→  },
+   184→  {
+   185→    q: "Can services be cancelled?",
+   186→    a: "Yes. Services can be cancelled in accordance with the terms of our Service Agreement. Written notice is required, and billing stops at the end of the active billing cycle.",
+   187→  },
+   188→];
+   189→
+   190→const FOOTER_COLUMNS: { title: string; links: { label: string; href: string }[] }[] = [
+   191→  {
+   192→    title: "Pages",
+   193→    links: [
+   194→      { label: "Home", href: "/" },
+   195→      { label: "Services", href: "/services" },
+   196→      { label: "Pricing", href: "/pricing" },
+   197→      { label: "Testimonials", href: "/testimonials" },
+   198→      { label: "Blog", href: "/blog" },
+   199→      { label: "About Us", href: "/about" },
+   200→      { label: "Contact", href: "/contact" },
+   201→    ],
+   202→  },
+   203→  {
+   204→    title: "Solutions",
+   205→    links: [
+   206→      { label: "Marketing Consulting", href: "/services" },
+   207→      { label: "CRM Support", href: "/services" },
+   208→      { label: "Workflow Automation", href: "/services" },
+   209→      { label: "Virtual Assistance", href: "/services" },
+   210→      { label: "Outreach Support", href: "/services" },
+   211→    ],
+   212→  },
+   213→  {
+   214→    title: "Resources",
+   215→    links: [
+   216→      { label: "Blog", href: "/blog" },
+   217→      { label: "FAQs", href: "/faqs" },
+   218→      { label: "Case Studies", href: "/testimonials" },
+   219→      { label: "Contact", href: "/contact" },
+   220→    ],
+   221→  },
+   222→  {
+   223→    title: "Company",
+   224→    links: [
+   225→      { label: "About Us", href: "/about" },
+   226→      { label: "Contact", href: "/contact" },
+   227→      { label: "FAQs", href: "/faqs" },
+   228→      { label: "Testimonials", href: "/testimonials" },
+   229→    ],
+   230→  },
+   231→  {
+   232→    title: "Legal",
+   233→    links: [
+   234→      { label: "Privacy Policy", href: "/privacy-policy" },
+   235→      { label: "Terms & Conditions", href: "/terms" },
+   236→      { label: "Refund Policy", href: "/refund-policy" },
+   237→    ],
+   238→  },
+   239→];
+   240→
+   241→// Social links removed — placeholder "#" links damage trust.
+   242→// Add real social profile URLs here when accounts are created.
+   243→const SOCIALS: { Icon: typeof Twitter; label: string; href: string }[] = [];
+   244→
+   245→const CONTACT_INFO = {
+   246→  email: "info@opusglobalsolution.com",
+   247→  phones: ["(645) 253-6830"],
+   248→  addressLines: ["418 Broadway, Ste. R", "Albany, NY 12207", "United States"],
+   249→  hours: "10:00 A.M. to 08:00 P.M (EST)",
+   250→};
+   251→
+   252→/* ============================================================
+   253→   PRICING CARD
+   254→============================================================ */
+   255→
+   256→function PlanPrice({ plan }: { plan: Plan }) {
+   257→  const num = parseInt(plan.price.replace(/[^0-9]/g, ""), 10);
+   258→  return (
+   259→    <div className="flex items-baseline gap-1">
+   260→      <span className="font-heading text-2xl font-semibold text-black">
+   261→        $
+   262→      </span>
+   263→      <CountUp
+   264→        key={plan.price}
+   265→        value={num}
+   266→        duration={1400}
+   267→        className="font-heading text-5xl font-semibold tracking-tight text-black"
+   268→      />
+   269→    </div>
+   270→  );
+   271→}
+   272→
+   273→function PricingCard({ plan, delay }: { plan: Plan; delay: number }) {
+   274→  const features = (
+   275→    <ul className="flex flex-col gap-2.5 pr-1">
+   276→      {plan.features.map((f, i) => (
+   277→        <li
+   278→          key={i}
+   279→          className={cn(
+   280→            "flex items-start gap-3 text-sm",
+   281→            f.included ? "text-black" : "text-black/25"
+   282→          )}
+   283→        >
+   284→          <span
+   285→            className={cn(
+   286→              "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full ring-1",
+   287→              f.included
+   288→                ? "bg-emerald-400/15 ring-emerald-400/30"
+   289→                : "bg-black/5 ring-white/10"
+   290→            )}
+   291→          >
+   292→            {f.included ? (
+   293→              <Check className="h-3 w-3 text-emerald-400" />
+   294→            ) : (
+   295→              <X className="h-3 w-3 text-black/30" />
+   296→            )}
+   297→          </span>
+   298→          <span className={cn("leading-relaxed", !f.included && "line-through")}>
+   299→            {f.text}
+   300→          </span>
+   301→        </li>
+   302→      ))}
+   303→    </ul>
+   304→  );
+   305→
+   306→  const header = (
+   307→    <div className="flex flex-col gap-2">
+   308→      <h3 className="font-heading text-xl font-semibold text-black">
+   309→        {plan.name}
+   310→      </h3>
+   311→      <p className="text-sm leading-relaxed text-black">{plan.tagline}</p>
+   312→    </div>
+   313→  );
+   314→
+   315→  const priceBlock = (
+   316→    <div className="flex flex-col gap-1">
+   317→      <PlanPrice plan={plan} />
+   318→      <span className="text-xs font-medium text-black">{plan.period}</span>
+   319→    </div>
+   320→  );
+   321→
+   322→  const badge = plan.badge ? (
+   323→    <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
+   324→      <div className="flex items-center gap-1.5 rounded-full border border-gold/40 bg-[#1a1605] px-3.5 py-1.5 shadow-[0_0_20px_-4px_rgba(212,175,55,0.6)]">
+   325→        <Star className="h-3.5 w-3.5 fill-gold text-gold" />
+   326→        <span className="text-xs font-semibold tracking-wide text-gold">
+   327→          {plan.badge}
+   328→        </span>
+   329→      </div>
+   330→    </div>
+   331→  ) : null;
+   332→
+   333→  /* Silver Plan, Top Selling (electric gradient border + scale + solid CTA) */
+   334→  if (plan.highlight === "top-selling") {
+   335→    return (
+   336→      <Reveal delay={delay} className="h-full">
+   337→        <div className="group relative h-full lg:scale-[1.04] lg:z-10 transition-transform duration-300">
+   338→          {/* ambient glow */}
+   339→          <div className="absolute -inset-3 rounded-[1.75rem] bg-electric/20 blur-2xl opacity-70" />
+   340→          {/* animated gradient border */}
+   341→          <div className="absolute -inset-px rounded-2xl bg-[linear-gradient(120deg,#2563EB,#38BDF8,#14B8A6,#2563EB)] animate-gradient-x opacity-95" />
+   342→          {/* card body */}
+   343→          <GlassCard
+   344→            strong
+   345→            glow={false}
+   346→            className="relative flex h-full flex-col rounded-2xl p-5 md:p-6"
+   347→          >
+   348→            {badge}
+   349→            <div className="flex flex-1 flex-col gap-5 pt-2">
+   350→              {header}
+   351→              {priceBlock}
+   352→              <div className="h-px w-full bg-gradient-to-r from-transparent via-black/10 to-transparent" />
+   353→              {features}
+   354→              <CheckoutButton plan={plan.name} variant="solid">
+   355→                {plan.cta}
+   356→              </CheckoutButton>
+   357→            </div>
+   358→          </GlassCard>
+   359→        </div>
+   360→      </Reveal>
+   361→    );
+   362→  }
+   363→
+   364→  /* Sapphire Plan, Premium (gold gradient border + outline CTA) */
+   365→  if (plan.highlight === "premium") {
+   366→    return (
+   367→      <Reveal delay={delay} className="h-full">
+   368→        <div className="group relative h-full transition-transform duration-300">
+   369→          {/* ambient glow */}
+   370→          <div className="absolute -inset-3 rounded-[1.75rem] bg-gold/15 blur-2xl opacity-70" />
+   371→          {/* animated gold gradient border */}
+   372→          <div className="absolute -inset-px rounded-2xl bg-[linear-gradient(120deg,#d4af37,#f5d77a,#d4af37,#f5d77a)] animate-gradient-x opacity-95" />
+   373→          {/* card body */}
+   374→          <GlassCard
+   375→            strong
+   376→            glow={false}
+   377→            className="relative flex h-full flex-col rounded-2xl p-5 md:p-6"
+   378→          >
+   379→            {badge}
+   380→            <div className="flex flex-1 flex-col gap-5 pt-2">
+   381→              {header}
+   382→              {priceBlock}
+   383→              <div className="h-px w-full bg-gradient-to-r from-transparent via-gold/25 to-transparent" />
+   384→              {features}
+   385→              <CheckoutButton plan={plan.name} variant="outline">
+   386→                {plan.cta}
+   387→              </CheckoutButton>
+   388→            </div>
+   389→          </GlassCard>
+   390→        </div>
+   391→      </Reveal>
+   392→    );
+   393→  }
+   394→
+   395→  /* Standard card */
+   396→  return (
+   397→    <Reveal delay={delay} className="h-full">
+   398→      <GlassCard
+   399→        strong
+   400→        glow={false}
+   401→        className="group relative flex h-full flex-col rounded-2xl p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_60px_-20px_rgba(37,99,235,0.35)] md:p-6"
+   402→      >
+   403→        <div className="flex flex-1 flex-col gap-5">
+   404→          {header}
+   405→          {priceBlock}
+   406→          <div className="h-px w-full bg-gradient-to-r from-transparent via-black/10 to-transparent" />
+   407→          {features}
+   408→          <CheckoutButton plan={plan.name} variant={plan.ctaVariant}>
+   409→            {plan.cta}
+   410→          </CheckoutButton>
+   411→        </div>
+   412→      </GlassCard>
+   413→    </Reveal>
+   414→  );
+   415→}
+   416→
+   417→/* ============================================================
+   418→   FAQ ITEM
+   419→============================================================ */
+   420→
+   421→function FaqList() {
+   422→  return (
+   423→    <Accordion
+   424→      type="single"
+   425→      collapsible
+   426→      defaultValue="faq-0"
+   427→      className="flex w-full flex-col gap-3"
+   428→    >
+   429→      {FAQS.map((faq, i) => (
+   430→        <Reveal key={faq.q} delay={Math.min(i * 0.04, 0.36)} className="block">
+   431→          <AccordionItem
+   432→            value={`faq-${i}`}
+   433→            className="glass-strong card-border-glow group rounded-2xl border border-black/15 px-5 transition-colors duration-300 data-[state=open]:border-electric/30 sm:px-6"
+   434→          >
+   435→            <AccordionTrigger
+   436→              className="group/trigger hover:no-underline py-5 text-left text-base font-medium text-black [&>svg:last-child]:hidden"
+   437→            >
+   438→              <span className="flex-1 pr-4 font-heading text-[15px] font-semibold leading-snug text-black sm:text-base">
+   439→                {faq.q}
+   440→              </span>
+   441→              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-black/15 bg-black/5 transition-all duration-300 group-data-[state=open]:border-electric/40 group-data-[state=open]:bg-electric/10">
+   442→                <ChevronDown className="h-4 w-4 text-black transition-all duration-300 group-data-[state=open]:rotate-180 group-data-[state=open]:text-electric" />
+   443→              </span>
+   444→            </AccordionTrigger>
+   445→            <AccordionContent className="text-sm leading-relaxed text-black sm:text-[15px]">
+   446→              <span className="block pr-12 pb-5">{faq.a}</span>
+   447→            </AccordionContent>
+   448→          </AccordionItem>
+   449→        </Reveal>
+   450→      ))}
+   451→    </Accordion>
+   452→  );
+   453→}
+   454→
+   455→/* ============================================================
+   456→   CONTACT SECTION
+   457→============================================================ */
+   458→
+   459→function InfoCard({
+   460→  icon: Icon,
+   461→  iconTint,
+   462→  label,
+   463→  children,
+   464→}: {
+   465→  icon: React.ComponentType<{ className?: string }>;
+   466→  iconTint: string; // e.g. "text-electric"
+   467→  label: string;
+   468→  children: React.ReactNode;
+   469→}) {
+   470→  return (
+   471→    <GlassCard
+   472→      strong
+   473→      className="group rounded-2xl p-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-black/20"
+   474→    >
+   475→      <div className="flex flex-col gap-3">
+   476→        <div
+   477→          className={cn(
+   478→            "flex h-9 w-9 items-center justify-center rounded-lg bg-black/5 ring-1 ring-white/10 transition-colors",
+   479→            iconTint
+   480→          )}
+   481→        >
+   482→          <Icon className="h-4 w-4" />
+   483→        </div>
+   484→        <div>
+   485→          <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-black">
+   486→            {label}
+   487→          </p>
+   488→          <div className="mt-1 text-sm font-medium text-black leading-relaxed">
+   489→            {children}
+   490→          </div>
+   491→        </div>
+   492→      </div>
+   493→    </GlassCard>
+   494→  );
+   495→}
+   496→
+   497→function StylizedMap() {
+   498→  return (
+   499→    <GlassCard
+   500→      strong
+   501→      className="relative h-full min-h-64 overflow-hidden rounded-2xl p-0"
+   502→    >
+   503→      {/* dark base */}
+   504→      <div className="absolute inset-0 bg-[#070a12]" />
+   505→      {/* grid overlay (faded at edges) */}
+   506→      <div
+   507→        className="absolute inset-0 opacity-50"
+   508→        style={{
+   509→          backgroundImage:
+   510→            "linear-gradient(rgba(37,99,235,0.22) 1px, transparent 1px), linear-gradient(90deg, rgba(37,99,235,0.22) 1px, transparent 1px)",
+   511→          backgroundSize: "32px 32px",
+   512→          maskImage:
+   513→            "radial-gradient(ellipse 80% 70% at 50% 50%, #000 30%, transparent 85%)",
+   514→          WebkitMaskImage:
+   515→            "radial-gradient(ellipse 80% 70% at 50% 50%, #000 30%, transparent 85%)",
+   516→        }}
+   517→      />
+   518→      {/* secondary finer grid */}
+   519→      <div
+   520→        className="absolute inset-0 opacity-25"
+   521→        style={{
+   522→          backgroundImage:
+   523→            "linear-gradient(rgba(56,189,248,0.18) 1px, transparent 1px), linear-gradient(90deg, rgba(56,189,248,0.18) 1px, transparent 1px)",
+   524→          backgroundSize: "128px 128px",
+   525→          maskImage:
+   526→            "radial-gradient(ellipse 80% 70% at 50% 50%, #000 30%, transparent 85%)",
+   527→          WebkitMaskImage:
+   528→            "radial-gradient(ellipse 80% 70% at 50% 50%, #000 30%, transparent 85%)",
+   529→        }}
+   530→      />
+   531→      {/* central radial glow */}
+   532→      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(37,99,235,0.25),transparent_60%)]" />
+   533→
+   534→      {/* glowing pin at center */}
+   535→      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+   536→        <div className="relative flex flex-col items-center">
+   537→          {/* pulse rings */}
+   538→          <span className="absolute -top-3 left-1/2 -translate-x-1/2 h-14 w-14 rounded-full bg-electric/25 animate-ping" />
+   539→          <span className="absolute -top-1 left-1/2 -translate-x-1/2 h-9 w-9 rounded-full bg-electric/40 animate-pulse" />
+   540→          {/* pin */}
+   541→          <div className="relative flex h-9 w-9 items-center justify-center">
+   542→            <MapPin
+   543→              className="h-9 w-9 text-electric drop-shadow-[0_0_14px_rgba(37,99,235,0.95)]"
+   544→              fill="rgba(37,99,235,0.45)"
+   545→            />
+   546→          </div>
+   547→          {/* label */}
+   548→          <div className="mt-2 rounded-full border border-electric/40 bg-black/70 px-3 py-1 backdrop-blur">
+   549→            <span className="text-xs font-semibold tracking-wide text-white">
+   550→              Albany, NY
+   551→            </span>
+   552→          </div>
+   553→        </div>
+   554→      </div>
+   555→
+   556→      {/* corner badges */}
+   557→      <div className="absolute left-4 top-4 flex items-center gap-1.5 rounded-full border border-black/15 bg-black/60 px-3 py-1 backdrop-blur">
+   558→        <span className="relative flex h-2 w-2">
+   559→          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-60" />
+   560→          <span className="relative inline-flex h-2 w-2 rounded-full bg-green-400" />
+   561→        </span>
+   562→        <span className="text-[11px] font-medium text-black">HQ · Albany</span>
+   563→      </div>
+   564→      <div className="absolute bottom-4 right-4 rounded-full border border-black/15 bg-black/60 px-3 py-1 backdrop-blur">
+   565→        <span className="text-[11px] font-medium text-black tnum">
+   566→          42.6526° N, 73.7562° W
+   567→        </span>
+   568→      </div>
+   569→    </GlassCard>
+   570→  );
+   571→}
+   572→
+   573→function ContactSection() {
+   574→  return (
+   575→    <SectionShell id="contact" className="md:py-24">
+   576→      <SectionHeading
+   577→        eyebrow="Contact"
+   578→        title="Let's do great work together"
+   579→        description="Stop wasting time on unqualified leads. We connect you with motivated home sellers in your area who are serious about selling."
+   580→      />
+   581→
+   582→      <div className="mt-12 grid gap-6 lg:grid-cols-2 lg:gap-8">
+   583→        {/* ---------- LEFT: contact form ---------- */}
+   584→        <Reveal delay={0.1} className="h-full">
+   585→          <GlassCard
+   586→            strong
+   587→            className="relative h-full overflow-hidden rounded-2xl p-6 md:p-8"
+   588→          >
+   589→            {/* ambient glow */}
+   590→            <div className="pointer-events-none absolute -top-24 -right-24 h-64 w-64 rounded-full bg-electric/15 blur-3xl" />
+   591→            <div className="pointer-events-none absolute -bottom-24 -left-24 h-64 w-64 rounded-full bg-violet/15 blur-3xl" />
+   592→
+   593→            <div className="relative flex h-full flex-col gap-6">
+   594→              <div className="flex items-start gap-3">
+   595→                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-electric/15 ring-1 ring-electric/30">
+   596→                  <MessageSquare className="h-5 w-5 text-electric" />
+   597→                </div>
+   598→                <div>
+   599→                  <h3 className="font-heading text-lg font-semibold text-black">
+   600→                    Send us a message
+   601→                  </h3>
+   602→                  <p className="text-sm text-black">
+   603→                    We&apos;ll get back to you within 24 hours.
+   604→                  </p>
+   605→                </div>
+   606→              </div>
+   607→
+   608→              <form
+   609→                onSubmit={(e) => e.preventDefault()}
+   610→                className="flex flex-1 flex-col gap-4"
+   611→              >
+   612→                <div className="grid gap-4 sm:grid-cols-2">
+   613→                  <div className="flex flex-col gap-1.5">
+   614→                    <Label htmlFor="name" className="text-black">
+   615→                      Name
+   616→                    </Label>
+   617→                    <Input
+   618→                      id="name"
+   619→                      placeholder="Jane Cooper"
+   620→                      className="h-11 rounded-lg border-black/15 bg-black/5 text-black placeholder:text-black focus-visible:border-electric/50 focus-visible:ring-electric/20"
+   621→                    />
+   622→                  </div>
+   623→                  <div className="flex flex-col gap-1.5">
+   624→                    <Label htmlFor="email" className="text-black">
+   625→                      Email
+   626→                    </Label>
+   627→                    <Input
+   628→                      id="email"
+   629→                      type="email"
+   630→                      placeholder="jane@brokerage.com"
+   631→                      className="h-11 rounded-lg border-black/15 bg-black/5 text-black placeholder:text-black focus-visible:border-electric/50 focus-visible:ring-electric/20"
+   632→                    />
+   633→                  </div>
+   634→                </div>
+   635→                <div className="flex flex-col gap-1.5">
+   636→                  <Label htmlFor="phone" className="text-black">
+   637→                    Phone
+   638→                  </Label>
+   639→                  <Input
+   640→                    id="phone"
+   641→                    type="tel"
+   642→                    placeholder="(645) 253-6830"
+   643→                    className="h-11 rounded-lg border-black/15 bg-black/5 text-black placeholder:text-black focus-visible:border-electric/50 focus-visible:ring-electric/20"
+   644→                  />
+   645→                </div>
+   646→                <div className="flex flex-1 flex-col gap-1.5">
+   647→                  <Label htmlFor="message" className="text-black">
+   648→                    Message
+   649→                  </Label>
+   650→                  <Textarea
+   651→                    id="message"
+   652→                    placeholder="Tell us about your goals and the counties you cover..."
+   653→                    className="min-h-32 flex-1 resize-none rounded-lg border-black/15 bg-black/5 text-black placeholder:text-black focus-visible:border-electric/50 focus-visible:ring-electric/20"
+   654→                  />
+   655→                </div>
+   656→                <Button
+   657→                  type="submit"
+   658→                  className="group relative h-11 w-full items-center justify-center gap-2 overflow-hidden rounded-full bg-[linear-gradient(120deg,#2563EB,#38BDF8,#14B8A6)] px-6 text-sm font-semibold text-white shadow-[0_0_30px_-6px_rgba(37,99,235,0.7)] transition-shadow hover:shadow-[0_0_45px_-4px_rgba(56,189,248,0.85)]"
+   659→                >
+   660→                  <span className="absolute inset-0 -translate-x-full bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.25),transparent)] transition-transform duration-700 group-hover:translate-x-full" />
+   661→                  <Send className="relative h-4 w-4" />
+   662→                  <span className="relative">Send Message</span>
+   663→                </Button>
+   664→              </form>
+   665→            </div>
+   666→          </GlassCard>
+   667→        </Reveal>
+   668→
+   669→        {/* ---------- RIGHT: info cards (email + phones + hours) ---------- */}
+   670→        <Reveal delay={0.2} className="h-full">
+   671→          <div className="flex h-full flex-col gap-4">
+   672→            {/* info cards */}
+   673→            <div className="grid gap-4 sm:grid-cols-2">
+   674→              <InfoCard icon={Mail} iconTint="text-electric" label="Email">
+   675→                <a
+   676→                  href={`mailto:${CONTACT_INFO.email}`}
+   677→                  className="break-all transition-colors hover:text-electric"
+   678→                >
+   679→                  {CONTACT_INFO.email}
+   680→                </a>
+   681→              </InfoCard>
+   682→
+   683→              <InfoCard icon={Phone} iconTint="text-violet" label="Phones">
+   684→                <ul className="flex flex-col gap-0.5">
+   685→                  {CONTACT_INFO.phones.map((p) => (
+   686→                    <li key={p}>
+   687→                      <a
+   688→                        href={`tel:${p.replace(/[^0-9+]/g, "")}`}
+   689→                        className="tnum transition-colors hover:text-violet"
+   690→                      >
+   691→                        {p}
+   692→                      </a>
+   693→                    </li>
+   694→                  ))}
+   695→                </ul>
+   696→              </InfoCard>
+   697→
+   698→              <InfoCard icon={Clock} iconTint="text-gold" label="Office Hours">
+   699→                <span className="tnum">{CONTACT_INFO.hours}</span>
+   700→              </InfoCard>
+   701→            </div>
+   702→          </div>
+   703→        </Reveal>
+   704→      </div>
+   705→    </SectionShell>
+   706→  );
+   707→}
+   708→
+   709→/* ============================================================
+   710→   CTA BANNER
+   711→============================================================ */
+   712→
+   713→function CtaBanner() {
+   714→  return (
+   715→    <section className="relative w-full px-5 py-12 sm:px-8 md:py-16">
+   716→      <div className="relative mx-auto w-full max-w-7xl overflow-hidden rounded-3xl border border-black/15">
+   717→        {/* animated gradient background */}
+   718→        <div className="absolute inset-0 bg-[linear-gradient(120deg,#2563EB_0%,#38BDF8_45%,#14B8A6_100%,#2563EB_150%)] animate-gradient-x" />
+   719→        {/* moving grid overlay */}
+   720→        <div
+   721→          className="absolute inset-0 opacity-20"
+   722→          style={{
+   723→            backgroundImage:
+   724→              "linear-gradient(rgba(255,255,255,0.18) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.18) 1px, transparent 1px)",
+   725→            backgroundSize: "44px 44px",
+   726→            maskImage:
+   727→              "radial-gradient(ellipse 80% 70% at 50% 50%, #000 30%, transparent 80%)",
+   728→            WebkitMaskImage:
+   729→              "radial-gradient(ellipse 80% 70% at 50% 50%, #000 30%, transparent 80%)",
+   730→          }}
+   731→        />
+   732→        {/* dark scrim for contrast */}
+   733→        <div className="absolute inset-0 bg-black/30" />
+   734→        {/* top glow */}
+   735→        <div className="pointer-events-none absolute -top-28 left-1/2 h-64 w-[75%] -translate-x-1/2 rounded-full bg-white/25 blur-3xl" />
+   736→        {/* floating orbs */}
+   737→        <div className="pointer-events-none absolute -left-10 top-1/2 h-40 w-40 -translate-y-1/2 rounded-full bg-cyan/30 blur-3xl" />
+   738→        <div className="pointer-events-none absolute -right-10 top-1/2 h-40 w-40 -translate-y-1/2 rounded-full bg-violet/30 blur-3xl" />
+   739→
+   740→        {/* content */}
+   741→        <div className="relative z-10 flex flex-col items-center gap-6 px-6 py-16 text-center md:py-24">
+   742→          <motion.span
+   743→            initial={{ opacity: 0, y: 10 }}
+   744→            whileInView={{ opacity: 1, y: 0 }}
+   745→            viewport={{ once: true }}
+   746→            transition={{ duration: 0.5 }}
+   747→            className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-1.5 text-xs font-medium tracking-wide text-white backdrop-blur"
+   748→          >
+   749→            <Sparkles className="h-3.5 w-3.5" />
+   750→            Ready to scale?
+   751→          </motion.span>
+   752→
+   753→          <motion.h2
+   754→            initial={{ opacity: 0, y: 16, filter: "blur(8px)" }}
+   755→            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+   756→            viewport={{ once: true, margin: "-10% 0px" }}
+   757→            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+   758→            className="font-heading text-4xl font-semibold leading-[1.05] tracking-tight text-white text-glow sm:text-5xl md:text-6xl"
+   759→          >
+   760→            Ready to grow your business?
+   761→          </motion.h2>
+   762→
+   763→          <motion.p
+   764→            initial={{ opacity: 0, y: 12 }}
+   765→            whileInView={{ opacity: 1, y: 0 }}
+   766→            viewport={{ once: true }}
+   767→            transition={{ duration: 0.6, delay: 0.1 }}
+   768→            className="max-w-xl text-base leading-relaxed text-white/90 sm:text-lg"
+   769→          >
+   770→            Join thousands of real estate professionals who trust Opus Global Solution for verified outreach, dedicated VAs, and documented workflows.
+   771→          </motion.p>
+   772→
+   773→          <motion.div
+   774→            initial={{ opacity: 0, y: 12 }}
+   775→            whileInView={{ opacity: 1, y: 0 }}
+   776→            viewport={{ once: true }}
+   777→            transition={{ duration: 0.6, delay: 0.2 }}
+   778→            className="mt-2 flex flex-col items-center gap-3 sm:flex-row"
+   779→          >
+   780→            {/* Book Demo, white / outline */}
+   781→            <motion.button
+   782→              whileHover={{ scale: 1.04 }}
+   783→              whileTap={{ scale: 0.97 }}
+   784→              className="inline-flex items-center justify-center gap-2 rounded-full border border-white/50 bg-black/10 px-7 py-3.5 text-sm font-semibold text-white backdrop-blur transition-all hover:bg-white/20 hover:shadow-[0_0_35px_-6px_rgba(255,255,255,0.6)]"
+   785→            >
+   786→              <Calendar className="h-4 w-4" />
+   787→              Book Demo
+   788→            </motion.button>
+   789→            {/* Start Free Trial, dark solid with glow */}
+   790→            <motion.button
+   791→              whileHover={{ scale: 1.04 }}
+   792→              whileTap={{ scale: 0.97 }}
+   793→              className="group inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-semibold text-black shadow-[0_0_35px_-6px_rgba(0,0,0,0.8)] ring-1 ring-white/10 transition-all hover:shadow-[0_0_50px_-4px_rgba(255,255,255,0.5)]"
+   794→            >
+   795→              <Rocket className="h-4 w-4 text-electric" />
+   796→              Start Free Trial
+   797→              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+   798→            </motion.button>
+   799→          </motion.div>
+   800→
+   801→          <p className="text-xs text-white/80">
+   802→            14-day free trial · No credit card required · Cancel anytime
+   803→          </p>
+   804→        </div>
+   805→      </div>
+   806→    </section>
+   807→  );
+   808→}
+   809→
+   810→/* ============================================================
+   811→   FOOTER
+   812→============================================================ */
+   813→
+   814→function LogoMark() {
+   815→  return (
+   816→    <div className="flex items-center">
+   817→      <LogoImage className="h-11 sm:h-12" />
+   818→    </div>
+   819→  );
+   820→}
+   821→
+   822→function Footer() {
+   823→  return (
+   824→    <footer className="relative w-full bg-[#f8f9fa]">
+   825→      {/* gradient divider at top */}
+   826→      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-[#2563EB] via-[#38BDF8] to-[#14B8A6]" />
+   827→      {/* faint top glow */}
+   828→      <div className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-electric/5 to-transparent" />
+   829→
+   830→      <div className="relative mx-auto w-full max-w-7xl px-5 py-16 sm:px-8 md:py-20">
+   831→        {/* ---------- top row ---------- */}
+   832→        <div className="grid gap-10 lg:grid-cols-2 lg:gap-16">
+   833→          {/* left: logo + tagline + socials */}
+   834→          <div className="flex flex-col gap-6">
+   835→            <LogoMark />
+   836→            <p className="max-w-sm text-sm leading-relaxed text-black">
+   837→              Your trusted partner for marketing consulting, outreach
+   838→              support, and CRM solutions. Human-verified outreach, dedicated
+   839→              virtual assistants, and documented workflows for licensed real
+   840→              estate professionals.
+   841→            </p>
+   842→            <div className="flex items-center gap-3">
+   843→              {SOCIALS.map(({ Icon, label, href }) => (
+   844→                <a
+   845→                  key={label}
+   846→                  href={href}
+   847→                  aria-label={label}
+   848→                  className="flex h-10 w-10 items-center justify-center rounded-full border border-black/15 bg-black/5 text-black transition-all hover:-translate-y-0.5 hover:border-electric/40 hover:bg-electric/10 hover:text-black"
+   849→                >
+   850→                  <Icon className="h-4 w-4" />
+   851→                </a>
+   852→              ))}
+   853→            </div>
+   854→          </div>
+   855→
+   856→          {/* right: newsletter */}
+   857→          <div className="flex flex-col gap-4 lg:items-end lg:text-right">
+   858→            <div className="lg:max-w-sm">
+   859→              <h3 className="font-heading text-lg font-semibold text-black">
+   860→                Stay ahead of the market
+   861→              </h3>
+   862→              <p className="mt-1.5 text-sm text-black">
+   863→                Weekly insights on outreach and prospecting.
+   864→              </p>
+   865→            </div>
+   866→            <form
+   867→              onSubmit={(e) => e.preventDefault()}
+   868→              className="flex w-full max-w-md flex-col gap-2.5 sm:flex-row lg:self-end"
+   869→            >
+   870→              <input
+   871→                type="email"
+   872→                placeholder="you@brokerage.com"
+   873→                aria-label="Email address"
+   874→                className="w-full flex-1 rounded-full border border-black/15 bg-black/5 px-5 py-3 text-sm text-black placeholder:text-black outline-none transition-colors focus:border-electric/50 focus:bg-black/10"
+   875→              />
+   876→              <motion.button
+   877→                whileHover={{ scale: 1.03 }}
+   878→                whileTap={{ scale: 0.97 }}
+   879→                type="submit"
+   880→                className="btn-shimmer group relative inline-flex shrink-0 items-center justify-center gap-2 overflow-hidden rounded-full bg-[linear-gradient(120deg,#2563EB,#38BDF8)] px-5 py-3 text-sm font-semibold text-white shadow-[0_0_25px_-8px_rgba(37,99,235,0.8)] transition-shadow hover:shadow-[0_0_35px_-6px_rgba(56,189,248,0.85)]"
+   881→              >
+   882→                <Send className="relative z-10 h-4 w-4" />
+   883→                <span className="relative z-10">Subscribe</span>
+   884→              </motion.button>
+   885→            </form>
+   886→            <p className="text-xs text-black lg:max-w-sm lg:text-right">
+   887→              We respect your inbox. Unsubscribe with one click.
+   888→            </p>
+   889→          </div>
+   890→        </div>
+   891→
+   892→        {/* ---------- divider ---------- */}
+   893→        <div className="my-12 h-px w-full bg-black/5 md:my-14" />
+   894→
+   895→        {/* ---------- link columns ---------- */}
+   896→        <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 md:grid-cols-5">
+   897→          {FOOTER_COLUMNS.map((col) => (
+   898→            <div key={col.title} className="flex flex-col gap-3.5">
+   899→              <h4 className="font-heading text-sm font-semibold tracking-wide text-black">
+   900→                {col.title}
+   901→              </h4>
+   902→              <ul className="flex flex-col gap-2.5">
+   903→                {col.links.map((link) => (
+   904→                  <li key={link.label}>
+   905→                    <a
+   906→                      href={link.href}
+   907→                      className="text-sm text-black transition-colors hover:text-black"
+   908→                    >
+   909→                      {link.label}
+   910→                    </a>
+   911→                  </li>
+   912→                ))}
+   913→              </ul>
+   914→            </div>
+   915→          ))}
+   916→        </div>
+   917→
+   918→        {/* ---------- bottom bar ---------- */}
+   919→        <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-black/15 pt-8 md:flex-row">
+   920→          <p className="text-xs text-black">
+   921→            © 2025 Opus Global Solution. All rights reserved.
+   922→          </p>
+   923→          <div className="flex flex-col items-center gap-4 sm:flex-row sm:gap-6">
+   924→            <span className="inline-flex items-center gap-1.5 text-xs text-black">
+   925→              <ShieldCheck className="h-3.5 w-3.5 text-electric/70" />
+   926→              Made with care
+   927→            </span>
+   928→            <span className="inline-flex items-center gap-2 rounded-full border border-black/15 bg-black/5 px-3 py-1 text-xs text-black">
+   929→              <span className="relative flex h-2 w-2">
+   930→                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-60" />
+   931→                <span className="relative inline-flex h-2 w-2 rounded-full bg-green-400" />
+   932→              </span>
+   933→              System status: Operational
+   934→            </span>
+   935→          </div>
+   936→        </div>
+   937→      </div>
+   938→    </footer>
+   939→  );
+   940→}
+   941→
+   942→/* ============================================================
+   943→   MAIN
+   944→============================================================ */
+   945→
+   946→export default function PricingFaqCtaFooter() {
+   947→  return (
+   948→    <>
+   949→      {/* ============ PRICING ============ */}
+   950→      <SectionShell id="pricing" className="md:py-24">
+   951→        <SectionHeading
+   952→          eyebrow="Pricing"
+   953→          title="We've got a plan that's perfect for you"
+   954→          description="Whether you're just starting or need an all-inclusive solution, our plans scale with your goals."
+   955→        />
+   956→
+   957→        {/* plan-cadence note (replaces monthly/annual toggle) */}
+   958→        <Reveal delay={0.1}>
+   959→          <div className="mt-10 flex justify-center">
+   960→            <div className="inline-flex items-center gap-2 rounded-full border border-black/15 bg-black/5 px-4 py-2 backdrop-blur">
+   961→              <Calendar className="h-3.5 w-3.5 text-electric" />
+   962→              <span className="text-sm font-medium text-black">
+   963→                One-time setup
+   964→              </span>
+   965→              <span className="text-black/20">·</span>
+   966→              <span className="text-sm font-medium text-black">
+   967→                30-day or 365-day plans
+   968→              </span>
+   969→            </div>
+   970→          </div>
+   971→        </Reveal>
+   972→
+   973→        {/* pricing cards, 6 plans, 3-col grid (2 rows of 3) */}
+   974→        <div className="mt-12 grid items-stretch gap-6 lg:mt-14 lg:grid-cols-3 lg:gap-6 lg:pt-6">
+   975→          {PLANS.map((plan, i) => (
+   976→            <PricingCard
+   977→              key={plan.name}
+   978→              plan={plan}
+   979→              delay={0.15 + i * 0.08}
+   980→            />
+   981→          ))}
+   982→        </div>
+   983→
+   984→        {/* disclaimer */}
+   985→        <Reveal delay={0.3}>
+   986→          <p className="mx-auto mt-10 max-w-3xl text-center text-xs leading-relaxed text-black">
+   987→            Opus Global Solution is a marketing consulting and support company. We do
+   988→            not act as a brokerage, list or sell property, or resell leads.
+   989→            Referral fees apply on successful closings.
+   990→          </p>
+   991→        </Reveal>
+   992→      </SectionShell>
+   993→
+   994→      {/* ============ CONTACT ============ */}
+   995→      <ContactSection />
+   996→
+   997→      {/* ============ FAQ ============ */}
+   998→      <SectionShell id="faq" className="md:py-24">
+   999→        <SectionHeading
+  1000→          eyebrow="FAQ"
+  1001→          title="Frequently asked questions"
+  1002→          description="Find answers to commonly asked questions about Opus Global Solution."
+  1003→          align="center"
+  1004→        />
+  1005→        <Reveal delay={0.1}>
+  1006→          <div className="mx-auto mt-12 max-w-3xl">
+  1007→            <FaqList />
+  1008→          </div>
+  1009→        </Reveal>
+  1010→      </SectionShell>
+  1011→
+  1012→      {/* ============ CTA BANNER ============ */}
+  1013→      <CtaBanner />
+  1014→
+  1015→      {/* ============ FOOTER ============ */}
+  1016→      <Footer />
+  1017→    </>
+  1018→  );
+  1019→}
+  1020→

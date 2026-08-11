@@ -43,6 +43,7 @@ import {
   X,
 } from "lucide-react";
 import { LogoImage } from "@/components/leadsphere/LogoIcon";
+import { trackNewsletterSignup } from "@/lib/analytics";
 
 /* ============================================================
    DATA
@@ -864,7 +865,10 @@ function Footer() {
               </p>
             </div>
             <form
-              onSubmit={(e) => e.preventDefault()}
+              onSubmit={(e) => {
+                e.preventDefault();
+                trackNewsletterSignup();
+              }}
               className="flex w-full max-w-md flex-col gap-2.5 sm:flex-row lg:self-end"
             >
               <input

@@ -9,6 +9,10 @@ import {
 import { Reveal } from "@/components/leadsphere/Reveal";
 import { ContactFormSection } from "./ContactFormSection";
 import { Mail, Phone, Clock } from "lucide-react";
+import {
+  TrackablePhoneLink,
+  TrackableEmailLink,
+} from "@/components/seo/TrackableLink";
 
 export const metadata: Metadata = {
   title: "Contact Opus Global Solution | Real Estate Marketing Support",
@@ -137,24 +141,44 @@ export default function ContactPage() {
                         {card.label}
                       </p>
                       <div className="relative mt-2 flex flex-col gap-1">
-                        {card.lines.map((line) =>
-                          line.href ? (
-                            <a
-                              key={line.text}
-                              href={line.href}
-                              className="text-sm leading-relaxed text-black transition-colors hover:text-black"
-                            >
+                        {card.lines.map((line) => {
+                          const lineCls =
+                            "text-sm leading-relaxed text-black transition-colors hover:text-black";
+                          if (!line.href) {
+                            return (
+                              <span key={line.text} className={lineCls}>
+                                {line.text}
+                              </span>
+                            );
+                          }
+                          if (line.href.startsWith("tel:")) {
+                            return (
+                              <TrackablePhoneLink
+                                key={line.text}
+                                href={line.href}
+                                className={lineCls}
+                              >
+                                {line.text}
+                              </TrackablePhoneLink>
+                            );
+                          }
+                          if (line.href.startsWith("mailto:")) {
+                            return (
+                              <TrackableEmailLink
+                                key={line.text}
+                                href={line.href}
+                                className={lineCls}
+                              >
+                                {line.text}
+                              </TrackableEmailLink>
+                            );
+                          }
+                          return (
+                            <a key={line.text} href={line.href} className={lineCls}>
                               {line.text}
                             </a>
-                          ) : (
-                            <span
-                              key={line.text}
-                              className="text-sm leading-relaxed text-black"
-                            >
-                              {line.text}
-                            </span>
-                          )
-                        )}
+                          );
+                        })}
                       </div>
                     </GlassCard>
                   );

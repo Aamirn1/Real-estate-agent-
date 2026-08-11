@@ -14,6 +14,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { trackContactFormSubmit } from "@/lib/analytics";
 
 const SERVICES = [
   "Marketing Consulting",
@@ -36,6 +37,7 @@ export function ContactFormSection() {
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    trackContactFormSubmit();
     setSubmitted(true);
   }
 

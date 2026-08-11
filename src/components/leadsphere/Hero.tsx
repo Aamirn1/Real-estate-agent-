@@ -8,6 +8,7 @@ import {
 import { motion } from "framer-motion";
 import { AnimatedBackground } from "@/components/leadsphere/AnimatedBackground";
 import { Typewriter } from "@/components/leadsphere/Typewriter";
+import { trackGetStartedClick, trackBookDemoClick } from "@/lib/analytics";
 
 export function Hero() {
   return (
@@ -74,6 +75,7 @@ export function Hero() {
               href="/get-started"
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
+              onClick={() => trackGetStartedClick("hero")}
               className="btn-shimmer group relative inline-flex items-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-electric to-violet px-5 py-3 text-sm font-semibold text-white shadow-[0_0_30px_-6px_rgba(59,130,246,0.7)] transition-all hover:shadow-[0_0_40px_-4px_rgba(139,92,246,0.85)]"
             >
               <span className="relative z-10">Get Started</span>
@@ -83,6 +85,7 @@ export function Hero() {
               href="/contact"
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
+              onClick={() => trackBookDemoClick("hero")}
               className="btn-shimmer group relative inline-flex items-center gap-2 overflow-hidden rounded-xl border border-white/15 bg-white/5 px-5 py-3 text-sm font-semibold text-white backdrop-blur transition-all hover:border-white/25 hover:bg-white/10"
             >
               <PlayCircle className="relative z-10 h-4 w-4 text-cyan" />

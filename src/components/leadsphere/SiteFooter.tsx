@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { LogoImage } from "@/components/leadsphere/LogoIcon";
+import { trackNewsletterSignup } from "@/lib/analytics";
 
 const FOOTER_COLUMNS: { title: string; links: { label: string; href: string }[] }[] = [
   {
@@ -119,7 +120,10 @@ export function SiteFooter() {
               </p>
             </div>
             <form
-              onSubmit={(e) => e.preventDefault()}
+              onSubmit={(e) => {
+                e.preventDefault();
+                trackNewsletterSignup();
+              }}
               className="flex w-full max-w-md flex-col gap-2.5 sm:flex-row lg:self-end"
             >
               <input
