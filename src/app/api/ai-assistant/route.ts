@@ -69,6 +69,14 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    // Input length validation — prevent abuse
+    if (userMsg.length > 2000) {
+      return NextResponse.json(
+        { error: "Message too long. Please keep it under 2000 characters." },
+        { status: 400 }
+      );
+    }
+
     // Build conversation: system + stored history + incoming history + new message
     let convo: ChatMessage[] = sessions.get(sessionId) || [];
     if (Array.isArray(history) && history.length) {

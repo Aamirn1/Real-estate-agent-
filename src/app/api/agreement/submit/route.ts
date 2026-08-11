@@ -49,6 +49,10 @@ export async function POST(req: NextRequest) {
       if (typeof body[k] !== "string" || !body[k]?.trim()) {
         return NextResponse.json({ error: `Missing required field: ${k}` }, { status: 400 });
       }
+      // Input length validation — prevent abuse
+      if (body[k]!.length > 1000) {
+        return NextResponse.json({ error: `Field too long: ${k}` }, { status: 400 });
+      }
     }
     if (!body.signature || !body.signature.startsWith("data:image/png")) {
       return NextResponse.json({ error: "Valid signature is required." }, { status: 400 });
