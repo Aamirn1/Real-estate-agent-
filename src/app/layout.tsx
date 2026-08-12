@@ -98,6 +98,8 @@ export default function RootLayout({
               name: "Opus Global Solution",
               description: "Professional real estate marketing consulting and outreach support company for licensed real estate professionals.",
               url: "https://opusglobalsolution.com",
+              logo: "https://opusglobalsolution.com/logo-light.png",
+              image: "https://opusglobalsolution.com/og-image.jpg",
               telephone: "+1-645-253-6830",
               email: "info@opusglobalsolution.com",
               address: {

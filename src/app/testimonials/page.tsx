@@ -15,6 +15,19 @@ export const metadata: Metadata = {
   title: "Client Testimonials | Real Estate Marketing Success | Opus Global Solution",
   description: "Real estate agents share how Opus Global Solution improved conversion rates, saved hours weekly, and grew their pipelines with verified outreach and CRM support.",
   alternates: { canonical: "https://opusglobalsolution.com/testimonials" },
+  openGraph: {
+    title: "Client Testimonials | Real Estate Marketing Success | Opus Global Solution",
+    description: "Real estate agents share how Opus Global Solution improved conversion rates, saved hours weekly, and grew their pipelines with verified outreach and CRM support.",
+    images: [
+      {
+        url: "https://opusglobalsolution.com/heroes/testimonials-home.jpg",
+        width: 1344,
+        height: 768,
+        alt: "Large modern two-story house with stone and siding exterior, three garage doors, and green lawn",
+        type: "image/jpeg",
+      },
+    ],
+  },
 };
 
 /* ---- Inline "More Client Stories" data ---- */

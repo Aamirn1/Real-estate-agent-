@@ -44,6 +44,15 @@ export async function generateMetadata({
     openGraph: {
       title: service.metaTitle,
       description: service.metaDescription,
+      images: [
+        {
+          url: "https://opusglobalsolution.com/heroes/services-home.jpg",
+          width: 1344,
+          height: 768,
+          alt: service.title,
+          type: "image/jpeg",
+        },
+      ],
     },
   };
 }
@@ -143,6 +152,7 @@ export default async function ServiceDetailPage({
               },
               areaServed: { "@type": "Country", name: "United States" },
               url: `https://opusglobalsolution.com/services/${service.slug}`,
+              image: "https://opusglobalsolution.com/heroes/services-home.jpg",
             }),
           }}
         />

@@ -11,6 +11,19 @@ export const metadata: Metadata = {
   title: "Real Estate Marketing Services | Opus Global Solution",
   description: "Real estate marketing services for US agents: CRM support, outreach, workflow automation, virtual assistants, and digital advertising. Compliance-first, human-verified.",
   alternates: { canonical: "https://opusglobalsolution.com/services" },
+  openGraph: {
+    title: "Real Estate Marketing Services | Opus Global Solution",
+    description: "Real estate marketing services for US agents: CRM support, outreach, workflow automation, virtual assistants, and digital advertising. Compliance-first, human-verified.",
+    images: [
+      {
+        url: "https://opusglobalsolution.com/heroes/services-home.jpg",
+        width: 1344,
+        height: 768,
+        alt: "Two-story brick house with white garage door and green lawn under a blue sky",
+        type: "image/jpeg",
+      },
+    ],
+  },
 };
 
 export default function ServicesPage() {

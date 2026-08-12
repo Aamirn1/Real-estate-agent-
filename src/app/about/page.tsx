@@ -26,6 +26,20 @@ export const metadata: Metadata = {
   description:
     "Opus Global Solution provides professional marketing and administrative support for real estate professionals. Learn about our mission, vision, and what makes us different.",
   alternates: { canonical: "https://opusglobalsolution.com/about" },
+  openGraph: {
+    title: "About Opus Global Solution | Real Estate Marketing Experts",
+    description:
+      "Opus Global Solution provides professional marketing and administrative support for real estate professionals. Learn about our mission, vision, and what makes us different.",
+    images: [
+      {
+        url: "https://opusglobalsolution.com/heroes/about-home.jpg",
+        width: 1344,
+        height: 768,
+        alt: "Modern white house with large glass windows, swimming pool, and mountain backdrop at sunset",
+        type: "image/jpeg",
+      },
+    ],
+  },
 };
 
 /* ---- Inline data for the Achievements stats grid ---- */

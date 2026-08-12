@@ -75,7 +75,21 @@ export async function generateMetadata({
     openGraph: {
       title: post.title,
       description: post.excerpt,
-      images: [{ url: post.image, width: 1024, height: 1024 }],
+      images: [
+        {
+          url: `https://opusglobalsolution.com${post.image}`,
+          width: 1024,
+          height: 1024,
+          alt: post.title,
+          type: "image/jpeg",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.excerpt,
+      images: [`https://opusglobalsolution.com${post.image}`],
     },
   };
 }
@@ -123,7 +137,9 @@ export default async function BlogPostPage({
               name: "Opus Global Solution",
               logo: {
                 "@type": "ImageObject",
-                url: "https://opusglobalsolution.com/favicon-32.png",
+                url: "https://opusglobalsolution.com/logo-light.png",
+                width: 517,
+                height: 157,
               },
             },
             mainEntityOfPage: {

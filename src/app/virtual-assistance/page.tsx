@@ -21,6 +21,20 @@ export const metadata: Metadata = {
   description:
     "Dedicated virtual assistants for real estate professionals. Customer support, prospect calling, calendar management, CRM management, social media, and website management.",
   alternates: { canonical: "https://opusglobalsolution.com/virtual-assistance" },
+  openGraph: {
+    title: "Real Estate Virtual Assistant Services | Opus Global Solution",
+    description:
+      "Dedicated virtual assistants for real estate professionals. Customer support, prospect calling, calendar management, CRM management, social media, and website management.",
+    images: [
+      {
+        url: "https://opusglobalsolution.com/heroes/va-home.jpg",
+        width: 1344,
+        height: 768,
+        alt: "Two-story suburban house with beige siding, stone accents, and a two-car garage",
+        type: "image/jpeg",
+      },
+    ],
+  },
 };
 
 /* ============================================================

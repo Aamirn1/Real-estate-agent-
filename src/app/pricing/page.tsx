@@ -30,6 +30,19 @@ export const metadata: Metadata = {
   title: "Pricing Plans | Real Estate Lead Generation | Opus Global Solution",
   description: "Transparent pricing for real estate marketing support. Plans from $299 to $1,199 with referral fees, lead delivery, CRM, and dedicated VAs included.",
   alternates: { canonical: "https://opusglobalsolution.com/pricing" },
+  openGraph: {
+    title: "Pricing Plans | Real Estate Lead Generation | Opus Global Solution",
+    description: "Transparent pricing for real estate marketing support. Plans from $299 to $1,199 with referral fees, lead delivery, CRM, and dedicated VAs included.",
+    images: [
+      {
+        url: "https://opusglobalsolution.com/heroes/pricing-home.jpg",
+        width: 1344,
+        height: 768,
+        alt: "Modern two-story house with illuminated windows and landscaped front yard at dusk",
+        type: "image/jpeg",
+      },
+    ],
+  },
 };
 
 /* ============================================================================
