@@ -12,6 +12,7 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 const TO_EMAIL = "info@opusglobalsolution.com";
+const FROM_EMAIL = "Opus Global Solution <noreply@opusglobalsolution.com>";
 const RESEND_API_KEY = process.env.RESEND_API_KEY || "";
 
 type Body = {
@@ -72,8 +73,8 @@ ${body.service ? `Service: ${body.service}\n` : ""}${body.services?.length ? `Se
 ${body.message ? `\nMessage:\n${body.message}\n` : ""}
 Sent from opusglobalsolution.com`;
 
-    await resend.emails.send({
-      from: "Opus Global Solution <onboarding@resend.dev>",
+    const { data, error } = await resend.emails.send({
+      from: FROM_EMAIL,
       to: TO_EMAIL,
       replyTo: body.email,
       subject: `New Inquiry from ${sourceLabel} — ${name}`,
@@ -81,6 +82,15 @@ Sent from opusglobalsolution.com`;
       html,
     });
 
+    if (error) {
+      console.error("[contact] Resend rejected the email:", error);
+      return NextResponse.json(
+        { error: "Could not send your message. Please try again or email us directly." },
+        { status: 500 }
+      );
+    }
+
+    console.log("[contact] email sent:", data?.id);
     return NextResponse.json({ success: true });
   } catch (err) {
     console.error("[contact] email send failed:", err);

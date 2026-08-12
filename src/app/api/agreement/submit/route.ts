@@ -32,6 +32,7 @@ type Body = {
 const VALID_PLANS: PlanKey[] = ["Trial", "Gold", "Platinum", "VA-Trial", "VA-Gold", "VA-Platinum"];
 
 const MANAGEMENT_EMAIL = "talalrajamuhammad@gmail.com";
+const FROM_EMAIL = "Opus Global Solution <noreply@opusglobalsolution.com>";
 const RESEND_API_KEY = process.env.RESEND_API_KEY || "";
 
 export async function POST(req: NextRequest) {
@@ -133,13 +134,19 @@ If you have any questions, please contact us at info@opusglobalsolution.com or (
 Best regards,
 Opus Global Solution Team`;
 
-  await resend.emails.send({
-    from: "Opus Global Solution <onboarding@resend.dev>",
+  const { data, error } = await resend.emails.send({
+    from: FROM_EMAIL,
     to: email,
     subject: `Thank you for your ${plan.name} subscription — Opus Global Solution`,
     text,
     html,
   });
+
+  if (error) {
+    console.error("[agreement] client confirmation rejected by Resend:", error);
+    throw new Error(typeof error === "object" && "message" in error ? String(error.message) : "Resend rejected the client email");
+  }
+  console.log("[agreement] client confirmation sent:", data?.id, "->", email);
 }
 
 /* ---------- Email helper using Resend ---------- */
@@ -206,8 +213,8 @@ Consents:
 (Signature attached as PNG)
 `;
 
-  await resend.emails.send({
-    from: "Opus Global Solution <onboarding@resend.dev>",
+  const { data, error } = await resend.emails.send({
+    from: FROM_EMAIL,
     to: MANAGEMENT_EMAIL,
     replyTo: email,
     subject: `New ${plan.name} Sign-Up — ${fullName}`,
@@ -220,4 +227,10 @@ Consents:
       },
     ],
   });
+
+  if (error) {
+    console.error("[agreement] admin email rejected by Resend:", error);
+    throw new Error(typeof error === "object" && "message" in error ? String(error.message) : "Resend rejected the admin email");
+  }
+  console.log("[agreement] admin email sent:", data?.id, "->", MANAGEMENT_EMAIL);
 }
