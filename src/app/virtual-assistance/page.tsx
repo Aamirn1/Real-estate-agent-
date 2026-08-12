@@ -79,6 +79,10 @@ const VA_PLANS: VAPlan[] = [
       { text: "Unlimited Revisions", included: true },
       { text: "CRM Tasks", included: true },
       { text: "Weekly Performance Reports", included: true },
+      { text: "Social Media Marketing (Meta Ads)", included: true },
+      { text: "Social Media Accounts Management", included: true },
+      { text: "Website Maintenance, Designing & Development", included: true },
+      { text: "Advanced Level Website SEO", included: true },
     ],
   },
 ];
