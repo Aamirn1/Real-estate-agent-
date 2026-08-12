@@ -15,7 +15,7 @@ const TO_EMAIL = "info@opusglobalsolution.com";
 const RESEND_API_KEY = process.env.RESEND_API_KEY || "";
 
 type Body = {
-  source: "contact" | "get-started";
+  source: "contact" | "get-started" | "home";
   name?: string;
   email?: string;
   phone?: string;
@@ -43,7 +43,7 @@ export async function POST(req: NextRequest) {
     const name = body.name || body.fullName || "";
     const resend = new Resend(RESEND_API_KEY);
 
-    const sourceLabel = body.source === "get-started" ? "Get Started Page" : "Contact Page";
+    const sourceLabel = body.source === "get-started" ? "Get Started Page" : body.source === "home" ? "Home Page" : "Contact Page";
 
     const html = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #1E293B;">

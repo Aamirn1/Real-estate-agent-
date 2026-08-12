@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, type FormEvent } from "react";
 import {
   GlassCard,
   SectionHeading,
@@ -22,6 +23,7 @@ import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import {
   Check,
+  CheckCircle2,
   ChevronDown,
   Sparkles,
   ArrowRight,
@@ -572,6 +574,44 @@ function StylizedMap() {
 }
 
 function ContactSection() {
+  const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    if (loading) return;
+    setLoading(true);
+    setError("");
+
+    const formData = new FormData(e.currentTarget);
+    const payload = {
+      source: "home" as const,
+      name: formData.get("name") as string,
+      email: formData.get("email") as string,
+      phone: formData.get("phone") as string,
+      message: formData.get("message") as string,
+    };
+
+    try {
+      const resp = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const data = await resp.json().catch(() => ({}));
+      if (!resp.ok || !data?.success) {
+        setError(data?.error || "Could not send your message. Please try again.");
+        setLoading(false);
+        return;
+      }
+      setSubmitted(true);
+    } catch {
+      setError("Network error. Please check your connection and try again.");
+      setLoading(false);
+    }
+  }
+
   return (
     <SectionShell id="contact" className="md:py-24">
       <SectionHeading
@@ -606,63 +646,95 @@ function ContactSection() {
                 </div>
               </div>
 
-              <form
-                onSubmit={(e) => e.preventDefault()}
-                className="flex flex-1 flex-col gap-4"
-              >
-                <div className="grid gap-4 sm:grid-cols-2">
-                  <div className="flex flex-col gap-1.5">
-                    <Label htmlFor="name" className="text-black">
-                      Name
-                    </Label>
-                    <Input
-                      id="name"
-                      placeholder="Jane Cooper"
-                      className="h-11 rounded-lg border-black/15 bg-black/5 text-black placeholder:text-black focus-visible:border-electric/50 focus-visible:ring-electric/20"
-                    />
-                  </div>
-                  <div className="flex flex-col gap-1.5">
-                    <Label htmlFor="email" className="text-black">
-                      Email
-                    </Label>
-                    <Input
-                      id="email"
-                      type="email"
-                      placeholder="jane@brokerage.com"
-                      className="h-11 rounded-lg border-black/15 bg-black/5 text-black placeholder:text-black focus-visible:border-electric/50 focus-visible:ring-electric/20"
-                    />
-                  </div>
+              {submitted ? (
+                <div className="flex flex-1 flex-col items-center justify-center gap-4 py-8 text-center">
+                  <span className="flex h-16 w-16 items-center justify-center rounded-2xl bg-electric/15 ring-1 ring-electric/30">
+                    <CheckCircle2 className="h-8 w-8 text-electric" />
+                  </span>
+                  <h4 className="font-heading text-xl font-semibold text-black">
+                    Message received
+                  </h4>
+                  <p className="max-w-sm text-sm leading-relaxed text-black">
+                    Thanks for reaching out to Opus Global Solution. A member of
+                    our team will get back to you within one business day.
+                  </p>
+                  <Button
+                    variant="outline"
+                    onClick={() => setSubmitted(false)}
+                    className="mt-2 border-black/15 bg-black/5 text-black hover:bg-black/10 hover:text-black"
+                  >
+                    Send another message
+                  </Button>
                 </div>
-                <div className="flex flex-col gap-1.5">
-                  <Label htmlFor="phone" className="text-black">
-                    Phone
-                  </Label>
-                  <Input
-                    id="phone"
-                    type="tel"
-                    placeholder="(645) 253-6830"
-                    className="h-11 rounded-lg border-black/15 bg-black/5 text-black placeholder:text-black focus-visible:border-electric/50 focus-visible:ring-electric/20"
-                  />
-                </div>
-                <div className="flex flex-1 flex-col gap-1.5">
-                  <Label htmlFor="message" className="text-black">
-                    Message
-                  </Label>
-                  <Textarea
-                    id="message"
-                    placeholder="Tell us about your goals and the counties you cover..."
-                    className="min-h-32 flex-1 resize-none rounded-lg border-black/15 bg-black/5 text-black placeholder:text-black focus-visible:border-electric/50 focus-visible:ring-electric/20"
-                  />
-                </div>
-                <Button
-                  type="submit"
-                  className="group relative h-11 w-full items-center justify-center gap-2 overflow-hidden rounded-full bg-[linear-gradient(120deg,#2563EB,#38BDF8,#14B8A6)] px-6 text-sm font-semibold text-white shadow-[0_0_30px_-6px_rgba(37,99,235,0.7)] transition-shadow hover:shadow-[0_0_45px_-4px_rgba(56,189,248,0.85)]"
+              ) : (
+                <form
+                  onSubmit={handleSubmit}
+                  className="flex flex-1 flex-col gap-4"
                 >
-                  <span className="absolute inset-0 -translate-x-full bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.25),transparent)] transition-transform duration-700 group-hover:translate-x-full" />
-                  <Send className="relative h-4 w-4" />
-                  <span className="relative">Send Message</span>
-                </Button>
-              </form>
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    <div className="flex flex-col gap-1.5">
+                      <Label htmlFor="name" className="text-black">
+                        Name
+                      </Label>
+                      <Input
+                        id="name"
+                        name="name"
+                        required
+                        placeholder="Jane Cooper"
+                        className="h-11 rounded-lg border-black/15 bg-black/5 text-black placeholder:text-black focus-visible:border-electric/50 focus-visible:ring-electric/20"
+                      />
+                    </div>
+                    <div className="flex flex-col gap-1.5">
+                      <Label htmlFor="email" className="text-black">
+                        Email
+                      </Label>
+                      <Input
+                        id="email"
+                        name="email"
+                        type="email"
+                        required
+                        placeholder="jane@brokerage.com"
+                        className="h-11 rounded-lg border-black/15 bg-black/5 text-black placeholder:text-black focus-visible:border-electric/50 focus-visible:ring-electric/20"
+                      />
+                    </div>
+                  </div>
+                  <div className="flex flex-col gap-1.5">
+                    <Label htmlFor="phone" className="text-black">
+                      Phone
+                    </Label>
+                    <Input
+                      id="phone"
+                      name="phone"
+                      type="tel"
+                      placeholder="(645) 253-6830"
+                      className="h-11 rounded-lg border-black/15 bg-black/5 text-black placeholder:text-black focus-visible:border-electric/50 focus-visible:ring-electric/20"
+                    />
+                  </div>
+                  <div className="flex flex-1 flex-col gap-1.5">
+                    <Label htmlFor="message" className="text-black">
+                      Message
+                    </Label>
+                    <Textarea
+                      id="message"
+                      name="message"
+                      placeholder="Tell us about your goals and the counties you cover..."
+                      className="min-h-32 flex-1 resize-none rounded-lg border-black/15 bg-black/5 text-black placeholder:text-black focus-visible:border-electric/50 focus-visible:ring-electric/20"
+                    />
+                  </div>
+                  {error && (
+                    <p className="text-sm text-red-500">{error}</p>
+                  )}
+                  <Button
+                    type="submit"
+                    disabled={loading}
+                    className="group relative h-11 w-full items-center justify-center gap-2 overflow-hidden rounded-full bg-[linear-gradient(120deg,#2563EB,#38BDF8,#14B8A6)] px-6 text-sm font-semibold text-white shadow-[0_0_30px_-6px_rgba(37,99,235,0.7)] transition-shadow hover:shadow-[0_0_45px_-4px_rgba(56,189,248,0.85)] disabled:opacity-70"
+                  >
+                    <span className="absolute inset-0 -translate-x-full bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.25),transparent)] transition-transform duration-700 group-hover:translate-x-full" />
+                    <Send className="relative h-4 w-4" />
+                    <span className="relative">{loading ? "Sending…" : "Send Message"}</span>
+                  </Button>
+                </form>
+              )}
             </div>
           </GlassCard>
         </Reveal>

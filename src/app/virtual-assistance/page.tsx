@@ -278,7 +278,7 @@ export default function VirtualAssistancePage() {
         </div>
 
         {/* plans grid */}
-        <div className="mt-12 grid items-stretch gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-12 grid items-stretch gap-6 md:grid-cols-2">
           {VA_PLANS.map((plan, i) => (
             <VAPricingCard key={plan.name} plan={plan} delay={i * 0.05} />
           ))}

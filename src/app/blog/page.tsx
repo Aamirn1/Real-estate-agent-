@@ -50,7 +50,7 @@ const POSTS: BlogPost[] = [
     date: "Jul 10, 2025",
     icon: TrendingUp,
     color: "electric",
-    image: "/blog/blog-1.jpg",
+    image: "/blog/seller-leads-strategies-2025.jpg",
   },
   {
     slug: "how-virtual-assistants-transforming-real-estate",
@@ -62,7 +62,7 @@ const POSTS: BlogPost[] = [
     date: "Jul 5, 2025",
     icon: Moon,
     color: "violet",
-    image: "/blog/blog-2.jpg",
+    image: "/blog/virtual-assistants-real-estate.jpg",
   },
   {
     slug: "complete-guide-real-estate-crm-setup-new-agents",
@@ -74,7 +74,7 @@ const POSTS: BlogPost[] = [
     date: "Jun 28, 2025",
     icon: Sparkles,
     color: "cyan",
-    image: "/blog/blog-3.jpg",
+    image: "/blog/crm-setup-guide.jpg",
   },
   {
     slug: "why-human-verified-outreach-beats-cold-calling",
@@ -86,7 +86,7 @@ const POSTS: BlogPost[] = [
     date: "Jun 20, 2025",
     icon: Handshake,
     color: "electric",
-    image: "/blog/blog-4.jpg",
+    image: "/blog/human-verified-outreach.jpg",
   },
   {
     slug: "facebook-google-ads-real-estate-2025-playbook",
@@ -98,7 +98,7 @@ const POSTS: BlogPost[] = [
     date: "Jun 12, 2025",
     icon: Megaphone,
     color: "violet",
-    image: "/blog/blog-5.jpg",
+    image: "/blog/facebook-google-ads-2025.jpg",
   },
   {
     slug: "how-to-build-real-estate-pipeline-never-goes-dry",
@@ -110,7 +110,7 @@ const POSTS: BlogPost[] = [
     date: "Jun 5, 2025",
     icon: Target,
     color: "cyan",
-    image: "/blog/blog-6.jpg",
+    image: "/blog/pipeline-never-goes-dry.jpg",
   },
   {
     slug: "compliance-real-estate-marketing-tcpa-dnc",
@@ -122,7 +122,7 @@ const POSTS: BlogPost[] = [
     date: "May 28, 2025",
     icon: Search,
     color: "gold",
-    image: "/blog/blog-7.jpg",
+    image: "/blog/compliance-tcpa-dnc.jpg",
   },
   {
     slug: "from-lead-to-closing-nurture-real-estate-prospects",
@@ -134,7 +134,7 @@ const POSTS: BlogPost[] = [
     date: "May 20, 2025",
     icon: TrendingUp,
     color: "electric",
-    image: "/blog/blog-8.jpg",
+    image: "/blog/lead-to-closing-nurture.jpg",
   },
 ];
 
