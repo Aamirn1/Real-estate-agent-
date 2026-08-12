@@ -48,9 +48,9 @@ export function LogoImage({
     <img
       src="/logo-dark.png"
       alt="Opus Global Solution"
-      width={36}
-      height={36}
-      className={className}
+      width={160}
+      height={49}
+      className={`${className} w-auto`}
     />
   );
 }

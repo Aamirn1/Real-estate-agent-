@@ -111,7 +111,7 @@ export function GetStartedForm() {
         <h2 className="relative mt-6 font-heading text-2xl font-semibold text-[#1E293B]">
           Thank you!
         </h2>
-        <p className="relative mt-2 text-sm text-[#1E293B]/55">
+        <p className="relative mt-2 text-sm text-black">
           Your request has been received. A member of our team will reach out
           within 24 hours to discuss your goals and set up your account.
         </p>

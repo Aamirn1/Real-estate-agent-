@@ -82,12 +82,64 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    /* ---------- Return success (no Coinbase) ---------- */
+    /* ---------- Send confirmation email to client ---------- */
+    try {
+      await sendClientConfirmationEmail({
+        plan,
+        fullName: body.fullName!,
+        email: body.email!,
+      });
+    } catch (emailErr) {
+      console.error("[agreement] client confirmation email failed:", emailErr);
+      // Don't fail the request — management email was already sent
+    }
+
+    /* ---------- Return success ---------- */
     return NextResponse.json({ success: true });
   } catch (err) {
     const message = err instanceof Error ? err.message : "Unknown server error.";
     return NextResponse.json({ error: `Submission failed: ${message}` }, { status: 500 });
   }
+}
+
+/* ---------- Send confirmation email to the client ---------- */
+async function sendClientConfirmationEmail(args: {
+  plan: typeof AGREEMENT_PLANS[PlanKey];
+  fullName: string;
+  email: string;
+}) {
+  const { plan, fullName, email } = args;
+  const resend = new Resend(RESEND_API_KEY);
+
+  const html = `
+    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #000000;">
+      <h2 style="color: #2563EB;">Thank you, ${fullName}!</h2>
+      <p>We have received your ${plan.name} subscription details and agreement.</p>
+      <p>Our funding manager will send you the billing details via Payoneer shortly to complete your subscription payment.</p>
+      <p>If you have any questions in the meantime, please don't hesitate to contact us at <a href="mailto:info@opusglobalsolution.com" style="color: #2563EB;">info@opusglobalsolution.com</a> or call us at (645) 253-6830.</p>
+      <p style="margin-top: 24px; font-weight: bold;">Best regards,<br>Opus Global Solution Team</p>
+      <p style="color: #64748B; font-size: 12px; margin-top: 24px;">Opus Global Solution — Professional marketing and administrative support for real estate professionals.</p>
+    </div>
+  `;
+
+  const text = `Thank you, ${fullName}!
+
+We have received your ${plan.name} subscription details and agreement.
+
+Our funding manager will send you the billing details via Payoneer shortly to complete your subscription payment.
+
+If you have any questions, please contact us at info@opusglobalsolution.com or (645) 253-6830.
+
+Best regards,
+Opus Global Solution Team`;
+
+  await resend.emails.send({
+    from: "Opus Global Solution <onboarding@resend.dev>",
+    to: email,
+    subject: `Thank you for your ${plan.name} subscription — Opus Global Solution`,
+    text,
+    html,
+  });
 }
 
 /* ---------- Email helper using Resend ---------- */

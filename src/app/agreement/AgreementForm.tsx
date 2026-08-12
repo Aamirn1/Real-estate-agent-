@@ -118,7 +118,7 @@ export function AgreementForm({ plan }: Props) {
         <h2 className="mt-6 font-heading text-2xl font-semibold text-[#000000]">
           Thank you!
         </h2>
-        <p className="mt-3 max-w-md mx-auto text-sm leading-relaxed text-[#000000]/70">
+        <p className="mt-3 max-w-md mx-auto text-sm leading-relaxed text-black">
           Your agreement has been submitted successfully. Our funding manager will
           send you a Payoneer invoice shortly to complete your subscription payment.
           If you have any questions, please contact us at{" "}
