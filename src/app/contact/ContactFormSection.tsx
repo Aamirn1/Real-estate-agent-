@@ -34,11 +34,44 @@ const SERVICES = [
 export function ContactFormSection() {
   const [submitted, setSubmitted] = useState(false);
   const [service, setService] = useState<string>("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (loading) return;
+    setLoading(true);
+    setError("");
     trackContactFormSubmit();
-    setSubmitted(true);
+
+    const formData = new FormData(e.currentTarget);
+    const payload = {
+      source: "contact" as const,
+      name: formData.get("name") as string,
+      email: formData.get("email") as string,
+      phone: formData.get("phone") as string,
+      company: formData.get("company") as string,
+      service: service || undefined,
+      message: formData.get("message") as string,
+    };
+
+    try {
+      const resp = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const data = await resp.json().catch(() => ({}));
+      if (!resp.ok || !data?.success) {
+        setError(data?.error || "Could not send your message. Please try again.");
+        setLoading(false);
+        return;
+      }
+      setSubmitted(true);
+    } catch {
+      setError("Network error. Please check your connection and try again.");
+      setLoading(false);
+    }
   }
 
   if (submitted) {
@@ -161,7 +194,7 @@ export function ContactFormSection() {
           >
             <SelectValue placeholder="Select a service" />
           </SelectTrigger>
-          <SelectContent className="border-black/15 bg-[#0d0d12] text-black">
+          <SelectContent className="border-black/15 bg-white text-black">
             {SERVICES.map((s) => (
               <SelectItem
                 key={s}
@@ -190,12 +223,17 @@ export function ContactFormSection() {
         />
       </div>
 
+      {error && (
+        <p className="text-sm text-red-500">{error}</p>
+      )}
+
       <Button
         type="submit"
-        className="group mt-1 h-11 w-full gap-2 rounded-xl bg-gradient-to-r from-[#2563EB] to-[#38BDF8] font-semibold text-white shadow-[0_0_30px_-8px_rgba(37,99,235,0.7)] transition-all hover:shadow-[0_0_40px_-6px_rgba(37,99,235,0.9)]"
+        disabled={loading}
+        className="group mt-1 h-11 w-full gap-2 rounded-xl bg-gradient-to-r from-[#2563EB] to-[#38BDF8] font-semibold text-white shadow-[0_0_30px_-8px_rgba(37,99,235,0.7)] transition-all hover:shadow-[0_0_40px_-6px_rgba(37,99,235,0.9)] disabled:opacity-70"
       >
-        Send Message
-        <Send className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+        {loading ? "Sending…" : "Send Message"}
+        {!loading && <Send className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />}
       </Button>
     </form>
   );

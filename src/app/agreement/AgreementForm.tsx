@@ -15,7 +15,10 @@ import {
   ArrowRight,
   Loader2,
   AlertCircle,
-  Lock,
+  CheckCircle2,
+  ChevronDown,
+  Check,
+  X,
 } from "lucide-react";
 import { SignaturePad } from "./SignaturePad";
 import type { AgreementPlan } from "@/lib/agreement-plans";
@@ -25,7 +28,7 @@ type Props = {
 };
 
 export function AgreementForm({ plan }: Props) {
-  const [status, setStatus] = useState<"idle" | "loading" | "error">("idle");
+  const [status, setStatus] = useState<"idle" | "loading" | "error" | "submitted">("idle");
   const [errorMsg, setErrorMsg] = useState("");
   const [signature, setSignature] = useState<string | null>(null);
   const [form, setForm] = useState({
@@ -86,25 +89,53 @@ export function AgreementForm({ plan }: Props) {
           email: form.email,
           billingAddress: form.billingAddress,
           serviceArea: form.serviceArea,
-          signature, // base64 PNG
+          signature,
           consents,
         }),
       });
       const data = await resp.json().catch(() => ({}));
-      if (!resp.ok || !data?.hosted_url) {
-        const msg = data?.error || (resp.status === 503
-          ? "Payment checkout is not configured yet. Your details have been recorded — our team will contact you to complete payment."
-          : "Could not start checkout. Please try again.");
+      if (!resp.ok || !data?.success) {
+        const msg = data?.error || "Could not submit your details. Please try again.";
         setStatus("error");
         setErrorMsg(msg);
         return;
       }
-      // Redirect to Coinbase Commerce hosted checkout
-      window.location.href = data.hosted_url;
+      // Show thank-you message
+      setStatus("submitted");
     } catch {
       setStatus("error");
       setErrorMsg("Network error. Please check your connection and try again.");
     }
+  }
+
+  /* ============ THANK YOU STATE ============ */
+  if (status === "submitted") {
+    return (
+      <div className="rounded-3xl border border-[#94A3B8] bg-white p-10 text-center shadow-[0_30px_80px_-20px_rgba(30,41,59,0.15)]">
+        <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-emerald-400 to-electric">
+          <CheckCircle2 className="h-8 w-8 text-white" />
+        </div>
+        <h2 className="mt-6 font-heading text-2xl font-semibold text-[#000000]">
+          Thank you!
+        </h2>
+        <p className="mt-3 max-w-md mx-auto text-sm leading-relaxed text-[#000000]/70">
+          Your agreement has been submitted successfully. Our funding manager will
+          send you a Payoneer invoice shortly to complete your subscription payment.
+          If you have any questions, please contact us at{" "}
+          <a href="mailto:info@opusglobalsolution.com" className="text-electric hover:underline">
+            info@opusglobalsolution.com
+          </a>
+          .
+        </p>
+        <a
+          href="/"
+          className="mt-6 inline-flex w-full max-w-xs items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#2563EB] to-[#38BDF8] py-3 text-sm font-semibold text-white shadow-[0_0_24px_-6px_rgba(37,99,235,0.3)] transition-all hover:shadow-[0_0_32px_-4px_rgba(56,189,248,0.4)]"
+        >
+          Back to Home
+          <ArrowRight className="h-4 w-4" />
+        </a>
+      </div>
+    );
   }
 
   return (
@@ -203,20 +234,19 @@ export function AgreementForm({ plan }: Props) {
           {status === "loading" ? (
             <>
               <Loader2 className="relative h-4 w-4 animate-spin" />
-              <span className="relative">Processing…</span>
+              <span className="relative">Submitting…</span>
             </>
           ) : (
             <>
-              <Lock className="relative h-4 w-4" />
-              <span className="relative">Continue to Secure Payment</span>
-              <ArrowRight className="relative h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+              <CheckCircle2 className="relative h-4 w-4" />
+              <span className="relative">Confirm</span>
             </>
           )}
         </motion.button>
 
         <p className="text-center text-xs text-[#000000]/40">
-          You will be redirected to our secure payment processor (Coinbase Commerce) to complete your{" "}
-          {plan.priceLabel} payment.
+          By clicking Confirm, you agree to the terms above. Our team will send you
+          a Payoneer invoice to complete your subscription.
         </p>
       </form>
     </div>

@@ -33,6 +33,8 @@ const PLANS = ["Trial ($299)", "Gold ($599)", "Platinum ($1199)", "Need help cho
 
 export function GetStartedForm() {
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const [servicesOpen, setServicesOpen] = useState(false);
   const [planOpen, setPlanOpen] = useState(false);
   const [form, setForm] = useState({
@@ -54,9 +56,38 @@ export function GetStartedForm() {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    if (loading) return;
+    setLoading(true);
+    setError("");
+
+    try {
+      const resp = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          source: "get-started",
+          name: form.name,
+          email: form.email,
+          phone: form.phone,
+          company: form.company,
+          services: form.services,
+          plan: form.plan,
+          message: form.message,
+        }),
+      });
+      const data = await resp.json().catch(() => ({}));
+      if (!resp.ok || !data?.success) {
+        setError(data?.error || "Could not submit your details. Please try again.");
+        setLoading(false);
+        return;
+      }
+      setSubmitted(true);
+    } catch {
+      setError("Network error. Please check your connection and try again.");
+      setLoading(false);
+    }
   };
 
   /* ============ SUCCESS STATE ============ */
@@ -318,13 +349,18 @@ export function GetStartedForm() {
               />
             </div>
 
+            {error && (
+              <p className="text-sm text-red-500">{error}</p>
+            )}
+
             {/* Submit */}
             <button
               type="submit"
-              className="group relative flex w-full items-center justify-center gap-2 overflow-hidden rounded-full bg-gradient-to-r from-[#2563EB] to-[#38BDF8] py-3.5 text-sm font-semibold text-white shadow-[0_0_24px_-6px_rgba(37,99,235,0.3)] transition-all hover:shadow-[0_0_32px_-4px_rgba(56,189,248,0.4)]"
+              disabled={loading}
+              className="group relative flex w-full items-center justify-center gap-2 overflow-hidden rounded-full bg-gradient-to-r from-[#2563EB] to-[#38BDF8] py-3.5 text-sm font-semibold text-white shadow-[0_0_24px_-6px_rgba(37,99,235,0.3)] transition-all hover:shadow-[0_0_32px_-4px_rgba(56,189,248,0.4)] disabled:opacity-70"
             >
-              <span className="relative z-10">Submit Request</span>
-              <ArrowRight className="relative z-10 h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+              <span className="relative z-10">{loading ? "Submitting…" : "Submit Request"}</span>
+              {!loading && <ArrowRight className="relative z-10 h-4 w-4 transition-transform group-hover:translate-x-0.5" />}
               <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/25 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
             </button>
 
