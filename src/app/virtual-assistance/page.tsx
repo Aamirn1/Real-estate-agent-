@@ -153,11 +153,11 @@ function VAPricingCard({ plan, delay }: { plan: VAPlan; delay: number }) {
     </div>
   ) : null;
 
-  /* Top Selling (electric gradient border + scale + solid CTA) */
+  /* Top Selling (electric gradient border + solid CTA) */
   if (plan.highlight === "top-selling") {
     return (
       <Reveal delay={delay} className="h-full">
-        <div className="group relative h-full lg:scale-105 lg:z-10 transition-transform duration-300">
+        <div className="group relative h-full transition-transform duration-300">
           <div className="absolute -inset-3 rounded-[1.75rem] bg-electric/20 blur-2xl opacity-70" />
           <div className="absolute -inset-px rounded-2xl bg-[linear-gradient(120deg,#2563EB,#38BDF8,#14B8A6,#2563EB)] animate-gradient-x opacity-95" />
           <GlassCard
