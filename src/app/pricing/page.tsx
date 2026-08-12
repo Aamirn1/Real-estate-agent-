@@ -359,6 +359,7 @@ export default function PricingPage() {
       />
       <PageHero
         heroImage="/heroes/pricing-home.jpg"
+        heroAlt="Modern two-story house with illuminated windows and landscaped front yard at dusk"
         eyebrow="Pricing"
         title={
           <>

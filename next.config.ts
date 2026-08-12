@@ -39,6 +39,20 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  async redirects() {
+    return [
+      {
+        source: "/hero-bg-desktop.png",
+        destination: "/hero-bg-desktop.jpg",
+        permanent: true,
+      },
+      {
+        source: "/hero-bg-mobile.png",
+        destination: "/hero-bg-mobile.jpg",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

@@ -85,6 +85,7 @@ export default function AboutPage() {
       />
       <PageHero
         heroImage="/heroes/about-home.jpg"
+        heroAlt="Modern white house with large glass windows, swimming pool, and mountain backdrop at sunset"
         eyebrow="About Us"
         title={
           <>

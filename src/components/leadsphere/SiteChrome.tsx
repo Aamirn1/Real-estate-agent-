@@ -42,11 +42,13 @@ export function PageHero({
   title,
   description,
   heroImage,
+  heroAlt,
 }: {
   eyebrow: string;
   title: React.ReactNode;
   description?: string;
   heroImage?: string;
+  heroAlt?: string;
 }) {
   return (
     <section className="relative w-full overflow-hidden px-5 pb-12 pt-28 sm:px-8 md:pt-32">
@@ -56,8 +58,7 @@ export function PageHero({
           <div className="absolute inset-0 z-0">
             <img
               src={heroImage}
-              alt="Real estate professional home — Opus Global Solution marketing support"
-              aria-hidden
+              alt={heroAlt || ""}
               width={1344}
               height={768}
               className="h-full w-full object-cover"

@@ -15,11 +15,10 @@ export function Hero() {
     <section className="relative flex min-h-screen w-full items-center overflow-hidden">
       {/* Full-bleed background image, mobile portrait on small screens, desktop landscape on md+ */}
       <picture className="absolute inset-0 z-0">
-        <source media="(min-width: 768px)" srcSet="/hero-bg-desktop.png" />
+        <source media="(min-width: 768px)" srcSet="/hero-bg-desktop.jpg" />
         <img
-          src="/hero-bg-mobile.png"
-          alt="Modern luxury home — Opus Global Solution real estate marketing"
-          aria-hidden
+          src="/hero-bg-mobile.jpg"
+          alt="Modern two-story house with illuminated windows and landscaped lawn at twilight"
           width={768}
           height={1344}
           className="h-full w-full object-cover"

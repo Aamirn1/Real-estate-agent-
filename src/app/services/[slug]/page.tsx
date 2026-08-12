@@ -88,6 +88,7 @@ export default async function ServiceDetailPage({
     <SiteChrome withBackground={false} flushTop>
       <PageHero
         heroImage="/heroes/services-home.jpg"
+        heroAlt="Two-story brick house with white garage door and green lawn under a blue sky"
         eyebrow="Services"
         title={
           <>

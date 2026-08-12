@@ -242,6 +242,7 @@ export default function VirtualAssistancePage() {
       />
       <PageHero
         heroImage="/heroes/va-home.jpg"
+        heroAlt="Two-story suburban house with beige siding, stone accents, and a two-car garage"
         eyebrow="Virtual Assistance"
         title={
           <>

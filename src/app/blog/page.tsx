@@ -215,6 +215,7 @@ export default function BlogPage() {
       />
       <PageHero
         heroImage="/heroes/blog-home.jpg"
+        heroAlt="Two-story house with wood shingle siding, covered front porch, and landscaped flower beds"
         eyebrow="Blog"
         title={
           <>

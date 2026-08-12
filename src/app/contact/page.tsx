@@ -91,6 +91,7 @@ export default function ContactPage() {
       />
       <PageHero
         heroImage="/heroes/get-started-home.jpg"
+        heroAlt="Two-story house with stone and stucco walls, arched entryway, and landscaped walkway at twilight"
         eyebrow="Contact"
         title={
           <>

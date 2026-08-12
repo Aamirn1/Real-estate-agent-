@@ -88,6 +88,7 @@ export default function TestimonialsPage() {
       />
       <PageHero
         heroImage="/heroes/testimonials-home.jpg"
+        heroAlt="Large modern two-story house with stone and siding exterior, three garage doors, and green lawn"
         eyebrow="Testimonials"
         title={
           <>
