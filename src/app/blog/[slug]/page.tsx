@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, Calendar, Clock, ArrowRight, ArrowUpRight } from "lucide-react";
@@ -141,14 +142,14 @@ export default async function BlogPostPage({
       />
       {/* Hero image */}
       <div className="relative w-full px-5 pt-28 sm:px-8">
-        <div className="mx-auto w-full max-w-4xl overflow-hidden rounded-3xl border border-black/15 shadow-lg">
-          <img
+        <div className="relative mx-auto h-64 w-full max-w-4xl overflow-hidden rounded-3xl border border-black/15 shadow-lg sm:h-96">
+          <Image
             src={post.image}
             alt={post.title}
-            width={1024}
-            height={576}
-            className="h-64 w-full object-cover sm:h-96"
-            fetchPriority="high"
+            fill
+            priority
+            sizes="(max-width: 896px) 100vw, 896px"
+            className="h-full w-full object-cover"
           />
         </div>
       </div>
@@ -285,13 +286,12 @@ export default async function BlogPostPage({
                 className="group overflow-hidden rounded-2xl border border-black/15 bg-white shadow-sm transition-all hover:shadow-lg"
               >
                 <div className="relative h-36 overflow-hidden">
-                  <img
+                  <Image
                     src={rp.image}
                     alt={rp.title}
-                    width={300}
-                    height={200}
+                    fill
+                    sizes="(max-width: 640px) 100vw, 33vw"
                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
                 </div>

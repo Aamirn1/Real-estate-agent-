@@ -73,6 +73,7 @@ export function Navbar() {
             height={48}
             className="h-10 sm:h-12 w-auto"
             fetchPriority="high"
+            decoding="async"
           />
         </a>
 

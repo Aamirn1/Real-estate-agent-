@@ -23,6 +23,7 @@ export function Hero() {
           height={1344}
           className="h-full w-full object-cover"
           fetchPriority="high"
+          decoding="async"
         />
       </picture>
       {/* Dark gradient overlays for text legibility + brand cohesion */}

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Navbar } from "@/components/leadsphere/Navbar";
 import { Hero } from "@/components/leadsphere/Hero";
 import { FeaturesSection } from "@/components/leadsphere/sections/TrustStatsFeatures";
@@ -43,14 +44,13 @@ export default function Home() {
 
       {/* Section image */}
       <section className="relative w-full px-5 py-8 sm:px-8">
-        <div className="mx-auto w-full max-w-5xl overflow-hidden rounded-3xl border border-black/15 shadow-lg">
-          <img
+        <div className="relative mx-auto h-[400px] w-full max-w-5xl overflow-hidden rounded-3xl border border-black/15 shadow-lg sm:h-[500px]">
+          <Image
             src="/sections/handshake.jpg"
             alt="Real estate professional shaking hands with client in front of modern home"
-            width={1024}
-            height={683}
+            fill
+            sizes="(max-width: 1024px) 100vw, 1024px"
             className="h-full w-full object-cover"
-            loading="lazy"
           />
         </div>
       </section>

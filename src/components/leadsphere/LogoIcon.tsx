@@ -51,6 +51,7 @@ export function LogoImage({
       width={160}
       height={49}
       className={`${className} w-auto`}
+      decoding="async"
     />
   );
 }

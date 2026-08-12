@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Navbar } from "@/components/leadsphere/Navbar";
 import { CursorGlow } from "@/components/leadsphere/CursorGlow";
@@ -56,13 +57,13 @@ export function PageHero({
       {heroImage && (
         <>
           <div className="absolute inset-0 z-0">
-            <img
+            <Image
               src={heroImage}
               alt={heroAlt || ""}
-              width={1344}
-              height={768}
+              fill
+              priority
+              sizes="100vw"
               className="h-full w-full object-cover"
-              fetchPriority="high"
             />
             <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/45 to-white" />
           </div>

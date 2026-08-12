@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import {
   Headset,
@@ -168,13 +169,12 @@ export function AboutMission({ showWhyDifferent = true }: { showWhyDifferent?: b
       {/* ============ NEW BLOCK 2: Why We Are Different ============ */}
       {showWhyDifferent && (
       <div className="relative mt-24 overflow-hidden rounded-3xl border border-black/15 shadow-lg md:mt-32">
-        <img
+        <Image
           src="/sections/why-different-bg.jpg"
           alt="Two men in business attire shaking hands in front of a modern building with glass windows"
-          width={1200}
-          height={800}
+          fill
+          sizes="(max-width: 1200px) 100vw, 1200px"
           className="absolute inset-0 h-full w-full object-cover"
-          loading="lazy"
         />
         <div className="relative z-10 px-4 py-10 sm:px-8 md:py-14">
         <Reveal>
