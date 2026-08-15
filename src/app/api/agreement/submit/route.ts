@@ -15,7 +15,7 @@ import { AGREEMENT_PLANS, type PlanKey } from "@/lib/agreement-plans";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-type ConsentKeys = "terms" | "payment" | "sms" | "marketing";
+type ConsentKeys = "terms" | "payment" | "sms" | "marketing" | "dataSecurity" | "refundPolicy";
 
 type Body = {
   plan: string;
@@ -58,8 +58,8 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Valid signature is required." }, { status: 400 });
     }
     const consents = body.consents;
-    if (!consents || !consents.terms || !consents.payment || !consents.sms || !consents.marketing) {
-      return NextResponse.json({ error: "All four consent boxes must be checked." }, { status: 400 });
+    if (!consents || !consents.terms || !consents.payment || !consents.sms || !consents.marketing || !consents.dataSecurity || !consents.refundPolicy) {
+      return NextResponse.json({ error: "All six consent boxes must be checked." }, { status: 400 });
     }
 
     /* ---------- Email the submission to management ---------- */
@@ -187,6 +187,8 @@ async function sendAgreementEmail(args: {
         <li>Payment Authorization: ${consents.payment ? "✓ Agreed" : "✗"}</li>
         <li>SMS Notifications: ${consents.sms ? "✓ Agreed" : "✗"}</li>
         <li>Marketing Messages: ${consents.marketing ? "✓ Agreed" : "✗"}</li>
+        <li>Data Security: ${consents.dataSecurity ? "✓ Agreed" : "✗"}</li>
+        <li>Refund Policy: ${consents.refundPolicy ? "✓ Agreed" : "✗"}</li>
       </ul>
       <h3 style="color: #1E293B;">Signature</h3>
       <img src="cid:signature" alt="Client signature" style="border: 1px solid #E2E8F0; max-width: 400px;" />
@@ -209,6 +211,8 @@ Consents:
 - Payment Authorization: ${consents.payment ? "Agreed" : "No"}
 - SMS Notifications: ${consents.sms ? "Agreed" : "No"}
 - Marketing Messages: ${consents.marketing ? "Agreed" : "No"}
+- Data Security: ${consents.dataSecurity ? "Agreed" : "No"}
+- Refund Policy: ${consents.refundPolicy ? "Agreed" : "No"}
 
 (Signature attached as PNG)
 `;

@@ -19,6 +19,8 @@ import {
   ChevronDown,
   Check,
   X,
+  Lock,
+  RotateCcw,
 } from "lucide-react";
 import { SignaturePad } from "./SignaturePad";
 import type { AgreementPlan } from "@/lib/agreement-plans";
@@ -44,6 +46,8 @@ export function AgreementForm({ plan }: Props) {
     payment: false,
     sms: false,
     marketing: false,
+    dataSecurity: false,
+    refundPolicy: false,
   });
 
   function handleField(key: keyof typeof form, v: string) {
@@ -69,9 +73,9 @@ export function AgreementForm({ plan }: Props) {
       setErrorMsg("Please draw your signature in the signature pad.");
       return;
     }
-    if (!consents.terms || !consents.payment || !consents.sms || !consents.marketing) {
+    if (!consents.terms || !consents.payment || !consents.sms || !consents.marketing || !consents.dataSecurity || !consents.refundPolicy) {
       setStatus("error");
-      setErrorMsg("Please check all four consent boxes to continue.");
+      setErrorMsg("Please check all six consent boxes to continue.");
       return;
     }
 
@@ -212,6 +216,22 @@ export function AgreementForm({ plan }: Props) {
             I consent to receive occasional marketing messages from Opus Global Solution. Reply STOP to unsubscribe anytime. Learn more on our{" "}
             <a href="/privacy-policy" className="text-electric hover:underline">Privacy Policy</a> page and{" "}
             <a href="/terms" className="text-electric hover:underline">Terms and Conditions</a>.
+          </ConsentRow>
+
+          <ConsentRow
+            checked={consents.dataSecurity}
+            onChange={() => toggleConsent("dataSecurity")}
+            icon={Lock}
+          >
+            I understand that any sensitive data provided for social media account management or any other service will be highly secured by the Opus Global Solution team.
+          </ConsentRow>
+
+          <ConsentRow
+            checked={consents.refundPolicy}
+            onChange={() => toggleConsent("refundPolicy")}
+            icon={RotateCcw}
+          >
+            I understand that I can only apply for a refund within one (1) month of subscription. After one month, I will no longer be eligible for a refund.
           </ConsentRow>
         </div>
 
