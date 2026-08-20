@@ -111,6 +111,12 @@ export default function RootLayout({
                 addressCountry: "US",
               },
               areaServed: { "@type": "Country", name: "United States" },
+              sameAs: [
+                "https://www.facebook.com/opusglobalsolution",
+                "https://www.instagram.com/opusglobalsolution",
+                "https://www.tiktok.com/@opusglobalsolution",
+                "https://www.youtube.com/@opusglobalsolution",
+              ],
               knowsAbout: [
                 "Real Estate Marketing",
                 "CRM Support and Management",
