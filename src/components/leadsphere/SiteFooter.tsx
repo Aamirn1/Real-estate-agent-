@@ -144,9 +144,9 @@ export function SiteFooter() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={label}
-                    className="flex h-10 w-10 items-center justify-center rounded-full border border-black/15 bg-black/5 text-black transition-all hover:-translate-y-0.5 hover:border-electric/40 hover:bg-electric/10 hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-electric/50"
+                    className="group relative flex h-10 w-10 items-center justify-center rounded-full bg-[linear-gradient(120deg,#2563EB,#38BDF8,#14B8A6,#2563EB)] animate-gradient-x bg-[length:200%_200%] text-white shadow-[0_4px_12px_-2px_rgba(37,99,235,0.5)] transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_20px_-2px_rgba(56,189,248,0.7)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-electric/50"
                   >
-                    <Icon className="h-4 w-4" />
+                    <Icon className="relative h-4 w-4" />
                   </a>
                 ))}
               </div>

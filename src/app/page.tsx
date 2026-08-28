@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { Navbar } from "@/components/leadsphere/Navbar";
 import { Hero } from "@/components/leadsphere/Hero";
+import { LatestListings } from "@/components/leadsphere/sections/LatestListings";
 import { FeaturesSection } from "@/components/leadsphere/sections/TrustStatsFeatures";
 import { AboutMission, VirtualAssistantServices, OurWorkflow } from "@/components/leadsphere/sections/AboutVaWorkflow";
 import { WhyChooseUs } from "@/components/leadsphere/sections/WhyChooseFeatured";
@@ -20,6 +21,9 @@ export default function Home() {
 
       {/* 1. Hero (with 4 stats) */}
       <Hero />
+
+      {/* 1b. Latest Listings — property showcase with View Listings CTA */}
+      <LatestListings />
 
       {/* 2. About | "Who We Are — Workflow automation for realtors" */}
       <AboutMission />

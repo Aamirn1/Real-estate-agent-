@@ -82,15 +82,14 @@ export function Hero() {
               <ArrowRight className="relative z-10 h-4 w-4 transition-transform group-hover:translate-x-0.5" />
             </motion.a>
             <motion.a
-              href="/contact"
+              href="/testimonials"
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
               onClick={() => trackBookDemoClick("hero")}
               className="btn-shimmer group relative inline-flex items-center gap-2 overflow-hidden rounded-xl border border-white/15 bg-white/5 px-5 py-3 text-sm font-semibold text-white backdrop-blur transition-all hover:border-white/25 hover:bg-white/10"
             >
               <PlayCircle className="relative z-10 h-4 w-4 text-cyan" />
-              <span className="relative z-10 hidden xs:inline sm:inline">Book a Consultation</span>
-              <span className="relative z-10 xs:hidden sm:hidden">Book Demo</span>
+              <span className="relative z-10">View Listings</span>
             </motion.a>
           </div>
 
