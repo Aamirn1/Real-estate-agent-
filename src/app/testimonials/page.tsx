@@ -3,6 +3,7 @@ import { SiteChrome, PageHero } from "@/components/leadsphere/SiteChrome";
 import { CTABanner } from "@/components/leadsphere/CTABanner";
 import { BreadcrumbSchema } from "@/components/seo/BreadcrumbSchema";
 import CrmIntegrationsTestimonials from "@/components/leadsphere/sections/CrmIntegrationsTestimonials";
+import { FeaturedListings } from "@/components/leadsphere/sections/FeaturedListings";
 import {
   GlassCard,
   SectionHeading,
@@ -111,7 +112,8 @@ export default function TestimonialsPage() {
         description="At Opus Global Solution, our clients' success is our greatest achievement. Hear directly from real estate professionals who have enhanced their efficiency and grown their businesses with our support."
       />
 
-      {/* 1. CRM Kanban + Integrations + Testimonials carousel (id="testimonials") */}
+      {/* Featured Listings — 3 property cards with View Listing buttons */}
+      <FeaturedListings />
 
       {/* 2. CRM Kanban + Integrations + Testimonials carousel (id="testimonials") */}
       <CrmIntegrationsTestimonials showHeading={false} />

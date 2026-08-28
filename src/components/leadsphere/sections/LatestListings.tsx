@@ -18,9 +18,9 @@ export function LatestListings() {
         {/* Heading */}
         <div className="mb-6 text-center">
           <h2 className="font-heading text-2xl font-bold text-white sm:text-3xl md:text-4xl">
-            Latest{" "}
+            Latest Listings By{" "}
             <span className="bg-gradient-to-r from-electric to-cyan bg-clip-text text-transparent">
-              Listings
+              Our Realtors
             </span>
           </h2>
           <p className="mt-2 text-sm text-white/60 sm:text-base">
