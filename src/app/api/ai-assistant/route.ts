@@ -107,7 +107,7 @@ async function callGemini(messages: ChatMessage[]): Promise<string> {
     contents,
     generationConfig: {
       temperature: 0.7,
-      maxOutputTokens: 300,
+      maxOutputTokens: 1024,
       topP: 0.9,
     },
   });
@@ -152,11 +152,22 @@ async function callGemini(messages: ChatMessage[]): Promise<string> {
 
       if (response.ok) {
         const data = await response.json();
+        const candidate = data?.candidates?.[0];
+        const finishReason = candidate?.finishReason;
         const reply =
-          data?.candidates?.[0]?.content?.parts?.[0]?.text?.trim() || "";
+          candidate?.content?.parts?.[0]?.text?.trim() || "";
+
         if (reply) return reply;
-        // Empty reply but OK status — try next method
-        lastError = "Empty response from Gemini";
+
+        // Empty reply — check if it was blocked by safety filters
+        if (finishReason === "SAFETY") {
+          lastError = "Response blocked by safety filters";
+        } else if (finishReason === "MAX_TOKENS") {
+          lastError = "Response truncated (max tokens reached)";
+        } else {
+          lastError = `Empty response (finishReason: ${finishReason || "unknown"})`;
+        }
+        console.error(`[ai-assistant] Gemini returned empty:`, lastError, JSON.stringify(data).substring(0, 200));
         continue;
       }
 
