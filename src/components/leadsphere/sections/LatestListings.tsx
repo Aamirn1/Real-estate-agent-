@@ -1,15 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
-import Link from "next/link";
 
 /**
  * Latest Listings section — displayed directly below the hero on the
- * homepage. Shows the agent property showcase image with a "View
- * Listings" call-to-action button positioned on the empty pill-shaped
- * area in the design (center-right of the image, below the main house).
+ * homepage. Shows the agent property showcase image (clean, no overlay
+ * button — the image is a complete design on its own).
  */
 export function LatestListings() {
   return (
@@ -28,8 +24,8 @@ export function LatestListings() {
           </p>
         </div>
 
-        {/* Image + View Listings button overlay */}
-        <div className="relative w-full overflow-hidden rounded-3xl border border-white/10 shadow-2xl">
+        {/* Clean image — no overlay button (image is a complete design) */}
+        <div className="relative w-full overflow-hidden rounded-3xl border border-black/10 shadow-2xl">
           <div className="relative aspect-[3/2] w-full">
             <Image
               src="/listings/latest-listings.png"
@@ -39,24 +35,6 @@ export function LatestListings() {
               sizes="(max-width: 1024px) 100vw, 1024px"
               className="object-cover"
             />
-          </div>
-
-          {/* View Listings button — positioned on the empty pill-shaped
-              area in the design (center, below the main house photo) */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-            >
-              <Link
-                href="/testimonials"
-                className="btn-shimmer group relative inline-flex items-center gap-2 overflow-hidden rounded-full border-2 border-white bg-white/95 px-7 py-3 text-sm font-bold text-[#2563EB] shadow-[0_8px_30px_-4px_rgba(0,0,0,0.4)] backdrop-blur transition-all hover:scale-105 hover:bg-white hover:shadow-[0_12px_40px_-4px_rgba(37,99,235,0.5)] sm:px-8 sm:py-3.5 sm:text-base"
-              >
-                <span className="relative z-10">View Listings</span>
-                <ArrowRight className="relative z-10 h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </Link>
-            </motion.div>
           </div>
         </div>
       </div>
