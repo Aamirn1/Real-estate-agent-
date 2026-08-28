@@ -23,19 +23,19 @@ type Listing = {
 
 const LISTINGS: Listing[] = [
   {
-    image: "/listings/property-1-coral-springs.png",
+    image: "/listings/property-1-coral-springs-v2.jpg",
     address: "1060 NW 82nd Ave, Coral Springs, FL 33071",
     zillowUrl:
       "https://www.zillow.com/homedetails/1060-NW-82nd-Ave-Coral-Springs-FL-33071/42858987_zpid/",
   },
   {
-    image: "/listings/property-2-sunrise.png",
+    image: "/listings/property-2-sunrise-v2.jpg",
     address: "3115 NW 86th Ave, 2A, Sunrise, FL 33351",
     zillowUrl:
       "https://www.zillow.com/homedetails/3115-NW-86th-Ave-2A-Sunrise-FL-33351/66119074_zpid/",
   },
   {
-    image: "/listings/property-3-cooper-city.png",
+    image: "/listings/property-3-cooper-city-v2.jpg",
     address: "5031 SW 94th Way, Cooper City, FL 33328",
     zillowUrl:
       "https://www.zillow.com/homedetails/5031-SW-94th-Way-Cooper-City-FL-33328/43187482_zpid/",
