@@ -103,33 +103,80 @@ async function callGemini(messages: ChatMessage[]): Promise<string> {
     })),
   ];
 
-  const response = await fetch(GEMINI_API_URL, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "X-goog-api-key": GEMINI_API_KEY,
+  const body = JSON.stringify({
+    contents,
+    generationConfig: {
+      temperature: 0.7,
+      maxOutputTokens: 300,
+      topP: 0.9,
     },
-    body: JSON.stringify({
-      contents,
-      generationConfig: {
-        temperature: 0.7,
-        maxOutputTokens: 300,
-        topP: 0.9,
-      },
-    }),
   });
 
-  if (!response.ok) {
-    const errorText = await response.text();
-    console.error("[ai-assistant] Gemini API error:", response.status, errorText);
-    throw new Error(`Gemini API returned ${response.status}`);
+  // Try multiple auth methods — the API key format determines which works.
+  // Standard Google API keys (AIza...) work with X-goog-api-key header or ?key= query.
+  // Some tokens require Bearer auth.
+  const authAttempts = [
+    // Method 1: X-goog-api-key header (standard for Google API keys)
+    {
+      url: GEMINI_API_URL,
+      headers: {
+        "Content-Type": "application/json",
+        "X-goog-api-key": GEMINI_API_KEY,
+      },
+    },
+    // Method 2: ?key= query parameter
+    {
+      url: `${GEMINI_API_URL}?key=${GEMINI_API_KEY}`,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    },
+    // Method 3: Bearer token (for OAuth-style tokens)
+    {
+      url: GEMINI_API_URL,
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${GEMINI_API_KEY}`,
+      },
+    },
+  ];
+
+  let lastError = "";
+  for (const attempt of authAttempts) {
+    try {
+      const response = await fetch(attempt.url, {
+        method: "POST",
+        headers: attempt.headers,
+        body,
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        const reply =
+          data?.candidates?.[0]?.content?.parts?.[0]?.text?.trim() || "";
+        if (reply) return reply;
+        // Empty reply but OK status — try next method
+        lastError = "Empty response from Gemini";
+        continue;
+      }
+
+      const errorText = await response.text();
+      lastError = `HTTP ${response.status}: ${errorText}`;
+      console.error(`[ai-assistant] Gemini attempt failed:`, lastError);
+
+      // If it's a 400 "location not supported" error, no point trying other methods
+      if (errorText.includes("location is not supported")) {
+        throw new Error(
+          "Gemini API is not available in this region. The AI assistant will work once deployed to a supported region (e.g., Vercel US/EU data centers)."
+        );
+      }
+    } catch (fetchErr) {
+      lastError = fetchErr instanceof Error ? fetchErr.message : String(fetchErr);
+      console.error(`[ai-assistant] Gemini fetch error:`, lastError);
+    }
   }
 
-  const data = await response.json();
-  const reply =
-    data?.candidates?.[0]?.content?.parts?.[0]?.text?.trim() || "";
-
-  return reply;
+  throw new Error(`All Gemini auth methods failed. Last error: ${lastError}`);
 }
 
 export async function POST(req: NextRequest) {
@@ -196,15 +243,51 @@ export async function POST(req: NextRequest) {
       suggestions: nextSuggestions(userMsg),
     });
   } catch (err) {
-    console.error("[ai-assistant] error:", err);
+    const errMsg = err instanceof Error ? err.message : String(err);
+    console.error("[ai-assistant] error:", errMsg);
     return NextResponse.json(
       {
         error: "The assistant is temporarily unavailable.",
         reply:
           "I'm having trouble connecting right now. Please try again in a moment, or contact us at (645) 253-6830 and our team will reach out.",
+        debug: errMsg,
       },
       { status: 200 }
     );
+  }
+}
+
+/** GET endpoint — tests the Gemini API connection and returns diagnostic info.
+ *  Visit /api/ai-assistant in the browser to check if the API key works. */
+export async function GET() {
+  if (!GEMINI_API_KEY) {
+    return NextResponse.json({
+      status: "error",
+      error: "GEMINI_API_KEY environment variable is not set.",
+      fix: "Add GEMINI_API_KEY to your Vercel environment variables and redeploy.",
+    }, { status: 500 });
+  }
+
+  try {
+    const reply = await callGemini([
+      { role: "user", content: "Say hello in one word." },
+    ]);
+    return NextResponse.json({
+      status: "ok",
+      message: "Gemini API is working correctly.",
+      testReply: reply,
+      keyPrefix: GEMINI_API_KEY.substring(0, 10) + "...",
+    });
+  } catch (err) {
+    const errMsg = err instanceof Error ? err.message : String(err);
+    return NextResponse.json({
+      status: "error",
+      error: errMsg,
+      keyPrefix: GEMINI_API_KEY.substring(0, 10) + "...",
+      fix: errMsg.includes("location is not supported")
+        ? "The Gemini API is geo-restricted. Vercel's US/EU data centers should work. If you're seeing this on Vercel, the API key may be invalid or the region is blocked."
+        : "Check that GEMINI_API_KEY is set correctly in Vercel environment variables.",
+    }, { status: 500 });
   }
 }
 

@@ -83,12 +83,18 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    /* ---------- Send confirmation email to client ---------- */
+    /* ---------- Send confirmation email to client (with full agreement + signature) ---------- */
     try {
       await sendClientConfirmationEmail({
         plan,
         fullName: body.fullName!,
+        phone: body.phone!,
+        dre: body.dre!,
         email: body.email!,
+        billingAddress: body.billingAddress!,
+        serviceArea: body.serviceArea!,
+        signature: body.signature,
+        consents,
       });
     } catch (emailErr) {
       console.error("[agreement] client confirmation email failed:", emailErr);
@@ -103,21 +109,55 @@ export async function POST(req: NextRequest) {
   }
 }
 
-/* ---------- Send confirmation email to the client ---------- */
+/* ---------- Send confirmation email to the client (with full agreement + signature) ---------- */
 async function sendClientConfirmationEmail(args: {
   plan: typeof AGREEMENT_PLANS[PlanKey];
   fullName: string;
+  phone: string;
+  dre: string;
   email: string;
+  billingAddress: string;
+  serviceArea: string;
+  signature: string;
+  consents: Record<ConsentKeys, boolean>;
 }) {
-  const { plan, fullName, email } = args;
+  const { plan, fullName, phone, dre, email, billingAddress, serviceArea, signature, consents } = args;
   const resend = new Resend(RESEND_API_KEY);
+
+  // Extract base64 data from the data URL for attachment
+  const sigBase64 = signature.replace(/^data:image\/png;base64,/, "");
 
   const html = `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #000000;">
       <h2 style="color: #2563EB;">Thank you, ${fullName}!</h2>
-      <p>We have received your ${plan.name} subscription details and agreement.</p>
+      <p>We have received your ${plan.name} subscription details and agreement. Below is a copy of your signed agreement for your records.</p>
       <p>Our funding manager will send you the billing details via Payoneer shortly to complete your subscription payment.</p>
-      <p>If you have any questions in the meantime, please don't hesitate to contact us at <a href="mailto:info@opusglobalsolution.com" style="color: #2563EB;">info@opusglobalsolution.com</a> or call us at (645) 253-6830.</p>
+
+      <h3 style="color: #1E293B; margin-top: 24px;">Your Agreement Details</h3>
+      <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+        <tr><td style="padding: 8px; border: 1px solid #E2E8F0; font-weight: 600; width: 35%;">Plan</td><td style="padding: 8px; border: 1px solid #E2E8F0;">${plan.name} (${plan.priceLabel})</td></tr>
+        <tr><td style="padding: 8px; border: 1px solid #E2E8F0; font-weight: 600;">Full Name</td><td style="padding: 8px; border: 1px solid #E2E8F0;">${fullName}</td></tr>
+        <tr><td style="padding: 8px; border: 1px solid #E2E8F0; font-weight: 600;">Phone</td><td style="padding: 8px; border: 1px solid #E2E8F0;">${phone}</td></tr>
+        <tr><td style="padding: 8px; border: 1px solid #E2E8F0; font-weight: 600;">DRE / License #</td><td style="padding: 8px; border: 1px solid #E2E8F0;">${dre}</td></tr>
+        <tr><td style="padding: 8px; border: 1px solid #E2E8F0; font-weight: 600;">Email</td><td style="padding: 8px; border: 1px solid #E2E8F0;">${email}</td></tr>
+        <tr><td style="padding: 8px; border: 1px solid #E2E8F0; font-weight: 600;">Billing Address</td><td style="padding: 8px; border: 1px solid #E2E8F0;">${billingAddress}</td></tr>
+        <tr><td style="padding: 8px; border: 1px solid #E2E8F0; font-weight: 600;">Service Area</td><td style="padding: 8px; border: 1px solid #E2E8F0;">${serviceArea}</td></tr>
+      </table>
+
+      <h3 style="color: #1E293B;">Consents You Agreed To</h3>
+      <ul>
+        <li>Terms &amp; Privacy: ${consents.terms ? "✓ Agreed" : "✗"}</li>
+        <li>Payment Authorization: ${consents.payment ? "✓ Agreed" : "✗"}</li>
+        <li>SMS Notifications: ${consents.sms ? "✓ Agreed" : "✗"}</li>
+        <li>Marketing Messages: ${consents.marketing ? "✓ Agreed" : "✗"}</li>
+        <li>Data Security: ${consents.dataSecurity ? "✓ Agreed" : "✗"}</li>
+        <li>Refund Policy: ${consents.refundPolicy ? "✓ Agreed" : "✗"}</li>
+      </ul>
+
+      <h3 style="color: #1E293B;">Your Signature</h3>
+      <img src="cid:signature" alt="Your signature" style="border: 1px solid #E2E8F0; max-width: 400px;" />
+
+      <p style="margin-top: 24px;">If you have any questions, please don't hesitate to contact us at <a href="mailto:info@opusglobalsolution.com" style="color: #2563EB;">info@opusglobalsolution.com</a> or call us at (645) 253-6830.</p>
       <p style="margin-top: 24px; font-weight: bold;">Best regards,<br>Opus Global Solution Team</p>
       <p style="color: #64748B; font-size: 12px; margin-top: 24px;">Opus Global Solution — Professional marketing and administrative support for real estate professionals.</p>
     </div>
@@ -125,9 +165,28 @@ async function sendClientConfirmationEmail(args: {
 
   const text = `Thank you, ${fullName}!
 
-We have received your ${plan.name} subscription details and agreement.
+We have received your ${plan.name} subscription details and agreement. Below is a copy of your signed agreement for your records.
 
 Our funding manager will send you the billing details via Payoneer shortly to complete your subscription payment.
+
+Your Agreement Details:
+- Plan: ${plan.name} (${plan.priceLabel})
+- Full Name: ${fullName}
+- Phone: ${phone}
+- DRE / License #: ${dre}
+- Email: ${email}
+- Billing Address: ${billingAddress}
+- Service Area: ${serviceArea}
+
+Consents You Agreed To:
+- Terms & Privacy: ${consents.terms ? "Agreed" : "No"}
+- Payment Authorization: ${consents.payment ? "Agreed" : "No"}
+- SMS Notifications: ${consents.sms ? "Agreed" : "No"}
+- Marketing Messages: ${consents.marketing ? "Agreed" : "No"}
+- Data Security: ${consents.dataSecurity ? "Agreed" : "No"}
+- Refund Policy: ${consents.refundPolicy ? "Agreed" : "No"}
+
+(Your signature is attached as PNG)
 
 If you have any questions, please contact us at info@opusglobalsolution.com or (645) 253-6830.
 
@@ -137,9 +196,15 @@ Opus Global Solution Team`;
   const { data, error } = await resend.emails.send({
     from: FROM_EMAIL,
     to: email,
-    subject: `Thank you for your ${plan.name} subscription — Opus Global Solution`,
+    subject: `Your ${plan.name} Agreement — Opus Global Solution`,
     text,
     html,
+    attachments: [
+      {
+        filename: "your-signature.png",
+        content: sigBase64,
+      },
+    ],
   });
 
   if (error) {
