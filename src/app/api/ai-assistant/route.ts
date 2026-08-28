@@ -1,27 +1,74 @@
 import { NextRequest, NextResponse } from "next/server";
-import ZAI from "z-ai-web-dev-sdk";
 
 export const runtime = "nodejs";
 
-const SYSTEM_PROMPT = `You are the "Opus Assistant", the smart sales assistant for Opus Global Solution — a premium real estate marketing consulting and workflow automation service for licensed real estate professionals.
+/* ============================================================
+   Gemini API configuration
+   ------------------------------------------------------------
+   Uses Google's Gemini Flash model (free tier) via direct
+   HTTP fetch — no SDK dependency required.
+   API key is stored in environment variable GEMINI_API_KEY.
+   ============================================================ */
+const GEMINI_API_URL =
+  "https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent";
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY || "";
 
-Your role: qualify leads and answer questions from real estate agents and brokers who are evaluating the service. Demonstrate how marketing consulting, outreach support, and CRM services work.
+const SYSTEM_PROMPT = `You are the "Opus Assistant", the smart sales assistant for Opus Global Solution — a premium real estate marketing consulting and workflow automation service for licensed real estate professionals in the United States.
 
-Product facts you can share:
-- Opus Global Solution provides marketing consulting, CRM support, outreach support, virtual assistance, digital marketing, appointment coordination, and reporting & analytics for real estate professionals.
-- Virtual Assistant services include: Customer Support, Prospect Calling, Calendar Management, CRM Management, Social Media Management, Website Management.
-- Pricing: Trial $299 (one-time, 90 days), Gold $599 (one-time, 180 days), Platinum $1,199 (one-time, 365 days). Referral fees apply on successful closings.
-- Virtual Assistance packages: Trial $599/mo, Gold $899/mo, Platinum $1,499/mo.
-- Human-verified, consent-based outreach. TCPA, DNC, CAN-SPAM, CCPA/CPRA, and Fair Housing Act compliant.
-- Contact: info@opusglobalsolution.com or (645) 253-6830.
+Your role: qualify leads and answer questions from real estate agents and brokers who are evaluating the service. Demonstrate how marketing consulting, outreach support, CRM services, virtual assistance, and digital marketing work.
 
-Guidelines:
+ABOUT OPUS GLOBAL SOLUTION:
+- Website: https://opusglobalsolution.com
+- Email: info@opusglobalsolution.com
+- Phone: (645) 253-6830
+- Location: 418 Broadway, Ste. R, Albany, NY 12207
+- We serve licensed real estate professionals across the United States.
+- We are a marketing consulting and support company — we do NOT act as a brokerage, list or sell property, or resell leads.
+
+SERVICES WE OFFER (12 core services):
+1. Marketing Consulting — strategy and planning for real estate growth
+2. Real Estate Outreach — human-verified, consent-based prospect calling
+3. CRM Support — setup, pipeline management, and ongoing CRM maintenance
+4. Workflow Automation — automate repetitive tasks and follow-ups
+5. Virtual Assistance — dedicated VAs for admin, social media, CRM, calendar
+6. SEO & Online Presence — improve Google visibility and local search
+7. Digital Advertising — Facebook and Google Ads management for seller leads
+8. Social Media Management — content calendars, posting, engagement
+9. Email Campaign Support — CAN-SPAM compliant drip campaigns
+10. SMS Campaign Support — TCPA-compliant SMS outreach
+11. Website Management — maintenance, design, and development
+12. Calendar Management — appointment scheduling and reminders
+
+VIRTUAL ASSISTANCE PRICING (monthly subscriptions):
+- Gold — $750/month: Dedicated VA, up to 10 hours/week, admin + social media help, daily task reporting, priority response, 3 revisions per task, CRM tasks, real-time chat access, weekly performance reports, unlimited revisions.
+- Platinum — $1500/month: Full-service VA, up to 40 hours/week, admin + social media + CRM tasks, real-time chat access, weekly performance reports, unlimited revisions, CRM tasks, social media marketing (Meta Ads), social media accounts management, website maintenance/designing/development, advanced level website SEO.
+
+MARKETING SUPPORT PRICING (one-time plans):
+- Trial — $299 (90 days setup)
+- Gold — $599 (180 days)
+- Platinum — $1,199 (365 days)
+Referral fees apply on successful closings.
+
+COMPLIANCE:
+- 100% human-verified outreach — no autodialers, no robocalls.
+- TCPA, DNC, CAN-SPAM, CCPA/CPRA, and Fair Housing Act compliant.
+- Consent-based intake forms for all lead capture.
+- Documented records of all consent and interactions.
+
+SOCIAL MEDIA:
+- Facebook: https://www.facebook.com/opusglobalsolution
+- Instagram: https://www.instagram.com/opusglobalsolution
+- TikTok: https://www.tiktok.com/@opusglobalsolution
+- YouTube: https://www.youtube.com/@opusglobalsolution
+
+GUIDELINES:
 - Be concise, friendly, and consultative. Keep replies under 120 words.
 - When a visitor shares info (team size, market, budget), qualify them and recommend the right plan.
 - Use a touch of real estate domain vocabulary (listings, pipeline, motivated sellers, CRM, outreach).
 - If asked something outside real estate / Opus Global Solution, gently steer back.
-- Never invent pricing or features beyond what's listed. If unsure, suggest booking a consultation.
-- Do not use markdown headings. Use short paragraphs or bullet points sparingly.`;
+- Never invent pricing or features beyond what's listed above. If unsure, suggest booking a consultation or contacting info@opusglobalsolution.com.
+- Do not use markdown headings. Use short paragraphs or bullet points sparingly.
+- Encourage visitors to use the "Get Started" page or contact us directly for personalized recommendations.`;
 
 interface ChatMessage {
   role: "user" | "assistant";
@@ -33,23 +80,56 @@ const sessions = new Map<string, ChatMessage[]>();
 const MAX_SESSIONS = 200;
 const MAX_MESSAGES = 12;
 
-/** Build a ZAI instance from environment variables (works in production
- *  without the .z-ai-config file). Falls back to ZAI.create() for local dev. */
-async function getZAI() {
-  const baseUrl = process.env.ZAI_BASE_URL;
-  const apiKey = process.env.ZAI_API_KEY;
-  if (baseUrl && apiKey) {
-    // Construct directly — bypasses the .z-ai-config file lookup
-    return new ZAI({
-      baseUrl,
-      apiKey,
-      chatId: process.env.ZAI_CHAT_ID,
-      userId: process.env.ZAI_USER_ID,
-      token: process.env.ZAI_TOKEN,
-    } as any);
+/** Call the Gemini API directly via HTTP fetch. */
+async function callGemini(messages: ChatMessage[]): Promise<string> {
+  // Gemini expects "contents" array with "parts" — convert from chat format.
+  // The system prompt is prepended as the first user message.
+  const contents = [
+    {
+      role: "user",
+      parts: [{ text: SYSTEM_PROMPT }],
+    },
+    {
+      role: "model",
+      parts: [
+        {
+          text: "Understood. I am the Opus Assistant and will follow these guidelines.",
+        },
+      ],
+    },
+    ...messages.map((m) => ({
+      role: m.role === "assistant" ? "model" : "user",
+      parts: [{ text: m.content }],
+    })),
+  ];
+
+  const response = await fetch(GEMINI_API_URL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "X-goog-api-key": GEMINI_API_KEY,
+    },
+    body: JSON.stringify({
+      contents,
+      generationConfig: {
+        temperature: 0.7,
+        maxOutputTokens: 300,
+        topP: 0.9,
+      },
+    }),
+  });
+
+  if (!response.ok) {
+    const errorText = await response.text();
+    console.error("[ai-assistant] Gemini API error:", response.status, errorText);
+    throw new Error(`Gemini API returned ${response.status}`);
   }
-  // Fallback: use config file (local dev / sandbox)
-  return ZAI.create();
+
+  const data = await response.json();
+  const reply =
+    data?.candidates?.[0]?.content?.parts?.[0]?.text?.trim() || "";
+
+  return reply;
 }
 
 export async function POST(req: NextRequest) {
@@ -77,25 +157,22 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Build conversation: system + stored history + incoming history + new message
+    // Build conversation: stored history or incoming history + new message
     let convo: ChatMessage[] = sessions.get(sessionId) || [];
     if (Array.isArray(history) && history.length) {
       convo = history
-        .filter((h) => h && (h.role === "user" || h.role === "assistant") && typeof h.content === "string")
+        .filter(
+          (h) =>
+            h &&
+            (h.role === "user" || h.role === "assistant") &&
+            typeof h.content === "string"
+        )
         .slice(-MAX_MESSAGES);
     }
     convo = [...convo, { role: "user", content: userMsg }].slice(-MAX_MESSAGES);
 
-    const zai = await getZAI();
-    const completion = await zai.chat.completions.create({
-      messages: [
-        { role: "assistant", content: SYSTEM_PROMPT },
-        ...convo.map((m) => ({ role: m.role, content: m.content })),
-      ],
-      thinking: { type: "disabled" },
-    });
+    const reply = await callGemini(convo);
 
-    const reply = completion.choices?.[0]?.message?.content?.trim() || "";
     if (!reply) {
       return NextResponse.json(
         { error: "I couldn't generate a response. Please try again." },
