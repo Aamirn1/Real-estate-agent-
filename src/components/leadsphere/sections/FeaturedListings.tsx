@@ -49,9 +49,9 @@ export function FeaturedListings() {
         {/* Heading */}
         <div className="mb-8 text-center">
           <h2 className="font-heading text-2xl font-bold text-black sm:text-3xl md:text-4xl">
-            Featured{" "}
+            Featured Listings By{" "}
             <span className="bg-gradient-to-r from-electric to-cyan bg-clip-text text-transparent">
-              Listings
+              Maria Ferrer
             </span>
           </h2>
           <p className="mt-2 text-sm text-black/60 sm:text-base">

@@ -17,13 +17,13 @@ export function LatestListings() {
       <div className="mx-auto w-full max-w-5xl">
         {/* Heading */}
         <div className="mb-6 text-center">
-          <h2 className="font-heading text-2xl font-bold text-white sm:text-3xl md:text-4xl">
-            Latest Listings By{" "}
+          <h2 className="font-heading text-2xl font-bold text-black sm:text-3xl md:text-4xl">
+            Latest Listings By Our{" "}
             <span className="bg-gradient-to-r from-electric to-cyan bg-clip-text text-transparent">
-              Our Realtors
+              Realtors
             </span>
           </h2>
-          <p className="mt-2 text-sm text-white/60 sm:text-base">
+          <p className="mt-2 text-sm text-black/60 sm:text-base">
             Explore our featured properties and recent client success stories
           </p>
         </div>
