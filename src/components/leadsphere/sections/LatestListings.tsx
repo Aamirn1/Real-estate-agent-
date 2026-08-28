@@ -32,7 +32,7 @@ export function LatestListings() {
         <div className="relative w-full overflow-hidden rounded-3xl border border-black/10 shadow-2xl">
           <div className="relative aspect-[3/2] w-full">
             <Image
-              src="/listings/latest-listings.png"
+              src="/listings/latest-listings-v2.png"
               alt="Featured real estate property listings showcase with agent Maria Ferrer"
               fill
               priority
