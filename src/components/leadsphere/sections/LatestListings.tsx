@@ -51,7 +51,7 @@ export function LatestListings() {
             >
               <Link
                 href="/testimonials"
-                className="btn-shimmer group relative inline-flex items-center gap-2 overflow-hidden rounded-full border-2 border-white bg-white/95 px-7 py-3 text-sm font-bold text-[#2563EB] shadow-[0_8px_30px_-4px_rgba(0,0,0,0.4)] backdrop-blur transition-all hover:scale-105 hover:bg-white hover:shadow-[0_12px_40px_-4px_rgba(37,99,235,0.5)] sm:px-8 sm:py-3.5 sm:text-base"
+                className="btn-shimmer group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-[linear-gradient(120deg,#2563EB,#38BDF8,#14B8A6,#2563EB)] animate-gradient-x bg-[length:200%_200%] px-7 py-3 text-sm font-bold text-white shadow-[0_8px_30px_-4px_rgba(0,0,0,0.5)] transition-all hover:scale-105 hover:shadow-[0_12px_40px_-4px_rgba(37,99,235,0.7)] sm:px-8 sm:py-3.5 sm:text-base"
               >
                 <span className="relative z-10">View Listings</span>
                 <ArrowRight className="relative z-10 h-4 w-4 transition-transform group-hover:translate-x-1" />
