@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
-import { AGREEMENT_PLANS, type PlanKey } from "@/lib/agreement-plans";
+import { AGREEMENT_PLANS, getAgreementSections, type PlanKey } from "@/lib/agreement-plans";
 
 /* ============================================================
    Agreement Submit API
@@ -34,6 +34,33 @@ const VALID_PLANS: PlanKey[] = ["Trial", "Gold", "Platinum", "VA-Trial", "VA-Gol
 const MANAGEMENT_EMAIL = "talalrajamuhammad@gmail.com";
 const FROM_EMAIL = "Opus Global Solution <noreply@opusglobalsolution.com>";
 const RESEND_API_KEY = process.env.RESEND_API_KEY || "";
+
+/** Render the full agreement text as HTML for inclusion in emails.
+ *  Positioned just above the signature. */
+function renderAgreementHtml(plan: typeof AGREEMENT_PLANS[PlanKey]): string {
+  const sections = getAgreementSections(plan);
+  const sectionsHtml = sections
+    .map(
+      (s) =>
+        `<div style="margin-bottom: 16px;"><h4 style="color: #1E293B; margin: 0 0 6px 0; font-size: 14px;">${s.title}</h4><p style="margin: 0; font-size: 13px; line-height: 1.6; color: #475569; white-space: pre-wrap;">${s.body}</p></div>`
+    )
+    .join("");
+  return `
+    <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px; padding: 20px; margin: 20px 0;">
+      <h3 style="color: #2563EB; margin: 0 0 16px 0; font-size: 16px;">${plan.name} — Full Agreement Text</h3>
+      ${sectionsHtml}
+    </div>
+  `;
+}
+
+/** Render the full agreement text as plain text for inclusion in emails. */
+function renderAgreementText(plan: typeof AGREEMENT_PLANS[PlanKey]): string {
+  const sections = getAgreementSections(plan);
+  const sectionsText = sections
+    .map((s) => `${s.title}\n${s.body}`)
+    .join("\n\n");
+  return `\n${plan.name} — Full Agreement Text\n${"=".repeat(40)}\n\n${sectionsText}\n`;
+}
 
 export async function POST(req: NextRequest) {
   try {
@@ -154,6 +181,8 @@ async function sendClientConfirmationEmail(args: {
         <li>Refund Policy: ${consents.refundPolicy ? "✓ Agreed" : "✗"}</li>
       </ul>
 
+      ${renderAgreementHtml(plan)}
+
       <h3 style="color: #1E293B;">Your Signature</h3>
       <img src="cid:signature" alt="Your signature" style="border: 1px solid #E2E8F0; max-width: 400px;" />
 
@@ -185,6 +214,8 @@ Consents You Agreed To:
 - Marketing Messages: ${consents.marketing ? "Agreed" : "No"}
 - Data Security: ${consents.dataSecurity ? "Agreed" : "No"}
 - Refund Policy: ${consents.refundPolicy ? "Agreed" : "No"}
+
+${renderAgreementText(plan)}
 
 (Your signature is attached as PNG)
 
@@ -255,6 +286,7 @@ async function sendAgreementEmail(args: {
         <li>Data Security: ${consents.dataSecurity ? "✓ Agreed" : "✗"}</li>
         <li>Refund Policy: ${consents.refundPolicy ? "✓ Agreed" : "✗"}</li>
       </ul>
+      ${renderAgreementHtml(plan)}
       <h3 style="color: #1E293B;">Signature</h3>
       <img src="cid:signature" alt="Client signature" style="border: 1px solid #E2E8F0; max-width: 400px;" />
       <p style="color: #64748B; font-size: 12px; margin-top: 24px;">Sent from opusglobalsolution.com — Agreement form submission.</p>
@@ -278,6 +310,8 @@ Consents:
 - Marketing Messages: ${consents.marketing ? "Agreed" : "No"}
 - Data Security: ${consents.dataSecurity ? "Agreed" : "No"}
 - Refund Policy: ${consents.refundPolicy ? "Agreed" : "No"}
+
+${renderAgreementText(plan)}
 
 (Signature attached as PNG)
 `;
